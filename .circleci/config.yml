@@ -7,8 +7,8 @@ executors:
   my-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-      - image: dwmkerr/dynamodb:41
-        entrypoint: ['java', '-Xmx1G', '-jar', 'DynamoDBLocal.jar', '-sharedDb']
+#      - image: dwmkerr/dynamodb:41
+#        entrypoint: ['java', '-Xmx1G', '-jar', 'DynamoDBLocal.jar', '-sharedDb']
 
     working_directory: ~/repo
 
@@ -25,16 +25,16 @@ jobs:
           name: Install dependencies
           command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn
 
-      - aws-cli/install
+#      - aws-cli/install
+#
+#      - aws-cli/setup:
+#          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
+#          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
+#          aws-region: CYPRESS_AWS_REGION
 
-      - aws-cli/setup:
-          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
-          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
-          aws-region: CYPRESS_AWS_REGION
-
-      - run:
-          name: Create local DynamoDB plans table
-          command: aws dynamodb create-table --cli-input-json file://./config/tables/plans.json --endpoint-url http://localhost:8000 > /dev/null
+#      - run:
+#          name: Create local DynamoDB plans table
+#          command: aws dynamodb create-table --cli-input-json file://./config/tables/plans.json --endpoint-url http://localhost:8000 > /dev/null
 
       - run:
           name: Build the application
@@ -48,15 +48,15 @@ jobs:
           name: Run linting
           command: yarn lint
 
-      - run:
-          name: Run integration tests
-          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
+#      - run:
+#          name: Run integration tests
+#          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
 
-      - store_artifacts:
-          path: ~/repo/cypress/screenshots
-
-      - store_artifacts:
-          path: ~/repo/cypress/videos
+#      - store_artifacts:
+#          path: ~/repo/cypress/screenshots
+#
+#      - store_artifacts:
+#          path: ~/repo/cypress/videos
 
       - persist_to_workspace:
           root: ~/repo
@@ -103,17 +103,17 @@ workflows:
   continuous-delivery:
     jobs:
       - install-dependencies-and-test
-      - build-deploy-staging:
-          requires:
-            - install-dependencies-and-test
-          filters:
-            branches:
-              only:
-                - master
-      - permit-deploy-production:
-          type: approval
-          requires:
-            - build-deploy-staging
-      - build-deploy-production:
-          requires:
-            - permit-deploy-production
+#      - build-deploy-staging:
+#          requires:
+#            - install-dependencies-and-test
+#          filters:
+#            branches:
+#              only:
+#                - master
+#      - permit-deploy-production:
+#          type: approval
+#          requires:
+#            - build-deploy-staging
+#      - build-deploy-production:
+#          requires:
+#            - permit-deploy-production
