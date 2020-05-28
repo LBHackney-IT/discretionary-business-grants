@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1>Welcome to Shared Plan!</h1>;
+  return <h1>Discretionary Business Grants!</h1>;
 }
