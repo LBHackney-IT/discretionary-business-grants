@@ -7,7 +7,7 @@ context('Home page', () => {
 
   describe('Loads page', () => {
     it('has shared plan heading', () => {
-      cy.get('h1').should('have.text', 'Welcome to Shared Plan!');
+      cy.get('h1').should('have.text', 'Discretionary Business Grants!');
       cy.checkA11y('#content > h1', null, cy.terminalLog);
     });
   });
