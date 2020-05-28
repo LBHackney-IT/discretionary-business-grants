@@ -7,8 +7,6 @@ executors:
   my-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-#      - image: dwmkerr/dynamodb:41
-#        entrypoint: ['java', '-Xmx1G', '-jar', 'DynamoDBLocal.jar', '-sharedDb']
 
     working_directory: ~/repo
 
@@ -25,16 +23,12 @@ jobs:
           name: Install dependencies
           command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn
 
-#      - aws-cli/install
-#
-#      - aws-cli/setup:
-#          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
-#          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
-#          aws-region: CYPRESS_AWS_REGION
-
-#      - run:
-#          name: Create local DynamoDB plans table
-#          command: aws dynamodb create-table --cli-input-json file://./config/tables/plans.json --endpoint-url http://localhost:8000 > /dev/null
+      #      - aws-cli/install
+      #
+      #      - aws-cli/setup:
+      #          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
+      #          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
+      #          aws-region: CYPRESS_AWS_REGION
 
       - run:
           name: Build the application
