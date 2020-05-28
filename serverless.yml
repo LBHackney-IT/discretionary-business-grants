@@ -21,7 +21,6 @@ functions:
       include:
         - lambda.js
         - next.config.js
-        - lib/**
         - pages/**
         - public/**
         - build/_next/**
@@ -52,38 +51,6 @@ functions:
 
 resources:
   Resources:
-    PlansTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:provider.environment.PLANS_TABLE}
-        BillingMode: PAY_PER_REQUEST
-        SSESpecification:
-          SSEEnabled: true
-        PointInTimeRecoverySpecification:
-          PointInTimeRecoveryEnabled: true
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-          - AttributeName: queryLastName
-            AttributeType: S
-          - AttributeName: queryFirstName
-            AttributeType: S
-        GlobalSecondaryIndexes:
-          - IndexName: NamesIndex
-            KeySchema:
-              - AttributeName: queryLastName
-                KeyType: HASH
-              - AttributeName: queryFirstName
-                KeyType: RANGE
-            Projection:
-              ProjectionType: INCLUDE
-              NonKeyAttributes:
-                - id
-                - systemIds
-
     CloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:
