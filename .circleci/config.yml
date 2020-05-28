@@ -42,15 +42,15 @@ jobs:
           name: Run linting
           command: yarn lint
 
-#      - run:
-#          name: Run integration tests
-#          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
+      - run:
+          name: Run integration tests
+          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
 
-#      - store_artifacts:
-#          path: ~/repo/cypress/screenshots
-#
-#      - store_artifacts:
-#          path: ~/repo/cypress/videos
+      - store_artifacts:
+          path: ~/repo/cypress/screenshots
+
+      - store_artifacts:
+          path: ~/repo/cypress/videos
 
       - persist_to_workspace:
           root: ~/repo
