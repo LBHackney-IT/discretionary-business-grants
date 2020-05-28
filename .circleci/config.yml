@@ -122,7 +122,7 @@ workflows:
       - assume-role-staging:
           context: api-assume-role-staging-context
           requires:
-            - build-and-test
+            - install-dependencies-and-test
           filters:
             branches:
               only: master
