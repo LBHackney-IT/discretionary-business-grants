@@ -30,7 +30,7 @@ functions:
       - http:
           path: api/{proxy+}
           method: ANY
-          authorizer: ${self:custom.authorizer.${self:service}-authorizer}
+#          authorizer: ${self:custom.authorizer.${self:service}-authorizer}
       - http: ANY /
       - http: ANY /{proxy+}
     environment:
