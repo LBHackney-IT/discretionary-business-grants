@@ -8,8 +8,10 @@ executors:
   node-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-
     working_directory: ~/repo
+  docker-python:
+    docker:
+      - image: circleci/python:3.7
 
 jobs:
   install-dependencies-and-test:
