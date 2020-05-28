@@ -2,19 +2,20 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@1.0.0
+  aws_assume_role: lbh-hackit/aws_assume_role@0.1.0
 
 executors:
-  my-executor:
+  node-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-#      - image: dwmkerr/dynamodb:41
-#        entrypoint: ['java', '-Xmx1G', '-jar', 'DynamoDBLocal.jar', '-sharedDb']
-
     working_directory: ~/repo
+  docker-python:
+    docker:
+      - image: circleci/python:3.7
 
 jobs:
   install-dependencies-and-test:
-    executor: my-executor
+    executor: node-executor
 
     working_directory: ~/repo
 
@@ -71,14 +72,9 @@ jobs:
 
       - aws-cli/install
 
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
-
       - run:
           name: deploy
-          command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s staging
+          command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
 
   build-deploy-production:
     executor: aws-cli/default
@@ -89,32 +85,67 @@ jobs:
 
       - aws-cli/install
 
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
-
       - run:
           name: deploy
           command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
+
+  assume-role-staging:
+    executor: docker-python
+    steps:
+      - checkout
+      - aws_assume_role/assume_role:
+          account: $AWS_ACCOUNT_STAGING
+          profile_name: default
+          role: "LBH_Circle_CI_Deployment_Role"
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .aws
+  assume-role-production:
+    executor: docker-python
+    steps:
+      - checkout
+      - aws_assume_role/assume_role:
+          account: $AWS_ACCOUNT_PRODUCTION
+          profile_name: default
+          role: "LBH_Circle_CI_Deployment_Role"
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .aws
 
 workflows:
   version: 2
   continuous-delivery:
     jobs:
       - install-dependencies-and-test
-#      - build-deploy-staging:
-#          requires:
-#            - install-dependencies-and-test
+      - assume-role-staging:
+          context: api-assume-role-staging-context
+          requires:
+            - install-dependencies-and-test
+#          filters:
+#            branches:
+#              only: master
+      - build-deploy-staging:
+          requires:
+            - install-dependencies-and-test
+            - assume-role-staging
 #          filters:
 #            branches:
 #              only:
 #                - master
-#      - permit-deploy-production:
-#          type: approval
-#          requires:
-#            - build-deploy-staging
-#      - build-deploy-production:
-#          requires:
-#            - permit-deploy-production
-
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - build-deploy-staging
+      - assume-role-production:
+          context: api-assume-role-production-context
+          requires:
+            - permit-deploy-production
+#          filters:
+#            branches:
+#              only: master
+      - build-deploy-production:
+          requires:
+            - permit-deploy-production
+            - assume-role-production
