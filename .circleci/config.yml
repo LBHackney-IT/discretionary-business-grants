@@ -98,7 +98,7 @@ jobs:
           profile_name: default
           role: "LBH_Circle_CI_Deployment_Role"
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/
           paths:
             - .aws
   assume-role-production:
@@ -110,7 +110,7 @@ jobs:
           profile_name: default
           role: "LBH_Circle_CI_Deployment_Role"
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/
           paths:
             - .aws
 
