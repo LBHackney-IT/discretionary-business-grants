@@ -3,9 +3,10 @@
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
-  "plugins": ["jest"],
+  "plugins": ["cypress", "jest"],
   "parser": "babel-eslint",
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {

@@ -7,7 +7,7 @@ import PhaseBanner from './PhaseBanner';
 const Layout = ({ children }) => (
   <>
     <SkipLink />
-    <Header serviceName="Shared Plan" />
+    <Header serviceName="Discretionary Business Grants" />
     <div className="govuk-width-container app-width-container">
       <PhaseBanner phase="beta" />
       <main
