@@ -118,6 +118,7 @@ workflows:
     jobs:
       - install-dependencies-and-test
       - assume-role-staging:
+          context: api-assume-role-staging-context
           requires:
             - build-and-test
           filters:
@@ -136,6 +137,7 @@ workflows:
           requires:
             - build-deploy-staging
       - assume-role-production:
+          context: api-assume-role-production-context
           requires:
             - permit-deploy-production
           filters:
