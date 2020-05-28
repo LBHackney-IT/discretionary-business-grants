@@ -1,0 +1,119 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@1.0.0
+
+executors:
+  my-executor:
+    docker:
+      - image: circleci/node:12.9.1-browsers
+      - image: dwmkerr/dynamodb:41
+        entrypoint: ['java', '-Xmx1G', '-jar', 'DynamoDBLocal.jar', '-sharedDb']
+
+    working_directory: ~/repo
+
+jobs:
+  install-dependencies-and-test:
+    executor: my-executor
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn
+
+      - aws-cli/install
+
+      - aws-cli/setup:
+          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
+          aws-region: CYPRESS_AWS_REGION
+
+      - run:
+          name: Create local DynamoDB plans table
+          command: aws dynamodb create-table --cli-input-json file://./config/tables/plans.json --endpoint-url http://localhost:8000 > /dev/null
+
+      - run:
+          name: Build the application
+          command: yarn build
+
+      - run:
+          name: Run unit tests
+          command: yarn run unit-test
+
+      - run:
+          name: Run linting
+          command: yarn lint
+
+      - run:
+          name: Run integration tests
+          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
+
+      - store_artifacts:
+          path: ~/repo/cypress/screenshots
+
+      - store_artifacts:
+          path: ~/repo/cypress/videos
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+  build-deploy-staging:
+    executor: aws-cli/default
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - aws-cli/install
+
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+
+      - run:
+          name: deploy
+          command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s staging
+
+  build-deploy-production:
+    executor: aws-cli/default
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - aws-cli/install
+
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+
+      - run:
+          name: deploy
+          command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
+
+workflows:
+  version: 2
+  continuous-delivery:
+    jobs:
+      - install-dependencies-and-test
+      - build-deploy-staging:
+          requires:
+            - install-dependencies-and-test
+          filters:
+            branches:
+              only:
+                - master
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - build-deploy-staging
+      - build-deploy-production:
+          requires:
+            - permit-deploy-production
