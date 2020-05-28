@@ -21,7 +21,6 @@ functions:
       include:
         - lambda.js
         - next.config.js
-        - lib/**
         - pages/**
         - public/**
         - build/_next/**
