@@ -25,6 +25,7 @@
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#dfc45f0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^5.7.2",
     "restana": "^4.3.4",
     "serve-static": "^1.14.1",
     "serverless-http": "^2.4.1"
