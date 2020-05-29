@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
-import SkipLink from './SkipLink';
-import PhaseBanner from './PhaseBanner';
+import Footer from './Footer/Footer';
+import Header from './Header/Header';
+import SkipLink from './SkipLink/SkipLink';
+import PhaseBanner from './PhaseBanner/PhaseBanner';
 
 const Layout = ({ children }) => (
   <>

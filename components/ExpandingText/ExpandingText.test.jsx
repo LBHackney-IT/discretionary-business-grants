@@ -1,4 +1,4 @@
-import ExpandingText from 'components/ExpandingText';
+import ExpandingText from 'components/ExpandingText/ExpandingText';
 import { render } from '@testing-library/react';
 
 describe('<ExpandingText />', () => {
