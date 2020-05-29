@@ -16,11 +16,11 @@ const Step1 = props => {
       <h2>Step 1</h2>
       <Radios
         title="Is your business based in and trading in Hackney?"
-        name="eligibility.isBasedOnHackney"
+        name="eligibility.isBasedInHackney"
         register={register({ required: true })}
       />
       <Radios
-        title="Is your business classes as either a small or micro business?"
+        title="Is your business classed as either a small or micro business?"
         name="eligibility.isSmallBusiness"
         register={register({ required: true })}
       />
