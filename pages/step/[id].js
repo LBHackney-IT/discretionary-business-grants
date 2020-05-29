@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Router from 'next/router';
 
 import Step1 from 'components/Steps/1';
 import Step2 from 'components/Steps/2';
@@ -23,6 +24,10 @@ const FormWizard = () => {
   const { id } = router.query;
   const Step = steps[id];
   if (!Step) {
+    return null;
+  }
+  if (!formData.eligibility && id !== '1') {
+    Router.replace('/step/1');
     return null;
   }
   const previousStep = getPreviousStep(id);
