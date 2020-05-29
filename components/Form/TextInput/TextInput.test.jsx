@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import TextInput from './index';
+import TextInput from './TextInput';
 
 describe('TextInput', () => {
   it('renders a text input', () => {

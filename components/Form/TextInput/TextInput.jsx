@@ -1,4 +1,4 @@
-const TextInput = ({ label, name, onChange }) => (
+const TextInput = ({ label, name, register, ...otherProps }) => (
   <div className="govuk-form-group">
     <label className="govuk-label" htmlFor={name}>
       {label}
@@ -9,7 +9,8 @@ const TextInput = ({ label, name, onChange }) => (
       data-testid={name}
       name={name}
       type="text"
-      onChange={onChange}
+      ref={register}
+      {...otherProps}
     />
   </div>
 );

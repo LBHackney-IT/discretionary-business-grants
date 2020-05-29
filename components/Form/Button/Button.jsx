@@ -1,10 +1,11 @@
-const Button = ({ onClick, text, ...others }) => (
+const Button = ({ onClick, text, type, ...otherProps }) => (
   <div className="govuk-form-group">
     <button
       className="govuk-button"
       data-module="govuk-button"
       onClick={onClick}
-      {...others}
+      type={type}
+      {...otherProps}
     >
       {text}
     </button>

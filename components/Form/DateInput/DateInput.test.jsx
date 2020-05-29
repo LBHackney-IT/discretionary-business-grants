@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import DateInput from './index';
+import DateInput from './DateInput';
 
 describe('DateInput', () => {
   const inputName = 'my-date';
