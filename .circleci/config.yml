@@ -72,7 +72,7 @@ jobs:
 #      - aws-cli/install
       - run:
           name: deploy
-          command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
+          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
 
   build-deploy-production:
     executor: aws-cli/default
@@ -82,7 +82,7 @@ jobs:
 #      - aws-cli/install
       - run:
           name: deploy
-          command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
+          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
 
   assume-role-staging:
     executor: docker-python
