@@ -9,7 +9,7 @@ describe('TextInput', () => {
       <TextInput name={inputName} label={inputLabel} />
     );
 
-    const labelRegex = new RegExp(`\s*${inputLabel}\s*`);
+    const labelRegex = new RegExp(`s*${inputLabel}s*`);
     const input = getByLabelText(labelRegex);
 
     expect(input).toBeInTheDocument();
