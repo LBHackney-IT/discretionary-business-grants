@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import Step1 from 'components/Steps/1';
 import Step2 from 'components/Steps/2';
@@ -11,6 +12,11 @@ const steps = {
   result: Result
 };
 
+const getPreviousStep = step => {
+  const currentStep = Object.keys(steps).findIndex(s => s === step);
+  return currentStep > 0 ? Object.keys(steps)[currentStep - 1] : null;
+};
+
 const FormWizard = () => {
   const [formData, setFormData] = useState({ firstName: 'asd' });
   const router = useRouter();
@@ -19,17 +25,19 @@ const FormWizard = () => {
   if (!Step) {
     return null;
   }
+  const previousStep = getPreviousStep(id);
   return (
     <div className="govuk-width-container">
+      {previousStep && (
+        <Link href="/step/[id]" as={`/step/${previousStep}`}>
+          <a className="govuk-back-link">Back</a>
+        </Link>
+      )}
       <main className="govuk-main-wrapper">
-        <div className="govuk-grid-row">
-          <div className="govuk-grid-column-one-third">
-            <Step
-              formData={formData}
-              saveData={data => setFormData({ ...formData, ...data })}
-            />
-          </div>
-        </div>
+        <Step
+          formData={formData}
+          saveData={data => setFormData({ ...formData, ...data })}
+        />
       </main>
     </div>
   );
