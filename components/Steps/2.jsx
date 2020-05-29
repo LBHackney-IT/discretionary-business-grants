@@ -2,8 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
+import { Button, TextInput } from 'components/Form';
+
 const Step1 = props => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
   const onSubmit = data => {
     props.saveData(data);
     Router.push('/step/[id]', '/step/result');
@@ -12,19 +14,9 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2>Step 2</h2>
-      <label>
-        foo:
-        <input name="age" ref={register} defaultValue={props.formData.age} />
-      </label>
-      <label>
-        bar:
-        <input
-          name="yearsOfExp"
-          ref={register}
-          defaultValue={props.formData.yearsOfExp}
-        />
-      </label>
-      <input type="submit" />
+      <TextInput label="First Name:" name="firstName" register={register} />
+      <TextInput label="Last Name:" name="lastName" register={register} />
+      <Button className="govuk-button" text="Next" type="submit" />
     </form>
   );
 };
