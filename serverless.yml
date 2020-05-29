@@ -51,37 +51,36 @@ functions:
 
 resources:
   Resources:
-#    PlansTable:
-#      Type: AWS::DynamoDB::Table
-#      Properties:
-#        TableName: ${self:provider.environment.PLANS_TABLE}
-#        BillingMode: PAY_PER_REQUEST
-#        SSESpecification:
-#          SSEEnabled: true
-#        PointInTimeRecoverySpecification:
-#          PointInTimeRecoveryEnabled: true
-#        KeySchema:
-#          - AttributeName: id
-#            KeyType: HASH
-#        AttributeDefinitions:
-#          - AttributeName: id
-#            AttributeType: S
-#          - AttributeName: queryLastName
-#            AttributeType: S
-#          - AttributeName: queryFirstName
-#            AttributeType: S
-#        GlobalSecondaryIndexes:
-#          - IndexName: NamesIndex
-#            KeySchema:
-#              - AttributeName: queryLastName
-#                KeyType: HASH
-#              - AttributeName: queryFirstName
-#                KeyType: RANGE
-#            Projection:
-#              ProjectionType: INCLUDE
-#              NonKeyAttributes:
-#                - id
-#                - systemIds
+    discretionaryBusinessGrantsDbSecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: Access to Postgres
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: 0.0.0.0/0
+
+    discretionaryBusinessGrantsDb:
+      Type: "AWS::RDS::DBInstance"
+      Properties:
+        DBInstanceIdentifier: "discretionary-business-grants-db-${self:provider.stage}"
+        DBName: "discretionaryBusinessGrantsDb"
+        AllocatedStorage: 5
+        DBInstanceClass: "db.t2.micro"
+        Engine: "postgres"
+        EngineVersion: "11.7"
+        MasterUsername: ${env:MASTER_USERNAME}
+        MasterUserPassword: ${env:MASTER_USER_PASSWORD}
+        VPCSecurityGroups:
+        - Fn::GetAtt:
+          - discretionaryBusinessGrantsDbSecurityGroup
+          - GroupId
+        Tags:
+          -
+            Key: "Name"
+            Value: "discretionaryBusinessGrantsDb"
+      DeletionPolicy: "Snapshot"
 
     CloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
