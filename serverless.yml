@@ -1,4 +1,4 @@
-service: hn-shared-plan
+service: discretionary-business-grants
 
 provider:
   name: aws
