@@ -14,7 +14,7 @@ package:
     - ./**
 
 functions:
-  hn-shared-plan:
+  discretionary-business-grants:
     name: ${self:service}-${self:provider.stage}
     handler: lambda.handler
     package:
@@ -83,44 +83,44 @@ resources:
 #                - id
 #                - systemIds
 
-#    CloudFrontDistribution:
-#      Type: AWS::CloudFront::Distribution
-#      Properties:
-#        DistributionConfig:
+    CloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
 #          Aliases:
 #            - ${self:custom.aliases.${self:provider.stage}}
-#          PriceClass: PriceClass_100
+          PriceClass: PriceClass_100
 #          ViewerCertificate:
 #            AcmCertificateArn: arn:aws:acm:us-east-1:402949050862:certificate/1ab6042c-b6df-40f9-abdc-9ab8d8df1679
 #            MinimumProtocolVersion: TLSv1.2_2018
 #            SslSupportMethod: sni-only
-#          DefaultCacheBehavior:
-#            TargetOriginId: ${self:service}-${self:provider.stage}-custom-origin
-#            ViewerProtocolPolicy: 'redirect-to-https'
-#            AllowedMethods:
-#              - GET
-#              - HEAD
-#              - OPTIONS
-#              - PUT
-#              - PATCH
-#              - POST
-#              - DELETE
-#            DefaultTTL: 0
-#            MaxTTL: 0
-#            MinTTL: 0
-#            ForwardedValues:
-#              QueryString: false
-#              Cookies:
-#                Forward: all
-#          Enabled: true
-#          Origins:
-#            - Id: ${self:service}-${self:provider.stage}-custom-origin
-#              DomainName: ${self:custom.domain-name}
-#              OriginPath: /${self:provider.stage}
-#              CustomOriginConfig:
-#                HTTPPort: 80
-#                HTTPSPort: 443
-#                OriginProtocolPolicy: https-only
+          DefaultCacheBehavior:
+            TargetOriginId: ${self:service}-${self:provider.stage}-custom-origin
+            ViewerProtocolPolicy: 'redirect-to-https'
+            AllowedMethods:
+              - GET
+              - HEAD
+              - OPTIONS
+              - PUT
+              - PATCH
+              - POST
+              - DELETE
+            DefaultTTL: 0
+            MaxTTL: 0
+            MinTTL: 0
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: all
+          Enabled: true
+          Origins:
+            - Id: ${self:service}-${self:provider.stage}-custom-origin
+              DomainName: ${self:custom.domain-name}
+              OriginPath: /${self:provider.stage}
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: https-only
 
 custom:
 #  authorizer:
