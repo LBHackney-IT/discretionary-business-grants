@@ -8,20 +8,22 @@ executors:
   node-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-    working_directory: ~/repo
   docker-python:
     docker:
       - image: circleci/python:3.7
 
+references:
+  workspace_root: &workspace_root "~"
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
 jobs:
   install-dependencies-and-test:
     executor: node-executor
-
-    working_directory: ~/repo
-
     steps:
+      - *attach_workspace
       - checkout
-
       - run:
           name: Install dependencies
           command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn
@@ -60,18 +62,14 @@ jobs:
 #          path: ~/repo/cypress/videos
 
       - persist_to_workspace:
-          root: ~/repo
+          root: *workspace_root
           paths: .
 
   build-deploy-staging:
     executor: aws-cli/default
-
     steps:
-      - attach_workspace:
-          at: ~/repo
-
-      - aws-cli/install
-
+      - *attach_workspace
+#      - aws-cli/install
       - run:
           name: deploy
           command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
@@ -80,11 +78,8 @@ jobs:
     executor: aws-cli/default
 
     steps:
-      - attach_workspace:
-          at: ~/repo
-
-      - aws-cli/install
-
+      - *attach_workspace
+#      - aws-cli/install
       - run:
           name: deploy
           command: cd ../repo && yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
@@ -98,9 +93,10 @@ jobs:
           profile_name: default
           role: "LBH_Circle_CI_Deployment_Role"
       - persist_to_workspace:
-          root: ~/
+          root: *workspace_root
           paths:
             - .aws
+
   assume-role-production:
     executor: docker-python
     steps:
@@ -110,7 +106,7 @@ jobs:
           profile_name: default
           role: "LBH_Circle_CI_Deployment_Role"
       - persist_to_workspace:
-          root: ~/
+          root: *workspace_root
           paths:
             - .aws
 
