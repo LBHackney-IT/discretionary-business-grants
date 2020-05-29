@@ -25,7 +25,7 @@ describe('<ExpandingText />', () => {
     const buttons = {
       expand: 'text-expand-button',
       contract: 'text-contract-button'
-    }
+    };
 
     it('shows the content', () => {
       const { getByText, getByTestId } = render(component);
