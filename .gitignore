@@ -18,13 +18,11 @@
 
 # misc
 .vscode
-.dynamodb
 .serverless
 *.idea
 .DS_Store
 .vscode
 .idea
-.dynamodb
 .serverless
 
 # debug
