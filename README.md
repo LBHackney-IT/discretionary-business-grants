@@ -29,16 +29,17 @@ You can check out [the Next.js GitHub repository](https://github.com/zeit/next.j
    ```bash
    createdb dbg
    ```
-2. Run all migrations
+2. Add the database URL as an environment variable in `.env`. On Linux you may need to provide a username and password.
+  ```bash
+  cat <<<EOF >> .env
+  DATABASE_URL=postgresql://localhost/dbg
+  EOF
+  ```
+3. Run all migrations
    ```bash
    npm run dbmigrate up
    ```
-3. Add the database URL as an environment variable in `.env`. On Linux you may need to provide a username and password.
-   ```bash
-   cat <<<EOF >> .env
-   DATABASE_URL=postgresql://localhost/dbg
-   EOF
-   ```
+
 
 #### Seeding the database
 
