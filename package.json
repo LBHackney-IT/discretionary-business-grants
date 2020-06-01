@@ -28,6 +28,7 @@
     "nanoid": "^3.1.5",
     "next": "^9.4.0",
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#dfc45f0",
+    "pg-promise": "^10.5.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
@@ -57,6 +58,7 @@
     "jest": "^25.5.4",
     "jest-fetch-mock": "^3.0.3",
     "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
     "sass": "^1.26.5",
     "serverless": "^1.70.1",
     "start-server-and-test": "^1.11.0"
