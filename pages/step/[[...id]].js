@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 import { steps, stepPath, stepKeys } from 'components/Steps';
 
 const getAdiacentSteps = step => {
@@ -14,6 +15,9 @@ const getAdiacentSteps = step => {
 };
 
 const FormWizard = ({ stepId }) => {
+  Router.events.on('routeChangeComplete', () => {
+    window.scrollTo(0, 0);
+  });
   const [formData, setFormData] = useState({ firstName: 'asd' });
   const Step = steps[stepId];
   const { previousStep, nextStep } = getAdiacentSteps(stepId);
