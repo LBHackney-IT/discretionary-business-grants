@@ -42,8 +42,6 @@ const FormWizard = ({ stepId }) => {
 FormWizard.getInitialProps = async ({ query, res }) => {
   const firstStep = stepKeys[0];
   const stepId = query['[...id]'];
-  console.log(firstStep);
-  console.log('id', stepId);
   if (res && stepId !== firstStep) {
     res.writeHead(301, { Location: `/step/${firstStep}` });
     res.end();

@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@testing-library/user-event": "^10.3.5",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
     "cookie-parser": "^1.4.5",
     "jest-fetch-mock": "^3.0.3",
     "jsonwebtoken": "^8.5.1",
