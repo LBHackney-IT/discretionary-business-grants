@@ -1,0 +1,1 @@
+DROP TYPE contact_type;
