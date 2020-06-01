@@ -1,6 +1,7 @@
 import Router from 'next/router';
 
 import { Button } from 'components/Form';
+import { steps, stepPath, stepKeys } from 'components/Steps';
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <h1>Discretionary Business Grants</h1>
       <Button
         text="Start"
-        onClick={() => Router.push('/step/[id]', '/step/1')}
+        onClick={() => Router.push(stepPath, `/step/${stepKeys[0]}`)}
       />
     </div>
   );

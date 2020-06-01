@@ -3,17 +3,18 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Radios } from 'components/Form';
+import { stepPath, stepKeys } from 'components/Steps';
 
 const Step1 = props => {
   const { register, handleSubmit } = useForm({ defaultValues: props.formData });
   const onSubmit = data => {
     props.saveData(data);
-    Router.push('/step/[id]', '/step/2');
+    Router.push(stepPath, props.nextStep);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Step 1</h2>
+      <h1>Eligibility Criteria</h1>
       <Radios
         title="Is your business based in and trading in Hackney?"
         name="eligibility.isBasedInHackney"
