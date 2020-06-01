@@ -6,8 +6,6 @@ provider:
   region: eu-west-2
   stage: ${opt:stage}
   dbname: discretionaryBusinessGrantsDb
-#  environment:
-#    PLANS_TABLE: '${self:service}-${self:provider.stage}-plans' 
 
 package:
   individually: true
@@ -38,7 +36,7 @@ functions:
         - Fn::GetAtt:
           - discretionaryBusinessGrantsDbSecurityGroup
           - GroupId
-      subnetIds: ${self:custom.${self:provider.stage}}
+      subnetIds: ${self:custom.subnets.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
       HOST: 
@@ -153,11 +151,12 @@ custom:
     staging: staging-discretionarybusinessgrants.hackney.gov.uk
     production: discretionarybusinessgrants.hackney.gov.uk
 
-  staging:
-    - subnet-07e8364b
-    - subnet-723cb408
-    - subnet-48094621
-  production:
-    - subnet-034b2a03cd4955923
-    - subnet-03431a6c898502c99
-    - subnet-0f02c86bab1d62956
+  subnets:
+    staging:
+      - subnet-07e8364b
+      - subnet-723cb408
+      - subnet-48094621
+    production:
+      - subnet-034b2a03cd4955923
+      - subnet-03431a6c898502c99
+      - subnet-0f02c86bab1d62956
