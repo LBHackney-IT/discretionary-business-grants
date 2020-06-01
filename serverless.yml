@@ -5,8 +5,9 @@ provider:
   runtime: nodejs12.x
   region: eu-west-2
   stage: ${opt:stage}
+  dbname: discretionaryBusinessGrantsDb
 #  environment:
-#    PLANS_TABLE: '${self:service}-${self:provider.stage}-plans'
+#    PLANS_TABLE: '${self:service}-${self:provider.stage}-plans' 
 
 package:
   individually: true
@@ -32,8 +33,21 @@ functions:
 #          authorizer: ${self:custom.authorizer.${self:service}-authorizer}
       - http: ANY /
       - http: ANY /{proxy+}
+    vpc:
+      securityGroupIds:
+        - Fn::GetAtt:
+          - discretionaryBusinessGrantsDbSecurityGroup
+          - GroupId
+      subnetIds: ${self:custom.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
+      HOST: 
+        Fn::GetAtt:
+          - discretionaryBusinessGrantsDb
+          - Endpoint.Address
+      USERNAME: ${env:MASTER_USERNAME}
+      PASSWORD: ${env:MASTER_USER_PASSWORD}
+      DATABASE: ${self:provider.dbname}
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
@@ -65,7 +79,7 @@ resources:
       Type: "AWS::RDS::DBInstance"
       Properties:
         DBInstanceIdentifier: "discretionary-business-grants-db-${self:provider.stage}"
-        DBName: "discretionaryBusinessGrantsDb"
+        DBName: ${self:provider.dbname}
         AllocatedStorage: 5
         DBInstanceClass: "db.t2.micro"
         Engine: "postgres"
@@ -138,3 +152,12 @@ custom:
   aliases:
     staging: staging-discretionarybusinessgrants.hackney.gov.uk
     production: discretionarybusinessgrants.hackney.gov.uk
+
+  staging:
+    - subnet-07e8364b
+    - subnet-723cb408
+    - subnet-48094621
+  production:
+    - subnet-034b2a03cd4955923
+    - subnet-03431a6c898502c99
+    - subnet-0f02c86bab1d62956
