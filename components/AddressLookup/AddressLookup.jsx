@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Controller } from 'react-hook-form';
+import isPostcodeValid from 'uk-postcode-validator';
 
 import { Button, Select, TextInput } from 'components/Form';
 import { lookupPostcode, normalizeAddress } from 'utils/postcodeAPI';
@@ -50,12 +51,15 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
           <div className="govuk-grid-column-one-third">
             <Button
               onClick={async e => {
+                if (!isPostcodeValid(postcode)) {
+                  setHasError(true);
+                  return;
+                }
                 setIsManually(false);
                 setHasError(false);
                 setResults([]);
                 try {
                   const res = await lookupPostcode(postcode);
-                  console.log(res);
                   setResults(res);
                 } catch (e) {
                   setHasError(true);
