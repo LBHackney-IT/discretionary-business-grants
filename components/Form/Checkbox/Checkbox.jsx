@@ -1,4 +1,4 @@
-const Checkbox = ({ label, name, onClick }) => (
+const Checkbox = ({ label, name, register }) => (
   <div className="govuk-form-group">
     <div className="govuk-checkboxes">
       <div className="govuk-checkboxes__item">
@@ -7,8 +7,7 @@ const Checkbox = ({ label, name, onClick }) => (
           id={name}
           name={name}
           type="checkbox"
-          value={name}
-          onClick={onClick}
+          ref={register}
         />
         <label className="govuk-label govuk-checkboxes__label" htmlFor={name}>
           {label}
