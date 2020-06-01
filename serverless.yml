@@ -139,6 +139,6 @@ custom:
     staging: staging-discretionarybusinessgrants.hackney.gov.uk
     production: discretionarybusinessgrants.hackney.gov.uk
   certificate-arn:
-    staging: arn:aws:acm:eu-west-2:715003523189:certificate/432f3be8-55e5-489b-9385-b93bc4f6df45
+    staging: arn:aws:acm:us-east-1:715003523189:certificate/349e1bba-23db-497a-9254-b04e52fce1c8
     production: arn:aws:acm:us-east-1:153306643385:certificate/61426264-5aa6-4b42-b2cb-c10ff7619a38
 
