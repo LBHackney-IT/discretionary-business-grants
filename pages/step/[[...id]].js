@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { steps, stepPath, stepKeys } from 'components/Steps';
 
-const getAdiacentSteps = step => {
+const getAdjacentSteps = step => {
   const currentStep = stepKeys.findIndex(s => s === step);
   return {
     previousStep: currentStep > 0 ? `/step/${stepKeys[currentStep - 1]}` : null,
@@ -20,7 +20,7 @@ const FormWizard = ({ stepId }) => {
   });
   const [formData, setFormData] = useState({ firstName: 'asd' });
   const Step = steps[stepId];
-  const { previousStep, nextStep } = getAdiacentSteps(stepId);
+  const { previousStep, nextStep } = getAdjacentSteps(stepId);
   return (
     <div className="govuk-width-container">
       {previousStep && (
