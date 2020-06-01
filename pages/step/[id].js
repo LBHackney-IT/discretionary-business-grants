@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Router from 'next/router';
 
 import Step1 from 'components/Steps/1';
 import Step2 from 'components/Steps/2';
@@ -18,18 +16,9 @@ const getPreviousStep = step => {
   return currentStep > 0 ? Object.keys(steps)[currentStep - 1] : null;
 };
 
-const FormWizard = () => {
+const FormWizard = ({ id }) => {
   const [formData, setFormData] = useState({ firstName: 'asd' });
-  const router = useRouter();
-  const { id } = router.query;
   const Step = steps[id];
-  if (!Step) {
-    return null;
-  }
-  if (!formData.eligibility && id !== '1') {
-    Router.replace('/step/1');
-    return null;
-  }
   const previousStep = getPreviousStep(id);
   return (
     <div className="govuk-width-container">
@@ -46,6 +35,14 @@ const FormWizard = () => {
       </main>
     </div>
   );
+};
+
+FormWizard.getInitialProps = async ({ query: { id }, res }) => {
+  if (res && id !== '1') {
+    res.writeHead(301, { Location: '/step/1' });
+    res.end();
+  }
+  return { id };
 };
 
 export default FormWizard;
