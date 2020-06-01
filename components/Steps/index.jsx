@@ -1,14 +1,14 @@
-import Step1 from 'components/Steps/1';
-import Step2 from 'components/Steps/2';
-import Step3 from 'components/Steps/3';
-import Result from 'components/Steps/result';
+import EligibilityCriteria from 'components/Steps/EligibilityCriteria';
+import YourDetails from 'components/Steps/YourDetails';
+import BusinessDetails from 'components/Steps/BusinessDetails';
+import Result from 'components/Steps/Result';
 
 export const stepPath = '/step/[[...id]]';
 
 export const steps = {
-  'eligibility-criteria': Step1,
-  'your-details': Step2,
-  'business-details': Step3,
+  'eligibility-criteria': EligibilityCriteria,
+  'your-details': YourDetails,
+  'business-details': BusinessDetails,
   result: Result
 };
 
