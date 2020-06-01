@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { Controller } from 'react-hook-form';
 
 import { Button, Select, TextInput } from 'components/Form';
@@ -24,16 +25,21 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
   const [isManually, setIsManually] = useState(
     typeof defaultValue === 'string'
   );
+  const [hasError, setHasError] = useState(false);
   return (
     <div>
-      <div className="govuk-form-group">
+      <div
+        className={cx('govuk-form-group', {
+          'govuk-form-group--error': hasError
+        })}
+      >
         <label className="govuk-label" htmlFor="postcode">
           Postcode:
         </label>
         <div className="govuk-grid-row">
           <div className="govuk-grid-column-one-third">
             <input
-              className="govuk-input"
+              className={cx('govuk-input', { 'govuk-input--error': hasError })}
               id="postcode"
               name="postcode"
               type="text"
@@ -44,9 +50,16 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
           <div className="govuk-grid-column-one-third">
             <Button
               onClick={async e => {
-                const res = await lookupPostcode(postcode);
                 setIsManually(false);
-                setResults(res);
+                setHasError(false);
+                setResults([]);
+                try {
+                  const res = await lookupPostcode(postcode);
+                  console.log(res);
+                  setResults(res);
+                } catch (e) {
+                  setHasError(true);
+                }
               }}
               type="button"
               text="lookup"
@@ -63,6 +76,12 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
             />
           </div>
         </div>
+        {hasError && (
+          <span className="govuk-error-message">
+            <span className="govuk-visually-hidden">Error:</span> There was a
+            problem with the postcode.
+          </span>
+        )}
         {(isManually || (defaultValue && results.length === 0)) && (
           <Controller
             as={AddressText}
