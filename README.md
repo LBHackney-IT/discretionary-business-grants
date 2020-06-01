@@ -23,8 +23,56 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+#### Setup the database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Create the database
+   ```bash
+   createdb dbg
+   ```
+2. Add the database URL as an environment variable in `.env`. On Linux you may need to provide a username and password.
+  ```bash
+  cat <<<EOF >> .env
+  DATABASE_URL=postgresql://localhost/dbg
+  EOF
+  ```
+3. Run all migrations
+   ```bash
+   npm run dbmigrate up
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+#### Seeding the database
+
+To seed your database with data to get going quickly, you can run the file under `db/seeds.sql` by doing the following:
+
+```bash
+cat db/seeds.sql | psql dbg
+```
+
+## Applying database migrations
+
+Database migrations are managed with [db-migrate](https://github.com/db-migrate/node-db-migrate). To create a new migration
+
+```bash
+npm run dbmigrate create description-for-your-migration
+```
+
+This will create an up and down migration as sql files in `db/migrations/sqls` as well as a javascript file in `db/migrations` to run the sql files.
+
+Migrations are run with
+
+```bash
+npm run dbmigrate up
+```
+
+Migrations can be rolled back with
+
+```bash
+npm run dbmigrate down
+```
+
+You can do a dry-run to view the changes that will be applied without making any changes (for both up and down migrations)
+
+```bash
+npm run dbmigratedry up
+```

@@ -1,5 +1,5 @@
 {
-  "name": "housing-needs-shared-plan",
+  "name": "discretionary-business-grants",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
@@ -13,18 +13,24 @@
     "int-test": "start-server-and-test start http://localhost:3000 cypress-run",
     "unit-test": "jest",
     "lint": "eslint . --ext .js,.jsx && echo 'Lint complete.'",
-    "format": "prettier '**/*.{js,jsx,css,scss,md}' --write"
+    "format": "prettier '**/*.{js,jsx,css,scss,md}' --write",
+    "dbmigrate": "db-migrate --migrations-dir 'db/migrations/'",
+    "dbmigratetest": "db-migrate --migrations-dir 'db/migrations/' -e test",
+    "dbmigratedry": "db-migrate --dry-run --migrations-dir 'db/migrations/'"
   },
   "dependencies": {
     "@testing-library/user-event": "^10.3.5",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.5",
+    "db-migrate": "^0.11.11",
+    "db-migrate-pg": "^1.2.2",
     "jest-fetch-mock": "^3.0.3",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^3.1.5",
     "next": "^9.4.0",
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#dfc45f0",
+    "pg-promise": "^10.5.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
