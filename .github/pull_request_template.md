@@ -4,7 +4,8 @@
 **Why**  
 {why are we making this change?}
 
-**Anything else?**  
- - Have you added any new third-party libraries?
- - Are any new environment variables or configuration values needed?
- - Anything else in this PR that isn't covered by the what/why?
+**Anything else?**
+
+- Have you added any new third-party libraries?
+- Are any new environment variables or configuration values needed?
+- Anything else in this PR that isn't covered by the what/why?
