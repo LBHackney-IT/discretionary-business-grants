@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@testing-library/user-event": "^10.3.5",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
     "cookie-parser": "^1.4.5",
     "db-migrate": "^0.11.11",
     "db-migrate-pg": "^1.2.2",
@@ -28,12 +30,14 @@
     "nanoid": "^3.1.5",
     "next": "^9.4.0",
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#dfc45f0",
+    "pg-promise": "^10.5.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
     "restana": "^4.3.4",
     "serve-static": "^1.14.1",
-    "serverless-http": "^2.4.1"
+    "serverless-http": "^2.4.1",
+    "uk-postcode-validator": "^1.1.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.9.6",
@@ -52,11 +56,13 @@
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-jest": "^23.13.2",
     "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.20.0",
     "govuk-frontend": "^3.6.0",
     "intl": "^1.2.5",
     "jest": "^25.5.4",
     "jest-fetch-mock": "^3.0.3",
     "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
     "sass": "^1.26.5",
     "serverless": "^1.70.1",
     "start-server-and-test": "^1.11.0"

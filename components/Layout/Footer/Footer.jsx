@@ -1,4 +1,3 @@
-import React from 'react';
 import OGL from './OGL';
 
 const Footer = () => (

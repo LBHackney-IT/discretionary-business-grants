@@ -37,6 +37,7 @@ const Checkbox = ({
               type="radio"
               value={value}
               ref={register}
+              {...otherProps}
             />
             <label
               className="govuk-label govuk-radios__label"

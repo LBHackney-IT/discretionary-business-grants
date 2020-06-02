@@ -5,8 +5,13 @@ provider:
   runtime: nodejs12.x
   region: eu-west-2
   stage: ${opt:stage}
-#  environment:
-#    PLANS_TABLE: '${self:service}-${self:provider.stage}-plans'
+  dbname: discretionaryBusinessGrantsDb
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:ListBucket
+      Resource: "arn:aws:s3:::${self:custom.bucket}/*"
 
 package:
   individually: true
@@ -32,8 +37,22 @@ functions:
 #          authorizer: ${self:custom.authorizer.${self:service}-authorizer}
       - http: ANY /
       - http: ANY /{proxy+}
+    vpc:
+      securityGroupIds:
+        - Fn::GetAtt:
+          - discretionaryBusinessGrantsDbSecurityGroup
+          - GroupId
+      subnetIds: ${self:custom.subnets.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
+      HOST:
+        Fn::GetAtt:
+          - discretionaryBusinessGrantsDb
+          - Endpoint.Address
+      USERNAME: ${env:MASTER_USERNAME}
+      PASSWORD: ${env:MASTER_USER_PASSWORD}
+      DATABASE: ${self:provider.dbname}
+      SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
@@ -51,6 +70,19 @@ functions:
 
 resources:
   Resources:
+    discretionaryBusinessGrantsSupportingDocumentsBucket:
+        Type: AWS::S3::Bucket
+        Properties:
+          BucketName: ${self:custom.bucket}
+          PublicAccessBlockConfiguration:
+            BlockPublicAcls: true
+            BlockPublicPolicy: true
+            IgnorePublicAcls: true
+            RestrictPublicBuckets: true
+          BucketEncryption:
+            ServerSideEncryptionConfiguration:
+              - ServerSideEncryptionByDefault:
+                  SSEAlgorithm: AES256
     discretionaryBusinessGrantsDbSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
@@ -65,7 +97,7 @@ resources:
       Type: "AWS::RDS::DBInstance"
       Properties:
         DBInstanceIdentifier: "discretionary-business-grants-db-${self:provider.stage}"
-        DBName: "discretionaryBusinessGrantsDb"
+        DBName: ${self:provider.dbname}
         AllocatedStorage: 5
         DBInstanceClass: "db.t2.micro"
         Engine: "postgres"
@@ -122,12 +154,7 @@ resources:
                 OriginProtocolPolicy: https-only
 
 custom:
-#  authorizer:
-#    hn-shared-plan-authorizer:
-#      name: ${self:service}-authorizer
-#      type: request
-#      identitySource: ''
-#      resultTtlInSeconds: 0
+  bucket: ${self:service}-supporting-documents-${self:provider.stage}
   domain-name:
     Fn::Join:
       - '.'
@@ -141,3 +168,12 @@ custom:
   certificate-arn:
     staging: arn:aws:acm:us-east-1:715003523189:certificate/8f7fa30c-a4e5-4775-b827-ade824a33c9a
     production: arn:aws:acm:us-east-1:153306643385:certificate/71728a39-cd3e-4570-a440-e87f84ef9a0d
+  subnets:
+    staging:
+      - subnet-07e8364b
+      - subnet-723cb408
+      - subnet-48094621
+    production:
+      - subnet-034b2a03cd4955923
+      - subnet-03431a6c898502c99
+      - subnet-0f02c86bab1d62956
