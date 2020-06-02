@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, TextInput } from 'components/Form';
-import { stepPath } from 'components/Steps';
+import { stepPath, getInputProps } from 'components/Steps';
 
 const BankDetails = props => {
   const { register, handleSubmit } = useForm({
@@ -17,24 +17,20 @@ const BankDetails = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Bank Details</h1>
       <TextInput
-        label="Bank Name:"
-        name="bankName"
+        {...getInputProps('bank', 'bankName')}
         register={register({ required: true })}
       />
       <TextInput
-        label="Account Holder Name:"
-        name="accountHolder"
+        {...getInputProps('bank', 'accountHolder')}
         register={register({ required: true })}
       />
       <TextInput
-        label="Account Number:"
-        name="accountNumber"
+        {...getInputProps('bank', 'accountNumber')}
         type="number"
         register={register({ required: true })}
       />
       <TextInput
-        label="Sort Code:"
-        name="sortcode"
+        {...getInputProps('bank', 'sortcode')}
         register={register({ required: true })}
       />
       <Button className="govuk-button" text="Next" type="submit" />

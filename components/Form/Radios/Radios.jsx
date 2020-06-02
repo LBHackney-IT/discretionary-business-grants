@@ -10,7 +10,7 @@ const defaultOptions = [
 ];
 
 const Checkbox = ({
-  title,
+  label,
   subtitle,
   name,
   options = defaultOptions,
@@ -20,7 +20,7 @@ const Checkbox = ({
   <div className="govuk-form-group">
     <fieldset className="govuk-fieldset" aria-describedby="changed-name-hint">
       <legend className="govuk-fieldset__legend govuk-fieldset__legend--m">
-        <span className="govuk-fieldset__heading">{title}</span>
+        <span className="govuk-fieldset__heading">{label}</span>
       </legend>
       {subtitle && (
         <span id="changed-name-hint" className="govuk-hint">

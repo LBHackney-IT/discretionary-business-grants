@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, TextInput, Select } from 'components/Form';
-import { stepPath } from 'components/Steps';
+import { stepPath, getInputProps } from 'components/Steps';
 import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
@@ -18,37 +18,31 @@ const Step1 = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
       <Select
-        label="Authority:"
-        name="authority"
+        {...getInputProps('user', 'authority')}
         options={['PSC', 'Trustee', 'Agent', 'Owner', 'Partner', 'Employee']}
         register={register({ required: true })}
       />
       <TextInput
-        label="First Name:"
-        name="firstName"
+        {...getInputProps('user', 'firstName')}
         register={register({ required: true })}
       />
       <TextInput
-        label="Last Name:"
-        name="lastName"
+        {...getInputProps('user', 'lastName')}
         register={register({ required: true })}
       />
       <TextInput
-        label="Email Address:"
-        name="email"
+        {...getInputProps('user', 'email')}
         type="email"
         register={register({ required: true })}
       />
       <TextInput
-        label="Telephone Number:"
-        name="tel"
+        {...getInputProps('user', 'tel')}
         type="tel"
         register={register}
       />
       <AddressLookup
-        name="address"
-        label="Address:"
-        defaultValue={props.formData.address}
+        {...getInputProps('user', 'address')}
+        defaultValue={props.formData.user.address}
         control={control}
       />
       <Button className="govuk-button" text="Next" type="submit" />
