@@ -28,13 +28,15 @@ const Select = ({ label, name, options, selected, onChange, register }) => (
 Select.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    })
-  ]),
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+      })
+    ])
+  ),
   selected: PropTypes.string,
   register: PropTypes.func
 };
