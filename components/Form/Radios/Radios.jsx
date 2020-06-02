@@ -14,7 +14,8 @@ const Checkbox = ({
   subtitle,
   name,
   options = defaultOptions,
-  register
+  register,
+  ...otherProps
 }) => (
   <div className="govuk-form-group">
     <fieldset className="govuk-fieldset" aria-describedby="changed-name-hint">
@@ -36,6 +37,7 @@ const Checkbox = ({
               type="radio"
               value={value}
               ref={register}
+              {...otherProps}
             />
             <label
               className="govuk-label govuk-radios__label"
