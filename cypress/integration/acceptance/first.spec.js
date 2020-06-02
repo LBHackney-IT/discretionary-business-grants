@@ -7,7 +7,10 @@ context('Home page', () => {
 
   describe('Loads page', () => {
     it('has shared plan heading', () => {
-      cy.get('h1').should('have.text', 'Discretionary Business Grants');
+      cy.get('h1').should(
+        'have.text',
+        'COVID-19 Business Support Grants: Local Authority Discretionary Grant Fund'
+      );
       cy.checkA11y('#content h1', null, cy.terminalLog);
     });
   });
