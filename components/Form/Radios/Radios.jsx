@@ -1,11 +1,11 @@
 const defaultOptions = [
   {
     label: 'Yes',
-    value: 'yes'
+    value: 'Yes'
   },
   {
     label: 'No',
-    value: 'no'
+    value: 'No'
   }
 ];
 

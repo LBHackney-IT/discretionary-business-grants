@@ -23,7 +23,9 @@ const Step1 = props => {
       />
       <AddressLookup
         {...getInputProps('business', 'businessAddress')}
-        defaultValue={props.formData.business.businessAddress}
+        defaultValue={
+          props.formData.business && props.formData.business.businessAddress
+        }
         control={control}
       />
       <TextInput

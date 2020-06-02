@@ -42,7 +42,7 @@ const Step1 = props => {
       />
       <AddressLookup
         {...getInputProps('user', 'address')}
-        defaultValue={props.formData.user.address}
+        defaultValue={props.formData.user && props.formData.user.address}
         control={control}
       />
       <Button className="govuk-button" text="Next" type="submit" />

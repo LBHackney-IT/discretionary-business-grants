@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const SummaryList = ({ list }) => (
   <dl className="govuk-summary-list">
     {list &&
@@ -16,5 +18,15 @@ const SummaryList = ({ list }) => (
       ))}
   </dl>
 );
+
+SummaryList.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      value: PropTypes.node.isRequired,
+      href: PropTypes.string
+    }).isRequired
+  )
+};
 
 export default SummaryList;
