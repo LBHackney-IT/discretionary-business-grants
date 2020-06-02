@@ -4,9 +4,12 @@ import Router from 'next/router';
 
 import { Button, TextInput, Select } from 'components/Form';
 import { stepPath, stepKeys } from 'components/Steps';
+import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
-  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
+  const { register, control, handleSubmit } = useForm({
+    defaultValues: props.formData
+  });
   const onSubmit = data => {
     props.saveData(data);
     Router.push(stepPath, props.nextStep);
@@ -43,7 +46,12 @@ const Step1 = props => {
         type="tel"
         register={register}
       />
-      <TextInput label="Address:" name="address" register={register} />
+      <AddressLookup
+        name="address"
+        label="Address:"
+        defaultValue={props.formData.address}
+        control={control}
+      />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
   );
