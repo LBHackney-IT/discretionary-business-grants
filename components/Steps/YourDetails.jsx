@@ -20,7 +20,10 @@ const Step1 = props => {
       <Select
         {...getInputProps('user', 'authority')}
         options={['PSC', 'Trustee', 'Agent', 'Owner', 'Partner', 'Employee']}
-        register={register({ required: true })}
+        register={register({
+          required: true,
+          validate: value => value !== ''
+        })}
       />
       <TextInput
         {...getInputProps('user', 'firstName')}

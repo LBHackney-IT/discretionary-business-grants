@@ -108,7 +108,7 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
                 }))}
                 name={name}
                 label={label}
-                rules={{ required: true }}
+                rules={{ required: true, validate: value => value !== '' }}
               />
             }
             control={control}

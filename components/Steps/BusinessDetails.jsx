@@ -42,7 +42,7 @@ const Step1 = props => {
           'Charity',
           'Social Enterprise'
         ]}
-        register={register({ required: true })}
+        register={register({ required: true, validate: value => value !== '' })}
       />
       <TextInput
         {...getInputProps('business', 'businessRateAccountNumber')}
