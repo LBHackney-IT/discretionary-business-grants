@@ -45,7 +45,7 @@ functions:
       subnetIds: ${self:custom.subnets.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
-      HOST: 
+      HOST:
         Fn::GetAtt:
           - discretionaryBusinessGrantsDb
           - Endpoint.Address
@@ -118,13 +118,13 @@ resources:
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
-#          Aliases:
-#            - ${self:custom.aliases.${self:provider.stage}}
+          Aliases:
+            - ${self:custom.aliases.${self:provider.stage}}
           PriceClass: PriceClass_100
-#          ViewerCertificate:
-#            AcmCertificateArn: arn:aws:acm:us-east-1:402949050862:certificate/1ab6042c-b6df-40f9-abdc-9ab8d8df1679
-#            MinimumProtocolVersion: TLSv1.2_2018
-#            SslSupportMethod: sni-only
+          ViewerCertificate:
+            AcmCertificateArn: ${self:custom.certificate-arn.${self:provider.stage}}
+            MinimumProtocolVersion: TLSv1.2_2018
+            SslSupportMethod: sni-only
           DefaultCacheBehavior:
             TargetOriginId: ${self:service}-${self:provider.stage}-custom-origin
             ViewerProtocolPolicy: 'redirect-to-https'
@@ -165,6 +165,9 @@ custom:
   aliases:
     staging: staging-discretionarybusinessgrants.hackney.gov.uk
     production: discretionarybusinessgrants.hackney.gov.uk
+  certificate-arn:
+    staging: arn:aws:acm:us-east-1:715003523189:certificate/8f7fa30c-a4e5-4775-b827-ade824a33c9a
+    production: arn:aws:acm:us-east-1:153306643385:certificate/71728a39-cd3e-4570-a440-e87f84ef9a0d
   subnets:
     staging:
       - subnet-07e8364b
