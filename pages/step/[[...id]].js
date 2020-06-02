@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import { steps, stepPath, stepKeys } from 'components/Steps';

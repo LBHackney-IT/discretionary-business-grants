@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SkipLink = () => (
   <a href="#content" className="govuk-skip-link">
     Skip to main content
