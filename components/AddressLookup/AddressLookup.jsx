@@ -5,27 +5,55 @@ import { Controller } from 'react-hook-form';
 import isPostcodeValid from 'uk-postcode-validator';
 
 import { Button, Select, TextInput } from 'components/Form';
-import { lookupPostcode, normalizeAddress } from 'utils/postcodeAPI';
+import { lookupPostcode } from 'utils/postcodeAPI';
 
-const AddressText = props => (
-  <TextInput
-    {...props}
-    value={
-      typeof props.value === 'string'
-        ? props.value
-        : props.value && normalizeAddress(props.value).addressText
-    }
-  />
+const AddressBox = ({ name, disabled, register }) => (
+  <>
+    <TextInput
+      label="Line1"
+      name={`${name}.line1`}
+      register={register({ required: true })}
+      disabled={disabled}
+    />
+    <TextInput
+      label="Line2"
+      name={`${name}.line2`}
+      register={register}
+      disabled={disabled}
+    />
+    <TextInput
+      label="Line3"
+      name={`${name}.line3`}
+      register={register}
+      disabled={disabled}
+    />
+    <TextInput
+      label="Postcode"
+      name={`${name}.postcode`}
+      register={register}
+      disabled={disabled}
+    />
+    <TextInput
+      label="Town"
+      name={`${name}.town`}
+      register={register}
+      disabled={disabled}
+    />
+    <TextInput
+      label=""
+      name={`${name}.uprn`}
+      register={register}
+      type="hidden"
+    />
+  </>
 );
 
-const AddressLookup = ({ name, label, control, defaultValue }) => {
+const AddressLookup = ({ name, label, control, register, defaultValue }) => {
   const [postcode, setPostcode] = useState(
     defaultValue && defaultValue.postcode
   );
   const [results, setResults] = useState([]);
-  const [isManually, setIsManually] = useState(
-    typeof defaultValue === 'string'
-  );
+  const [isManually, setIsManually] = useState();
   const [hasError, setHasError] = useState(false);
   return (
     <div>
@@ -46,6 +74,7 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
               type="text"
               onChange={e => setPostcode(e.target.value)}
               defaultValue={defaultValue && defaultValue.postcode}
+              ref={register({ required: !isManually })}
             />
           </div>
           <div className="govuk-grid-column-one-third">
@@ -87,16 +116,7 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
           </span>
         )}
         {(isManually || (defaultValue && results.length === 0)) && (
-          <Controller
-            as={AddressText}
-            control={control}
-            label={label}
-            name={name}
-            type="text"
-            onChange={([value]) => value}
-            disabled={!isManually}
-            rules={{ required: true }}
-          />
+          <AddressBox name={name} disabled={!isManually} register={register} />
         )}
         {!isManually && results.length > 0 && (
           <Controller

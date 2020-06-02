@@ -47,6 +47,7 @@ const Step1 = props => {
         {...getInputProps('user', 'address')}
         defaultValue={props.formData.user && props.formData.user.address}
         control={control}
+        register={register}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

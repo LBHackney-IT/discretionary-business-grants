@@ -27,6 +27,7 @@ const Step1 = props => {
           props.formData.business && props.formData.business.businessAddress
         }
         control={control}
+        register={register}
       />
       <TextInput
         {...getInputProps('business', 'companyNumber')}
