@@ -6,6 +6,12 @@ provider:
   region: eu-west-2
   stage: ${opt:stage}
   dbname: discretionaryBusinessGrantsDb
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:ListBucket
+      Resource: "arn:aws:s3:::${self:custom.bucket}/*"
 
 package:
   individually: true
@@ -46,6 +52,7 @@ functions:
       USERNAME: ${env:MASTER_USERNAME}
       PASSWORD: ${env:MASTER_USER_PASSWORD}
       DATABASE: ${self:provider.dbname}
+      SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
@@ -63,6 +70,19 @@ functions:
 
 resources:
   Resources:
+    discretionaryBusinessGrantsSupportingDocumentsBucket:
+        Type: AWS::S3::Bucket
+        Properties:
+          BucketName: ${self:custom.bucket}
+          PublicAccessBlockConfiguration:
+            BlockPublicAcls: true
+            BlockPublicPolicy: true
+            IgnorePublicAcls: true
+            RestrictPublicBuckets: true
+          BucketEncryption:
+            ServerSideEncryptionConfiguration:
+              - ServerSideEncryptionByDefault:
+                  SSEAlgorithm: AES256
     discretionaryBusinessGrantsDbSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
@@ -134,12 +154,7 @@ resources:
                 OriginProtocolPolicy: https-only
 
 custom:
-#  authorizer:
-#    hn-shared-plan-authorizer:
-#      name: ${self:service}-authorizer
-#      type: request
-#      identitySource: ''
-#      resultTtlInSeconds: 0
+  bucket: ${self:service}-supporting-documents-${self:provider.stage}
   domain-name:
     Fn::Join:
       - '.'
@@ -150,7 +165,6 @@ custom:
   aliases:
     staging: staging-discretionarybusinessgrants.hackney.gov.uk
     production: discretionarybusinessgrants.hackney.gov.uk
-
   subnets:
     staging:
       - subnet-07e8364b
