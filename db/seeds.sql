@@ -1,3 +1,7 @@
+INSERT INTO rateable_limit_answer (description) VALUES('Yes');
+INSERT INTO rateable_limit_answer (description) VALUES('No');
+INSERT INTO rateable_limit_answer (description) VALUES('Not Applicable');
+
 INSERT INTO contact_type (description) VALUES ('Agent (Authorised to act)');
 INSERT INTO contact_type (description) VALUES ('Owner (Sole Trader)');
 INSERT INTO contact_type (description) VALUES ('Partner / Employee (Acting for)');
