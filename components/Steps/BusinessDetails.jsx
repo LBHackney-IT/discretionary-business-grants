@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Checkbox, TextInput, Select } from 'components/Form';
-import { stepPath } from 'components/Steps';
+import { stepPath, getInputProps } from 'components/Steps';
 import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
@@ -18,25 +18,23 @@ const Step1 = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Business Details</h1>
       <TextInput
-        label="Business Name:"
-        name="businessName"
+        {...getInputProps('business', 'businessName')}
         register={register}
       />
       <AddressLookup
-        label="Business Address:"
-        name="businessAddress"
-        defaultValue={props.formData.businessAddress}
+        {...getInputProps('business', 'businessAddress')}
+        defaultValue={
+          props.formData.business && props.formData.business.businessAddress
+        }
         control={control}
       />
       <TextInput
-        label="Company Number:"
-        name="companyNumber"
+        {...getInputProps('business', 'companyNumber')}
         type="number"
         register={register}
       />
       <Select
-        label="Company Structure:"
-        name="companyStructure"
+        {...getInputProps('business', 'companyStructure')}
         options={[
           'Registered Company',
           'Sole Trader',
@@ -47,50 +45,42 @@ const Step1 = props => {
         register={register({ required: true })}
       />
       <TextInput
-        label="Business Rates Account Number:"
-        name="businessRateAccountNumber"
+        {...getInputProps('business', 'businessRateAccountNumber')}
         type="number"
         register={register}
       />
       <TextInput
-        label="Number of Full Time Employes:"
-        name="numberEmployes"
+        {...getInputProps('business', 'numberEmployes')}
         type="number"
         register={register({ min: 0 })}
       />
       <TextInput
-        label="Percentage fall in income due to Covid-19:"
-        name="percentageFallIncome"
+        {...getInputProps('business', 'percentageFallIncome')}
         type="number"
         register={register({ min: 0, max: 100 })}
       />
       <TextInput
-        label="Business premises rateable value:"
-        name="businessPremises"
+        {...getInputProps('business', 'businessPremises')}
         type="number"
         register={register({ min: 0 })}
       />
       <h3>Fixed property related costs</h3>
       <TextInput
-        label="Per Annum:"
-        name="fixedPropAnnum"
+        {...getInputProps('business', 'fixedPropAnnum')}
         type="number"
         register={register({ min: 0 })}
       />
       <TextInput
-        label="Items included:"
-        name="fixedPropItems"
+        {...getInputProps('business', 'fixedPropItems')}
         register={register}
       />
       <h3>I confirm that this business:</h3>
       <Checkbox
-        label="Was trading on 11th March 2021"
-        name="wasTradingBefore"
+        {...getInputProps('business', 'wasTradingBefore')}
         register={register({ required: true })}
       />
       <Checkbox
-        label="Was ineligible to access funding from the Small Business Grant Fund, or Retail, Leisure and Hospitality Grant Fund"
-        name="wasIneligible"
+        {...getInputProps('business', 'wasIneligible')}
         register={register({ required: true })}
       />
       <Button className="govuk-button" text="Next" type="submit" />

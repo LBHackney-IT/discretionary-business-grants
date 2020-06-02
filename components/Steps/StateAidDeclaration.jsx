@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Checkbox } from 'components/Form';
-import { stepPath } from 'components/Steps';
+import { stepPath, getInputProps } from 'components/Steps';
 
 const StateAidDeclaration = props => {
   const { register, handleSubmit } = useForm({
@@ -17,13 +17,11 @@ const StateAidDeclaration = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>State Aid Declaration</h1>
       <Checkbox
-        label="I am authorised to sign this declaration"
-        name="isAuthorised"
+        {...getInputProps('stateAidDeclaration', 'isAuthorised')}
         register={register({ required: true })}
       />
       <Checkbox
-        label="Receipt of this grant will not exceed the state aid limit"
-        name="isNotExceedingAidLimit"
+        {...getInputProps('stateAidDeclaration', 'isNotExceedingAidLimit')}
         register={register({ required: true })}
       />
       <Button className="govuk-button" text="Next" type="submit" />
