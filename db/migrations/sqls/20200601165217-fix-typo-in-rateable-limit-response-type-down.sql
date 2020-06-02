@@ -1,0 +1,1 @@
+ALTER TYPE rateable_limit_response RENAME TO rateable_limit_repsonse;

@@ -1,4 +1,3 @@
-import React from 'react';
 import HackneyLogo from './HackneyLogo';
 
 const Header = ({ serviceName }) => (

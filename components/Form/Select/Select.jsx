@@ -1,16 +1,26 @@
 import PropTypes from 'prop-types';
 
-const Select = ({ label, name, options, selected, register }) => (
-  <div class="govuk-form-group">
-    <label class="govuk-label" for={name}>
+const Select = ({ label, name, options, selected, onChange, register }) => (
+  <div className="govuk-form-group">
+    <label className="govuk-label" htmlFor={name}>
       {label}
     </label>
-    <select class="govuk-select" id={name} name={name} ref={register}>
-      {options.map(option => (
-        <option value={option} selected={option === selected}>
-          {option}
-        </option>
-      ))}
+    <select
+      className="govuk-select"
+      id={name}
+      name={name}
+      ref={register}
+      onChange={e => onChange && onChange(e.target.value)}
+    >
+      {options.map(option => {
+        const { value, text } =
+          typeof option === 'string' ? { value: option, text: option } : option;
+        return (
+          <option key={value} value={value} selected={value === selected}>
+            {text}
+          </option>
+        );
+      })}
     </select>
   </div>
 );
@@ -18,9 +28,15 @@ const Select = ({ label, name, options, selected, register }) => (
 Select.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  selected: PropTypes.string.isRequired,
-  register: PropTypes.object.isRequired
+  options: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    })
+  ]),
+  selected: PropTypes.string,
+  register: PropTypes.func
 };
 
 export default Select;

@@ -1,12 +1,14 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Checkbox, TextInput, Select } from 'components/Form';
-import { stepPath, stepKeys } from 'components/Steps';
+import { stepPath } from 'components/Steps';
+import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
-  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: props.formData
+  });
   const onSubmit = data => {
     props.saveData(data);
     Router.push(stepPath, props.nextStep);
@@ -20,10 +22,11 @@ const Step1 = props => {
         name="businessName"
         register={register}
       />
-      <TextInput
+      <AddressLookup
         label="Business Address:"
         name="businessAddress"
-        register={register({ required: true })}
+        defaultValue={props.formData.businessAddress}
+        control={control}
       />
       <TextInput
         label="Company Number:"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ExpandingText = ({ expandButtonText, contractButtonText, children }) => {
   const [isExpanded, setExpanded] = useState(false);
