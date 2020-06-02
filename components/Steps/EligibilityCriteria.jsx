@@ -10,7 +10,9 @@ const Step1 = props => {
   const { register, handleSubmit } = useForm({ defaultValues: props.formData });
   const [showError, setShowError] = useState(false);
   const onSubmit = data => {
-    const hasSomeDeclines = Object.values(data).some(answer => answer === 'no');
+    const hasSomeDeclines = Object.values(data.eligibility).some(
+      answer => answer === 'no'
+    );
     setShowError(hasSomeDeclines);
     if (!hasSomeDeclines) {
       props.saveData(data);
