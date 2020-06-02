@@ -32,13 +32,13 @@ export default function Home() {
         href="#"
         role="button"
         draggable="false"
-        class="govuk-button govuk-button--start"
+        className="govuk-button govuk-button--start"
         data-module="govuk-button"
         onClick={() => Router.push(stepPath, `/step/${stepKeys[0]}`)}
       >
         Start now
         <svg
-          class="govuk-button__start-icon"
+          className="govuk-button__start-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="17.5"
           height="19"
@@ -56,7 +56,7 @@ export default function Home() {
         government funding, we will prioritise the following businesses to
         receive funding;
       </p>
-      <ol class="govuk-list govuk-list--number govuk-list--spaced">
+      <ol className="govuk-list govuk-list--number govuk-list--spaced">
         <li>
           Small businesses in shared offices or other flexible workspaces which
           do not have their own business rates assessment
@@ -75,7 +75,7 @@ export default function Home() {
         micro business identified as a priority business type in the government
         guidance, provided they meet the eligibility criteria set out below:
       </p>
-      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+      <ul className="govuk-list govuk-list--bullet govuk-list--spaced">
         <li>
           Regular market traders with fixed property costs who do not have their
           own business rates assessment
@@ -100,7 +100,7 @@ export default function Home() {
         Your business must fall into all of the following categories. Any
         submission of this form must be accompanied by evidence in support;
       </p>
-      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+      <ul className="govuk-list govuk-list--bullet govuk-list--spaced">
         <li>Must be based in and trading in Hackney</li>
         <li>Was trading on 11 March 2020</li>
         <li>

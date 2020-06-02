@@ -11,7 +11,7 @@ const Step1 = props => {
   const [showError, setShowError] = useState(false);
   const onSubmit = data => {
     const hasSomeDeclines = Object.values(data.eligibility).some(
-      answer => answer === 'no'
+      answer => answer === 'No'
     );
     setShowError(hasSomeDeclines);
     if (!hasSomeDeclines) {

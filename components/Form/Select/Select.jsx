@@ -12,6 +12,7 @@ const Select = ({ label, name, options, selected, onChange, register }) => (
       ref={register}
       onChange={e => onChange && onChange(e.target.value)}
     >
+      <option key="empty" value=""></option>
       {options.map(option => {
         const { value, text } =
           typeof option === 'string' ? { value: option, text: option } : option;

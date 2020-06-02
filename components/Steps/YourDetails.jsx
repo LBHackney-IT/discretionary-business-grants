@@ -20,7 +20,10 @@ const Step1 = props => {
       <Select
         {...getInputProps('user', 'authority')}
         options={['PSC', 'Trustee', 'Agent', 'Owner', 'Partner', 'Employee']}
-        register={register({ required: true })}
+        register={register({
+          required: true,
+          validate: value => value !== ''
+        })}
       />
       <TextInput
         {...getInputProps('user', 'firstName')}
@@ -44,6 +47,7 @@ const Step1 = props => {
         {...getInputProps('user', 'address')}
         defaultValue={props.formData.user && props.formData.user.address}
         control={control}
+        register={register}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
