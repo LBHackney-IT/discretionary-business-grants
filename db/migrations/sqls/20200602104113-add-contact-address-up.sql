@@ -5,6 +5,6 @@ CREATE TABLE contact_address (
     first_line VARCHAR NOT NULL,
     second_line VARCHAR,
     third_line VARCHAR,
-    postcode VARCHAR NOT NULL,
+    postcode VARCHAR,
     ward VARCHAR
 );
