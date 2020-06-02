@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const normalizeAddress = address => {
+  // eslint-disable-next-line no-unused-vars
   const { uprn, postcode, ...addr } = address;
   return {
     addressText: Object.values(addr)

@@ -1,7 +1,7 @@
 import Router from 'next/router';
 
 import { Button } from 'components/Form';
-import { steps, stepPath, stepKeys } from 'components/Steps';
+import { stepPath, stepKeys } from 'components/Steps';
 
 export default function Home() {
   return (

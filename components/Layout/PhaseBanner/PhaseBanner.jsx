@@ -1,5 +1,3 @@
-import React from 'react';
-
 const PhaseBanner = ({ phase, feedbackUrl }) => (
   <div className="govuk-phase-banner">
     <p className="govuk-phase-banner__content">

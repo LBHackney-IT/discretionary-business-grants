@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export default async (req, res) => {
   const {
-    query: { postcode },
-    method
+    query: { postcode }
   } = req;
   try {
     const { data } = await axios.get(

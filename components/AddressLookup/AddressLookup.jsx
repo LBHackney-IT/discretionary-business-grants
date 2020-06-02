@@ -50,7 +50,7 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
           </div>
           <div className="govuk-grid-column-one-third">
             <Button
-              onClick={async e => {
+              onClick={async () => {
                 if (!isPostcodeValid(postcode)) {
                   setHasError(true);
                   return;
@@ -61,7 +61,7 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
                 try {
                   const res = await lookupPostcode(postcode);
                   setResults(res);
-                } catch (e) {
+                } catch {
                   setHasError(true);
                 }
               }}
@@ -71,7 +71,7 @@ const AddressLookup = ({ name, label, control, defaultValue }) => {
           </div>
           <div className="govuk-grid-column-one-third">
             <Button
-              onClick={e => {
+              onClick={() => {
                 setIsManually(true);
               }}
               isSecondary

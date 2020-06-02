@@ -1,9 +1,8 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Checkbox, TextInput, Select } from 'components/Form';
-import { stepPath, stepKeys } from 'components/Steps';
+import { stepPath } from 'components/Steps';
 import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
