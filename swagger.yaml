@@ -130,6 +130,11 @@ definitions:
         type: "string"
       telephoneNumber:
         type: "string"
+    required:
+      - firstName
+      - lastName
+      - emailAddress
+      - telephoneNumber
   ContactAddress:
     type: "object"
     properties:
