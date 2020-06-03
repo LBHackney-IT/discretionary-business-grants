@@ -53,6 +53,7 @@ functions:
       PASSWORD: ${env:MASTER_USER_PASSWORD}
       DATABASE: ${self:provider.dbname}
       SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
+      URL_PREFIX: ${self:custom.aliases.${self:provider.stage}}
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
