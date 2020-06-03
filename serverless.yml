@@ -54,6 +54,8 @@ functions:
       DATABASE: ${self:provider.dbname}
       SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
       URL_PREFIX: ${self:custom.aliases.${self:provider.stage}}
+      POSTCODE_LOOKUP_URL: ${env:POSTCODE_LOOKUP_URL}
+      POSTCODE_LOOKUP_APIKEY: ${env:POSTCODE_LOOKUP_APIKEY}
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
