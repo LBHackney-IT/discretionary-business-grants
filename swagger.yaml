@@ -6,22 +6,22 @@ info:
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
 tags:
-- name: "urls"
-  description: "Secure URL for uploading files"
-- name: "applications"
-  description: ""
+  - name: "urls"
+    description: "Secure URL for uploading files"
+  - name: "applications"
+    description: ""
 schemes:
-- "https"
+  - "https"
 paths:
   /urls:
     post:
       tags:
-      - "urls"
+        - "urls"
       summary: "Retrieve a new secure URL for file upload"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -35,19 +35,18 @@ paths:
           description: "Success"
           schema:
             type: "object"
-            items: 
-              $ref:
-                "#/definitions/UrlResponse"
+            items:
+              $ref: "#/definitions/UrlResponse"
   /applications:
     post:
       tags:
-      - "applications"
+        - "applications"
       summary: "Create a new business grant application"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
-      parameters: 
+        - "application/json"
+      parameters:
         - name: "body"
           in: "body"
           required: true
@@ -58,9 +57,9 @@ paths:
           description: "Invalid input"
         "200":
           description: "Your application has been submitted"
-          
+
 definitions:
-  Url: 
+  Url:
     type: "object"
     properties:
       id:
@@ -75,7 +74,6 @@ definitions:
         type: "object"
       url:
         type: "string"
-        
 
   Applications:
     type: "object"
@@ -98,31 +96,31 @@ definitions:
         $ref: "#/definitions/Documents"
   Business:
     type: "object"
-    properties: 
+    properties:
       companyName:
-        type: "string" 
-      tradingName: 
         type: "string"
-      companyNumber: 
-        type: "string" 
-      nndrAccountNumber: 
-        type: "string" 
-      fullTimeEmployees: 
-        type: "integer" 
-      annualTurnover: 
-        type: "integer" 
+      tradingName:
+        type: "string"
+      companyNumber:
+        type: "string"
+      nndrAccountNumber:
+        type: "string"
+      fullTimeEmployees:
+        type: "integer"
+      annualTurnover:
+        type: "integer"
       percentFallInIncome:
         type: "integer"
-      rateableValue: 
+      rateableValue:
         type: "number"
-      fixedPropertyCost: 
+      fixedPropertyCost:
         type: "number"
   BusinessAddress:
     type: "object"
     properties:
       uprn:
         type: "string"
-      firstLine: 
+      firstLine:
         type: "string"
       secondLine:
         type: "string"
@@ -174,10 +172,10 @@ definitions:
         type: "boolean"
       smallMicroBusiness:
         type: "boolean"
-      tradingOn20200311: 
-        type: "boolean" 
+      tradingOn20200311:
+        type: "boolean"
       servedLegalNotices:
-        type: "boolean" 
+        type: "boolean"
       receivedOtherGrants:
         type: "boolean"
       hasFixedPropertyCost:
@@ -187,9 +185,7 @@ definitions:
   Documents:
     type: "object"
     properties:
-      s3Path: 
+      s3Path:
         type: "string"
-      documentType: 
+      documentType:
         type: "string"
-
-  
