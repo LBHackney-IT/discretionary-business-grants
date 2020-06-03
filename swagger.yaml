@@ -111,6 +111,14 @@ definitions:
         type: "boolean"
       rateableLimitAnswerId:
         type: "integer"
+    required:
+      - tradingInHackney
+      - smallMicroBusiness
+      - tradingOn20200311
+      - servedLegalNotices
+      - receivedOtherGrants
+      - hasFixedPropertyCost
+      - rateableLimitAnswerId
   Contact:
     type: "object"
     properties:
