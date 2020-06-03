@@ -82,18 +82,61 @@ definitions:
         type: "string"
       eligibilityCriteria:
         $ref: "#/definitions/EligibilityCriteria"
+      contact:
+        $ref: "#/definitions/Contact"
+      contactAddress:
+        $ref: "#/definitions/ContactAddress"
       business:
         $ref: "#/definitions/Business"
       businessAddress:
         $ref: "#/definitions/BusinessAddress"
       businessBankAccount:
         $ref: "#/definitions/BusinessBankAccount"
-      contact:
-        $ref: "#/definitions/Contact"
-      contactAddress:
-        $ref: "#/definitions/ContactAddress"
       documents:
         $ref: "#/definitions/Documents"
+  EligibilityCriteria:
+    type: "object"
+    properties:
+      tradingInHackney:
+        type: "boolean"
+      smallMicroBusiness:
+        type: "boolean"
+      tradingOn20200311:
+        type: "boolean"
+      servedLegalNotices:
+        type: "boolean"
+      receivedOtherGrants:
+        type: "boolean"
+      hasFixedPropertyCost:
+        type: "boolean"
+      rateableLimitAnswerId:
+        type: "integer"
+  Contact:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      emailAddress:
+        type: "string"
+      telephoneNumber:
+        type: "string"
+  ContactAddress:
+    type: "object"
+    properties:
+      uprn:
+        type: "string"
+      firstLine:
+        type: "string"
+      secondLine:
+        type: "string"
+      thirdLine:
+        type: "string"
+      postcode:
+        type: "string"
+      ward:
+        type: "string"
   Business:
     type: "object"
     properties:
@@ -139,49 +182,6 @@ definitions:
         type: "string"
       accountSortcode:
         type: "string"
-  Contact:
-    type: "object"
-    properties:
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
-      emailAddress:
-        type: "string"
-      telephoneNumber:
-        type: "string"
-  ContactAddress:
-    type: "object"
-    properties:
-      uprn:
-        type: "string"
-      firstLine:
-        type: "string"
-      secondLine:
-        type: "string"
-      thirdLine:
-        type: "string"
-      postcode:
-        type: "string"
-      ward:
-        type: "string"
-  EligibilityCriteria:
-    type: "object"
-    properties:
-      tradingInHackney:
-        type: "boolean"
-      smallMicroBusiness:
-        type: "boolean"
-      tradingOn20200311:
-        type: "boolean"
-      servedLegalNotices:
-        type: "boolean"
-      receivedOtherGrants:
-        type: "boolean"
-      hasFixedPropertyCost:
-        type: "boolean"
-      rateableLimitAnswerId:
-        type: "integer"
   Documents:
     type: "object"
     properties:
