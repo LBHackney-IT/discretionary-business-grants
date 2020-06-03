@@ -5,7 +5,7 @@ import BankDetails from 'components/Steps/BankDetails';
 import StateAidDeclaration from 'components/Steps/StateAidDeclaration';
 import Summary from 'components/Steps/Summary';
 
-export const stepPath = '/step/[[...id]]';
+export const stepPath = '/step/[id]';
 
 export const steps = {
   'eligibility-criteria': EligibilityCriteria,

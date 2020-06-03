@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
@@ -21,14 +21,12 @@ const FormWizard = () => {
   });
   const [formData, setFormData] = useState({ firstName: 'asd' });
   const router = useRouter();
-  const { '[...id]': stepId } = router.query;
+  const { id: stepId } = router.query;
   const firstStep = stepKeys[0];
-  useEffect(() => {
-    if (stepId && !formData.eligibility && stepId !== firstStep) {
-      Router.replace(`/step/${firstStep}`);
-      return null;
-    }
-  }, [stepId]);
+  if (stepId && !formData.eligibility && stepId !== firstStep) {
+    Router.replace(`/step/${firstStep}`);
+    return null;
+  }
   const Step = steps[stepId];
   if (!Step) {
     return null;
