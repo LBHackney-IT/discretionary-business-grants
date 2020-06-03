@@ -1,0 +1,195 @@
+swagger: "2.0"
+info:
+  description: "discretionary-business-grants API Schema"
+  version: "1.0.0"
+  title: "discretionary-business-grants API"
+host: "discretionarybusinessgrants.hackney.gov.uk"
+basePath: "/api"
+tags:
+- name: "urls"
+  description: "Secure URL for uploading files"
+- name: "applications"
+  description: ""
+schemes:
+- "https"
+paths:
+  /urls:
+    post:
+      tags:
+      - "urls"
+      summary: "Retrieve a new secure URL for file upload"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Url"
+      responses:
+        "500":
+          description: "Invalid input"
+        "200":
+          description: "Success"
+          schema:
+            type: "object"
+            items: 
+              $ref:
+                "#/definitions/UrlResponse"
+  /applications:
+    post:
+      tags:
+      - "applications"
+      summary: "Create a new business grant application"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: 
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Applications"
+      responses:
+        "500":
+          description: "Invalid input"
+        "200":
+          description: "Your application has been submitted"
+          
+definitions:
+  Url: 
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+  UrlResponse:
+    type: "object"
+    properties:
+      documentId:
+        type: "string"
+      fields:
+        type: "object"
+      url:
+        type: "string"
+        
+
+  Applications:
+    type: "object"
+    properties:
+      clientGeneratedId:
+        type: "string"
+      eligibilityCriteria:
+        $ref: "#/definitions/EligibilityCriteria"
+      business:
+        $ref: "#/definitions/Business"
+      businessAddress:
+        $ref: "#/definitions/BusinessAddress"
+      businessBankAccount:
+        $ref: "#/definitions/BusinessBankAccount"
+      contact:
+        $ref: "#/definitions/Contact"
+      contactAddress:
+        $ref: "#/definitions/ContactAddress"
+      documents:
+        $ref: "#/definitions/Documents"
+  Business:
+    type: "object"
+    properties: 
+      companyName:
+        type: "string" 
+      tradingName: 
+        type: "string"
+      companyNumber: 
+        type: "string" 
+      nndrAccountNumber: 
+        type: "string" 
+      fullTimeEmployees: 
+        type: "integer" 
+      annualTurnover: 
+        type: "integer" 
+      percentFallInIncome:
+        type: "integer"
+      rateableValue: 
+        type: "number"
+      fixedPropertyCost: 
+        type: "number"
+  BusinessAddress:
+    type: "object"
+    properties:
+      uprn:
+        type: "string"
+      firstLine: 
+        type: "string"
+      secondLine:
+        type: "string"
+      thirdLine:
+        type: "string"
+      postcode:
+        type: "string"
+  BusinessBankAccount:
+    type: "object"
+    properties:
+      bankName:
+        type: "string"
+      accountHolder:
+        type: "string"
+      accountNumber:
+        type: "string"
+      accountSortcode:
+        type: "string"
+  Contact:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      emailAddress:
+        type: "string"
+      telephoneNumber:
+        type: "string"
+  ContactAddress:
+    type: "object"
+    properties:
+      uprn:
+        type: "string"
+      firstLine:
+        type: "string"
+      secondLine:
+        type: "string"
+      thirdLine:
+        type: "string"
+      postcode:
+        type: "string"
+      ward:
+        type: "string"
+  EligibilityCriteria:
+    type: "object"
+    properties:
+      tradingInHackney:
+        type: "boolean"
+      smallMicroBusiness:
+        type: "boolean"
+      tradingOn20200311: 
+        type: "boolean" 
+      servedLegalNotices:
+        type: "boolean" 
+      receivedOtherGrants:
+        type: "boolean"
+      hasFixedPropertyCost:
+        type: "boolean"
+      rateableLimitAnswerId:
+        type: "integer"
+  Documents:
+    type: "object"
+    properties:
+      s3Path: 
+        type: "string"
+      documentType: 
+        type: "string"
+
+  
