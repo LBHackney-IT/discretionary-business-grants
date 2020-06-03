@@ -130,6 +130,11 @@ definitions:
         type: "string"
       telephoneNumber:
         type: "string"
+    required:
+      - firstName
+      - lastName
+      - emailAddress
+      - telephoneNumber
   ContactAddress:
     type: "object"
     properties:
@@ -145,6 +150,8 @@ definitions:
         type: "string"
       ward:
         type: "string"
+    required:
+      - firstLine
   Business:
     type: "object"
     properties:
