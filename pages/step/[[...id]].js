@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
+
 import { steps, stepPath, stepKeys } from 'components/Steps';
 
 const getAdjacentSteps = step => {
@@ -14,12 +15,24 @@ const getAdjacentSteps = step => {
   };
 };
 
-const FormWizard = ({ stepId }) => {
+const FormWizard = () => {
   Router.events.on('routeChangeComplete', () => {
     window.scrollTo(0, 0);
   });
   const [formData, setFormData] = useState({ firstName: 'asd' });
+  const router = useRouter();
+  const { '[...id]': stepId } = router.query;
+  const firstStep = stepKeys[0];
+  useEffect(() => {
+    if (stepId && !formData.eligibility && stepId !== firstStep) {
+      Router.replace(`/step/${firstStep}`);
+      return null;
+    }
+  }, [stepId]);
   const Step = steps[stepId];
+  if (!Step) {
+    return null;
+  }
   const { previousStep, nextStep } = getAdjacentSteps(stepId);
   return (
     <div className="govuk-width-container">
@@ -37,16 +50,6 @@ const FormWizard = ({ stepId }) => {
       </main>
     </div>
   );
-};
-
-FormWizard.getInitialProps = async ({ query, res }) => {
-  const firstStep = stepKeys[0];
-  const stepId = query['[...id]'];
-  if (res && stepId !== firstStep) {
-    res.writeHead(301, { Location: `/step/${firstStep}` });
-    res.end();
-  }
-  return { stepId };
 };
 
 export default FormWizard;
