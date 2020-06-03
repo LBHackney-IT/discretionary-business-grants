@@ -16,8 +16,8 @@ export default async (req, res) => {
     res.statusCode = data.statusCode;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(data.data));
-  } catch {
+  } catch (e) {
     res.statusCode = 500;
-    res.end();
+    res.end(e.message);
   }
 };
