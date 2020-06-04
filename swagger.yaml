@@ -110,6 +110,8 @@ definitions:
         type: "boolean"
       smallMicroBusiness:
         type: "boolean"
+      typeOfBusinessId:
+        type: "integer"
       tradingOn20200311:
         type: "boolean"
       servedLegalNotices:
@@ -122,6 +124,7 @@ definitions:
         type: "integer"
     required:
       - tradingInHackney
+      - typeOfBusinessId
       - smallMicroBusiness
       - tradingOn20200311
       - servedLegalNotices
