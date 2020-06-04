@@ -1,4 +1,5 @@
 import EligibilityCriteria from 'components/Steps/EligibilityCriteria';
+import SupplementaryInformation from 'components/Steps/SupplementaryInformation';
 import YourDetails from 'components/Steps/YourDetails';
 import BusinessDetails from 'components/Steps/BusinessDetails';
 import BankDetails from 'components/Steps/BankDetails';
@@ -11,6 +12,7 @@ export const steps = {
   'eligibility-criteria': EligibilityCriteria,
   'your-details': YourDetails,
   'business-details': BusinessDetails,
+  'supplementary-information': SupplementaryInformation,
   'bank-details': BankDetails,
   'state-aid-declaration': StateAidDeclaration,
   summary: Summary
