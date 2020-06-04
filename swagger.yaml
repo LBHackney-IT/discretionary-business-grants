@@ -62,7 +62,7 @@ definitions:
   Url:
     type: "object"
     properties:
-      fileId:
+      clientGeneratedId:
         type: "string"
         minLength: 1
   UrlResponse:
