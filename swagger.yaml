@@ -62,9 +62,9 @@ definitions:
   Url:
     type: "object"
     properties:
-      id:
-        type: "integer"
-        format: "int64"
+      fileId:
+        type: "string"
+        minLength: 1
   UrlResponse:
     type: "object"
     properties:
