@@ -2,9 +2,11 @@ import getSecureUploadUrl from '../../../lib/usecases/getSecureUploadUrl';
 
 export default async (req, res) => {
   try {
-    const { fileId, fileName } = req.body;
-    const { documentId, fields, url } = await getSecureUploadUrl(fileId);
-    const fileKey = `${fileId}/${documentId}/${fileName}`;
+    const { clientGeneratedId, fileName } = req.body;
+    const { documentId, fields, url } = await getSecureUploadUrl(
+      clientGeneratedId
+    );
+    const fileKey = `${clientGeneratedId}/${documentId}/${fileName}`;
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.end(
@@ -15,7 +17,7 @@ export default async (req, res) => {
           key: fileKey,
           ...fields,
           'X-Amz-Server-Side-Encryption': 'AES256',
-          'X-Amz-Meta-Description': fileId
+          'X-Amz-Meta-Description': clientGeneratedId
         }
       })
     );
