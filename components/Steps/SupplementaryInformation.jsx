@@ -38,6 +38,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
       />
       <FileUpload
         label="Evidence of ongoing fixed property cost (a copy of the business lease, rental agreement, mortgage statement, or licence for the business premises)"
@@ -45,6 +46,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload2']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
       />
       <FileUpload
         label="A copy of the business management accounts (including profit and loss account, turnover, balance sheet, and cash flow summary) for the last 12 months up to the grant application date"
@@ -52,6 +54,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload3']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
       />
       <FileUpload
         label="6 months up to date bank statements for the business showing the name, address and account details. Relevant fixed property costs and employee salaries paid should be highlighted"
@@ -59,6 +62,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload4']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
       />
       <FileUpload
         label="One form of identity for the named applicant (passport or driving licence)"
@@ -66,6 +70,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload5']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
         isSingleFile
       />
       <FileUpload
@@ -74,6 +79,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload6']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
       />
       <FileUpload
         label="Completed State Aid declaration."
@@ -81,6 +87,7 @@ const SupplementaryInformation = props => {
         fileList={fileLists['file_upload7']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
+        uploadPrefix={props.formData.user.email}
         isSingleFile
       />
       <Button className="govuk-button" text="Next" type="submit" />

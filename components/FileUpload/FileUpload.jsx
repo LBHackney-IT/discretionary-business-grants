@@ -10,7 +10,7 @@ const FileUpload = ({
   fileList = [],
   onFileUploaded,
   onFileDelete,
-  documentId = 'test',
+  uploadPrefix = 'test',
   isSingleFile
 }) => {
   const [error, setError] = useState();
@@ -19,7 +19,7 @@ const FileUpload = ({
     try {
       setUploading(true);
       setError(false);
-      const fileKey = await fileUploader(file, documentId);
+      const fileKey = await fileUploader(file, uploadPrefix);
       onFileUploaded(fileKey, name, isSingleFile);
     } catch (e) {
       console.log(e);
