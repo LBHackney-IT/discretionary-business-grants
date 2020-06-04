@@ -186,14 +186,21 @@ definitions:
     properties:
       uprn:
         type: "string"
+        minLength: 1
       firstLine:
         type: "string"
+        minLength: 1
       secondLine:
         type: "string"
       thirdLine:
         type: "string"
       postcode:
         type: "string"
+        minLength: 2
+    required:
+      - uprn
+      - firstLine
+      - postcode
   BusinessBankAccount:
     type: "object"
     properties:
