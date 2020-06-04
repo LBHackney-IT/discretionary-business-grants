@@ -24,16 +24,16 @@ const Step1 = props => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div class="govuk-form-group">
+      <div className="govuk-form-group">
         <fieldset
-          class="govuk-fieldset"
+          className="govuk-fieldset"
           role="group"
           aria-describedby="step-hint"
         >
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">Eligibility Criteria</h1>
+          <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 className="govuk-fieldset__heading">Eligibility Criteria</h1>
           </legend>
-          <span id="step-hint" class="govuk-hint">
+          <span id="step-hint" className="govuk-hint">
             Applicants must meet all the eligibility questions to proceed to the
             next section
           </span>

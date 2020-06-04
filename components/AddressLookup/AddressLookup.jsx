@@ -75,7 +75,9 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
               onChange={e => setPostcode(e.target.value)}
               defaultValue={defaultValue && defaultValue.postcode}
               ref={register({
-                required: !isManually && !defaultValue.line1
+                required:
+                  !isManually &&
+                  (!defaultValue || (defaultValue && !defaultValue.line1))
               })}
             />
           </div>

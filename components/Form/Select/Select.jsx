@@ -14,7 +14,7 @@ const Select = ({
       {label}
     </label>
     {hint && (
-      <span id={`${name}-hint`} class="govuk-hint">
+      <span id={`${name}-hint`} className="govuk-hint">
         {hint}
       </span>
     )}
