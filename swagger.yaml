@@ -165,14 +165,22 @@ definitions:
         type: "string"
       fullTimeEmployees:
         type: "integer"
+        minimum: 1
       annualTurnover:
         type: "integer"
+        minimum: 1
       percentFallInIncome:
         type: "integer"
+        minimum: 1
+        maximum: 100
       rateableValue:
         type: "number"
       fixedPropertyCost:
         type: "number"
+    required:
+      - fullTimeEmployees
+      - annualTurnover
+      - percentFallInIncome
   BusinessAddress:
     type: "object"
     properties:
