@@ -2,18 +2,20 @@ import getSecureUploadUrl from '../../../lib/usecases/getSecureUploadUrl';
 
 export default async (req, res) => {
   try {
-    const { fileKey, fileName } = req.body;
-    const { documentId, fields, url } = await getSecureUploadUrl(fileKey);
+    const { fileId, fileName } = req.body;
+    const { documentId, fields, url } = await getSecureUploadUrl(fileId);
+    const fileKey = `${fileId}/${documentId}/${fileName}`;
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.end(
       JSON.stringify({
+        fileKey,
         url,
         fields: {
-          key: `${fileKey}/${documentId}/${fileName}`,
+          key: fileKey,
           ...fields,
           'X-Amz-Server-Side-Encryption': 'AES256',
-          'X-Amz-Meta-Description': fileKey
+          'X-Amz-Meta-Description': fileId
         }
       })
     );
