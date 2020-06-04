@@ -29,14 +29,16 @@ paths:
           schema:
             $ref: "#/definitions/Url"
       responses:
-        "500":
-          description: "Invalid input"
         "200":
           description: "Success"
           schema:
             type: "object"
             items:
               $ref: "#/definitions/UrlResponse"
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Internal server error"
   /applications:
     post:
       tags:
@@ -53,10 +55,12 @@ paths:
           schema:
             $ref: "#/definitions/Applications"
       responses:
-        "500":
-          description: "Invalid input"
         "200":
           description: "Your application has been submitted"
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Internal server error"
 
 definitions:
   Url:
