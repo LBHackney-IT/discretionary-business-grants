@@ -1,0 +1,248 @@
+swagger: "2.0"
+info:
+  description: "discretionary-business-grants API Schema"
+  version: "0.0.1"
+  title: "discretionary-business-grants API"
+host: "discretionarybusinessgrants.hackney.gov.uk"
+basePath: "/api"
+tags:
+  - name: "urls"
+    description: "An api to obtain secure URLs for uploading files"
+  - name: "applications"
+    description: ""
+schemes:
+  - "https"
+paths:
+  /urls:
+    post:
+      tags:
+        - "urls"
+      summary: "Retrieve a new secure URL for file upload"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Url"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/UrlResponse"
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Internal server error"
+  /applications:
+    post:
+      tags:
+        - "applications"
+      summary: "Create a new business grant application"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Applications"
+      responses:
+        "200":
+          description: "Your application has been submitted"
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Internal server error"
+
+definitions:
+  Url:
+    type: "object"
+    properties:
+      clientGeneratedId:
+        type: "string"
+        minLength: 1
+  UrlResponse:
+    type: "object"
+    properties:
+      documentId:
+        type: "string"
+      fields:
+        type: "object"
+      url:
+        type: "string"
+
+  Applications:
+    type: "object"
+    properties:
+      clientGeneratedId:
+        type: "string"
+        minLength: 1
+      eligibilityCriteria:
+        $ref: "#/definitions/EligibilityCriteria"
+      contact:
+        $ref: "#/definitions/Contact"
+      contactAddress:
+        $ref: "#/definitions/ContactAddress"
+      business:
+        $ref: "#/definitions/Business"
+      businessAddress:
+        $ref: "#/definitions/BusinessAddress"
+      businessBankAccount:
+        $ref: "#/definitions/BusinessBankAccount"
+      documents:
+        $ref: "#/definitions/Documents"
+  EligibilityCriteria:
+    type: "object"
+    properties:
+      tradingInHackney:
+        type: "boolean"
+      smallMicroBusiness:
+        type: "boolean"
+      tradingOn20200311:
+        type: "boolean"
+      servedLegalNotices:
+        type: "boolean"
+      receivedOtherGrants:
+        type: "boolean"
+      hasFixedPropertyCost:
+        type: "boolean"
+      rateableLimitAnswerId:
+        type: "integer"
+    required:
+      - tradingInHackney
+      - smallMicroBusiness
+      - tradingOn20200311
+      - servedLegalNotices
+      - receivedOtherGrants
+      - hasFixedPropertyCost
+      - rateableLimitAnswerId
+  Contact:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+        minLength: 1
+      lastName:
+        type: "string"
+        minLength: 1
+      emailAddress:
+        type: "string"
+        minLength: 5
+      telephoneNumber:
+        type: "string"
+        minLength: 5
+    required:
+      - firstName
+      - lastName
+      - emailAddress
+      - telephoneNumber
+  ContactAddress:
+    type: "object"
+    properties:
+      uprn:
+        type: "string"
+      firstLine:
+        type: "string"
+        minLength: 1
+      secondLine:
+        type: "string"
+      thirdLine:
+        type: "string"
+      postcode:
+        type: "string"
+      ward:
+        type: "string"
+    required:
+      - firstLine
+  Business:
+    type: "object"
+    properties:
+      companyName:
+        type: "string"
+      tradingName:
+        type: "string"
+      companyNumber:
+        type: "string"
+      nndrAccountNumber:
+        type: "string"
+      fullTimeEmployees:
+        type: "integer"
+        minimum: 1
+      annualTurnover:
+        type: "integer"
+        minimum: 1
+      percentFallInIncome:
+        type: "integer"
+        minimum: 1
+        maximum: 100
+      rateableValue:
+        type: "number"
+      fixedPropertyCost:
+        type: "number"
+    required:
+      - fullTimeEmployees
+      - annualTurnover
+      - percentFallInIncome
+  BusinessAddress:
+    type: "object"
+    properties:
+      uprn:
+        type: "string"
+        minLength: 1
+      firstLine:
+        type: "string"
+        minLength: 1
+      secondLine:
+        type: "string"
+      thirdLine:
+        type: "string"
+      postcode:
+        type: "string"
+        minLength: 2
+    required:
+      - uprn
+      - firstLine
+      - postcode
+  BusinessBankAccount:
+    type: "object"
+    properties:
+      bankName:
+        type: "string"
+        minLength: 1
+      accountHolder:
+        type: "string"
+        minLength: 1
+      accountNumber:
+        type: "string"
+        minLength: 1
+      accountSortcode:
+        type: "string"
+        minLength: 6
+    required:
+      - bankName
+      - accountHolder
+      - accountNumber
+      - accountSortcode
+  Documents:
+    type: "array"
+    items:
+      type: "object"
+      uniqueItems: true
+      properties:
+        s3Path:
+          type: "string"
+          minLength: 1
+        documentType:
+          type: "string"
+          minLength: 1
+      required:
+        - s3Path
+        - documentType
