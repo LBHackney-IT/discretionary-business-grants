@@ -226,5 +226,10 @@ definitions:
     properties:
       s3Path:
         type: "string"
+        minLength: 1
       documentType:
         type: "string"
+        minLength: 1
+    required:
+      - s3Path
+      - documentType
