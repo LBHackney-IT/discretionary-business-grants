@@ -80,6 +80,7 @@ definitions:
     properties:
       clientGeneratedId:
         type: "string"
+        minLength: 1
       eligibilityCriteria:
         $ref: "#/definitions/EligibilityCriteria"
       contact:
@@ -124,12 +125,16 @@ definitions:
     properties:
       firstName:
         type: "string"
+        minLength: 1
       lastName:
         type: "string"
+        minLength: 1
       emailAddress:
         type: "string"
+        minLength: 5
       telephoneNumber:
         type: "string"
+        minLength: 5
     required:
       - firstName
       - lastName
@@ -142,6 +147,7 @@ definitions:
         type: "string"
       firstLine:
         type: "string"
+        minLength: 1
       secondLine:
         type: "string"
       thirdLine:
