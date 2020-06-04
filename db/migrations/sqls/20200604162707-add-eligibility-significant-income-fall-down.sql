@@ -1,0 +1,1 @@
+ALTER TABLE eligibility_criteria DROP COLUMN significant_income_fall;
