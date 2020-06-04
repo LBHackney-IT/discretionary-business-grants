@@ -84,11 +84,19 @@ export const inputLabels = {
     isAuthorised: 'I am authorised to sign this declaration',
     isNotExceedingAidLimit:
       'Receipt of this grant will not exceed the state aid limit'
+  },
+  supplementaryInformation: {
+    businessAccounts: 'Business Accounts:',
+    fixedPropertyCosts: 'Fixed Property costs:',
+    businessManagementAccounts: 'Business Management accounts:',
+    bankStatements: 'Bank Statements:',
+    identity: 'Identity',
+    payrollInformation: 'Payroll Information'
   }
 };
 
-export const getInputProps = (form, name) => ({
-  name: `${form}.${name}`,
+export const getInputProps = (form, name, withoutPrefix) => ({
+  name: withoutPrefix ? name : `${form}.${name}`,
   label: inputLabels[form][name]
 });
 
