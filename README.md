@@ -77,3 +77,14 @@ You can do a dry-run to view the changes that will be applied without making any
 ```bash
 npm run dbmigratedry up
 ```
+
+## AWS Database Migrations
+
+To run database migrations against the RDS databases on AWS you need to run the dbmigrate up command via AWS System Manager.
+
+1. Log into the AWS account
+2. Go to System Manager
+3. Go to Session Manager
+4. Select an instance (there should only be 1)
+5. Click 'Start Session' - This should open up a terminal like window in your browser
+6. Run `cd ~/discretionary-business-grants/ && git pull && npm run dbmigrate up`
