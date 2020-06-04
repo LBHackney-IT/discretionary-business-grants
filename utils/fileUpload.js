@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const fileUploader = async (file, fileId) => {
+const fileUploader = async (file, clientGeneratedId) => {
   const { data } = await axios.post('/api/url', {
-    fileId: fileId,
+    clientGeneratedId: clientGeneratedId,
     fileName: file.name
   });
   const formData = new FormData();
