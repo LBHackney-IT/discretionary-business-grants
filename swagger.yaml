@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.2"
+  version: "0.0.3"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -55,8 +55,12 @@ paths:
           schema:
             $ref: "#/definitions/Applications"
       responses:
-        "200":
+        "201":
           description: "Your application has been submitted"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/ApplicationsResponse"
         "400":
           description: "Invalid input"
         "500":
@@ -252,3 +256,8 @@ definitions:
       required:
         - s3Path
         - documentType
+  ApplicationsResponse:
+    type: "object"
+    properties:
+      confirmationId:
+        type: "string"
