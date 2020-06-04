@@ -50,15 +50,15 @@ const Result = ({ formData }) => {
       />
       <SummarySection
         formData={formData}
-        name="bank"
-        title="Bank details:"
-        slug="bank-details"
+        name="turnover"
+        title="Business Turnover:"
+        slug="business-turnover"
       />
       <SummarySection
         formData={formData}
-        name="stateAidDeclaration"
-        title="State Aid Declaration:"
-        slug="state-aid-declaration"
+        name="propertyCost"
+        title="Fixed property related costs:"
+        slug="property-costs"
       />
       <div className="govuk-!-margin-bottom-9">
         <h2>Documents</h2>
@@ -71,6 +71,18 @@ const Result = ({ formData }) => {
           <a className="govuk-link">Change</a>
         </Link>
       </div>
+      <SummarySection
+        formData={formData}
+        name="bank"
+        title="Bank details:"
+        slug="bank-details"
+      />
+      <SummarySection
+        formData={formData}
+        name="stateAidDeclaration"
+        title="State Aid Declaration:"
+        slug="state-aid-declaration"
+      />
     </>
   );
 };

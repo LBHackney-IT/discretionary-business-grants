@@ -2,6 +2,8 @@ import EligibilityCriteria from 'components/Steps/EligibilityCriteria';
 import SupplementaryInformation from 'components/Steps/SupplementaryInformation';
 import YourDetails from 'components/Steps/YourDetails';
 import BusinessDetails from 'components/Steps/BusinessDetails';
+import BusinessTurnover from 'components/Steps/BusinessTurnover';
+import PropertyCost from 'components/Steps/PropertyCost';
 import BankDetails from 'components/Steps/BankDetails';
 import StateAidDeclaration from 'components/Steps/StateAidDeclaration';
 import Summary from 'components/Steps/Summary';
@@ -12,6 +14,8 @@ export const steps = {
   'eligibility-criteria': EligibilityCriteria,
   'your-details': YourDetails,
   'business-details': BusinessDetails,
+  'business-turnover': BusinessTurnover,
+  'property-cost': PropertyCost,
   'supplementary-information': SupplementaryInformation,
   'bank-details': BankDetails,
   'state-aid-declaration': StateAidDeclaration,
@@ -60,6 +64,15 @@ export const inputLabels = {
     turnover: 'Business turnover March to May (inclusive) 2020:',
     percentageFallIncome: 'Percentage fall in income due to Covid-19:',
     businessPremises: 'Business premises rateable value (if applicable):'
+  },
+  turnover: {
+    year1819: 'Financial Year 18/19',
+    year1920: 'Financial Year 19/20'
+  },
+  propertyCost: {
+    year1819: 'Financial Year 18/19',
+    year1920: 'Financial Year 19/20',
+    items: 'Items included:'
   },
   bank: {
     bankName: 'Bank Name:',
