@@ -7,7 +7,7 @@ host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
 tags:
   - name: "urls"
-    description: "Secure URL for uploading files"
+    description: "An api to obtain secure URLs for uploading files"
   - name: "applications"
     description: ""
 schemes:
