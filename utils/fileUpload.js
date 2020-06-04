@@ -5,7 +5,7 @@ const fileUploader = async (file, fileId) => {
     fileId: fileId,
     fileName: file.name
   });
-  var formData = new FormData();
+  const formData = new FormData();
   Object.entries(data.fields).forEach(([key, value]) =>
     formData.append(key, value)
   );
