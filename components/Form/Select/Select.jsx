@@ -1,15 +1,29 @@
 import PropTypes from 'prop-types';
 
-const Select = ({ label, name, options, selected, onChange, register }) => (
+const Select = ({
+  label,
+  hint,
+  name,
+  options,
+  selected,
+  onChange,
+  register
+}) => (
   <div className="govuk-form-group">
-    <label className="govuk-label" htmlFor={name}>
+    <label className="govuk-label govuk-label--m" htmlFor={name}>
       {label}
     </label>
+    {hint && (
+      <span id={`${name}-hint`} class="govuk-hint">
+        {hint}
+      </span>
+    )}
     <select
       className="govuk-select"
       id={name}
       name={name}
       ref={register}
+      aria-describedby={hint && `${name}-hint`}
       onChange={e => onChange && onChange(e.target.value)}
     >
       <option key="empty" value=""></option>

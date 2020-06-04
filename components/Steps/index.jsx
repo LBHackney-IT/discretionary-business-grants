@@ -19,21 +19,22 @@ export const steps = {
 };
 
 export const inputLabels = {
-  eligibility: {
-    isBasedInHackney: 'Is your business based in and trading in Hackney?',
-    isSmallBusiness:
+  eligibilityCriteria: {
+    tradingInHackney: 'Is your business based in and trading in Hackney?',
+    smallMicroBusiness:
       'Is your business classed as either a small or micro business?',
-    beforeDate: 'Was your business trading on the 11th March 2020?',
-    isInsolvent:
+    tradingOn20200311: 'Was your business trading on the 11th March 2020?',
+    typeOfBusiness: 'Type of business',
+    servedLegalNotices:
       'Is your business in administration, insolvent or in receipt of a striking off notice?',
-    hasReceived:
-      'Has your business either received or is eligible for either a Small Business Grant or a Retail, Hospitality and Leisure Grant?',
+    receivedOtherGrants:
+      'Has your business either received or is eligible for either a Small Business Grant, the Retail, Hospitality and Leisure Grant, The Fisheries Response Fund, Domestic Seafood Supply Scheme (DSSS), The Zoos Support Fund, or The Dairy Hardship Fund.',
     hasFixedPropertyCost:
-      'Does your business have an annual fixed property cost (this could be annual rent, annual mortgage, annual market pitch fee, annual storage cost)?',
+      'Does your business have fixed property cost of £60,000 per year or below?',
     hasFallInIncome:
-      'Has your business experienced a fall in income of at least 30% as a result of Covid-19?',
-    hasReteableValue:
-      'If you have an individual business rates account does your premises have a rateable value of £60k or less?'
+      'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
+    rateableLimitAnswerId:
+      'If you have an individual business rates account does your premises have a rateable value of £60,000 or less?'
   },
   user: {
     authority: 'Authority:',
