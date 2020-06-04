@@ -36,28 +36,30 @@ export const inputLabels = {
     rateableLimitAnswerId:
       'If you have an individual business rates account does your premises have a rateable value of £60,000 or less?'
   },
-  user: {
-    authority: 'Authority:',
+  contact: {
+    authority: 'Role/position in organisation:',
     firstName: 'First Name:',
     lastName: 'Last Name:',
-    email: 'Email Address:',
-    tel: 'Telephone Number:',
+    emailAddress: 'Email Address:',
+    telephoneNumber: 'Telephone Number:',
     address: 'Address:'
   },
   business: {
     businessName: 'Business Name:',
+    businessDescription: 'Business description:',
     businessAddress: 'Business Address:',
+    businessPremisesAddress: 'Business premises address:',
+    businessPremisesDescription: 'Business premises description:',
     companyNumber: 'Company Number:',
     companyStructure: 'Company Structure:',
-    businessRateAccountNumber: 'Business Rates Account Number:',
-    numberEmployes: 'Number of Full Time Employes:',
+    businessRateAccountNumber: 'Business Rates Account Number (if applicable):',
+    businessRegisteredCharity: 'Registered Charity (if applicable):',
+    councilRentAccountNumber:
+      'Council premises rent account number (if applicable):',
+    numberEmployes: 'Number of Full Time Employees:',
+    turnover: 'Business turnover March to May (inclusive) 2020:',
     percentageFallIncome: 'Percentage fall in income due to Covid-19:',
-    businessPremises: 'Business premises rateable value:',
-    fixedPropAnnum: 'Per Annum:',
-    fixedPropItems: 'Items included:',
-    wasTradingBefore: 'Was trading on 11th March 2021',
-    wasIneligible:
-      'Was ineligible to access funding from the Small Business Grant Fund, or Retail, Leisure and Hospitality Grant Fund'
+    businessPremises: 'Business premises rateable value (if applicable):'
   },
   bank: {
     bankName: 'Bank Name:',

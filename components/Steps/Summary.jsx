@@ -38,7 +38,7 @@ const Result = ({ formData }) => {
       <h1>Summary</h1>
       <SummarySection
         formData={formData}
-        name="user"
+        name="contact"
         title="Your details:"
         slug="your-details"
       />

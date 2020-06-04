@@ -19,6 +19,11 @@ const Step1 = props => {
       <h1>Business Details</h1>
       <TextInput
         {...getInputProps('business', 'businessName')}
+        register={register({ required: true })}
+      />
+      <TextInput
+        {...getInputProps('business', 'businessDescription')}
+        hint="What is the main business activity carried out"
         register={register}
       />
       <AddressLookup
@@ -27,6 +32,20 @@ const Step1 = props => {
           props.formData.business && props.formData.business.businessAddress
         }
         control={control}
+        register={register}
+      />
+      <AddressLookup
+        {...getInputProps('business', 'businessPremisesAddress')}
+        defaultValue={
+          props.formData.business &&
+          props.formData.business.businessPremisesAddress
+        }
+        control={control}
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'businessPremisesDescription')}
+        hint="e.g shared office, shared workspace, individual shop, individual office, market stall etc"
         register={register}
       />
       <TextInput
@@ -51,7 +70,22 @@ const Step1 = props => {
         register={register}
       />
       <TextInput
+        {...getInputProps('business', 'businessRegisteredCharity')}
+        type="number"
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'councilRentAccountNumber')}
+        type="number"
+        register={register}
+      />
+      <TextInput
         {...getInputProps('business', 'numberEmployes')}
+        type="number"
+        register={register({ min: 0 })}
+      />
+      <TextInput
+        {...getInputProps('business', 'turnover')}
         type="number"
         register={register({ min: 0 })}
       />
@@ -64,25 +98,6 @@ const Step1 = props => {
         {...getInputProps('business', 'businessPremises')}
         type="number"
         register={register({ min: 0 })}
-      />
-      <h3>Fixed property related costs</h3>
-      <TextInput
-        {...getInputProps('business', 'fixedPropAnnum')}
-        type="number"
-        register={register({ min: 0 })}
-      />
-      <TextInput
-        {...getInputProps('business', 'fixedPropItems')}
-        register={register}
-      />
-      <h3>I confirm that this business:</h3>
-      <Checkbox
-        {...getInputProps('business', 'wasTradingBefore')}
-        register={register({ required: true })}
-      />
-      <Checkbox
-        {...getInputProps('business', 'wasIneligible')}
-        register={register({ required: true })}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
