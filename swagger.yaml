@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.1"
+  version: "0.0.2"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -127,6 +127,8 @@ definitions:
   Contact:
     type: "object"
     properties:
+      contactTypeId:
+        type: "integer"
       firstName:
         type: "string"
         minLength: 1
@@ -140,6 +142,7 @@ definitions:
         type: "string"
         minLength: 5
     required:
+      - contactTypeId
       - firstName
       - lastName
       - emailAddress
@@ -165,6 +168,8 @@ definitions:
   Business:
     type: "object"
     properties:
+      companyStructureId:
+        type: "integer"
       companyName:
         type: "string"
       tradingName:
@@ -188,6 +193,7 @@ definitions:
       fixedPropertyCost:
         type: "number"
     required:
+      - companyStructureId
       - fullTimeEmployees
       - annualTurnover
       - percentFallInIncome
