@@ -16,12 +16,10 @@ const SupplementaryInformation = props => {
     props.saveData({ documents: fileLists });
     Router.push(stepPath, props.nextStep);
   };
-  const handleFileUploaded = (file, name, isSingleFile) =>
+  const handleFileUploaded = (file, name) =>
     setFileLists({
       ...fileLists,
-      [name]: isSingleFile
-        ? [file]
-        : [...(fileLists[name] ? fileLists[name] : []), file]
+      [name]: [...(fileLists[name] ? fileLists[name] : []), file]
     });
   const handleFileDelete = (filename, name) => {
     setFileLists({
@@ -33,62 +31,64 @@ const SupplementaryInformation = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Supplementary Information</h1>
       <FileUpload
-        label="A copy of the business accounts (or a copy of the business Self Assessment tax return if applicable to your business) for the year 2018/19. If this is not available as the business is less than 1 year old, please provide what is available"
+        label="Business Accounts:"
+        sublabel="A copy of the business accounts (or a copy of the business Self Assessment tax return if applicable to your business) for the year 2018/19. If this is not available as the business is less than 1 year old, please provide what is available"
+        hint="Companies House website link or a copy of the business accounts (or tax self assessment if you’re employed as a sole trader or a partner in a business partnership) for the previous two years 2017/18 and 2018/19 (if not available as the business is less than 2 years old, provide what is available)"
         name="file_upload"
         fileList={fileLists['file_upload']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
+        uploadPrefix={props.formData.contact.emailAddress}
       />
       <FileUpload
-        label="Evidence of ongoing fixed property cost (a copy of the business lease, rental agreement, mortgage statement, or licence for the business premises)"
+        label="Fixed Property costs:"
+        sublabel="Evidence of ongoing fixed property cost (a copy of the business lease, rental agreement, mortgage statement, or licence for the business premises)"
+        hint="Evidence of your annual business turnover (this can be from your business accounts or management accounts)"
         name="file_upload2"
         fileList={fileLists['file_upload2']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
+        uploadPrefix={props.formData.contact.emailAddress}
       />
       <FileUpload
-        label="A copy of the business management accounts (including profit and loss account, turnover, balance sheet, and cash flow summary) for the last 12 months up to the grant application date"
+        label="Business Management accounts:"
+        sublabel="A copy of the business management accounts (including profit and loss account, turnover, balance sheet, and cash flow summary) for the last 12 months up to the grant application date"
+        hint="A copy of your management accounts (including profit and loss account, balance sheet, and cash flow summary) for the last 6 months up to your grant application date"
         name="file_upload3"
         fileList={fileLists['file_upload3']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
+        uploadPrefix={props.formData.contact.emailAddress}
       />
       <FileUpload
-        label="6 months up to date bank statements for the business showing the name, address and account details. Relevant fixed property costs and employee salaries paid should be highlighted"
+        label="Bank Statements:"
+        sublabel="6 months up to date bank statements for the business showing the name, address and account details. Relevant fixed property costs and employee salaries paid should be highlighted"
+        hint="6 months up to date bank statements for your business showing the name, address and account details to enable payment of grant. Transaction details can be redacted but relevant fixed property costs and staff salary payments should be shown"
         name="file_upload4"
         fileList={fileLists['file_upload4']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
+        uploadPrefix={props.formData.contact.emailAddress}
       />
       <FileUpload
-        label="One form of identity for the named applicant (passport or driving licence)"
+        label="Identity"
+        sublabel="One form of identity for the named applicant (passport or driving licence)"
+        hint="One form of identify document for the name applicant (passport or driving licence)"
         name="file_upload5"
         fileList={fileLists['file_upload5']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
-        isSingleFile
+        uploadPrefix={props.formData.contact.emailAddress}
       />
       <FileUpload
-        label="Company payroll information for the last 6 months showing the number of people employed and paid by the business (if available)"
+        label="Payroll Information"
+        sublabel="Company payroll information for the last 6 months showing the number of people employed and paid by the business (if available)"
+        hint="If available, redacted company payroll information for the last 6 months showing the number of people employed and paid by the business."
         name="file_upload6"
         fileList={fileLists['file_upload6']}
         onFileUploaded={handleFileUploaded}
         onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
-      />
-      <FileUpload
-        label="Completed State Aid declaration."
-        name="file_upload7"
-        fileList={fileLists['file_upload7']}
-        onFileUploaded={handleFileUploaded}
-        onFileDelete={handleFileDelete}
-        uploadPrefix={props.formData.user.email}
-        isSingleFile
+        uploadPrefix={props.formData.contact.emailAddress}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

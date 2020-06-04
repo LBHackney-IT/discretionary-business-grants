@@ -6,12 +6,13 @@ import DeleteIcon from 'components/Icons/DeleteIcon';
 
 const FileUpload = ({
   label,
+  sublabel,
+  hint,
   name,
   fileList = [],
   onFileUploaded,
   onFileDelete,
-  uploadPrefix = 'test',
-  isSingleFile
+  uploadPrefix = 'test'
 }) => {
   const [error, setError] = useState();
   const [uploading, setUploading] = useState(false);
@@ -20,7 +21,7 @@ const FileUpload = ({
       setUploading(true);
       setError(false);
       const fileKey = await fileUploader(file, uploadPrefix);
-      onFileUploaded(fileKey, name, isSingleFile);
+      onFileUploaded(fileKey, name);
     } catch (e) {
       console.log(e);
       setError(true);
@@ -29,15 +30,26 @@ const FileUpload = ({
   };
   return (
     <div className="govuk-form-group">
-      <label className="govuk-label" htmlFor={name}>
+      <label className="govuk-label govuk-label--m" htmlFor={name}>
         {label}
       </label>
+      {sublabel && (
+        <label className="govuk-label" htmlFor={name}>
+          {sublabel}
+        </label>
+      )}
+      {hint && (
+        <span id={`${name}-hint`} class="govuk-hint">
+          {hint}
+        </span>
+      )}
       <input
         className="govuk-file-upload"
         id={name}
         name={name}
         type="file"
         onChange={e => e.target.files[0] && uploadFile(e.target.files[0])}
+        aria-describedby={hint && `${name}-hint`}
         disabled={uploading}
       />
       {fileList.length > 0 && (
