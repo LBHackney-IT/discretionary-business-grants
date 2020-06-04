@@ -206,12 +206,21 @@ definitions:
     properties:
       bankName:
         type: "string"
+        minLength: 1
       accountHolder:
         type: "string"
+        minLength: 1
       accountNumber:
         type: "string"
+        minLength: 1
       accountSortcode:
         type: "string"
+        minLength: 6
+    required:
+      - bankName
+      - accountHolder
+      - accountNumber
+      - accountSortcode
   Documents:
     type: "object"
     properties:
