@@ -57,6 +57,10 @@ paths:
       responses:
         "201":
           description: "Your application has been submitted"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/ApplicationsResponse"
         "400":
           description: "Invalid input"
         "500":
@@ -252,3 +256,8 @@ definitions:
       required:
         - s3Path
         - documentType
+  ApplicationsResponse:
+    type: "object"
+    properties:
+      confirmationId:
+        type: "string"
