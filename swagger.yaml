@@ -212,6 +212,16 @@ definitions:
       - companyStructureId
       - fullTimeEmployees
       - percentFallInIncome
+  Turnover:
+    type: "object"
+    properties:
+      year1819:
+        type: "number"
+      year1920:
+        type: "number"
+    required:
+      - year1819
+      - year1920
   BusinessAddress:
     type: "object"
     properties:

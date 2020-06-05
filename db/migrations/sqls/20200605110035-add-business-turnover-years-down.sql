@@ -1,0 +1,2 @@
+ALTER TABLE business DROP COLUMN turnover_2018_2019;
+ALTER TABLE business DROP COLUMN turnover_2019_2020;
