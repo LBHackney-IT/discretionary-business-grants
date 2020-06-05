@@ -182,16 +182,13 @@ definitions:
         type: "integer"
       companyName:
         type: "string"
-      tradingName:
+      businessDescription:
         type: "string"
       companyNumber:
         type: "string"
       nndrAccountNumber:
         type: "string"
       fullTimeEmployees:
-        type: "integer"
-        minimum: 1
-      annualTurnover:
         type: "integer"
         minimum: 1
       percentFallInIncome:
@@ -202,10 +199,17 @@ definitions:
         type: "number"
       fixedPropertyCost:
         type: "number"
+      ratesAccountNumber:
+        type: "string"
+      registeredCharity:
+        type: "string"
+      councilRentAccountNumber:
+        type: "string"
+      turnover:
+        type: "number"
     required:
       - companyStructureId
       - fullTimeEmployees
-      - annualTurnover
       - percentFallInIncome
   BusinessAddress:
     type: "object"
