@@ -92,15 +92,14 @@ export const inputLabels = {
   supplementaryInformation: {
     businessAccounts: 'Business Accounts:',
     fixedPropertyCosts: 'Fixed Property costs:',
-    businessManagementAccounts: 'Business Management accounts:',
-    bankStatements: 'Bank Statements:',
+    fallInIncome: 'Fall in income:',
     identity: 'Identity',
     payrollInformation: 'Payroll Information'
   }
 };
 
-export const getInputProps = (form, name, withoutPrefix) => ({
-  name: withoutPrefix ? name : `${form}.${name}`,
+export const getInputProps = (form, name) => ({
+  name: `${form}.${name}`,
   label: inputLabels[form][name]
 });
 
