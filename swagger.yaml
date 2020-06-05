@@ -184,8 +184,6 @@ definitions:
         type: "string"
       businessDescription:
         type: "string"
-      tradingName:
-        type: "string"
       companyNumber:
         type: "string"
       nndrAccountNumber:
