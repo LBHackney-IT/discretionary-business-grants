@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.4"
+  version: "0.0.5"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -206,11 +206,22 @@ definitions:
       councilRentAccountNumber:
         type: "string"
       turnover:
+        description: "Business turnover March to May (inclusive) 2020"
         type: "number"
     required:
       - companyStructureId
       - fullTimeEmployees
       - percentFallInIncome
+  Turnover:
+    type: "object"
+    properties:
+      year1819:
+        type: "number"
+      year1920:
+        type: "number"
+    required:
+      - year1819
+      - year1920
   BusinessAddress:
     type: "object"
     properties:
