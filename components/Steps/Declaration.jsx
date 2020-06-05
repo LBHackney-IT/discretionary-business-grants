@@ -5,7 +5,7 @@ import { Button, Radios, Checkbox, TextInput } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 
 const Declaration = props => {
-  const { register, handleSubmit } = useForm({
+  const { register, errors, handleSubmit } = useForm({
     defaultValues: props.formData
   });
   const onSubmit = data => {
@@ -77,11 +77,19 @@ const Declaration = props => {
       />
       <Radios
         {...getInputProps('declaration', 'isAccepted')}
-        register={register({ required: true })}
+        register={register({
+          required: 'You need to agree.',
+          validate: value => value === 'Yes' || 'You need to agree.'
+        })}
+        error={errors.declaration && errors.declaration.isAccepted}
       />
       <Radios
         {...getInputProps('declaration', 'isNotExceedingAidLimit')}
-        register={register({ required: true })}
+        register={register({
+          required: 'You need to agree.',
+          validate: value => value === 'Yes' || 'You need to agree.'
+        })}
+        error={errors.declaration && errors.declaration.isNotExceedingAidLimit}
       />
       <h2>Data Protection</h2>
       <p className="govuk-body">
@@ -143,7 +151,8 @@ const Declaration = props => {
       </p>
       <Checkbox
         {...getInputProps('declaration', 'isConfirmed')}
-        register={register({ required: true })}
+        register={register({ required: 'You need to confirm.' })}
+        error={errors.declaration && errors.declaration.isConfirmed}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
