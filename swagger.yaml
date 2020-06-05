@@ -204,6 +204,8 @@ definitions:
         type: "number"
       ratesAccountNumber:
         type: "string"
+      registeredCharity:
+        type: "string"
     required:
       - companyStructureId
       - fullTimeEmployees
