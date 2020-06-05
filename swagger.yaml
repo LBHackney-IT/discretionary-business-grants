@@ -191,9 +191,6 @@ definitions:
       fullTimeEmployees:
         type: "integer"
         minimum: 1
-      annualTurnover:
-        type: "integer"
-        minimum: 1
       percentFallInIncome:
         type: "integer"
         minimum: 1
@@ -213,7 +210,6 @@ definitions:
     required:
       - companyStructureId
       - fullTimeEmployees
-      - annualTurnover
       - percentFallInIncome
   BusinessAddress:
     type: "object"
