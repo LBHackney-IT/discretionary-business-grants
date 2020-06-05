@@ -18,12 +18,13 @@ const SummarySection = ({ formData, name, title, slug }) => (
     <SummaryList
       list={Object.entries(formData[name]).map(([key, value]) => ({
         title: getInputProps(name, key).label,
-        value:
-          typeof value === 'object'
-            ? Object.values(value).map(MultiValue)
-            : typeof value === 'boolean'
-            ? JSON.stringify(value)
-            : value
+        value: Array.isArray(value)
+          ? value.map(v => MultiValue(v.split('/').pop()))
+          : typeof value === 'object'
+          ? Object.values(value).map(MultiValue)
+          : typeof value === 'boolean'
+          ? JSON.stringify(value)
+          : value
       }))}
     />
     <Link href={stepPath} as={`/step/${slug}`}>
@@ -38,7 +39,7 @@ const Result = ({ formData }) => {
       <h1>Summary</h1>
       <SummarySection
         formData={formData}
-        name="user"
+        name="contact"
         title="Your details:"
         slug="your-details"
       />
@@ -50,27 +51,34 @@ const Result = ({ formData }) => {
       />
       <SummarySection
         formData={formData}
+        name="turnover"
+        title="Business Turnover:"
+        slug="business-turnover"
+      />
+      <SummarySection
+        formData={formData}
+        name="propertyCost"
+        title="Fixed property related costs:"
+        slug="property-costs"
+      />
+      <SummarySection
+        formData={formData}
+        name="supplementaryInformation"
+        title="Supplementary Information:"
+        slug="supplementary-information"
+      />
+      <SummarySection
+        formData={formData}
         name="bank"
         title="Bank details:"
         slug="bank-details"
       />
       <SummarySection
         formData={formData}
-        name="stateAidDeclaration"
+        name="declaration"
         title="State Aid Declaration:"
         slug="state-aid-declaration"
       />
-      <div className="govuk-!-margin-bottom-9">
-        <h2>Documents</h2>
-        <SummaryList
-          list={Object.values(formData.documents).map(value => ({
-            value: value.map(v => MultiValue(v.split('/').pop()))
-          }))}
-        />
-        <Link href={stepPath} as="/step/supplementary-information">
-          <a className="govuk-link">Change</a>
-        </Link>
-      </div>
     </>
   );
 };

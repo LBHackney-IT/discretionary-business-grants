@@ -1,8 +1,20 @@
-const TextInput = ({ label, name, register, type = 'text', ...otherProps }) => (
+const TextInput = ({
+  label,
+  hint,
+  name,
+  register,
+  type = 'text',
+  ...otherProps
+}) => (
   <div className="govuk-form-group">
-    <label className="govuk-label" htmlFor={name}>
+    <label className="govuk-label govuk-label--m" htmlFor={name}>
       {label}
     </label>
+    {hint && (
+      <span id={`${name}-hint`} className="govuk-hint">
+        {hint}
+      </span>
+    )}
     <input
       className="govuk-input"
       id={name}
@@ -10,6 +22,7 @@ const TextInput = ({ label, name, register, type = 'text', ...otherProps }) => (
       name={name}
       type={type}
       ref={register}
+      aria-describedby={hint && `${name}-hint`}
       {...otherProps}
     />
   </div>

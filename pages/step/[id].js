@@ -23,7 +23,7 @@ const FormWizard = () => {
   const router = useRouter();
   const { id: stepId } = router.query;
   const firstStep = stepKeys[0];
-  if (stepId && !formData.eligibility && stepId !== firstStep) {
+  if (stepId && !formData.eligibilityCriteria && stepId !== firstStep) {
     Router.replace(`/step/${firstStep}`);
     return null;
   }

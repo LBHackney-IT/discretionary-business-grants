@@ -18,7 +18,7 @@ const Step1 = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
       <Select
-        {...getInputProps('user', 'authority')}
+        {...getInputProps('contact', 'authority')}
         options={['PSC', 'Trustee', 'Agent', 'Owner', 'Partner', 'Employee']}
         register={register({
           required: true,
@@ -26,26 +26,26 @@ const Step1 = props => {
         })}
       />
       <TextInput
-        {...getInputProps('user', 'firstName')}
+        {...getInputProps('contact', 'firstName')}
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('user', 'lastName')}
+        {...getInputProps('contact', 'lastName')}
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('user', 'email')}
+        {...getInputProps('contact', 'emailAddress')}
         type="email"
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('user', 'tel')}
+        {...getInputProps('contact', 'telephoneNumber')}
         type="tel"
         register={register}
       />
       <AddressLookup
-        {...getInputProps('user', 'address')}
-        defaultValue={props.formData.user && props.formData.user.address}
+        {...getInputProps('contact', 'address')}
+        defaultValue={props.formData.contact && props.formData.contact.address}
         control={control}
         register={register}
       />
