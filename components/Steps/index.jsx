@@ -60,7 +60,7 @@ export const inputLabels = {
     businessRegisteredCharity: 'Registered Charity (if applicable):',
     councilRentAccountNumber:
       'Council premises rent account number (if applicable):',
-    numberEmployes: 'Number of Full Time Employees:',
+    numberEmployees: 'Number of Full Time Employees:',
     turnover: 'Business turnover March to May (inclusive) 2020:',
     percentageFallIncome: 'Percentage fall in income due to Covid-19:',
     businessPremises: 'Business premises rateable value (if applicable):'

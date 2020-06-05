@@ -80,7 +80,7 @@ const Step1 = props => {
         register={register}
       />
       <TextInput
-        {...getInputProps('business', 'numberEmployes')}
+        {...getInputProps('business', 'numberEmployees')}
         type="number"
         register={register({ min: 0 })}
       />
