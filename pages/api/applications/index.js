@@ -10,6 +10,6 @@ export default async (req, res) => {
     res.end(JSON.stringify(clientGeneratedId));
   } catch (error) {
     res.statusCode = 500;
-    res.end(error.message);
+    res.end(JSON.stringify(error.message));
   }
 };
