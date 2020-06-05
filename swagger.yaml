@@ -206,6 +206,8 @@ definitions:
         type: "string"
       registeredCharity:
         type: "string"
+      councilRentAccountNumber:
+        type: "string"
     required:
       - companyStructureId
       - fullTimeEmployees
