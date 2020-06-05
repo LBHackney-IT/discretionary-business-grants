@@ -208,6 +208,8 @@ definitions:
         type: "string"
       councilRentAccountNumber:
         type: "string"
+      turnover:
+        type: "number"
     required:
       - companyStructureId
       - fullTimeEmployees
