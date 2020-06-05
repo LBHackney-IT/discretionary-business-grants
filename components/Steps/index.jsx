@@ -5,7 +5,7 @@ import BusinessDetails from 'components/Steps/BusinessDetails';
 import BusinessTurnover from 'components/Steps/BusinessTurnover';
 import PropertyCost from 'components/Steps/PropertyCost';
 import BankDetails from 'components/Steps/BankDetails';
-import StateAidDeclaration from 'components/Steps/StateAidDeclaration';
+import Declaration from 'components/Steps/Declaration';
 import Summary from 'components/Steps/Summary';
 
 export const stepPath = '/step/[id]';
@@ -18,7 +18,7 @@ export const steps = {
   'property-cost': PropertyCost,
   'supplementary-information': SupplementaryInformation,
   'bank-details': BankDetails,
-  'state-aid-declaration': StateAidDeclaration,
+  declaration: Declaration,
   summary: Summary
 };
 
@@ -80,10 +80,14 @@ export const inputLabels = {
     accountNumber: 'Account Number:',
     sortcode: 'Sort Code:'
   },
-  stateAidDeclaration: {
-    isAuthorised: 'I am authorised to sign this declaration',
+  declaration: {
+    received:
+      'I/we have received the following value of State Aid under above rule',
     isNotExceedingAidLimit:
-      'Receipt of this grant will not exceed the state aid limit'
+      'I/we confirm that our state aid fund/grant does not exceed the cap under above rule',
+    isAccepted:
+      'I/we declare that i/we are permitted to accept the discretionary grant funding under the relevant state aid rule',
+    isConfirmed: 'Tick to confirm you have read and understood the declaration'
   },
   supplementaryInformation: {
     businessAccounts: 'Business Accounts:',

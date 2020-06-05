@@ -75,7 +75,7 @@ const Result = ({ formData }) => {
       />
       <SummarySection
         formData={formData}
-        name="stateAidDeclaration"
+        name="declaration"
         title="State Aid Declaration:"
         slug="state-aid-declaration"
       />
