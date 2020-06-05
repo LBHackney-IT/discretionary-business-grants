@@ -10,19 +10,18 @@ import { lookupPostcode } from 'utils/postcodeAPI';
 const AddressBox = ({ name, disabled, register }) => (
   <>
     <TextInput
-      label="Line1"
+      label="first line"
       name={`${name}.line1`}
       register={register({ required: true })}
-      disabled={disabled}
     />
     <TextInput
-      label="Line2"
+      label="second line"
       name={`${name}.line2`}
       register={register}
       disabled={disabled}
     />
     <TextInput
-      label="Line3"
+      label="third line"
       name={`${name}.line3`}
       register={register}
       disabled={disabled}
@@ -35,7 +34,7 @@ const AddressBox = ({ name, disabled, register }) => (
     />
     <TextInput
       label="Town"
-      name={`${name}.town`}
+      name={`${name}.ward`}
       register={register}
       disabled={disabled}
     />
@@ -62,19 +61,24 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
           'govuk-form-group--error': hasError
         })}
       >
-        <label className="govuk-label" htmlFor="postcode">
-          Postcode:
+        <label className="govuk-label govuk-label--m" htmlFor="postcode">
+          {label}
         </label>
         <div className="govuk-grid-row">
           <div className="govuk-grid-column-one-third">
             <input
               className={cx('govuk-input', { 'govuk-input--error': hasError })}
               id="postcode"
-              name="postcode"
+              name={`${name}.postcode`}
               type="text"
+              placeholder="Postcode"
               onChange={e => setPostcode(e.target.value)}
               defaultValue={defaultValue && defaultValue.postcode}
-              ref={register({ required: !isManually })}
+              ref={register({
+                required:
+                  !isManually &&
+                  (!defaultValue || (defaultValue && !defaultValue.line1))
+              })}
             />
           </div>
           <div className="govuk-grid-column-one-third">
