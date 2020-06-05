@@ -202,6 +202,8 @@ definitions:
         type: "number"
       fixedPropertyCost:
         type: "number"
+      ratesAccountNumber:
+        type: "string"
     required:
       - companyStructureId
       - fullTimeEmployees
