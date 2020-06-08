@@ -29,6 +29,15 @@ const SupplementaryInformation = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Supplementary Information</h1>
+      <div class="govuk-inset-text">
+        File upload information{' '}
+        <p>
+          Preferred file formats are PDF, JPeg, PNG, Word, Excel (CSV files).
+          File size is limited to 20MB per file. Multiple files can be uploaded.
+          If uploading a scanned or photographed document, ensure that it is
+          clear and legible.
+        </p>
+      </div>
       <ControlledFileUpload
         {...sharedProps('businessAccounts')}
         hint="Please provide a company of the business accounts for the financial year 2018/19 (or your HMRC self assessment tax return for the financial year 2018/19). If not available please provide what is available"
