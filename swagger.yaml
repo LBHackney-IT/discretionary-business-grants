@@ -180,7 +180,11 @@ definitions:
     properties:
       companyStructureId:
         type: "integer"
-      companyName:
+      registeredName:
+        description: "Registered name at companies house"
+        type: "string"
+      businessName:
+        description: "EG: Trading name, Charity name"
         type: "string"
       businessDescription:
         type: "string"
