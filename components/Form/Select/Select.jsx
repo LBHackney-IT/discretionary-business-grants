@@ -5,7 +5,6 @@ const Select = ({
   hint,
   name,
   options,
-  selected,
   onChange,
   register,
   children
@@ -33,7 +32,7 @@ const Select = ({
         const { value, text } =
           typeof option === 'string' ? { value: option, text: option } : option;
         return (
-          <option key={value} value={value} selected={value === selected}>
+          <option key={value} value={value}>
             {text}
           </option>
         );
