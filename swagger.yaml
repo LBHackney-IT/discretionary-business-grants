@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.5"
+  version: "0.0.6"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -180,13 +180,19 @@ definitions:
     properties:
       companyStructureId:
         type: "integer"
-      companyName:
+      registeredName:
+        description: "Registered name at companies house"
+        type: "string"
+      businessName:
+        description: "EG: Trading name, Charity name"
         type: "string"
       businessDescription:
+        description: "What is the main activity carried out"
         type: "string"
       companyNumber:
         type: "string"
       nndrAccountNumber:
+        description: "Business Rates Account number"
         type: "string"
       fullTimeEmployees:
         type: "integer"
