@@ -188,6 +188,8 @@ definitions:
         type: "string"
       nndrAccountNumber:
         type: "string"
+      siteDescriptionId:
+        type: "integer"
       fullTimeEmployees:
         type: "integer"
         minimum: 1
@@ -210,6 +212,7 @@ definitions:
         type: "number"
     required:
       - companyStructureId
+      - siteDescriptionId
       - fullTimeEmployees
       - percentFallInIncome
   Turnover:
