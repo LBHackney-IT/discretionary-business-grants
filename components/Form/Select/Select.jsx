@@ -7,7 +7,8 @@ const Select = ({
   options,
   selected,
   onChange,
-  register
+  register,
+  children
 }) => (
   <div className="govuk-form-group">
     <label className="govuk-label govuk-label--m" htmlFor={name}>
@@ -18,6 +19,7 @@ const Select = ({
         {hint}
       </span>
     )}
+    {children}
     <select
       className="govuk-select"
       id={name}
@@ -53,7 +55,8 @@ Select.propTypes = {
     ])
   ),
   selected: PropTypes.string,
-  register: PropTypes.func
+  register: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default Select;
