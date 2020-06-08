@@ -53,12 +53,12 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
   );
   const [results, setResults] = useState([]);
   const [isManually, setIsManually] = useState();
-  const [hasError, setHasError] = useState(false);
+  const [error, setError] = useState();
   return (
     <div>
       <div
         className={cx('govuk-form-group', {
-          'govuk-form-group--error': hasError
+          'govuk-form-group--error': Boolean(error)
         })}
       >
         <label className="govuk-label govuk-label--m" htmlFor="postcode">
@@ -67,7 +67,9 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
         <div className="govuk-grid-row">
           <div className="govuk-grid-column-one-third">
             <input
-              className={cx('govuk-input', { 'govuk-input--error': hasError })}
+              className={cx('govuk-input', {
+                'govuk-input--error': Boolean(error)
+              })}
               id="postcode"
               name={`${name}.postcode`}
               type="text"
@@ -85,17 +87,19 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
             <Button
               onClick={async () => {
                 if (!isPostcodeValid(postcode)) {
-                  setHasError(true);
+                  setError('You entered an invalid postcode.');
                   return;
                 }
                 setIsManually(false);
-                setHasError(false);
+                setError(null);
                 setResults([]);
                 try {
                   const res = await lookupPostcode(postcode);
-                  setResults(res);
+                  res.length === 0
+                    ? setError('There was a problem with the postcode.')
+                    : setResults(res);
                 } catch {
-                  setHasError(true);
+                  setError('There was a problem with the postcode.');
                 }
               }}
               type="button"
@@ -113,10 +117,9 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
             />
           </div>
         </div>
-        {hasError && (
+        {error && (
           <span className="govuk-error-message">
-            <span className="govuk-visually-hidden">Error:</span> There was a
-            problem with the postcode.
+            <span className="govuk-visually-hidden">Error:</span> {error}
           </span>
         )}
         {(isManually || (defaultValue && results.length === 0)) && (
