@@ -219,6 +219,8 @@ definitions:
         type: "string"
       councilRentAccountNumber:
         type: "string"
+      councilTaxNumber:
+        type: "string"
       turnover:
         description: "Business turnover March to May (inclusive) 2020"
         type: "number"
