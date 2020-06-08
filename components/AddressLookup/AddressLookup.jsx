@@ -12,18 +12,18 @@ const AddressBox = ({ name, disabled, register }) => (
   <>
     <TextInput
       label="first line"
-      name={`${name}.line1`}
+      name={`${name}.firstLine`}
       register={register({ required: true })}
     />
     <TextInput
       label="second line"
-      name={`${name}.line2`}
+      name={`${name}.secondLine`}
       register={register}
       disabled={disabled}
     />
     <TextInput
       label="third line"
-      name={`${name}.line3`}
+      name={`${name}.thirdLine`}
       register={register}
       disabled={disabled}
     />

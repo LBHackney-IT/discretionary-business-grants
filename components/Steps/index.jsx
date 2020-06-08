@@ -35,7 +35,7 @@ export const inputLabels = {
       'Has your business either received or is eligible for either a Small Business Grant, the Retail, Hospitality and Leisure Grant, The Fisheries Response Fund, Domestic Seafood Supply Scheme (DSSS), The Zoos Support Fund, or The Dairy Hardship Fund.',
     hasFixedPropertyCost:
       'Does your business have fixed property cost of £60,000 per year or below?',
-    hasFallInIncome:
+    significantIncomeFall:
       'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
     rateableLimitAnswerId:
       'If you have an individual business rates account does your premises have a rateable value of £60,000 or less?'
@@ -60,9 +60,9 @@ export const inputLabels = {
     businessRegisteredCharity: 'Registered Charity (if applicable):',
     councilRentAccountNumber:
       'Council premises rent account number (if applicable):',
-    numberEmployees: 'Number of Full Time Employees:',
+    fullTimeEmployees: 'Number of Full Time Employees:',
     turnover: 'Business turnover March to May (inclusive) 2020:',
-    percentageFallIncome: 'Percentage fall in income due to Covid-19:',
+    percentageFallInIncome: 'Percentage fall in income due to Covid-19:',
     businessPremises: 'Business premises rateable value (if applicable):'
   },
   turnover: {
@@ -74,11 +74,11 @@ export const inputLabels = {
     year1920: 'Financial Year 19/20',
     items: 'Items included:'
   },
-  bank: {
+  businessBankAccount: {
     bankName: 'Bank Name:',
     accountHolder: 'Account Holder Name:',
     accountNumber: 'Account Number:',
-    sortcode: 'Sort Code:'
+    accountSortcode: 'Sort Code:'
   },
   declaration: {
     received:

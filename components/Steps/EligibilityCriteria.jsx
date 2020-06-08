@@ -156,7 +156,7 @@ const Step1 = props => {
             register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'hasFallInIncome')}
+            {...getInputProps('eligibilityCriteria', 'significantIncomeFall')}
             hint="A ‘significant fall in income’ is defined as a fall in income of at least a 40% reduction in business turnover from March 2020 onwards compared to the previous 3 months."
             onChange={() => setShowError(false)}
             register={register({ required: true })}

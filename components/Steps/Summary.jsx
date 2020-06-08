@@ -69,7 +69,7 @@ const Result = ({ formData }) => {
       />
       <SummarySection
         formData={formData}
-        name="bank"
+        name="businessBankAccount"
         title="Bank details:"
         slug="bank-details"
       />
