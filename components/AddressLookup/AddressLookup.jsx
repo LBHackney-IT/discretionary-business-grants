@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Controller } from 'react-hook-form';
 import isPostcodeValid from 'uk-postcode-validator';
 
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import { Button, Select, TextInput } from 'components/Form';
 import { lookupPostcode } from 'utils/postcodeAPI';
 
@@ -47,18 +48,26 @@ const AddressBox = ({ name, disabled, register }) => (
   </>
 );
 
-const AddressLookup = ({ name, label, control, register, defaultValue }) => {
+const AddressLookup = ({
+  name,
+  label,
+  control,
+  register,
+  defaultValue,
+  errorMessage
+}) => {
+  const inputRef = useRef();
   const [postcode, setPostcode] = useState(
     defaultValue && defaultValue.postcode
   );
   const [results, setResults] = useState([]);
   const [isManually, setIsManually] = useState();
-  const [hasError, setHasError] = useState(false);
+  const [error, setError] = useState();
   return (
     <div>
       <div
         className={cx('govuk-form-group', {
-          'govuk-form-group--error': hasError
+          'govuk-form-group--error': Boolean(error) || Boolean(errorMessage)
         })}
       >
         <label className="govuk-label govuk-label--m" htmlFor="postcode">
@@ -67,35 +76,34 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
         <div className="govuk-grid-row">
           <div className="govuk-grid-column-one-third">
             <input
-              className={cx('govuk-input', { 'govuk-input--error': hasError })}
+              className={cx('govuk-input', {
+                'govuk-input--error': Boolean(error)
+              })}
               id="postcode"
-              name={`${name}.postcode`}
+              name="postal-code"
               type="text"
               placeholder="Postcode"
               onChange={e => setPostcode(e.target.value)}
-              defaultValue={defaultValue && defaultValue.postcode}
-              ref={register({
-                required:
-                  !isManually &&
-                  (!defaultValue || (defaultValue && !defaultValue.line1))
-              })}
+              ref={inputRef}
             />
           </div>
           <div className="govuk-grid-column-one-third">
             <Button
               onClick={async () => {
                 if (!isPostcodeValid(postcode)) {
-                  setHasError(true);
+                  setError('You entered an invalid postcode.');
                   return;
                 }
                 setIsManually(false);
-                setHasError(false);
+                setError(null);
                 setResults([]);
                 try {
                   const res = await lookupPostcode(postcode);
-                  setResults(res);
+                  res.length === 0
+                    ? setError('There was a problem with the postcode.')
+                    : setResults(res);
                 } catch {
-                  setHasError(true);
+                  setError('There was a problem with the postcode.');
                 }
               }}
               type="button"
@@ -113,33 +121,40 @@ const AddressLookup = ({ name, label, control, register, defaultValue }) => {
             />
           </div>
         </div>
-        {hasError && (
+        {error && (
           <span className="govuk-error-message">
-            <span className="govuk-visually-hidden">Error:</span> There was a
-            problem with the postcode.
+            <span className="govuk-visually-hidden">Error:</span> {error}
           </span>
         )}
         {(isManually || (defaultValue && results.length === 0)) && (
           <AddressBox name={name} disabled={!isManually} register={register} />
         )}
-        {!isManually && results.length > 0 && (
+        {!isManually && (
           <Controller
             as={
-              <Select
-                options={results.map(result => ({
-                  value: JSON.stringify(result.address),
-                  text: result.addressText
-                }))}
-                name={name}
-                label={label}
-                rules={{ required: true, validate: value => value !== '' }}
-              />
+              results.length > 0 ? (
+                <Select
+                  options={results.map(result => ({
+                    value: JSON.stringify(result.address),
+                    text: result.addressText
+                  }))}
+                  name={name}
+                  label={label}
+                />
+              ) : (
+                <div />
+              )
             }
             control={control}
             name={name}
+            rules={{
+              required: 'Address is required.'
+            }}
+            onFocus={() => inputRef.current.focus()}
             onChange={([value]) => JSON.parse(value)}
           />
         )}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </div>
     </div>
   );

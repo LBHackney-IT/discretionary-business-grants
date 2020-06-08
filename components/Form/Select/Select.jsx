@@ -1,14 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Select = ({
-  label,
-  hint,
-  name,
-  options,
-  selected,
-  onChange,
-  register
-}) => (
+const Select = ({ label, hint, name, options, onChange, register }) => (
   <div className="govuk-form-group">
     <label className="govuk-label govuk-label--m" htmlFor={name}>
       {label}
@@ -31,7 +23,7 @@ const Select = ({
         const { value, text } =
           typeof option === 'string' ? { value: option, text: option } : option;
         return (
-          <option key={value} value={value} selected={value === selected}>
+          <option key={value} value={value}>
             {text}
           </option>
         );

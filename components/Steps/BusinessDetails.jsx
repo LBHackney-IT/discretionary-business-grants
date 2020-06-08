@@ -6,7 +6,7 @@ import { stepPath, getInputProps } from 'components/Steps';
 import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
-  const { register, handleSubmit, control } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: props.formData
   });
   const onSubmit = data => {
@@ -33,6 +33,11 @@ const Step1 = props => {
         }
         control={control}
         register={register}
+        errorMessage={
+          errors.business &&
+          errors.business.businessAddress &&
+          errors.business.businessAddress.message
+        }
       />
       <AddressLookup
         {...getInputProps('business', 'businessPremisesAddress')}
@@ -42,6 +47,11 @@ const Step1 = props => {
         }
         control={control}
         register={register}
+        errorMessage={
+          errors.business &&
+          errors.business.businessPremisesAddress &&
+          errors.business.businessPremisesAddress.message
+        }
       />
       <TextInput
         {...getInputProps('business', 'businessPremisesDescription')}
