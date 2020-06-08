@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 
-const Select = ({ label, hint, name, options, onChange, register }) => (
+const Select = ({
+  label,
+  hint,
+  name,
+  options,
+  onChange,
+  register,
+  children
+}) => (
   <div className="govuk-form-group">
     <label className="govuk-label govuk-label--m" htmlFor={name}>
       {label}
@@ -10,6 +18,7 @@ const Select = ({ label, hint, name, options, onChange, register }) => (
         {hint}
       </span>
     )}
+    {children}
     <select
       className="govuk-select"
       id={name}
@@ -45,7 +54,8 @@ Select.propTypes = {
     ])
   ),
   selected: PropTypes.string,
-  register: PropTypes.func
+  register: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default Select;
