@@ -35,7 +35,7 @@ const Radio = ({
       </span>
     )}
     <div className="govuk-radios govuk-radios--inline">
-      {options.map(({ label, value }) => (
+      {options.map(({ label, value }, index) => (
         <div className="govuk-radios__item" key={label}>
           <input
             className={cx('govuk-radios__input', {
@@ -44,7 +44,7 @@ const Radio = ({
             id={`${name}_${label}`}
             name={name}
             type="radio"
-            value={value}
+            value={value || index + 1}
             ref={register}
             aria-describedby={hint && `${name}-hint`}
             {...otherProps}
@@ -53,7 +53,7 @@ const Radio = ({
             className="govuk-label govuk-radios__label"
             htmlFor={`${name}_${label}`}
           >
-            {value}
+            {label}
           </label>
         </div>
       ))}

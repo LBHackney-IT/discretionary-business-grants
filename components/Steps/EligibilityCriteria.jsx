@@ -49,7 +49,7 @@ const Step1 = props => {
             register={register({ required: true })}
           />
           <Select
-            {...getInputProps('eligibilityCriteria', 'typeOfBusiness')}
+            {...getInputProps('eligibilityCriteria', 'typeOfBusinessId')}
             options={[
               'Business in shared offices or workspaces without business rates assessment',
               'Business in RHL sector with a rateable value of between £51,000-£60,000 ',
@@ -164,9 +164,9 @@ const Step1 = props => {
           <Radios
             {...getInputProps('eligibilityCriteria', 'rateableLimitAnswerId')}
             options={[
-              { label: 'Yes', value: 'Yes' },
-              { label: 'No', value: 'No' },
-              { label: 'Not Applicable', value: 'Not Applicable' }
+              { label: 'Yes' },
+              { label: 'No' },
+              { label: 'Not Applicable' }
             ]}
             onChange={() => setShowError(false)}
             register={register({ required: true })}

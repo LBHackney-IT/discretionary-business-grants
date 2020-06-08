@@ -28,7 +28,7 @@ export const inputLabels = {
     smallMicroBusiness:
       'Is your business classed as either a small or micro business?',
     tradingOn20200311: 'Was your business trading on the 11th March 2020?',
-    typeOfBusiness: 'Type of business',
+    typeOfBusinessId: 'Type of business',
     servedLegalNotices:
       'Is your business in administration, insolvent or in receipt of a striking off notice?',
     receivedOtherGrants:
@@ -41,7 +41,7 @@ export const inputLabels = {
       'If you have an individual business rates account does your premises have a rateable value of £60,000 or less?'
   },
   contact: {
-    authority: 'Role/position in organisation:',
+    contactTypeId: 'Role/position in organisation:',
     firstName: 'First Name:',
     lastName: 'Last Name:',
     emailAddress: 'Email Address:',
@@ -50,12 +50,13 @@ export const inputLabels = {
   },
   business: {
     businessName: 'Business Name:',
+    registeredName: 'Registered Name (if applicable):',
     businessDescription: 'Business description:',
     businessAddress: 'Business Address:',
     businessPremisesAddress: 'Business premises address:',
     businessPremisesDescription: 'Business premises description:',
     companyNumber: 'Company Number:',
-    companyStructure: 'Company Structure:',
+    companyStructureId: 'Company Structure:',
     businessRateAccountNumber: 'Business Rates Account Number (if applicable):',
     businessRegisteredCharity: 'Registered Charity (if applicable):',
     councilRentAccountNumber:

@@ -29,7 +29,7 @@ const SupplementaryInformation = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Supplementary Information</h1>
-      <div class="govuk-inset-text">
+      <div className="govuk-inset-text">
         File upload information{' '}
         <p>
           Preferred file formats are PDF, JPeg, PNG, Word, Excel (CSV files).

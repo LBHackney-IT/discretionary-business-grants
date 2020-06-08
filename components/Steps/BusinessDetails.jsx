@@ -22,6 +22,10 @@ const Step1 = props => {
         register={register({ required: true })}
       />
       <TextInput
+        {...getInputProps('business', 'registeredName')}
+        register={register}
+      />
+      <TextInput
         {...getInputProps('business', 'businessDescription')}
         hint="What is the main business activity carried out"
         register={register}
@@ -64,7 +68,7 @@ const Step1 = props => {
         register={register}
       />
       <Select
-        {...getInputProps('business', 'companyStructure')}
+        {...getInputProps('business', 'companyStructureId')}
         options={[
           'Registered Company',
           'Sole Trader',
