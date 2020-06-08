@@ -21,3 +21,12 @@ INSERT INTO business_type(id, description) VALUES(4, 'Regular market trader with
 INSERT INTO business_type(id, description) VALUES(5, 'Bed & Breakfast who pay Council Tax');
 INSERT INTO business_type(id, description) VALUES(6, 'Charity properties who occupy a commercial property with a rateable value of £15,000 or less');
 INSERT INTO business_type(id, description) VALUES(7, 'Ofsted registered nurseries (not within a domestic premises)');
+
+
+INSERT INTO site_description(id, description) VALUES(1, 'Individual Office');
+INSERT INTO site_description(id, description) VALUES(2, 'Individual Shop');
+INSERT INTO site_description(id, description) VALUES(3, 'Market Stall');
+INSERT INTO site_description(id, description) VALUES(4, 'Office in a Shared Workspace');
+INSERT INTO site_description(id, description) VALUES(5, 'B&B');
+INSERT INTO site_description(id, description) VALUES(6, 'Nursery');
+INSERT INTO site_description(id, description) VALUES(7, 'Other');
