@@ -187,10 +187,12 @@ definitions:
         description: "EG: Trading name, Charity name"
         type: "string"
       businessDescription:
+        description: "What is the main activity carried out"
         type: "string"
       companyNumber:
         type: "string"
       nndrAccountNumber:
+        description: "Business Rates Account number"
         type: "string"
       fullTimeEmployees:
         type: "integer"
