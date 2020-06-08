@@ -1,0 +1,108 @@
+{
+  "eligibilityCriteria": {
+    "tradingInHackney": true,
+    "smallMicroBusiness": true,
+    "typeOfBusinessId": "2",
+    "tradingOn20200311": true,
+    "servedLegalNotices": true,
+    "receivedOtherGrants": false,
+    "hasFixedPropertyCost": true,
+    "significantIncomeFall": true,
+    "rateableLimitAnswerId": "1"
+  },
+  "contact": {
+    "contactTypeId": "1",
+    "firstName": "first name",
+    "lastName": "last name",
+    "emailAddress": "asd@asd.com",
+    "telephoneNumber": "0888123",
+    "address": {
+      "firstLine": "FIRST FLOOR AND SECOND FLOOR FLAT 3",
+      "secondLine": "403 QUEENSBRIDGE ROAD",
+      "thirdLine": "HACKNEY",
+      "ward": "LONDON",
+      "postcode": "E8 3AS",
+      "uprn": 100021068074
+    }
+  },
+  "business": {
+    "companyStructureId": "2",
+    "registeredName": "reg name",
+    "businessName": "buss name",
+    "businessDescription": "buss description",
+    "businessPremisesDescription": "premises desc",
+    "companyNumber": "123",
+    "businessRateAccountNumber": "123",
+    "businessRegisteredCharity": "123",
+    "councilRentAccountNumber": "123",
+    "fullTimeEmployees": "123",
+    "turnover": "123",
+    "percentageFallInIncome": "12",
+    "businessPremises": "1233",
+    "businessAddress": {
+      "firstLine": "405 QUEENSBRIDGE ROAD",
+      "secondLine": "HACKNEY",
+      "thirdLine": "",
+      "ward": "LONDON",
+      "postcode": "E8 3AS",
+      "uprn": 100021068078
+    },
+    "businessPremisesAddress": {
+      "firstLine": "427 QUEENSBRIDGE ROAD",
+      "secondLine": "HACKNEY",
+      "thirdLine": "",
+      "ward": "LONDON",
+      "uprn": 100021068089,
+      "postcode": "E8 3AS"
+    }
+  },
+  "turnover": {
+    "year1819": "123",
+    "year1920": "123"
+  },
+  "propertyCost": {
+    "year1819": "321",
+    "year1920": "321",
+    "items": "asd"
+  },
+  "documents": [
+    {
+      "s3Path": "asd@asd.com/<gen>/test1.jpg",
+      "documentType": "businessAccounts"
+    },
+    {
+      "documentType": "businessAccounts",
+      "s3Path": "asd@asd.com/<gen>/test1a.jpg"
+    },
+    {
+      "s3Path": "asd@asd.com/<gen>/testb.jpg",
+      "documentType": "businessAccounts"
+    },
+    {
+      "s3Path": "asd@asd.com/<gen>/test2.jpg",
+      "documentType": "fixedPropertyCosts"
+    },
+    { "s3Path": "asd@asd.com/<gen>/test3.jpg", "documentType": "fallInIncome" },
+    { "s3Path": "asd@asd.com/<gen>/testa.jpg", "documentType": "identity" },
+    {
+      "documentType": "payrollInformation",
+      "s3Path": "asd@asd.com/<gen>/testb.jpg"
+    },
+    {
+      "documentType": "payrollInformation",
+      "s3Path": "asd@asd.com/<gen>/foo.jpg"
+    }
+  ],
+  "businessBankAccount": {
+    "bankName": "asd",
+    "accountHolder": "qweqwe",
+    "accountNumber": "123",
+    "accountSortcode": "123"
+  },
+  "declaration": {
+    "received": "asdasdasd",
+    "isAccepted": true,
+    "isNotExceedingAidLimit": true,
+    "isConfirmed": true
+  }
+}

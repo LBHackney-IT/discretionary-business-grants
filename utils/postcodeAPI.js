@@ -6,7 +6,7 @@ export const normalizeAddress = address => {
   const addr = {
     firstLine: line1,
     secondLine: line2,
-    thirdLink: line3,
+    thirdLine: line3,
     ward: town
   };
   return {

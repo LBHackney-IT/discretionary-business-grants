@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Router from 'next/router';
+import axios from 'axios';
 
 import SummaryList from 'components/SummaryList/SummaryList';
-import { getInputProps } from 'components/Steps';
-import { stepPath } from 'components/Steps';
+import { getInputProps, stepPath } from 'components/Steps';
+import mapToAPI from 'utils/mapAPI';
 
 const MultiValue = value =>
   value !== '' && (
@@ -79,6 +81,22 @@ const Result = ({ formData }) => {
         title="State Aid Declaration:"
         slug="state-aid-declaration"
       />
+      <button
+        className="govuk-button"
+        onClick={async () => {
+          const { data } = await axios.post(
+            '/api/applications',
+            mapToAPI(formData)
+          );
+          return Router.push({
+            pathname: '/confirmation',
+            query: { ref: data }
+          });
+        }}
+        type="button"
+      >
+        Confirm and submit
+      </button>
     </>
   );
 };

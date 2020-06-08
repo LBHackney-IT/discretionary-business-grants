@@ -5,10 +5,11 @@ describe('postcodeAPI', () => {
     it('should work properly', () => {
       expect(
         normalizeAddress({
-          firstLine: '407 QUEENSBRIDGE ROAD',
-          secondLine: 'HACKNEY',
-          thirdLine: '',
-          ward: 'LONDON',
+          line1: '407 QUEENSBRIDGE ROAD',
+          line2: 'HACKNEY',
+          line3: '',
+          line4: 'foo',
+          town: 'LONDON',
           postcode: 'E8 3AS',
           uprn: 100021068079
         })
