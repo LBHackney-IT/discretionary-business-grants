@@ -6,7 +6,7 @@ import { stepPath, getInputProps } from 'components/Steps';
 import AddressLookup from 'components/AddressLookup/AddressLookup';
 
 const Step1 = props => {
-  const { register, control, handleSubmit } = useForm({
+  const { register, control, errors, handleSubmit } = useForm({
     defaultValues: props.formData
   });
   const onSubmit = data => {
@@ -48,6 +48,11 @@ const Step1 = props => {
         defaultValue={props.formData.contact && props.formData.contact.address}
         control={control}
         register={register}
+        errorMessage={
+          errors.contact &&
+          errors.contact.address &&
+          errors.contact.address.message
+        }
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
