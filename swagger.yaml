@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.6"
+  version: "0.0.7"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -194,6 +194,8 @@ definitions:
       nndrAccountNumber:
         description: "Business Rates Account number"
         type: "string"
+      siteDescriptionId:
+        type: "integer"
       fullTimeEmployees:
         type: "integer"
         minimum: 1
@@ -216,6 +218,7 @@ definitions:
         type: "number"
     required:
       - companyStructureId
+      - siteDescriptionId
       - fullTimeEmployees
       - percentFallInIncome
   Turnover:
