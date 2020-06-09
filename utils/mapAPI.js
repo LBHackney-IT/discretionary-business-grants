@@ -4,6 +4,7 @@ const isYes = value => Boolean(value === 'Yes');
 
 const mapEligibility = ({
   rateableLimitAnswerId,
+  businessSizeId,
   typeOfBusinessId,
   ...otherEntries
 }) => {
@@ -15,6 +16,7 @@ const mapEligibility = ({
       }),
       {}
     ),
+    businessSizeId,
     rateableLimitAnswerId,
     typeOfBusinessId
   };

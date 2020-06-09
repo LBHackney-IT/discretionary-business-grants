@@ -79,7 +79,7 @@ const Result = ({ formData }) => {
         formData={formData}
         name="declaration"
         title="State Aid Declaration:"
-        slug="state-aid-declaration"
+        slug="declaration"
       />
       <button
         className="govuk-button"

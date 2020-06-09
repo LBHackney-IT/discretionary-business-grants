@@ -79,7 +79,7 @@ export const inputLabels = {
     tradingInHackney: {
       label: 'Is your business based in and trading in Hackney?'
     },
-    smallMicroBusinessId: {
+    businessSizeId: {
       label: 'Is your business classed as either a micro or small business?',
       hint:
         'Micro and small businesses only as defined in the Companies Act 2006. To be defined as a small business they must have at least two of the following; not more than 50 employees, a turnover of not more than £10.2 million and a balance sheet total of not more than £5.1m. To be defined as a microbusinesses they must have at least two of the following; not more than 10 employees, a turnover of not more than £632,000, and a balance sheet total of not more than £316,000.',
@@ -186,7 +186,7 @@ export const inputLabels = {
     year1819: { label: 'Financial Year 18/19', type: 'number' },
     year1920: { label: 'Financial Year 19/20', type: 'number' }
   },
-  propertyCost: {
+  fixedPropertyCosts: {
     year2018To2019: { label: 'Financial Year 18/19', type: 'number' },
     year2019To2020: { label: 'Financial Year 19/20', type: 'number' },
     itemsIncluded: { label: 'Items included:' }
@@ -200,7 +200,8 @@ export const inputLabels = {
   declaration: {
     stateAidReceived: {
       label:
-        'I/we have received the following value of State Aid under above rule'
+        'I/we have received the following value of State Aid under above rule',
+      type: 'number'
     },
     stateAidCapNotExceeded: {
       label:

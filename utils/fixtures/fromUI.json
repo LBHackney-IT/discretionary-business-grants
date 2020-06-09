@@ -1,8 +1,8 @@
 {
   "eligibilityCriteria": {
     "tradingInHackney": "Yes",
-    "smallMicroBusiness": "Yes",
-    "typeOfBusinessId": "2",
+    "businessSizeId": "1",
+    "typeOfBusinessId": "3",
     "tradingOn20200311": "Yes",
     "servedLegalNotices": "Yes",
     "receivedOtherGrants": "No",
@@ -17,76 +17,62 @@
     "emailAddress": "asd@asd.com",
     "telephoneNumber": "0888123",
     "address": {
-      "firstLine": "FIRST FLOOR AND SECOND FLOOR FLAT 3",
+      "firstLine": "FIRST FLOOR AND SECOND FLOOR FLAT 2",
       "secondLine": "403 QUEENSBRIDGE ROAD",
       "thirdLine": "HACKNEY",
       "ward": "LONDON",
-      "postcode": "E8 3AS",
-      "uprn": 100021068074
+      "uprn": 100021068073,
+      "postcode": "E8 3AS"
     }
   },
   "business": {
     "businessName": "buss name",
-    "registeredName": "reg name",
-    "businessDescription": "buss description",
-    "businessAddress": {
-      "firstLine": "405 QUEENSBRIDGE ROAD",
-      "secondLine": "HACKNEY",
-      "thirdLine": "",
-      "ward": "LONDON",
-      "postcode": "E8 3AS",
-      "uprn": 100021068078
-    },
-    "rateableValueAddress": {
-      "firstLine": "427 QUEENSBRIDGE ROAD",
-      "secondLine": "HACKNEY",
-      "thirdLine": "",
-      "ward": "LONDON",
-      "postcode": "E8 3AS",
-      "uprn": 100021068089
-    },
-    "rateableValueDescription": "premises desc",
+    "registeredName": "regi name",
     "companyNumber": "123",
     "companyStructureId": "2",
-    "ratesAccountNumber": "123",
+    "councilRentAccountNumber": "234",
+    "ratesAccountNumber": "345",
     "registeredCharity": "123",
-    "councilRentAccountNumber": "123",
-    "fullTimeEmployees": "123",
-    "turnover": "123",
-    "percentageFallInIncome": "12",
-    "rateableValue": "1233"
+    "businessDescription": "buss description",
+    "siteDescriptionId": "2",
+    "councilTaxNumber": "456",
+    "fullTimeEmployees": "567",
+    "percentageFallInIncome": "17",
+    "rateableValue": "678",
+    "businessAddress": {
+      "firstLine": "FIRST FLOOR AND SECOND FLOOR FLAT 3",
+      "secondLine": "403 QUEENSBRIDGE ROAD",
+      "thirdLine": "HACKNEY",
+      "ward": "LONDON",
+      "uprn": 100021068074,
+      "postcode": "E8 3AS"
+    }
   },
   "turnover": {
-    "year1819": "123",
-    "year1920": "123"
+    "turnover": "234",
+    "year1819": "345",
+    "year1920": "6554"
   },
-  "propertyCost": {
-    "year1819": "321",
-    "year1920": "321",
-    "itemsIncluded": "asd"
+  "fixedPropertyCosts": {
+    "year2018To2019": "23423",
+    "year2019To2020": "23432",
+    "itemsIncluded": "qweqweqwe"
   },
   "supplementaryInformation": {
-    "businessAccounts": [
-      "asd@asd.com/<gen>/test1.jpg",
-      "asd@asd.com/<gen>/test1a.jpg",
-      "asd@asd.com/<gen>/testb.jpg"
-    ],
+    "businessAccounts": ["asd@asd.com/<gen>/test1.jpg"],
     "fixedPropertyCosts": ["asd@asd.com/<gen>/test2.jpg"],
     "fallInIncome": ["asd@asd.com/<gen>/test3.jpg"],
-    "identity": ["asd@asd.com/<gen>/testa.jpg"],
-    "payrollInformation": [
-      "asd@asd.com/<gen>/testb.jpg",
-      "asd@asd.com/<gen>/foo.jpg"
-    ]
+    "identity": ["asd@asd.com/<gen>/testa.jpg", "asd@asd.com/<gen>/testb.jpg"],
+    "payrollInformation": []
   },
   "businessBankAccount": {
-    "bankName": "asd",
-    "accountHolder": "qweqwe",
-    "accountNumber": "123",
-    "accountSortcode": "123"
+    "bankName": "foo",
+    "accountHolder": "bar",
+    "accountNumber": "123456678",
+    "accountSortcode": "11-22-33"
   },
   "declaration": {
-    "stateAidReceived": "asdasdasd",
+    "stateAidReceived": "987",
     "permittedToAcceptStateAidGrant": "Yes",
     "stateAidCapNotExceeded": "Yes",
     "readUnderstoodDeclaration": true
