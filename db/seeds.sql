@@ -30,3 +30,6 @@ INSERT INTO site_description(id, description) VALUES(4, 'Office in a Shared Work
 INSERT INTO site_description(id, description) VALUES(5, 'B&B');
 INSERT INTO site_description(id, description) VALUES(6, 'Nursery');
 INSERT INTO site_description(id, description) VALUES(7, 'Other');
+
+INSERT INTO business_size(id, description) VALUES(1, 'Micro');
+INSERT INTO business_size(id, description) VALUES(2, 'Small');
