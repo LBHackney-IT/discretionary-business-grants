@@ -11,18 +11,18 @@ import { lookupPostcode } from 'utils/postcodeAPI';
 const AddressBox = ({ name, disabled, register }) => (
   <>
     <TextInput
-      label="first line"
+      label="First line"
       name={`${name}.firstLine`}
       register={register({ required: true })}
     />
     <TextInput
-      label="second line"
+      label="Second line"
       name={`${name}.secondLine`}
       register={register}
       disabled={disabled}
     />
     <TextInput
-      label="third line"
+      label="Third line"
       name={`${name}.thirdLine`}
       register={register}
       disabled={disabled}
