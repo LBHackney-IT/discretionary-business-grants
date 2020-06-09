@@ -42,7 +42,7 @@ EOF
    npm run dbmigrate up
    ```
 
-#### Seeding the database
+#### Seeding the local database
 
 To seed your database with data to get going quickly, you can run the file under `db/seeds.sql` by doing the following:
 
@@ -78,7 +78,7 @@ You can do a dry-run to view the changes that will be applied without making any
 npm run dbmigratedry up
 ```
 
-## AWS Database Migrations
+## AWS Database Migrations and seeding
 
 To run database migrations against the RDS databases on AWS you need to run the dbmigrate up command via AWS System Manager.
 
@@ -89,3 +89,6 @@ To run database migrations against the RDS databases on AWS you need to run the 
 5. Select an instance (there should only be 1)
 6. Click 'Start Session' - This should open up a terminal like window in your browser
 7. Run `cd ~/discretionary-business-grants/ && git pull && npm run dbmigrate up`
+
+To seed the AWS database start as session as above and then run:
+`cd ~/discretionary-business-grants/ && source ./.env && cat db/seeds.sql | psql $DATABASE_URL`
