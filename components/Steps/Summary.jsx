@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Router from 'next/router';
+import axios from 'axios';
 
 import SummaryList from 'components/SummaryList/SummaryList';
-import { getInputProps } from 'components/Steps';
-import { stepPath } from 'components/Steps';
+import { getInputProps, stepPath } from 'components/Steps';
+import mapToAPI from 'utils/mapAPI';
 
 const MultiValue = value =>
   value !== '' && (
@@ -69,7 +71,7 @@ const Result = ({ formData }) => {
       />
       <SummarySection
         formData={formData}
-        name="bank"
+        name="businessBankAccount"
         title="Bank details:"
         slug="bank-details"
       />
@@ -77,8 +79,24 @@ const Result = ({ formData }) => {
         formData={formData}
         name="declaration"
         title="State Aid Declaration:"
-        slug="state-aid-declaration"
+        slug="declaration"
       />
+      <button
+        className="govuk-button"
+        onClick={async () => {
+          const { data } = await axios.post(
+            '/api/applications',
+            mapToAPI(formData)
+          );
+          return Router.push({
+            pathname: '/confirmation',
+            query: { ref: data }
+          });
+        }}
+        type="button"
+      >
+        Confirm and submit
+      </button>
     </>
   );
 };

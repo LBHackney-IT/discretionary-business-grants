@@ -18,8 +18,7 @@ const Step1 = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
       <Select
-        {...getInputProps('contact', 'authority')}
-        options={['PSC', 'Trustee', 'Agent', 'Owner', 'Partner', 'Employee']}
+        {...getInputProps('contact', 'contactTypeId')}
         register={register({
           required: true,
           validate: value => value !== ''

@@ -22,8 +22,28 @@ const Step1 = props => {
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('business', 'businessDescription')}
-        hint="What is the main business activity carried out"
+        {...getInputProps('business', 'registeredName')}
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'companyNumber')}
+        type="number"
+        register={register}
+      />
+      <Select
+        {...getInputProps('business', 'companyStructureId')}
+        register={register({ required: true, validate: value => value !== '' })}
+      />
+      <TextInput
+        {...getInputProps('business', 'councilRentAccountNumber')}
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'ratesAccountNumber')}
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'registeredCharity')}
         register={register}
       />
       <AddressLookup
@@ -39,73 +59,29 @@ const Step1 = props => {
           errors.business.businessAddress.message
         }
       />
-      <AddressLookup
-        {...getInputProps('business', 'businessPremisesAddress')}
-        defaultValue={
-          props.formData.business &&
-          props.formData.business.businessPremisesAddress
-        }
-        control={control}
-        register={register}
-        errorMessage={
-          errors.business &&
-          errors.business.businessPremisesAddress &&
-          errors.business.businessPremisesAddress.message
-        }
-      />
       <TextInput
-        {...getInputProps('business', 'businessPremisesDescription')}
-        hint="e.g shared office, shared workspace, individual shop, individual office, market stall etc"
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'companyNumber')}
-        type="number"
+        {...getInputProps('business', 'businessDescription')}
         register={register}
       />
       <Select
-        {...getInputProps('business', 'companyStructure')}
-        options={[
-          'Registered Company',
-          'Sole Trader',
-          'Partnership',
-          'Charity',
-          'Social Enterprise'
-        ]}
+        {...getInputProps('business', 'siteDescriptionId')}
         register={register({ required: true, validate: value => value !== '' })}
       />
       <TextInput
-        {...getInputProps('business', 'businessRateAccountNumber')}
-        type="number"
+        {...getInputProps('business', 'councilTaxNumber')}
         register={register}
       />
+
       <TextInput
-        {...getInputProps('business', 'businessRegisteredCharity')}
-        type="number"
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'councilRentAccountNumber')}
-        type="number"
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'numberEmployees')}
-        type="number"
+        {...getInputProps('business', 'fullTimeEmployees')}
         register={register({ min: 0 })}
       />
       <TextInput
-        {...getInputProps('business', 'turnover')}
-        type="number"
-        register={register({ min: 0 })}
-      />
-      <TextInput
-        {...getInputProps('business', 'percentageFallIncome')}
-        type="number"
+        {...getInputProps('business', 'percentageFallInIncome')}
         register={register({ min: 0, max: 100 })}
       />
       <TextInput
-        {...getInputProps('business', 'businessPremises')}
+        {...getInputProps('business', 'rateableValue')}
         type="number"
         register={register({ min: 0 })}
       />

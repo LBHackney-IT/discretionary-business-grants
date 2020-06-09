@@ -28,9 +28,11 @@ const Select = ({
       onChange={e => onChange && onChange(e.target.value)}
     >
       <option key="empty" value=""></option>
-      {options.map(option => {
+      {options.map((option, index) => {
         const { value, text } =
-          typeof option === 'string' ? { value: option, text: option } : option;
+          typeof option === 'string'
+            ? { value: index + 1, text: option }
+            : option;
         return (
           <option key={value} value={value}>
             {text}

@@ -17,20 +17,19 @@ const BankDetails = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Bank Details</h1>
       <TextInput
-        {...getInputProps('bank', 'bankName')}
+        {...getInputProps('businessBankAccount', 'bankName')}
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('bank', 'accountHolder')}
+        {...getInputProps('businessBankAccount', 'accountHolder')}
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('bank', 'accountNumber')}
-        type="number"
+        {...getInputProps('businessBankAccount', 'accountNumber')}
         register={register({ required: true })}
       />
       <TextInput
-        {...getInputProps('bank', 'sortcode')}
+        {...getInputProps('businessBankAccount', 'accountSortcode')}
         register={register({ required: true })}
       />
       <Button className="govuk-button" text="Next" type="submit" />

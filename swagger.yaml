@@ -93,12 +93,8 @@ definitions:
         $ref: "#/definitions/EligibilityCriteria"
       contact:
         $ref: "#/definitions/Contact"
-      contactAddress:
-        $ref: "#/definitions/ContactAddress"
       business:
         $ref: "#/definitions/Business"
-      businessAddress:
-        $ref: "#/definitions/BusinessAddress"
       turnover:
         $ref: "#/definitions/Turnover"
       fixedPropertyCosts:
@@ -161,12 +157,15 @@ definitions:
       telephoneNumber:
         type: "string"
         minLength: 5
+      address:
+        $ref: "#/definitions/ContactAddress"
     required:
       - contactTypeId
       - firstName
       - lastName
       - emailAddress
       - telephoneNumber
+      - address
 
   ContactAddress:
     type: "object"
@@ -208,8 +207,8 @@ definitions:
       fullTimeEmployees:
         type: "integer"
         minimum: 1
-      percentFallInIncome:
         type: "integer"
+      percentageFallInIncome:
         minimum: 1
         maximum: 100
       rateableValue:
@@ -229,11 +228,14 @@ definitions:
       fixedPropertyCost:
         description: "Fixed property related costs March to May (inclusive) 2020"
         type: "number"
+      businessAddress:
+        $ref: "#/definitions/BusinessAddress"
     required:
       - companyStructureId
       - siteDescriptionId
       - fullTimeEmployees
-      - percentFallInIncome
+      - percentageFallInIncome
+      - businessAddress
 
   BusinessAddress:
     type: "object"

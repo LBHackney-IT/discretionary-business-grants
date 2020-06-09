@@ -19,7 +19,7 @@ const FormWizard = () => {
   Router.events.on('routeChangeComplete', () => {
     window.scrollTo(0, 0);
   });
-  const [formData, setFormData] = useState({ firstName: 'asd' });
+  const [formData, setFormData] = useState({});
   const router = useRouter();
   const { id: stepId } = router.query;
   const firstStep = stepKeys[0];
