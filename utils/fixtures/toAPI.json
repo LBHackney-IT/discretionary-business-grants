@@ -30,15 +30,15 @@
     "registeredName": "reg name",
     "businessName": "buss name",
     "businessDescription": "buss description",
-    "businessPremisesDescription": "premises desc",
+    "rateableValueDescription": "premises desc",
     "companyNumber": "123",
-    "businessRateAccountNumber": "123",
-    "businessRegisteredCharity": "123",
+    "ratesAccountNumber": "123",
+    "registeredCharity": "123",
     "councilRentAccountNumber": "123",
     "fullTimeEmployees": "123",
     "turnover": "123",
     "percentageFallInIncome": "12",
-    "businessPremises": "1233",
+    "rateableValue": "1233",
     "businessAddress": {
       "firstLine": "405 QUEENSBRIDGE ROAD",
       "secondLine": "HACKNEY",
@@ -47,7 +47,7 @@
       "postcode": "E8 3AS",
       "uprn": 100021068078
     },
-    "businessPremisesAddress": {
+    "rateableValueAddress": {
       "firstLine": "427 QUEENSBRIDGE ROAD",
       "secondLine": "HACKNEY",
       "thirdLine": "",
@@ -63,7 +63,7 @@
   "propertyCost": {
     "year1819": "321",
     "year1920": "321",
-    "items": "asd"
+    "itemsIncluded": "asd"
   },
   "documents": [
     {
@@ -100,9 +100,9 @@
     "accountSortcode": "123"
   },
   "declaration": {
-    "received": "asdasdasd",
-    "isAccepted": true,
-    "isNotExceedingAidLimit": true,
-    "isConfirmed": true
+    "stateAidReceived": "asdasdasd",
+    "permittedToAcceptStateAidGrant": true,
+    "stateAidCapNotExceeded": true,
+    "readUnderstoodDeclaration": true
   }
 }

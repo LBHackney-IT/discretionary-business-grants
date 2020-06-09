@@ -72,24 +72,27 @@ const Declaration = props => {
         check their position before submitting applications here.
       </p>
       <TextInput
-        {...getInputProps('declaration', 'received')}
+        {...getInputProps('declaration', 'stateAidReceived')}
         register={register}
       />
       <Radios
-        {...getInputProps('declaration', 'isAccepted')}
+        {...getInputProps('declaration', 'permittedToAcceptStateAidGrant')}
         register={register({
           required: 'You need to agree.',
           validate: value => value === 'Yes' || 'You need to agree.'
         })}
-        error={errors.declaration && errors.declaration.isAccepted}
+        error={
+          errors.declaration &&
+          errors.declaration.permittedToAcceptStateAidGrant
+        }
       />
       <Radios
-        {...getInputProps('declaration', 'isNotExceedingAidLimit')}
+        {...getInputProps('declaration', 'stateAidCapNotExceeded')}
         register={register({
           required: 'You need to agree.',
           validate: value => value === 'Yes' || 'You need to agree.'
         })}
-        error={errors.declaration && errors.declaration.isNotExceedingAidLimit}
+        error={errors.declaration && errors.declaration.stateAidCapNotExceeded}
       />
       <h2>Data Protection</h2>
       <p className="govuk-body">
@@ -150,9 +153,11 @@ const Declaration = props => {
         have the power to recover any wrongly claimed Grants.
       </p>
       <Checkbox
-        {...getInputProps('declaration', 'isConfirmed')}
+        {...getInputProps('declaration', 'readUnderstoodDeclaration')}
         register={register({ required: 'You need to confirm.' })}
-        error={errors.declaration && errors.declaration.isConfirmed}
+        error={
+          errors.declaration && errors.declaration.readUnderstoodDeclaration
+        }
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

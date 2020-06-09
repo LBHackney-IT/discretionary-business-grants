@@ -32,15 +32,15 @@ const PropertyCost = props => {
             required below
           </span>
           <TextInput
-            {...getInputProps('propertyCost', 'year1819')}
+            {...getInputProps('propertyCost', 'year2018To2019')}
             register={register({ required: true })}
           />
           <TextInput
-            {...getInputProps('propertyCost', 'year1920')}
+            {...getInputProps('propertyCost', 'year2019To2020')}
             register={register({ required: true })}
           />
           <TextInput
-            {...getInputProps('propertyCost', 'items')}
+            {...getInputProps('propertyCost', 'itemsIncluded')}
             register={register({ required: true })}
           />
         </fieldset>

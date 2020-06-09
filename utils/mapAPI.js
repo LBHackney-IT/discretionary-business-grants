@@ -20,10 +20,14 @@ const mapEligibility = ({
   };
 };
 
-const mapDeclaration = ({ isNotExceedingAidLimit, isAccepted, ...other }) => ({
+const mapDeclaration = ({
+  stateAidCapNotExceeded,
+  permittedToAcceptStateAidGrant,
+  ...other
+}) => ({
   ...other,
-  isNotExceedingAidLimit: isYes(isNotExceedingAidLimit),
-  isAccepted: isYes(isAccepted)
+  stateAidCapNotExceeded: isYes(stateAidCapNotExceeded),
+  permittedToAcceptStateAidGrant: isYes(permittedToAcceptStateAidGrant)
 });
 
 const mapDocuments = supplementaryInformation =>

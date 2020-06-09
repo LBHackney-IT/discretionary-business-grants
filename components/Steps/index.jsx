@@ -154,10 +154,10 @@ export const inputLabels = {
       label: 'Business Structure:',
       options: COMPANY_STRUCTURE
     },
-    businessRateAccountNumber: {
+    ratesAccountNumber: {
       label: 'Business Rates Account Number (if applicable):'
     },
-    businessRegisteredCharity: {
+    registeredCharity: {
       label: 'Registered Charity Number (if applicable):',
       type: 'number'
     },
@@ -175,7 +175,7 @@ export const inputLabels = {
       label: 'Percentage fall in income due to Covid-19:',
       type: 'number'
     },
-    businessPremises: {
+    rateableValue: {
       label: 'Business premises rateable value (if applicable):'
     }
   },
@@ -187,9 +187,9 @@ export const inputLabels = {
     year1920: { label: 'Financial Year 19/20', type: 'number' }
   },
   propertyCost: {
-    year1819: { label: 'Financial Year 18/19', type: 'number' },
-    year1920: { label: 'Financial Year 19/20', type: 'number' },
-    items: { label: 'Items included:' }
+    year2018To2019: { label: 'Financial Year 18/19', type: 'number' },
+    year2019To2020: { label: 'Financial Year 19/20', type: 'number' },
+    itemsIncluded: { label: 'Items included:' }
   },
   businessBankAccount: {
     bankName: { label: 'Bank Name:' },
@@ -198,19 +198,19 @@ export const inputLabels = {
     accountSortcode: { label: 'Sort Code:' }
   },
   declaration: {
-    received: {
+    stateAidReceived: {
       label:
         'I/we have received the following value of State Aid under above rule'
     },
-    isNotExceedingAidLimit: {
+    stateAidCapNotExceeded: {
       label:
         'I/we confirm that our state aid fund/grant does not exceed the cap under above rule'
     },
-    isAccepted: {
+    permittedToAcceptStateAidGrant: {
       label:
         'I/we declare that i/we are permitted to accept the discretionary grant funding under the relevant state aid rule'
     },
-    isConfirmed: {
+    readUnderstoodDeclaration: {
       label: 'Tick to confirm you have read and understood the declaration'
     }
   },

@@ -39,11 +39,11 @@ const Step1 = props => {
         register={register}
       />
       <TextInput
-        {...getInputProps('business', 'businessRateAccountNumber')}
+        {...getInputProps('business', 'ratesAccountNumber')}
         register={register}
       />
       <TextInput
-        {...getInputProps('business', 'businessRegisteredCharity')}
+        {...getInputProps('business', 'registeredCharity')}
         register={register}
       />
       <AddressLookup
@@ -81,7 +81,7 @@ const Step1 = props => {
         register={register({ min: 0, max: 100 })}
       />
       <TextInput
-        {...getInputProps('business', 'businessPremises')}
+        {...getInputProps('business', 'rateableValue')}
         type="number"
         register={register({ min: 0 })}
       />
