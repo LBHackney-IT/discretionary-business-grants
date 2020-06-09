@@ -23,18 +23,16 @@ export default function confirmation() {
           Your unique reference code is <strong>{ref}</strong> Kindly make a
           note of this reference.
         </p>
-        <p className="govuk-body">
-          <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">
-              !
-            </span>
-            <strong class="govuk-warning-text__text">
-              <span class="govuk-warning-text__assistive">Warning</span>
-              All applicants are advised to save and/or print a copy of their
-              application.
-            </strong>
-          </div>
-        </p>
+        <div className="govuk-warning-text">
+          <span className="govuk-warning-text__icon" aria-hidden="true">
+            !
+          </span>
+          <strong className="govuk-warning-text__text">
+            <span className="govuk-warning-text__assistive">Warning</span>
+            All applicants are advised to save and/or print a copy of their
+            application.
+          </strong>
+        </div>
       </div>
     </div>
   );
