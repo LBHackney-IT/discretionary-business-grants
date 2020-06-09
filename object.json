@@ -1,0 +1,56 @@
+{
+  "eligibilityCriteria": {
+    "tradingInHackney": true,
+    "smallMicroBusiness": true,
+    "tradingOn20200311": true,
+    "servedLegalNotices": false,
+    "receivedOtherGrants": false,
+    "hasFixedPropertyCost": false,
+    "rateableLimitAnswerId": 1
+  },
+  "contact": {
+    "contactTypeId": 1,
+    "firstName": "Fake First Name",
+    "lastName": "Fake Last Name",
+    "emailAddress": "fake@fake",
+    "telephoneNumber": "Fake"
+  },
+  "contactAddress": {
+    "uprn": 1,
+    "firstLine": "Fake Line One",
+    "secondLine": "Fake Line Two",
+    "thirdLine": "Fake Line Three",
+    "postcode": "FAKECODE",
+    "ward": "Fake Ward"
+  },
+  "business": {
+    "companyName": "Fake Company",
+    "tradingName": "Fake Company Trading Name",
+    "companyNumber": "FAKECOMPANYNUMBER",
+    "nndrAccountNumber": "FAKENNDACCOUNT",
+    "fullTimeEmployees": 100,
+    "annualTurnover": 200,
+    "percentageFallInIncome": 85,
+    "rateableValue": 17,
+    "fixedPropertyCost": 250
+  },
+  "businessAddress": {
+    "uprn": "FAKE UPRN",
+    "firstLine": "Fake Line One",
+    "secondLine": "Fake Line Two",
+    "thirdLine": "Fake Line Three",
+    "postcode": "FAKECODE"
+  },
+  "businessAccountDetails": {
+    "bankName": "Fake Bank",
+    "accountHolder": "Fake Holder",
+    "accountNumber": "FakeAcct",
+    "accountSortcode": "FaKeSc"
+  },
+  "documents": [
+    {
+      "s3Path": "fakepath",
+      "documentType": "pdf"
+    }
+  ]
+}
