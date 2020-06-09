@@ -38,25 +38,12 @@ const SupplementaryInformation = props => {
           clear and legible.
         </p>
       </div>
-      <ControlledFileUpload
-        {...sharedProps('businessAccounts')}
-        hint="Please provide a company of the business accounts for the financial year 2018/19 (or your HMRC self assessment tax return for the financial year 2018/19). If not available please provide what is available"
-      />
-      <ControlledFileUpload
-        {...sharedProps('fixedPropertyCosts')}
-        hint="Please provide evidence of your ongoing fixed property costs (such as the lease, licence, rental agreement or mortgage statement for the business premises)"
-      />
-      <ControlledFileUpload
-        {...sharedProps('fallInIncome')}
-        hint=" Please provide financial evidence showing the fall in income experienced by your business as a result of Covid-19 (such as; up to date business management accounts for the last 12 months showing profit and loss, turnover, cashflow and balance sheet. Bank statements over the past 6 months)"
-      />
-      <ControlledFileUpload
-        {...sharedProps('identity')}
-        hint="Please provide a form of photo identification such as a passport or driving licence"
-      />
+      <ControlledFileUpload {...sharedProps('businessAccounts')} />
+      <ControlledFileUpload {...sharedProps('fixedPropertyCosts')} />
+      <ControlledFileUpload {...sharedProps('fallInIncome')} />
+      <ControlledFileUpload {...sharedProps('identity')} />
       <ControlledFileUpload
         {...sharedProps('payrollInformation')}
-        hint="If available please provide your business payroll information for the last 6 months showing the number of people employed and paid by the business"
         rules={null}
       />
       <Button className="govuk-button" text="Next" type="submit" />

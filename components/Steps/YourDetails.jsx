@@ -19,7 +19,6 @@ const Step1 = props => {
       <h1>Your Details</h1>
       <Select
         {...getInputProps('contact', 'contactTypeId')}
-        options={['PSC', 'Trustee', 'Agent', 'Owner', 'Partner', 'Employee']}
         register={register({
           required: true,
           validate: value => value !== ''

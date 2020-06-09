@@ -27,7 +27,6 @@ const Step1 = props => {
       />
       <TextInput
         {...getInputProps('business', 'businessDescription')}
-        hint="What is the main business activity carried out"
         register={register}
       />
       <AddressLookup
@@ -59,7 +58,6 @@ const Step1 = props => {
       />
       <TextInput
         {...getInputProps('business', 'businessPremisesDescription')}
-        hint="e.g shared office, shared workspace, individual shop, individual office, market stall etc"
         register={register}
       />
       <TextInput
@@ -69,13 +67,6 @@ const Step1 = props => {
       />
       <Select
         {...getInputProps('business', 'companyStructureId')}
-        options={[
-          'Registered Company',
-          'Sole Trader',
-          'Partnership',
-          'Charity',
-          'Social Enterprise'
-        ]}
         register={register({ required: true, validate: value => value !== '' })}
       />
       <TextInput

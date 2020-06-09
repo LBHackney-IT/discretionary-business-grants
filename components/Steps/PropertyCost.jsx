@@ -33,12 +33,10 @@ const PropertyCost = props => {
           </span>
           <TextInput
             {...getInputProps('propertyCost', 'year1819')}
-            type="number"
             register={register({ required: true })}
           />
           <TextInput
             {...getInputProps('propertyCost', 'year1920')}
-            type="number"
             register={register({ required: true })}
           />
           <TextInput

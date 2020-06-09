@@ -26,7 +26,6 @@ const BankDetails = props => {
       />
       <TextInput
         {...getInputProps('businessBankAccount', 'accountNumber')}
-        type="number"
         register={register({ required: true })}
       />
       <TextInput
