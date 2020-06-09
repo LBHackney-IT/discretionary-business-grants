@@ -210,8 +210,8 @@ definitions:
       fullTimeEmployees:
         type: "integer"
         minimum: 1
-      percentFallInIncome:
         type: "integer"
+      percentageFallInIncome:
         minimum: 1
         maximum: 100
       rateableValue:
@@ -236,7 +236,7 @@ definitions:
       - companyStructureId
       - siteDescriptionId
       - fullTimeEmployees
-      - percentFallInIncome
+      - percentageFallInIncome
       - businessAddress
 
   BusinessAddress:
