@@ -17,7 +17,7 @@ export const steps = {
   'your-details': YourDetails,
   'business-details': BusinessDetails,
   'business-turnover': BusinessTurnover,
-  'property-cost': PropertyCost,
+  'property-costs': PropertyCost,
   'supplementary-information': SupplementaryInformation,
   'bank-details': BankDetails,
   declaration: Declaration,
