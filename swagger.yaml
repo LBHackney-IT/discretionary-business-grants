@@ -224,6 +224,9 @@ definitions:
       turnover:
         description: "Business turnover March to May (inclusive) 2020"
         type: "number"
+      fixedPropertyCost:
+        description: "Fixed property related costs March to May (inclusive) 2020"
+        type: "number"
     required:
       - companyStructureId
       - siteDescriptionId
