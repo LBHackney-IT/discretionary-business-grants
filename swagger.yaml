@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.8"
+  version: "0.0.9"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -107,6 +107,8 @@ definitions:
         $ref: "#/definitions/Documents"
       businessBankAccount:
         $ref: "#/definitions/BusinessBankAccount"
+      declaration:
+        $ref: "#/definitions/Declaration"
 
   EligibilityCriteria:
     type: "object"
@@ -315,6 +317,22 @@ definitions:
       - accountHolder
       - accountNumber
       - accountSortcode
+
+  Declaration:
+    type: "object"
+    properties:
+      stateAidReceived:
+        type: "number"
+      stateAidCapNotExceeded:
+        type: "boolean"
+      permittedToAcceptStateAidGrant:
+        type: "boolean"
+      readUnderstoodDeclaration:
+        type: "boolean"
+    required:
+    - stateAidCapNotExceeded
+    - permittedToAcceptStateAidGrant
+    - readUnderstoodDeclaration
 
   ApplicationsResponse:
     type: "object"
