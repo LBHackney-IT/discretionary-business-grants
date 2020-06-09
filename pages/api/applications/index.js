@@ -1,9 +1,9 @@
 import uploadApplication from '../../../lib/usecases/uploadApplication';
-import { v4 as uuidv4 } from 'uuid';
+import { nanoid } from 'nanoid';
 
 export default async (req, res) => {
   try {
-    const clientGeneratedId = uuidv4();
+    const clientGeneratedId = nanoid();
     await uploadApplication({ ...req.body, clientGeneratedId });
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
