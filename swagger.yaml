@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "discretionary-business-grants API Schema"
-  version: "0.0.10"
+  version: "0.0.11"
   title: "discretionary-business-grants API"
 host: "discretionarybusinessgrants.hackney.gov.uk"
 basePath: "/api"
@@ -93,12 +93,8 @@ definitions:
         $ref: "#/definitions/EligibilityCriteria"
       contact:
         $ref: "#/definitions/Contact"
-      contactAddress:
-        $ref: "#/definitions/ContactAddress"
       business:
         $ref: "#/definitions/Business"
-      businessAddress:
-        $ref: "#/definitions/BusinessAddress"
       turnover:
         $ref: "#/definitions/Turnover"
       fixedPropertyCosts:
@@ -161,12 +157,15 @@ definitions:
       telephoneNumber:
         type: "string"
         minLength: 5
+      address:
+        $ref: "#/definitions/ContactAddress"
     required:
       - contactTypeId
       - firstName
       - lastName
       - emailAddress
       - telephoneNumber
+      - address
 
   ContactAddress:
     type: "object"
@@ -231,11 +230,14 @@ definitions:
       fixedPropertyCost:
         description: "Fixed property related costs March to May (inclusive) 2020"
         type: "number"
+      businessAddress:
+        $ref: "#/definitions/BusinessAddress"
     required:
       - companyStructureId
       - siteDescriptionId
       - fullTimeEmployees
       - percentFallInIncome
+      - businessAddress
 
   BusinessAddress:
     type: "object"
