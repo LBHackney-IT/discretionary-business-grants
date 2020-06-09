@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useBeforeunload } from 'react-beforeunload';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
@@ -21,6 +22,7 @@ const FormWizard = () => {
   });
   const [formData, setFormData] = useState({});
   const router = useRouter();
+  useBeforeunload(() => "You'll lose your data!");
   const { id: stepId } = router.query;
   const firstStep = stepKeys[0];
   if (stepId && !formData.eligibilityCriteria && stepId !== firstStep) {
