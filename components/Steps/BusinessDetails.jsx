@@ -26,7 +26,24 @@ const Step1 = props => {
         register={register}
       />
       <TextInput
-        {...getInputProps('business', 'businessDescription')}
+        {...getInputProps('business', 'companyNumber')}
+        type="number"
+        register={register}
+      />
+      <Select
+        {...getInputProps('business', 'companyStructureId')}
+        register={register({ required: true, validate: value => value !== '' })}
+      />
+      <TextInput
+        {...getInputProps('business', 'councilRentAccountNumber')}
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'businessRateAccountNumber')}
+        register={register}
+      />
+      <TextInput
+        {...getInputProps('business', 'businessRegisteredCharity')}
         register={register}
       />
       <AddressLookup
@@ -42,61 +59,25 @@ const Step1 = props => {
           errors.business.businessAddress.message
         }
       />
-      <AddressLookup
-        {...getInputProps('business', 'businessPremisesAddress')}
-        defaultValue={
-          props.formData.business &&
-          props.formData.business.businessPremisesAddress
-        }
-        control={control}
-        register={register}
-        errorMessage={
-          errors.business &&
-          errors.business.businessPremisesAddress &&
-          errors.business.businessPremisesAddress.message
-        }
-      />
       <TextInput
-        {...getInputProps('business', 'businessPremisesDescription')}
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'companyNumber')}
-        type="number"
+        {...getInputProps('business', 'businessDescription')}
         register={register}
       />
       <Select
-        {...getInputProps('business', 'companyStructureId')}
+        {...getInputProps('business', 'siteDescriptionId')}
         register={register({ required: true, validate: value => value !== '' })}
       />
       <TextInput
-        {...getInputProps('business', 'businessRateAccountNumber')}
-        type="number"
+        {...getInputProps('business', 'councilTaxNumber')}
         register={register}
       />
-      <TextInput
-        {...getInputProps('business', 'businessRegisteredCharity')}
-        type="number"
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'councilRentAccountNumber')}
-        type="number"
-        register={register}
-      />
+
       <TextInput
         {...getInputProps('business', 'fullTimeEmployees')}
-        type="number"
-        register={register({ min: 0 })}
-      />
-      <TextInput
-        {...getInputProps('business', 'turnover')}
-        type="number"
         register={register({ min: 0 })}
       />
       <TextInput
         {...getInputProps('business', 'percentageFallInIncome')}
-        type="number"
         register={register({ min: 0, max: 100 })}
       />
       <TextInput

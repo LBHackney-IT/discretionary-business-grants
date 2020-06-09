@@ -26,6 +26,12 @@ export const steps = {
 
 // options references in db/seeds.sql
 
+const SMALL_MICRO_BUSINESS = [
+  { label: 'Micro' },
+  { label: 'Small' },
+  { label: 'Other' }
+];
+
 const TYPE_OF_BUSINESS = [
   'Business in shared offices or workspaces without business rates assessment',
   'Business in RHL sector with a rateable value of between £51,000-£60,000 ',
@@ -43,20 +49,29 @@ const RETEABLE_LIMIT_ANSWER = [
 ];
 
 const CONTACT_TYPE = [
-  'PSC',
-  'Trustee',
-  'Agent',
-  'Owner',
-  'Partner',
-  'Employee'
+  'Agent (Authorised to act)',
+  'Owner (Sole Trader)',
+  'Partner / Employee (Acting for)',
+  'PSC of Registered Company (Person with significant control)',
+  'Trustee (Charity)'
 ];
 
 const COMPANY_STRUCTURE = [
-  'Registered Company',
-  'Sole Trader',
-  'Partnership',
   'Charity',
-  'Social Enterprise'
+  'Partnership',
+  'Registered company',
+  'Social enterprise',
+  'Sole trader'
+];
+
+const SITE_DESCRIPTION = [
+  'Individual Office',
+  'Individual Shop',
+  'Market Stall',
+  'Office in a Shared Workspace',
+  'B&B',
+  'Nursery',
+  'Other'
 ];
 
 export const inputLabels = {
@@ -64,10 +79,11 @@ export const inputLabels = {
     tradingInHackney: {
       label: 'Is your business based in and trading in Hackney?'
     },
-    smallMicroBusiness: {
-      label: 'Is your business classed as either a small or micro business?',
+    smallMicroBusinessId: {
+      label: 'Is your business classed as either a micro or small business?',
       hint:
-        'Small and micro businesses only as defined in the Companies Act 2006. To be defined as a small business they must have at least two of the following; not more than 50 employees, a turnover of not more than £10.2 million and a balance sheet total of not more than £5.1m. To be defined as a microbusinesses they must have at least two of the following; not more than 10 employees, a turnover of not more than £632,000, and a balance sheet total of not more than £316,000.'
+        'Micro and small businesses only as defined in the Companies Act 2006. To be defined as a small business they must have at least two of the following; not more than 50 employees, a turnover of not more than £10.2 million and a balance sheet total of not more than £5.1m. To be defined as a microbusinesses they must have at least two of the following; not more than 10 employees, a turnover of not more than £632,000, and a balance sheet total of not more than £316,000.',
+      options: SMALL_MICRO_BUSINESS
     },
     tradingOn20200311: {
       label: 'Was your business trading on the 11th March 2020?'
@@ -118,46 +134,55 @@ export const inputLabels = {
   },
   business: {
     businessName: {
-      label: 'Business name (trading name, charity name etc):'
+      label: 'Business name:',
+      hint: '(trading name, charity name etc)'
     },
     registeredName: { label: 'Registered Name (if applicable):' },
     businessDescription: {
-      label: 'Business description:',
+      label: 'Business activity:',
       hint: 'What is the main business activity carried out'
     },
-    businessAddress: { label: 'Business Address:' },
-    businessPremisesAddress: { label: 'Business premises address:' },
-    businessPremisesDescription: {
-      label: 'Business premises description:',
+    businessAddress: { label: 'Business Premises Address:' },
+    siteDescriptionId: {
+      label: 'Business site description:',
       hint:
-        'e.g shared office, shared workspace, individual shop, individual office, market stall etc'
+        '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
+      options: SITE_DESCRIPTION
     },
     companyNumber: { label: 'Company number (if applicable) ' },
     companyStructureId: {
-      label: 'Company Structure:',
+      label: 'Business Structure:',
       options: COMPANY_STRUCTURE
     },
     businessRateAccountNumber: {
       label: 'Business Rates Account Number (if applicable):'
     },
     businessRegisteredCharity: {
-      label: 'Registered Charity (if applicable):'
+      label: 'Registered Charity Number (if applicable):',
+      type: 'number'
     },
     councilRentAccountNumber: {
-      label: 'Council premises rent account number (if applicable):'
+      label: 'Council premises rent account number (if applicable):',
+      type: 'number'
     },
-    fullTimeEmployees: { label: 'Number of Full Time Employees:' },
-    turnover: {
-      label: 'Business turnover March to May (inclusive) 2020:'
+    councilTaxNumber: {
+      label: 'Council tax number (if applicable):',
+      hint: '(eg if you are a B&B)',
+      type: 'number'
     },
+    fullTimeEmployees: { label: 'Number of Employees:', type: 'number' },
     percentageFallInIncome: {
-      label: 'Percentage fall in income due to Covid-19:'
+      label: 'Percentage fall in income due to Covid-19:',
+      type: 'number'
     },
     businessPremises: {
       label: 'Business premises rateable value (if applicable):'
     }
   },
   turnover: {
+    turnover: {
+      label: 'Business turnover March to May (inclusive) 2020:'
+    },
     year1819: { label: 'Financial Year 18/19', type: 'number' },
     year1920: { label: 'Financial Year 19/20', type: 'number' }
   },

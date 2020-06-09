@@ -14,7 +14,8 @@ const Step1 = props => {
       ([key, value]) =>
         (value === 'No' && key !== 'receivedOtherGrants') ||
         (value === 'Yes' && key === 'receivedOtherGrants') ||
-        (value === '2' && key === 'rateableLimitAnswerId')
+        (value === '2' && key === 'rateableLimitAnswerId') ||
+        (value === '3' && key === 'smallMicroBusinessId')
     );
     setShowError(hasSomeDeclines);
     if (!hasSomeDeclines) {
@@ -44,7 +45,7 @@ const Step1 = props => {
             register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'smallMicroBusiness')}
+            {...getInputProps('eligibilityCriteria', 'smallMicroBusinessId')}
             onChange={() => setShowError(false)}
             register={register({ required: true })}
           />

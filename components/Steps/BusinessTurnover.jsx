@@ -27,6 +27,11 @@ const BusinessTurnover = props => {
             required below
           </span>
           <TextInput
+            {...getInputProps('turnover', 'turnover')}
+            type="number"
+            register={register({ min: 0 })}
+          />
+          <TextInput
             {...getInputProps('turnover', 'year1819')}
             register={register({ required: true })}
           />
