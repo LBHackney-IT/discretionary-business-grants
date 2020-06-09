@@ -31,7 +31,7 @@ export default function confirmation() {
             <strong class="govuk-warning-text__text">
               <span class="govuk-warning-text__assistive">Warning</span>
               All applicants are advised to save and/or print a copy of their
-              application result.
+              application.
             </strong>
           </div>
         </p>
