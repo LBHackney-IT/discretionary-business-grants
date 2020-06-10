@@ -113,17 +113,17 @@ workflows:
           context: api-assume-role-staging-context
           requires:
             - install-dependencies-and-test
-#          filters:
-#            branches:
-#              only: master
+          filters:
+            branches:
+              only: master
       - build-deploy-staging:
           requires:
             - install-dependencies-and-test
             - assume-role-staging
-#          filters:
-#            branches:
-#              only:
-#                - master
+          filters:
+            branches:
+              only:
+                - master
       - permit-deploy-production:
           type: approval
           requires:

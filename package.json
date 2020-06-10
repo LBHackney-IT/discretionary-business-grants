@@ -30,7 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^3.1.5",
     "next": "^9.4.0",
-    "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#dfc45f0",
+    "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#0fe9e7514882c8ffb4182fa984ee10b99bfd886c",
     "pg-promise": "^10.5.6",
     "react": "16.13.1",
     "react-beforeunload": "^2.2.1",
