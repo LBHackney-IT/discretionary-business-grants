@@ -1,17 +1,17 @@
 {
   "eligibilityCriteria": {
     "tradingInHackney": "Yes",
-    "businessSizeId": "1",
-    "typeOfBusinessId": "3",
+    "businessSizeId": "Micro",
+    "typeOfBusinessId": "Business whose income is directly related to RHL sector",
     "tradingOn20200311": "Yes",
     "servedLegalNotices": "Yes",
     "receivedOtherGrants": "No",
     "hasFixedPropertyCost": "Yes",
     "significantIncomeFall": "Yes",
-    "rateableLimitAnswerId": "1"
+    "rateableLimitAnswerId": "Yes"
   },
   "contact": {
-    "contactTypeId": "1",
+    "contactTypeId": "Owner (Sole Trader)",
     "firstName": "first name",
     "lastName": "last name",
     "emailAddress": "asd@asd.com",
@@ -29,12 +29,12 @@
     "businessName": "buss name",
     "registeredName": "regi name",
     "companyNumber": "123",
-    "companyStructureId": "2",
+    "companyStructureId": "Partnership",
     "councilRentAccountNumber": "234",
     "ratesAccountNumber": "345",
     "registeredCharity": "123",
     "businessDescription": "buss description",
-    "siteDescriptionId": "2",
+    "siteDescriptionId": "Market Stall",
     "councilTaxNumber": "456",
     "fullTimeEmployees": "567",
     "percentageFallInIncome": "17",

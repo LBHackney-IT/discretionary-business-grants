@@ -1,17 +1,17 @@
 {
   "eligibilityCriteria": {
     "tradingInHackney": true,
-    "businessSizeId": "1",
-    "typeOfBusinessId": "3",
+    "businessSizeId": "Micro",
+    "typeOfBusinessId": "Business whose income is directly related to RHL sector",
     "tradingOn20200311": true,
     "servedLegalNotices": true,
     "receivedOtherGrants": false,
     "hasFixedPropertyCost": true,
     "significantIncomeFall": true,
-    "rateableLimitAnswerId": "1"
+    "rateableLimitAnswerId": "Yes"
   },
   "contact": {
-    "contactTypeId": "1",
+    "contactTypeId": "Owner (Sole Trader)",
     "firstName": "first name",
     "lastName": "last name",
     "emailAddress": "asd@asd.com",
@@ -26,7 +26,7 @@
     }
   },
   "business": {
-    "companyStructureId": "2",
+    "companyStructureId": "Partnership",
     "registeredName": "regi name",
     "businessName": "buss name",
     "businessDescription": "buss description",
@@ -38,7 +38,7 @@
     "percentageFallInIncome": "17",
     "rateableValue": "678",
     "councilTaxNumber": "456",
-    "siteDescriptionId": "2",
+    "siteDescriptionId": "Market Stall",
     "businessAddress": {
       "firstLine": "FIRST FLOOR AND SECOND FLOOR FLAT 3",
       "secondLine": "403 QUEENSBRIDGE ROAD",
