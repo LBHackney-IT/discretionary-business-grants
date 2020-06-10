@@ -1,28 +1,19 @@
 import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
-import notifyClient from '../../../lib/gateways/govNotify';
+import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
 import { nanoid } from 'nanoid';
 
 export default async (req, res) => {
   try {
     const clientGeneratedId = nanoid();
     const validApplication = await isValidApplication(req.body);
-    if (!validApplication) throw Error('Application is invalid');
     await uploadApplication({ ...validApplication, clientGeneratedId });
-    await notifyClient.sendEmail(
-      process.env.EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID,
-      req.body.contact.emailAddress,
-      {
-        personalisation: {
-          applicationId: clientGeneratedId
-        }
-      }
-    );
+    sendConfirmationEmail(clientGeneratedId, req.body.contact.emailAddress);
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(clientGeneratedId));
   } catch (error) {
-    res.statusCode = 500;
+    res.statusCode = 400;
     res.end(JSON.stringify(error.message));
   }
 };
