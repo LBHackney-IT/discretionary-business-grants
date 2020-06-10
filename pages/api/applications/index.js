@@ -7,9 +7,8 @@ export default async (req, res) => {
   try {
     const clientGeneratedId = nanoid();
     const validApplication = await isValidApplication(req.body);
-    await uploadApplication({ ...validApplication, clientGeneratedId });
     if (!validApplication) throw Error('Application is invalid');
-    await uploadApplication({ ...req.body, clientGeneratedId });
+    await uploadApplication({ ...validApplication, clientGeneratedId });
     await notifyClient.sendEmail(
       process.env.EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID,
       req.body.contact.emailAddress,
