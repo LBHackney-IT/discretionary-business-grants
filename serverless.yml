@@ -60,6 +60,8 @@ functions:
       URL_PREFIX: ${self:custom.aliases.${self:provider.stage}}
       POSTCODE_LOOKUP_URL: ${env:POSTCODE_LOOKUP_URL}
       POSTCODE_LOOKUP_APIKEY: ${env:POSTCODE_LOOKUP_APIKEY}
+      GOV_NOTIFY_API_KEY: ${env:GOV_NOTIFY_API_KEY}
+      EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID: ${env:EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID}
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
