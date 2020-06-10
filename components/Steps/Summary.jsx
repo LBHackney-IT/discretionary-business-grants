@@ -59,7 +59,7 @@ const Result = ({ formData }) => {
       />
       <SummarySection
         formData={formData}
-        name="propertyCost"
+        name="fixedPropertyCosts"
         title="Fixed property related costs:"
         slug="property-costs"
       />

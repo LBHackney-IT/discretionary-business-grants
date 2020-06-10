@@ -2,6 +2,12 @@
 
 const isYes = value => Boolean(value === 'Yes');
 
+const filterEmptyValues = data =>
+  Object.entries(data).reduce(
+    (acc, [key, value]) => (value === '' ? acc : { ...acc, [key]: value }),
+    {}
+  );
+
 const mapEligibility = ({
   rateableLimitAnswerId,
   businessSizeId,
@@ -45,11 +51,15 @@ const mapAPI = ({
   eligibilityCriteria,
   declaration,
   supplementaryInformation,
+  business,
+  turnover,
   ...obj
 }) => ({
   eligibilityCriteria: mapEligibility(eligibilityCriteria),
-  declaration: mapDeclaration(declaration),
+  declaration: filterEmptyValues(mapDeclaration(declaration)),
   documents: mapDocuments(supplementaryInformation),
+  business: filterEmptyValues(business),
+  turnover: filterEmptyValues(turnover),
   ...obj
 });
 
