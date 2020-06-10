@@ -68,8 +68,8 @@
   "businessBankAccount": {
     "bankName": "foo",
     "accountHolder": "bar",
-    "accountNumber": "123456678",
-    "accountSortcode": "11-22-33"
+    "accountNumber": "12345678",
+    "accountSortcode": "112233"
   },
   "declaration": {
     "stateAidReceived": "987",

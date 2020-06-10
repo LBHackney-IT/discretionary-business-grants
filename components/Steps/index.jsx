@@ -154,7 +154,7 @@ export const inputLabels = {
     bankName: { label: 'Bank Name:' },
     accountHolder: { label: 'Account Holder Name:' },
     accountNumber: { label: 'Account Number:', type: 'number' },
-    accountSortcode: { label: 'Sort Code:' }
+    accountSortcode: { label: 'Sort Code:', type: 'number' }
   },
   declaration: {
     stateAidReceived: {
