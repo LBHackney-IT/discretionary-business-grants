@@ -113,30 +113,30 @@ workflows:
           context: api-assume-role-staging-context
           requires:
             - install-dependencies-and-test
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
       - build-deploy-staging:
           requires:
             - install-dependencies-and-test
             - assume-role-staging
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
-      # - permit-deploy-production:
-      #     type: approval
-      #     requires:
-      #       - build-deploy-staging
-      # - assume-role-production:
-      #     context: api-assume-role-production-context
-      #     requires:
-      #       - install-dependencies-and-test
-      #       - permit-deploy-production
-      #     filters:
-      #       branches:
-      #         only: master
-      # - build-deploy-production:
-      #     requires:
-      #       - permit-deploy-production
-      #       - assume-role-production
+          filters:
+            branches:
+              only:
+                - master
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - build-deploy-staging
+      - assume-role-production:
+          context: api-assume-role-production-context
+          requires:
+            - install-dependencies-and-test
+            - permit-deploy-production
+          filters:
+            branches:
+              only: master
+      - build-deploy-production:
+          requires:
+            - permit-deploy-production
+            - assume-role-production
