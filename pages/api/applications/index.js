@@ -8,7 +8,10 @@ export default async (req, res) => {
     const clientGeneratedId = nanoid();
     const validApplication = await isValidApplication(req.body);
     await uploadApplication({ ...validApplication, clientGeneratedId });
-    sendConfirmationEmail(clientGeneratedId, req.body.contact.emailAddress);
+    await sendConfirmationEmail(
+      clientGeneratedId,
+      req.body.contact.emailAddress
+    );
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(clientGeneratedId));
