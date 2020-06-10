@@ -12,7 +12,7 @@ export default async (req, res) => {
     await uploadApplication({ ...req.body, clientGeneratedId });
     await notifyClient.sendEmail(
       process.env.EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID,
-      request.body.contact.emailAddress
+      req.body.contact.emailAddress
     );
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
