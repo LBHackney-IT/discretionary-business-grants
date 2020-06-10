@@ -12,8 +12,8 @@ const Step1 = props => {
   const onSubmit = data => {
     const hasSomeDeclines = Object.entries(data.eligibilityCriteria).some(
       ([key, value]) =>
-        (value === 'No' && key !== 'receivedOtherGrants') ||
-        (value === 'Yes' && key === 'receivedOtherGrants') ||
+        (value === 'Yes' &&
+          (key === 'servedLegalNotices' || key === 'receivedOtherGrants')) ||
         (value === '2' && key === 'rateableLimitAnswerId') ||
         (value === '3' && key === 'businessSizeId')
     );
