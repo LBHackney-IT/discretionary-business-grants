@@ -34,7 +34,11 @@ functions:
       - http:
           path: api/{proxy+}
           method: ANY
-#          authorizer: ${self:custom.authorizer.${self:service}-authorizer}
+          authorizer:
+            name: authorizer
+            type: request
+            identitySource: ''
+            resultTtlInSeconds: 0
       - http: ANY /
       - http: ANY /{proxy+}
     vpc:
@@ -60,16 +64,16 @@ functions:
 #      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 #      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
 
-#  hn-shared-plan-authorizer:
-#    name: ${self:service}-authorizer-${self:provider.stage}
-#    handler: authorizer.handler
-#    package:
-#      include:
-#        - authorizer.js
-#        - node_modules/**
-#    environment:
+  authorizer:
+    name: ${self:service}-authorizer-${self:provider.stage}
+    handler: authorizer.handler
+    package:
+      include:
+        - authorizer/**
+        - node_modules/**
+    environment:
 #      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
-#      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
+      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
 
 resources:
   Resources:
