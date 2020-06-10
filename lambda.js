@@ -4,7 +4,6 @@ const files = require('serve-static');
 const path = require('path');
 const nextRequestHandler = app.getRequestHandler();
 
-server.use(require('cookie-parser')());
 server.use(files(path.join(__dirname, 'build')));
 server.use(files(path.join(__dirname, 'public')));
 
