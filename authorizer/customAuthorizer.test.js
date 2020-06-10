@@ -1,7 +1,16 @@
 import customAuthorize from './customAuthorizer';
 
 describe('customAuthorizer', () => {
-  it('allows an unauthenticated request to a whitelisted endpoint and method', () => {
+  it('allows an unauthenticated request to exactly a whitelisted endpoint and method', () => {
+    const authorizeEvent = {
+      path: '/api/urls',
+      requestContext: { httpMethod: 'POST' }
+    };
+    const isAllowed = customAuthorize(undefined, authorizeEvent);
+    expect(isAllowed).toBeTruthy();
+  });
+
+  it('allows an unauthenticated request to a child of a whitelisted endpoint and method', () => {
     const authorizeEvent = {
       path: '/api/postcode/e82ns',
       requestContext: { httpMethod: 'GET' }

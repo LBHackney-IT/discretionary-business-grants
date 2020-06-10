@@ -8,7 +8,7 @@ const publicList = [
 
 const isChildPath = (parentPath, childPath) => {
   const relative = path.relative(parentPath, childPath);
-  return relative && !relative.startsWith('..') && !path.isAbsolute(relative);
+  return !relative.startsWith('..') && !path.isAbsolute(relative);
 };
 
 const isAllowedMethod = (allowedMethodList, authorizeEvent) => {
