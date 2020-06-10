@@ -134,7 +134,7 @@ resources:
         DistributionConfig:
            Aliases:
              - ${self:custom.aliases.${self:provider.stage}}
-          PriceClass: PriceClass_100
+           PriceClass: PriceClass_100
            ViewerCertificate:
              AcmCertificateArn: ${self:custom.certificate-arn.${self:provider.stage}}
              MinimumProtocolVersion: TLSv1.2_2018
