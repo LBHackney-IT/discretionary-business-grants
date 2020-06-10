@@ -6,7 +6,11 @@ describe('Checkbox', () => {
     const checkboxName = 'my-checkbox';
     const checkboxLabel = 'My Checkbox';
     const { getByLabelText } = render(
-      <Checkbox name={checkboxName} label={checkboxLabel} />
+      <Checkbox
+        name={checkboxName}
+        label={checkboxLabel}
+        register={jest.fn()}
+      />
     );
 
     const checkbox = getByLabelText(checkboxLabel);
