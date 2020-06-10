@@ -181,7 +181,8 @@ export const inputLabels = {
   },
   turnover: {
     turnover: {
-      label: 'Business turnover March to May (inclusive) 2020:'
+      label: 'Business turnover March to May (inclusive) 2020:',
+      type: 'number'
     },
     year1819: { label: 'Financial Year 18/19', type: 'number' },
     year1920: { label: 'Financial Year 19/20', type: 'number' }

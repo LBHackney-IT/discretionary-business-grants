@@ -74,11 +74,11 @@ const Step1 = props => {
 
       <TextInput
         {...getInputProps('business', 'fullTimeEmployees')}
-        register={register({ min: 0 })}
+        register={register({ required: true, min: 0 })}
       />
       <TextInput
         {...getInputProps('business', 'percentageFallInIncome')}
-        register={register({ min: 0, max: 100 })}
+        register={register({ required: true, min: 0, max: 100 })}
       />
       <TextInput
         {...getInputProps('business', 'rateableValue')}
