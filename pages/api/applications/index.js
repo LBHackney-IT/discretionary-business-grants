@@ -10,7 +10,10 @@ export default async (req, res) => {
     await uploadApplication({ ...validApplication, clientGeneratedId });
     if (!validApplication) throw Error('Application is invalid');
     await uploadApplication({ ...req.body, clientGeneratedId });
-    await notifyClient.sendEmail(process.env.EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID, request.body.contact.emailAddress);
+    await notifyClient.sendEmail(
+      process.env.EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID,
+      request.body.contact.emailAddress
+    );
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(clientGeneratedId));
