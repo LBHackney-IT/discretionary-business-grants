@@ -1,5 +1,6 @@
 import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
+import getGovNotifyClient from '../../../lib/gateways/govNotify';
 import { nanoid } from 'nanoid';
 
 export default async (req, res) => {
