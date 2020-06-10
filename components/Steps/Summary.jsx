@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import SummaryList from 'components/SummaryList/SummaryList';
 import { getInputProps, stepPath } from 'components/Steps';
-import mapToAPI from 'utils/mapAPI';
 
 const MultiValue = value =>
   value !== '' && (
@@ -84,10 +83,7 @@ const Result = ({ formData }) => {
       <button
         className="govuk-button"
         onClick={async () => {
-          const { data } = await axios.post(
-            '/api/applications',
-            mapToAPI(formData)
-          );
+          const { data } = await axios.post('/api/applications', formData);
           return Router.push({
             pathname: '/confirmation',
             query: { ref: data }
