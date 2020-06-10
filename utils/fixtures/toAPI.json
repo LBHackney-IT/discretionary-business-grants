@@ -4,7 +4,7 @@
     "businessSizeId": "Micro",
     "typeOfBusinessId": "Business whose income is directly related to RHL sector",
     "tradingOn20200311": true,
-    "servedLegalNotices": true,
+    "servedLegalNotices": false,
     "receivedOtherGrants": false,
     "hasFixedPropertyCost": true,
     "significantIncomeFall": true,

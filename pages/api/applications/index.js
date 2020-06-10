@@ -6,8 +6,7 @@ export default async (req, res) => {
   try {
     const clientGeneratedId = nanoid();
     const validApplication = await isValidApplication(req.body);
-    if (!validApplication) throw Error('Application is invalid');
-    await uploadApplication({ ...req.body, clientGeneratedId });
+    await uploadApplication({ ...validApplication, clientGeneratedId });
     res.statusCode = 201;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(clientGeneratedId));
