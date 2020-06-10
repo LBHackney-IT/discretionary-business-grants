@@ -26,53 +26,7 @@ export const steps = {
 
 // options references in db/seeds.sql
 
-const SMALL_MICRO_BUSINESS = [
-  { label: 'Micro' },
-  { label: 'Small' },
-  { label: 'Other' }
-];
-
-const TYPE_OF_BUSINESS = [
-  'Business in shared offices or workspaces without business rates assessment',
-  'Business in RHL sector with a rateable value of between £51,000-£60,000 ',
-  'Business whose income is directly related to RHL sector',
-  'Regular market trader with fixed building costs',
-  'Bed & Breakfast who pay Council Tax',
-  'Charity properties who occupy a commercial property with a rateable value of £15,000 or less',
-  'Ofsted registered nurseries (not within a domestic premises)'
-];
-
-const RETEABLE_LIMIT_ANSWER = [
-  { label: 'Yes' },
-  { label: 'No' },
-  { label: 'Not Applicable' }
-];
-
-const CONTACT_TYPE = [
-  'Agent (Authorised to act)',
-  'Owner (Sole Trader)',
-  'Partner / Employee (Acting for)',
-  'PSC of Registered Company (Person with significant control)',
-  'Trustee (Charity)'
-];
-
-const COMPANY_STRUCTURE = [
-  'Charity',
-  'Partnership',
-  'Registered company',
-  'Social enterprise',
-  'Sole trader'
-];
-
-const SITE_DESCRIPTION = [
-  'Individual Office',
-  'Individual Shop',
-  'Market Stall',
-  'Office in a Shared Workspace',
-  'B&B',
-  'Nursery',
-  'Other'
-];
+import * as options from 'lib/dbMapping';
 
 export const inputLabels = {
   eligibilityCriteria: {
@@ -83,14 +37,14 @@ export const inputLabels = {
       label: 'Is your business classed as either a micro or small business?',
       hint:
         'Micro and small businesses only as defined in the Companies Act 2006. To be defined as a small business they must have at least two of the following; not more than 50 employees, a turnover of not more than £10.2 million and a balance sheet total of not more than £5.1m. To be defined as a microbusinesses they must have at least two of the following; not more than 10 employees, a turnover of not more than £632,000, and a balance sheet total of not more than £316,000.',
-      options: SMALL_MICRO_BUSINESS
+      options: options.BUSINESS_SIZE
     },
     tradingOn20200311: {
       label: 'Was your business trading on the 11th March 2020?'
     },
     typeOfBusinessId: {
       label: 'Type of business',
-      options: TYPE_OF_BUSINESS,
+      options: options.TYPE_OF_BUSINESS,
       children: <TypeOfBusinessSummary />
     },
     servedLegalNotices: {
@@ -118,13 +72,13 @@ export const inputLabels = {
     rateableLimitAnswerId: {
       label:
         'If you have an individual business rates account does your premises have a rateable value of £60,000 or less?',
-      options: RETEABLE_LIMIT_ANSWER
+      options: options.RETEABLE_LIMIT_ANSWER
     }
   },
   contact: {
     contactTypeId: {
       label: 'Role/position in organisation:',
-      options: CONTACT_TYPE
+      options: options.CONTACT_TYPE
     },
     firstName: { label: 'First Name:' },
     lastName: { label: 'Last Name:' },
@@ -147,12 +101,12 @@ export const inputLabels = {
       label: 'Business site description:',
       hint:
         '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
-      options: SITE_DESCRIPTION
+      options: options.SITE_DESCRIPTION
     },
     companyNumber: { label: 'Company number (if applicable) ' },
     companyStructureId: {
       label: 'Business Structure:',
-      options: COMPANY_STRUCTURE
+      options: options.COMPANY_STRUCTURE
     },
     ratesAccountNumber: {
       label: 'Business Rates Account Number (if applicable):'
@@ -190,7 +144,11 @@ export const inputLabels = {
   fixedPropertyCosts: {
     year2018To2019: { label: 'Financial Year 18/19', type: 'number' },
     year2019To2020: { label: 'Financial Year 19/20', type: 'number' },
-    itemsIncluded: { label: 'Items included:' }
+    itemsIncluded: {
+      label: 'Items included:',
+      hint:
+        'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader) that is at least 30% of the annual business turnover.'
+    }
   },
   businessBankAccount: {
     bankName: { label: 'Bank Name:' },

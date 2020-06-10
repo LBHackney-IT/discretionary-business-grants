@@ -1,16 +1,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-const defaultOptions = [
-  {
-    label: 'Yes',
-    value: 'Yes'
-  },
-  {
-    label: 'No',
-    value: 'No'
-  }
-];
+const defaultOptions = ['Yes', 'No'];
 
 const Radio = ({
   label,
@@ -35,25 +26,25 @@ const Radio = ({
       </span>
     )}
     <div className="govuk-radios govuk-radios--inline">
-      {options.map(({ label, value }, index) => (
-        <div className="govuk-radios__item" key={label}>
+      {options.map(option => (
+        <div className="govuk-radios__item" key={option}>
           <input
             className={cx('govuk-radios__input', {
               'govuk-input--error': error
             })}
-            id={`${name}_${label}`}
+            id={`${name}_${option}`}
             name={name}
             type="radio"
-            value={value || index + 1}
+            value={option}
             ref={register}
             aria-describedby={hint && `${name}-hint`}
             {...otherProps}
           />
           <label
             className="govuk-label govuk-radios__label"
-            htmlFor={`${name}_${label}`}
+            htmlFor={`${name}_${option}`}
           >
-            {label}
+            {option}
           </label>
         </div>
       ))}

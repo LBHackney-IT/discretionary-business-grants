@@ -1,134 +1,134 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: "discretionary-business-grants API Schema"
-  version: "0.0.12"
-  title: "discretionary-business-grants API"
-host: "discretionarybusinessgrants.hackney.gov.uk"
-basePath: "/api"
+  description: 'discretionary-business-grants API Schema'
+  version: '0.0.13'
+  title: 'discretionary-business-grants API'
+host: 'discretionarybusinessgrants.hackney.gov.uk'
+basePath: '/api'
 tags:
-  - name: "urls"
-    description: "An api to obtain secure URLs for uploading files"
-  - name: "applications"
-    description: ""
+  - name: 'urls'
+    description: 'An api to obtain secure URLs for uploading files'
+  - name: 'applications'
+    description: ''
 schemes:
-  - "https"
+  - 'https'
 paths:
   /urls:
     post:
       tags:
-        - "urls"
-      summary: "Retrieve a new secure URL for file upload"
+        - 'urls'
+      summary: 'Retrieve a new secure URL for file upload'
       consumes:
-        - "application/json"
+        - 'application/json'
       produces:
-        - "application/json"
+        - 'application/json'
       parameters:
-        - name: "body"
-          in: "body"
+        - name: 'body'
+          in: 'body'
           required: true
           schema:
-            $ref: "#/definitions/Url"
+            $ref: '#/definitions/Url'
       responses:
-        "200":
-          description: "Success"
+        '200':
+          description: 'Success'
           schema:
-            type: "object"
+            type: 'object'
             items:
-              $ref: "#/definitions/UrlResponse"
-        "400":
-          description: "Invalid input"
-        "500":
-          description: "Internal server error"
+              $ref: '#/definitions/UrlResponse'
+        '400':
+          description: 'Invalid input'
+        '500':
+          description: 'Internal server error'
   /applications:
     post:
       tags:
-        - "applications"
-      summary: "Create a new business grant application"
+        - 'applications'
+      summary: 'Create a new business grant application'
       consumes:
-        - "application/json"
+        - 'application/json'
       produces:
-        - "application/json"
+        - 'application/json'
       parameters:
-        - name: "body"
-          in: "body"
+        - name: 'body'
+          in: 'body'
           required: true
           schema:
-            $ref: "#/definitions/Applications"
+            $ref: '#/definitions/Applications'
       responses:
-        "201":
-          description: "Your application has been submitted"
+        '201':
+          description: 'Your application has been submitted'
           schema:
-            type: "object"
+            type: 'object'
             items:
-              $ref: "#/definitions/ApplicationsResponse"
-        "400":
-          description: "Invalid input"
-        "500":
-          description: "Internal server error"
+              $ref: '#/definitions/ApplicationsResponse'
+        '400':
+          description: 'Invalid input'
+        '500':
+          description: 'Internal server error'
 
 definitions:
   Url:
-    type: "object"
+    type: 'object'
     properties:
       clientGeneratedId:
-        type: "string"
+        type: 'string'
         minLength: 1
   UrlResponse:
-    type: "object"
+    type: 'object'
     properties:
       documentId:
-        type: "string"
+        type: 'string'
       fields:
-        type: "object"
+        type: 'object'
       url:
-        type: "string"
+        type: 'string'
 
   Applications:
-    type: "object"
+    type: 'object'
     properties:
       clientGeneratedId:
-        type: "string"
+        type: 'string'
         minLength: 1
       eligibilityCriteria:
-        $ref: "#/definitions/EligibilityCriteria"
+        $ref: '#/definitions/EligibilityCriteria'
       contact:
-        $ref: "#/definitions/Contact"
+        $ref: '#/definitions/Contact'
       business:
-        $ref: "#/definitions/Business"
+        $ref: '#/definitions/Business'
       turnover:
-        $ref: "#/definitions/Turnover"
+        $ref: '#/definitions/Turnover'
       fixedPropertyCosts:
-        $ref: "#/definitions/FixedPropertyCosts"
+        $ref: '#/definitions/FixedPropertyCosts'
       documents:
-        $ref: "#/definitions/Documents"
+        $ref: '#/definitions/Documents'
       businessBankAccount:
-        $ref: "#/definitions/BusinessBankAccount"
+        $ref: '#/definitions/BusinessBankAccount'
       declaration:
-        $ref: "#/definitions/Declaration"
+        $ref: '#/definitions/Declaration'
 
   EligibilityCriteria:
-    type: "object"
+    type: 'object'
     properties:
       tradingInHackney:
-        type: "boolean"
+        type: 'boolean'
       businessSizeId:
-        description: "The business must be classed as 1)Micro or 2)Small"
-        type: "integer"
+        description: 'The business must be classed as 1)Micro or 2)Small'
+        type: 'string'
         minimum: 1
       typeOfBusinessId:
-        type: "integer"
+        type: 'string'
       tradingOn20200311:
-        type: "boolean"
+        type: 'boolean'
       servedLegalNotices:
-        type: "boolean"
+        type: 'boolean'
       receivedOtherGrants:
-        type: "boolean"
+        type: 'boolean'
       hasFixedPropertyCost:
-        type: "boolean"
+        type: 'boolean'
       significantIncomeFall:
-        type: "boolean"
+        type: 'boolean'
       rateableLimitAnswerId:
-        type: "integer"
+        type: 'string'
     required:
       - tradingInHackney
       - typeOfBusinessId
@@ -141,24 +141,24 @@ definitions:
       - rateableLimitAnswerId
 
   Contact:
-    type: "object"
+    type: 'object'
     properties:
       contactTypeId:
-        type: "integer"
+        type: 'string'
       firstName:
-        type: "string"
+        type: 'string'
         minLength: 1
       lastName:
-        type: "string"
+        type: 'string'
         minLength: 1
       emailAddress:
-        type: "string"
+        type: 'string'
         minLength: 5
       telephoneNumber:
-        type: "string"
+        type: 'string'
         minLength: 5
       address:
-        $ref: "#/definitions/ContactAddress"
+        $ref: '#/definitions/ContactAddress'
     required:
       - contactTypeId
       - firstName
@@ -168,67 +168,67 @@ definitions:
       - address
 
   ContactAddress:
-    type: "object"
+    type: 'object'
     properties:
       uprn:
-        type: "string"
+        type: 'string'
       firstLine:
-        type: "string"
+        type: 'string'
         minLength: 1
       secondLine:
-        type: "string"
+        type: 'string'
       thirdLine:
-        type: "string"
+        type: 'string'
       postcode:
-        type: "string"
+        type: 'string'
       ward:
-        type: "string"
+        type: 'string'
     required:
       - firstLine
 
   Business:
-    type: "object"
+    type: 'object'
     properties:
       companyStructureId:
-        type: "integer"
+        type: 'string'
       registeredName:
-        description: "Registered name at companies house"
-        type: "string"
+        description: 'Registered name at companies house'
+        type: 'string'
       businessName:
-        description: "EG: Trading name, Charity name"
-        type: "string"
+        description: 'EG: Trading name, Charity name'
+        type: 'string'
       businessDescription:
-        description: "What is the main activity carried out"
-        type: "string"
+        description: 'What is the main activity carried out'
+        type: 'string'
       companyNumber:
-        type: "string"
+        type: 'string'
       siteDescriptionId:
-        type: "integer"
+        type: 'string'
       fullTimeEmployees:
-        type: "integer"
+        type: 'integer'
         minimum: 1
       percentageFallInIncome:
         minimum: 1
         maximum: 100
       rateableValue:
-        type: "number"
+        type: 'number'
       ratesAccountNumber:
-        type: "string"
-        description: "Business Rates Account number"
+        type: 'string'
+        description: 'Business Rates Account number'
       registeredCharity:
-        type: "string"
+        type: 'string'
       councilRentAccountNumber:
-        type: "string"
+        type: 'string'
       councilTaxNumber:
-        type: "string"
+        type: 'string'
       turnover:
-        description: "Business turnover March to May (inclusive) 2020"
-        type: "number"
+        description: 'Business turnover March to May (inclusive) 2020'
+        type: 'number'
       fixedPropertyCost:
-        description: "Fixed property related costs March to May (inclusive) 2020"
-        type: "number"
+        description: 'Fixed property related costs March to May (inclusive) 2020'
+        type: 'number'
       businessAddress:
-        $ref: "#/definitions/BusinessAddress"
+        $ref: '#/definitions/BusinessAddress'
     required:
       - companyStructureId
       - siteDescriptionId
@@ -237,20 +237,20 @@ definitions:
       - businessAddress
 
   BusinessAddress:
-    type: "object"
+    type: 'object'
     properties:
       uprn:
-        type: "string"
+        type: 'string'
         minLength: 1
       firstLine:
-        type: "string"
+        type: 'string'
         minLength: 1
       secondLine:
-        type: "string"
+        type: 'string'
       thirdLine:
-        type: "string"
+        type: 'string'
       postcode:
-        type: "string"
+        type: 'string'
         minLength: 2
     required:
       - uprn
@@ -258,60 +258,60 @@ definitions:
       - postcode
 
   Turnover:
-    type: "object"
+    type: 'object'
     properties:
       year1819:
-        type: "number"
+        type: 'number'
       year1920:
-        type: "number"
+        type: 'number'
     required:
       - year1819
       - year1920
 
   FixedPropertyCosts:
-    type: "object"
+    type: 'object'
     properties:
       year2018To2019:
-        type: "number"
+        type: 'number'
       year2019To2020:
-        type: "number"
+        type: 'number'
       itemsIncluded:
-        type: "string"
+        type: 'string'
     required:
       - year2018To2019
       - year2019To2020
       - itemsIncluded
 
   Documents:
-    type: "array"
+    type: 'array'
     items:
-      type: "object"
+      type: 'object'
       uniqueItems: true
       properties:
         s3Path:
-          type: "string"
+          type: 'string'
           minLength: 1
         documentType:
-          type: "string"
+          type: 'string'
           minLength: 1
       required:
         - s3Path
         - documentType
 
   BusinessBankAccount:
-    type: "object"
+    type: 'object'
     properties:
       bankName:
-        type: "string"
+        type: 'string'
         minLength: 1
       accountHolder:
-        type: "string"
+        type: 'string'
         minLength: 1
       accountNumber:
-        type: "string"
+        type: 'string'
         minLength: 1
       accountSortcode:
-        type: "string"
+        type: 'string'
         minLength: 6
     required:
       - bankName
@@ -320,23 +320,23 @@ definitions:
       - accountSortcode
 
   Declaration:
-    type: "object"
+    type: 'object'
     properties:
       stateAidReceived:
-        type: "number"
+        type: 'number'
       stateAidCapNotExceeded:
-        type: "boolean"
+        type: 'boolean'
       permittedToAcceptStateAidGrant:
-        type: "boolean"
+        type: 'boolean'
       readUnderstoodDeclaration:
-        type: "boolean"
+        type: 'boolean'
     required:
-    - stateAidCapNotExceeded
-    - permittedToAcceptStateAidGrant
-    - readUnderstoodDeclaration
+      - stateAidCapNotExceeded
+      - permittedToAcceptStateAidGrant
+      - readUnderstoodDeclaration
 
   ApplicationsResponse:
-    type: "object"
+    type: 'object'
     properties:
       confirmationId:
-        type: "string"
+        type: 'string'
