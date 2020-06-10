@@ -26,11 +26,11 @@ const BankDetails = props => {
       />
       <TextInput
         {...getInputProps('businessBankAccount', 'accountNumber')}
-        register={register({ required: true })}
+        register={register({ required: true, minLength: 8, maxLength: 8 })}
       />
       <TextInput
         {...getInputProps('businessBankAccount', 'accountSortcode')}
-        register={register({ required: true, minLength: 6 })}
+        register={register({ required: true, minLength: 6, maxLength: 6 })}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

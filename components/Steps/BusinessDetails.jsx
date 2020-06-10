@@ -58,6 +58,7 @@ const Step1 = props => {
           errors.business.businessAddress &&
           errors.business.businessAddress.message
         }
+        supportManualEntry={false}
       />
       <TextInput
         {...getInputProps('business', 'businessDescription')}

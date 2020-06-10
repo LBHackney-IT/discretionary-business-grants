@@ -54,7 +54,8 @@ const AddressLookup = ({
   control,
   register,
   defaultValue,
-  errorMessage
+  errorMessage,
+  supportManualEntry = true
 }) => {
   const inputRef = useRef();
   const [postcode, setPostcode] = useState(
@@ -110,16 +111,18 @@ const AddressLookup = ({
               text="lookup"
             />
           </div>
-          <div className="govuk-grid-column-one-third">
-            <Button
-              onClick={() => {
-                setIsManually(true);
-              }}
-              isSecondary
-              type="button"
-              text="or enter it manually"
-            />
-          </div>
+          {supportManualEntry && (
+            <div className="govuk-grid-column-one-third">
+              <Button
+                onClick={() => {
+                  setIsManually(true);
+                }}
+                isSecondary
+                type="button"
+                text="or enter it manually"
+              />
+            </div>
+          )}
         </div>
         {error && (
           <span className="govuk-error-message">
