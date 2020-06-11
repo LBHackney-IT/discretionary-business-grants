@@ -2,8 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { Controller } from 'react-hook-form';
 
-const DateInput = ({ label, inputRef, error, onChange }) => {
-  const [date, setDate] = useState({ day: '', month: '', year: '' });
+const getInitialDate = (value = '') => {
+  const [year = '', month = '', day = ''] = value.split('-');
+  return { day, month, year };
+};
+
+const DateInput = ({ label, inputRef, error, value, onChange }) => {
+  const [date, setDate] = useState(getInitialDate(value));
   useEffect(() => {
     const { day, month, year } = date;
     day !== '' &&

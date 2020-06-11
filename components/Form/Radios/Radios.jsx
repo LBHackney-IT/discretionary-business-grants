@@ -11,6 +11,7 @@ const Radio = ({
   register,
   error,
   children,
+  isRadiosInline = true,
   ...otherProps
 }) => (
   <div
@@ -27,7 +28,9 @@ const Radio = ({
       </span>
     )}
     {children}
-    <div className="govuk-radios govuk-radios--inline">
+    <div
+      className={cx('govuk-radios', { 'govuk-radios--inline': isRadiosInline })}
+    >
       {options.map(option => (
         <div className="govuk-radios__item" key={option}>
           <input
