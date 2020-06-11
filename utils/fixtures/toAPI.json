@@ -74,7 +74,6 @@
   "declaration": {
     "stateAidReceived": 987,
     "permittedToAcceptStateAidGrant": true,
-    "stateAidCapNotExceeded": true,
     "readUnderstoodDeclaration": true
   }
 }

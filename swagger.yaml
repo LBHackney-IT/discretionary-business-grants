@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.14'
+  version: '0.0.15'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -323,14 +323,11 @@ definitions:
     properties:
       stateAidReceived:
         type: 'number'
-      stateAidCapNotExceeded:
-        type: 'boolean'
       permittedToAcceptStateAidGrant:
         type: 'boolean'
       readUnderstoodDeclaration:
         type: 'boolean'
     required:
-      - stateAidCapNotExceeded
       - permittedToAcceptStateAidGrant
       - readUnderstoodDeclaration
 
