@@ -34,16 +34,11 @@ const Declaration = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Declaration</h1>
-      <Radios
-        {...getInputProps('declaration', 'stateAidOptionId')}
-        register={register({
-          required: true
-        })}
-      />
+      <Radios {...getInputProps('declaration', 'stateAidOptionId', register)} />
       {showOtherQuestions && (
         <>
           <DateInput
-            {...getInputProps('declaration', 'dateOfAid')}
+            {...getInputProps('declaration', 'dateOfAid', null, errors)}
             control={control}
             rules={{
               required: 'Date of aid is required',
@@ -53,26 +48,24 @@ const Declaration = props => {
                 past: value => isPast(new Date(value)) || 'Must be a past Date'
               }
             }}
-            error={errors.declaration && errors.declaration.dateOfAid}
           />
           <TextInput
-            {...getInputProps('declaration', 'organisationProvidingAid')}
-            register={register({ required: true })}
+            {...getInputProps(
+              'declaration',
+              'organisationProvidingAid',
+              register
+            )}
           />
           <TextInput
-            {...getInputProps('declaration', 'stateAidReceived')}
-            register={register({ required: true })}
+            {...getInputProps('declaration', 'stateAidReceived', register)}
           />
           <Radios
-            {...getInputProps('declaration', 'permittedToAcceptStateAidGrant')}
-            register={register({
-              required: 'You need to agree.',
-              validate: value => value === 'Yes' || 'You need to agree.'
-            })}
-            error={
-              errors.declaration &&
-              errors.declaration.permittedToAcceptStateAidGrant
-            }
+            {...getInputProps(
+              'declaration',
+              'permittedToAcceptStateAidGrant',
+              register,
+              errors
+            )}
           />
         </>
       )}

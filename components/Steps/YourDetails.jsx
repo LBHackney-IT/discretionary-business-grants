@@ -17,36 +17,15 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
-      <Select
-        {...getInputProps('contact', 'contactTypeId')}
-        register={register({
-          required: true,
-          validate: value => value !== ''
-        })}
-      />
-      <TextInput
-        {...getInputProps('contact', 'firstName')}
-        register={register({ required: true })}
-      />
-      <TextInput
-        {...getInputProps('contact', 'lastName')}
-        register={register({ required: true })}
-      />
-      <TextInput
-        {...getInputProps('contact', 'emailAddress')}
-        type="email"
-        register={register({ required: true })}
-      />
-      <TextInput
-        {...getInputProps('contact', 'telephoneNumber')}
-        type="tel"
-        register={register}
-      />
+      <Select {...getInputProps('contact', 'contactTypeId', register)} />
+      <TextInput {...getInputProps('contact', 'firstName', register)} />
+      <TextInput {...getInputProps('contact', 'lastName', register)} />
+      <TextInput {...getInputProps('contact', 'emailAddress', register)} />
+      <TextInput {...getInputProps('contact', 'telephoneNumber', register)} />
       <AddressLookup
-        {...getInputProps('contact', 'address')}
+        {...getInputProps('contact', 'address', register)}
         defaultValue={props.formData.contact && props.formData.contact.address}
         control={control}
-        register={register}
         errorMessage={
           errors.contact &&
           errors.contact.address &&

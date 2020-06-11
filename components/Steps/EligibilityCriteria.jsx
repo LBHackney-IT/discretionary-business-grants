@@ -45,51 +45,75 @@ const Step1 = props => {
             next section
           </span>
           <Radios
-            {...getInputProps('eligibilityCriteria', 'tradingInHackney')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'tradingInHackney',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'businessSizeId')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'businessSizeId',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Select
-            {...getInputProps('eligibilityCriteria', 'typeOfBusinessId')}
-            register={register({
-              required: true,
-              validate: value => value !== ''
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'typeOfBusinessId',
+              register
+            )}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'tradingOn20200311')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'tradingOn20200311',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'servedLegalNotices')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'servedLegalNotices',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'receivedOtherGrants')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'receivedOtherGrants',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'hasFixedPropertyCost')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'hasFixedPropertyCost',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'significantIncomeFall')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'significantIncomeFall',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'rateableLimitAnswerId')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'rateableLimitAnswerId',
+              register
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
         </fieldset>
       </div>

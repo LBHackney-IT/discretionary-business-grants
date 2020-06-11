@@ -17,74 +17,43 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Business Details</h1>
+      <TextInput {...getInputProps('business', 'businessName', register)} />
+      <TextInput {...getInputProps('business', 'registeredName', register)} />
+      <TextInput {...getInputProps('business', 'companyNumber', register)} />
       <TextInput
-        {...getInputProps('business', 'businessName')}
-        register={register({ required: true })}
+        {...getInputProps('business', 'registeredCharity', register)}
       />
+      <Select {...getInputProps('business', 'companyStructureId', register)} />
       <TextInput
-        {...getInputProps('business', 'registeredName')}
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'companyNumber')}
-        type="number"
-        register={register}
+        {...getInputProps('business', 'councilRentAccountNumber', register)}
       />
       <TextInput
-        {...getInputProps('business', 'registeredCharity')}
-        register={register}
+        {...getInputProps('business', 'ratesAccountNumber', register)}
       />
-      <Select
-        {...getInputProps('business', 'companyStructureId')}
-        register={register({ required: true, validate: value => value !== '' })}
-      />
-      <TextInput
-        {...getInputProps('business', 'councilRentAccountNumber')}
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'ratesAccountNumber')}
-        register={register}
-      />
-      <TextInput
-        {...getInputProps('business', 'rateableValue')}
-        type="number"
-        register={register({ min: 0 })}
-      />
-      <TextInput
-        {...getInputProps('business', 'councilTaxNumber')}
-        register={register}
-      />
+      <TextInput {...getInputProps('business', 'rateableValue', register)} />
+      <TextInput {...getInputProps('business', 'councilTaxNumber', register)} />
       <AddressLookup
-        {...getInputProps('business', 'businessAddress')}
+        {...getInputProps('business', 'businessAddress', register)}
         defaultValue={
           props.formData.business && props.formData.business.businessAddress
         }
         control={control}
-        register={register}
         errorMessage={
           errors.business &&
           errors.business.businessAddress &&
           errors.business.businessAddress.message
         }
-        supportManualEntry={false}
       />
       <TextInput
-        {...getInputProps('business', 'businessDescription')}
-        register={register}
+        {...getInputProps('business', 'businessDescription', register)}
       />
-      <Select
-        {...getInputProps('business', 'siteDescriptionId')}
-        register={register({ required: true, validate: value => value !== '' })}
-      />
+      <Select {...getInputProps('business', 'siteDescriptionId', register)} />
 
       <TextInput
-        {...getInputProps('business', 'fullTimeEmployees')}
-        register={register({ required: true, min: 0 })}
+        {...getInputProps('business', 'fullTimeEmployees', register)}
       />
       <TextInput
-        {...getInputProps('business', 'percentageFallInIncome')}
-        register={register({ required: true, min: 0, max: 100 })}
+        {...getInputProps('business', 'percentageFallInIncome', register)}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

@@ -29,18 +29,9 @@ const BusinessTurnover = props => {
             </p>
             <p>Fields require numeric values e.g 10000 for £10,000.</p>
           </div>
-          <TextInput
-            {...getInputProps('turnover', 'turnover')}
-            register={register({ required: true, min: 0 })}
-          />
-          <TextInput
-            {...getInputProps('turnover', 'year1819')}
-            register={register({ required: true, min: 0 })}
-          />
-          <TextInput
-            {...getInputProps('turnover', 'year1920')}
-            register={register({ required: true, min: 0 })}
-          />
+          <TextInput {...getInputProps('turnover', 'turnover', register)} />
+          <TextInput {...getInputProps('turnover', 'year1819', register)} />
+          <TextInput {...getInputProps('turnover', 'year1920', register)} />
         </fieldset>
       </div>
       <Button className="govuk-button" text="Next" type="submit" />
