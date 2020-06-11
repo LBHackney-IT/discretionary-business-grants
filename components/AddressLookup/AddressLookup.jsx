@@ -54,7 +54,7 @@ const AddressLookup = ({
   control,
   register,
   defaultValue,
-  errorMessage,
+  error: { message: errorMessage } = {},
   supportManualEntry = true
 }) => {
   const inputRef = useRef();

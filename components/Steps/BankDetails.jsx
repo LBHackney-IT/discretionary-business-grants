@@ -21,13 +21,18 @@ const BankDetails = props => {
         bank account rather than your personal bank account.
       </div>
       <TextInput
-        {...getInputProps('businessBankAccount', 'bankName', register, errors)}
+        {...getInputProps(
+          'businessBankAccount',
+          'bankName',
+          { register },
+          errors
+        )}
       />
       <TextInput
         {...getInputProps(
           'businessBankAccount',
           'accountHolder',
-          register,
+          { register },
           errors
         )}
       />
@@ -35,7 +40,7 @@ const BankDetails = props => {
         {...getInputProps(
           'businessBankAccount',
           'accountNumber',
-          register,
+          { register },
           errors
         )}
       />
@@ -43,7 +48,7 @@ const BankDetails = props => {
         {...getInputProps(
           'businessBankAccount',
           'accountSortcode',
-          register,
+          { register },
           errors
         )}
       />

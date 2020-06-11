@@ -1,3 +1,6 @@
+import isValid from 'date-fns/isValid';
+import isPast from 'date-fns/isPast';
+
 import EligibilityCriteria from 'components/Steps/EligibilityCriteria';
 import SupplementaryInformation from 'components/Steps/SupplementaryInformation';
 import YourDetails from 'components/Steps/YourDetails';
@@ -272,7 +275,16 @@ export const inputLabels = {
       options: options.STATE_AID_OPTION,
       validation: { required: true }
     },
-    dateOfAid: { label: 'Date of aid' },
+    dateOfAid: {
+      label: 'Date of aid',
+      validation: {
+        required: 'Date of aid is required',
+        validate: {
+          valid: value => isValid(new Date(value)) || 'Must be a is valid Date',
+          past: value => isPast(new Date(value)) || 'Must be a past Date'
+        }
+      }
+    },
     stateAidReceived: {
       label:
         'I/we have received the following value of State Aid under above rule',
@@ -292,29 +304,42 @@ export const inputLabels = {
       }
     },
     readUnderstoodDeclaration: {
-      label: 'Tick to confirm you have read and understood the declaration'
+      label: 'Tick to confirm you have read and understood the declaration',
+      validation: { required: 'You need to confirm.' }
     }
   },
   supplementaryInformation: {
     businessAccounts: {
       label: 'Business Accounts:',
       hint:
-        'Please provide a company of the business accounts for the financial year 2018/19 (or your HMRC self assessment tax return for the financial year 2018/19). If not available please provide what is available'
+        'Please provide a company of the business accounts for the financial year 2018/19 (or your HMRC self assessment tax return for the financial year 2018/19). If not available please provide what is available',
+      validation: {
+        validate: value => value.length > 0 || 'Document required'
+      }
     },
     fixedPropertyCosts: {
       label: 'Fixed Property costs:',
       hint:
-        'Please provide evidence of your ongoing fixed property costs (such as the lease, licence, rental agreement or mortgage statement for the business premises)'
+        'Please provide evidence of your ongoing fixed property costs (such as the lease, licence, rental agreement or mortgage statement for the business premises)',
+      validation: {
+        validate: value => value.length > 0 || 'Document required'
+      }
     },
     fallInIncome: {
       label: 'Fall in income:',
       hint:
-        ' Please provide financial evidence showing the fall in income experienced by your business as a result of Covid-19 (such as; up to date business management accounts for the last 12 months showing profit and loss, turnover, cashflow and balance sheet. Bank statements over the past 6 months)'
+        ' Please provide financial evidence showing the fall in income experienced by your business as a result of Covid-19 (such as; up to date business management accounts for the last 12 months showing profit and loss, turnover, cashflow and balance sheet. Bank statements over the past 6 months)',
+      validation: {
+        validate: value => value.length > 0 || 'Document required'
+      }
     },
     identity: {
       label: 'Identity',
       hint:
-        'Please provide a form of photo identification such as a passport or driving licence'
+        'Please provide a form of photo identification such as a passport or driving licence',
+      validation: {
+        validate: value => value.length > 0 || 'Document required'
+      }
     },
     payrollInformation: {
       label: 'Payroll Information',
@@ -324,12 +349,19 @@ export const inputLabels = {
   }
 };
 
-export const getInputProps = (form, name, register, errors) => {
+export const getInputProps = (
+  form,
+  name,
+  { register, control } = {},
+  errors
+) => {
   const { validation, ...props } = inputLabels[form][name];
   return {
     name: `${form}.${name}`,
     ...props,
     register: validation && register ? register(validation) : register,
+    control: control,
+    rules: control && validation,
     error: errors && errors[form] && errors[form][name]
   };
 };

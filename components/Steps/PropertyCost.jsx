@@ -32,13 +32,19 @@ const PropertyCost = props => {
             required below.
           </span>
           <TextInput
-            {...getInputProps('fixedPropertyCosts', 'year2018To2019', register)}
+            {...getInputProps('fixedPropertyCosts', 'year2018To2019', {
+              register
+            })}
           />
           <TextInput
-            {...getInputProps('fixedPropertyCosts', 'year2019To2020', register)}
+            {...getInputProps('fixedPropertyCosts', 'year2019To2020', {
+              register
+            })}
           />
           <TextInput
-            {...getInputProps('fixedPropertyCosts', 'itemsIncluded', register)}
+            {...getInputProps('fixedPropertyCosts', 'itemsIncluded', {
+              register
+            })}
           />
         </fieldset>
       </div>

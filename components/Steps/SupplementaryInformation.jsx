@@ -14,17 +14,11 @@ const SupplementaryInformation = props => {
     Router.push(stepPath, props.nextStep);
   };
   const sharedProps = name => ({
-    ...getInputProps('supplementaryInformation', name),
-    errorMessage:
-      errors.supplementaryInformation &&
-      errors.supplementaryInformation[name] &&
-      errors.supplementaryInformation[name].message,
+    ...getInputProps('supplementaryInformation', name, { control }, errors),
     uploadPrefix: props.formData.contact && props.formData.contact.emailAddress,
-    control,
     defaultValue:
       props.formData.supplementaryInformation &&
-      props.formData.supplementaryInformation[name],
-    rules: { validate: value => value.length > 0 || 'Document required' }
+      props.formData.supplementaryInformation[name]
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,10 +36,7 @@ const SupplementaryInformation = props => {
       <ControlledFileUpload {...sharedProps('fixedPropertyCosts')} />
       <ControlledFileUpload {...sharedProps('fallInIncome')} />
       <ControlledFileUpload {...sharedProps('identity')} />
-      <ControlledFileUpload
-        {...sharedProps('payrollInformation')}
-        rules={null}
-      />
+      <ControlledFileUpload {...sharedProps('payrollInformation')} />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
   );

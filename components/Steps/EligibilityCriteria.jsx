@@ -45,74 +45,56 @@ const Step1 = props => {
             next section
           </span>
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'tradingInHackney',
+            {...getInputProps('eligibilityCriteria', 'tradingInHackney', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'businessSizeId',
+            {...getInputProps('eligibilityCriteria', 'businessSizeId', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Select
-            {...getInputProps(
-              'eligibilityCriteria',
-              'typeOfBusinessId',
+            {...getInputProps('eligibilityCriteria', 'typeOfBusinessId', {
               register
-            )}
+            })}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'tradingOn20200311',
+            {...getInputProps('eligibilityCriteria', 'tradingOn20200311', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'servedLegalNotices',
+            {...getInputProps('eligibilityCriteria', 'servedLegalNotices', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'receivedOtherGrants',
+            {...getInputProps('eligibilityCriteria', 'receivedOtherGrants', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'hasFixedPropertyCost',
+            {...getInputProps('eligibilityCriteria', 'hasFixedPropertyCost', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'significantIncomeFall',
+            {...getInputProps('eligibilityCriteria', 'significantIncomeFall', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'rateableLimitAnswerId',
+            {...getInputProps('eligibilityCriteria', 'rateableLimitAnswerId', {
               register
-            )}
+            })}
             onChange={() => setShowError(false)}
           />
         </fieldset>

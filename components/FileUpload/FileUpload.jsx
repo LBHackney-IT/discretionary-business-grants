@@ -14,7 +14,7 @@ const FileUpload = ({
   inputRef,
   uploadPrefix = 'test',
   defaultValue = [],
-  errorMessage,
+  error: { message: errorMessage } = {},
   onChange
 }) => {
   const [fileList, setFileList] = useState(defaultValue);

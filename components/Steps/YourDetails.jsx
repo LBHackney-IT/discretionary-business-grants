@@ -17,20 +17,16 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
-      <Select {...getInputProps('contact', 'contactTypeId', register)} />
-      <TextInput {...getInputProps('contact', 'firstName', register)} />
-      <TextInput {...getInputProps('contact', 'lastName', register)} />
-      <TextInput {...getInputProps('contact', 'emailAddress', register)} />
-      <TextInput {...getInputProps('contact', 'telephoneNumber', register)} />
+      <Select {...getInputProps('contact', 'contactTypeId', { register })} />
+      <TextInput {...getInputProps('contact', 'firstName', { register })} />
+      <TextInput {...getInputProps('contact', 'lastName', { register })} />
+      <TextInput {...getInputProps('contact', 'emailAddress', { register })} />
+      <TextInput
+        {...getInputProps('contact', 'telephoneNumber', { register })}
+      />
       <AddressLookup
-        {...getInputProps('contact', 'address', register)}
+        {...getInputProps('contact', 'address', { register, control }, errors)}
         defaultValue={props.formData.contact && props.formData.contact.address}
-        control={control}
-        errorMessage={
-          errors.contact &&
-          errors.contact.address &&
-          errors.contact.address.message
-        }
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
