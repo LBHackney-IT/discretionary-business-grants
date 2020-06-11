@@ -62,9 +62,6 @@ functions:
       POSTCODE_LOOKUP_APIKEY: ${env:POSTCODE_LOOKUP_APIKEY}
       GOV_NOTIFY_API_KEY: ${env:GOV_NOTIFY_API_KEY}
       EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID: ${env:EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID}
-#      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
-#      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
-#      PLANS_TABLE_NAME: ${self:provider.environment.PLANS_TABLE}
 
   authorizer:
     name: ${self:service}-authorizer-${self:provider.stage}
@@ -74,8 +71,8 @@ functions:
         - authorizer/**
         - node_modules/**
     environment:
-#      ALLOWED_GROUPS: 'housingneeds-singleview-beta'
-      JWT_SECRET: ${ssm:/common/hackney-jwt-secret}
+      ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
+      JWT_SECRET: ${ssm:hackney-jwt-secret}
 
 resources:
   Resources:
@@ -197,3 +194,6 @@ custom:
       - subnet-034b2a03cd4955923
       - subnet-03431a6c898502c99
       - subnet-0f02c86bab1d62956
+  allowed-groups:
+    staging: 'DBG - Admin Staging'
+    production: 'DBG - Admins'
