@@ -22,10 +22,13 @@ const BusinessTurnover = props => {
           <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 className="govuk-fieldset__heading">Business Turnover</h1>
           </legend>
-          <span id="step-hint" className="govuk-hint">
-            Information to be verifiable with supplementary information as
-            required below
-          </span>
+          <div className="govuk-inset-text">
+            <p>
+              Please provide information below on your business turnover to help
+              demonstrate the impact of Covid-19 on your business.
+            </p>
+            <p>Fields require numeric values e.g 10000 for £10,000.</p>
+          </div>
           <TextInput
             {...getInputProps('turnover', 'turnover')}
             register={register({ required: true, min: 0 })}

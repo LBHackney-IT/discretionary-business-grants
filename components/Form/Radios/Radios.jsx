@@ -10,6 +10,7 @@ const Radio = ({
   options = defaultOptions,
   register,
   error,
+  children,
   ...otherProps
 }) => (
   <div
@@ -25,6 +26,7 @@ const Radio = ({
         {hint}
       </span>
     )}
+    {children}
     <div className="govuk-radios govuk-radios--inline">
       {options.map(option => (
         <div className="govuk-radios__item" key={option}>
@@ -63,6 +65,7 @@ Radio.propTypes = {
   register: PropTypes.func.isRequired,
   options: PropTypes.array,
   hint: PropTypes.string,
+  children: PropTypes.node,
   error: PropTypes.shape({ message: PropTypes.string.isRequired })
 };
 
