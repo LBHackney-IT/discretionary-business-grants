@@ -28,6 +28,11 @@ const Radio = ({
       </span>
     )}
     {children}
+    {error && (
+      <span className="govuk-error-message">
+        <span className="govuk-visually-hidden">Error:</span> {error.message}
+      </span>
+    )}
     <div
       className={cx('govuk-radios', { 'govuk-radios--inline': isRadiosInline })}
     >
@@ -54,11 +59,6 @@ const Radio = ({
         </div>
       ))}
     </div>
-    {error && (
-      <span className="govuk-error-message">
-        <span className="govuk-visually-hidden">Error:</span> {error.message}
-      </span>
-    )}
   </div>
 );
 
