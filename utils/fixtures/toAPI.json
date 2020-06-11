@@ -72,6 +72,7 @@
     "accountSortcode": "112233"
   },
   "declaration": {
+    "stateAidOptionId": "Covid 19 Temporary Framework Scheme",
     "stateAidReceived": 987,
     "permittedToAcceptStateAidGrant": true,
     "readUnderstoodDeclaration": true
