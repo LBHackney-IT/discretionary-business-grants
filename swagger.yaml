@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.16'
+  version: '0.0.17'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -110,7 +110,7 @@ definitions:
     type: 'object'
     properties:
       tradingInHackney:
-        type: 'boolean'
+        type: 'string'
       businessSizeId:
         description: 'The business must be classed as 1)Micro or 2)Small'
         type: 'string'
@@ -118,15 +118,15 @@ definitions:
       typeOfBusinessId:
         type: 'string'
       tradingOn20200311:
-        type: 'boolean'
+        type: 'string'
       servedLegalNotices:
-        type: 'boolean'
+        type: 'string'
       receivedOtherGrants:
-        type: 'boolean'
+        type: 'string'
       hasFixedPropertyCost:
-        type: 'boolean'
+        type: 'string'
       significantIncomeFall:
-        type: 'boolean'
+        type: 'string'
       rateableLimitAnswerId:
         type: 'string'
     required:
@@ -330,12 +330,11 @@ definitions:
       stateAidReceived:
         type: 'number'
       permittedToAcceptStateAidGrant:
-        type: 'boolean'
+        type: 'string'
       readUnderstoodDeclaration:
         type: 'boolean'
     required:
       - stateAidOptionId
-      - permittedToAcceptStateAidGrant
       - readUnderstoodDeclaration
 
   ApplicationsResponse:
