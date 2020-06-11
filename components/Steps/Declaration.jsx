@@ -1,114 +1,81 @@
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, Radios, Checkbox, TextInput } from 'components/Form';
+import isValid from 'date-fns/isValid';
+import isPast from 'date-fns/isPast';
+
+import {
+  Button,
+  Radios,
+  Checkbox,
+  DateInput,
+  TextInput
+} from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 
+import { STATE_AID_OPTION_WITH_MORE_Q } from 'lib/dbMapping';
+
 const Declaration = props => {
-  const { register, errors, handleSubmit } = useForm({
+  const [showOtherQuestions, setShowOtherQuestions] = useState(false);
+  const { register, errors, control, watch, handleSubmit } = useForm({
     defaultValues: props.formData
   });
   const onSubmit = data => {
     props.saveData(data);
     Router.push(stepPath, props.nextStep);
   };
-
+  const selectedStateAid = watch('declaration.stateAidOptionId');
+  useEffect(() => {
+    setShowOtherQuestions(
+      STATE_AID_OPTION_WITH_MORE_Q.indexOf(selectedStateAid) !== -1
+    );
+  }, [selectedStateAid]);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Declaration</h1>
-      <h2>Covid 19 Temporary Framework Scheme</h2>
-      <p className="govuk-body">
-        Following the outbreak of the Coronavirus, the European Commission has
-        approved schemes to aid businesses affected by the Coronavirus outbreak
-        on the basis of their Temporary Framework, including the COVID-19
-        Temporary Framework scheme for the UK.
-      </p>
-      <p className="govuk-body">
-        The maximum level of aid that a company may receive is €800 000 (€120
-        000 per undertaking active in the fishery and aquaculture sector or €100
-        000 per undertaking active in the primary production of agricultural
-        products). This is across all UK schemes under the terms of the European
-        Commission’s Temporary Framework. The Euro equivalent of the Sterling
-        aid amount is calculated using the Commission exchange rate applicable
-        on the date the aid is offered.
-      </p>
-      <p className="govuk-body">
-        Any aid provided under this scheme will be relevant if you wish to
-        apply, or have applied, for any other aid granted on the basis of the
-        European Commission’s Temporary Framework. You will need to declare this
-        amount to any other aid awarding body who requests information from you
-        on how much aid you have received. You must retain evidence of state aid
-        for four years after the conclusion of the UK’s transition from the EU
-        and produce it on any request from the UK public authorities or the
-        European Commission.
-      </p>
-      <p className="govuk-body">
-        Aid may be granted to undertakings that were not in difficulty (within
-        the meaning of Article 2(18) of the General Block Exemption Regulation)
-        on 31 December 2019, but that faced difficulties or entered in
-        difficulty thereafter as a result of the COVID19 outbreak.
-      </p>
-      <p className="govuk-body">
-        This aid is in addition to any aid that you may have received under the
-        De Minimis regulation allowing aid of up to €200,000 to any one
-        organisation over a three fiscal year period (i.e. your current fiscal
-        year and previous two fiscal years), and any other approved aid you have
-        received under other State aid rules, such as aid granted under the
-        General Block Exemption Regulation.
-      </p>
-      <p className="govuk-body">
-        By ticking the declaration below you are confirming eligibility, in
-        principle, for aid."
-      </p>
-      <p className="govuk-hint">
-        Businesses are eligible for grants under the EU State Aid De Minimis
-        rules or the COVID-19 Temporary Framework for UK Authorities. The
-        Discretionary Grant is considered State Aid and Local Authorities have a
-        discretion to make payments to eligible recipients under either the De
-        Minimis rules or the COVID-19 Temporary Framework for UK Authorities
-        (provided all the relevant conditions are met). London Borough of
-        Hackney will be issuing payments of up to and including £10,000 which
-        can be provided under the De Minimis rules. Applicants are advised to
-        check their position before submitting applications here.
-      </p>
-      <TextInput
-        {...getInputProps('declaration', 'stateAidReceived')}
-        register={register}
-      />
       <Radios
-        {...getInputProps('declaration', 'permittedToAcceptStateAidGrant')}
+        {...getInputProps('declaration', 'stateAidOptionId')}
         register={register({
-          required: 'You need to agree.',
-          validate: value => value === 'Yes' || 'You need to agree.'
+          required: true
         })}
-        error={
-          errors.declaration &&
-          errors.declaration.permittedToAcceptStateAidGrant
-        }
       />
-      <Radios
-        {...getInputProps('declaration', 'stateAidCapNotExceeded')}
-        register={register({
-          required: 'You need to agree.',
-          validate: value => value === 'Yes' || 'You need to agree.'
-        })}
-        error={errors.declaration && errors.declaration.stateAidCapNotExceeded}
-      />
-      <h2>Data Protection</h2>
-      <p className="govuk-body">
-        The Council will manage the personal information collected on this form
-        in line with the General Data Protection Regulation (GDPR) and the Data
-        Protection Act 2018 for the purposes outlined within our Privacy Notice
-        <a herf="www.hackney.gov.uk/privacy">www.hackney.gov.uk/privacy</a>.
-        Your information may be shared internally and with external partners
-        purely for these purposes and will not be shared with any other
-        organisations unless required to do so by law or for the purposes of
-        prevention and detection of crime and/or fraud. We may contact you using
-        the details you provide, in connection with this form and the
-        information you supply. Your personal information will only be retained
-        for as long as is necessary and you may request a copy of the
-        information we hold about you.
-      </p>
+      {showOtherQuestions && (
+        <>
+          <DateInput
+            {...getInputProps('declaration', 'dateOfAid')}
+            control={control}
+            rules={{
+              required: 'Date of aid is required',
+              validate: {
+                valid: value =>
+                  isValid(new Date(value)) || 'Must be a is valid Date',
+                past: value => isPast(new Date(value)) || 'Must be a past Date'
+              }
+            }}
+            error={errors.declaration && errors.declaration.dateOfAid}
+          />
+          <TextInput
+            {...getInputProps('declaration', 'organisationProvidingAid')}
+            register={register({ required: true })}
+          />
+          <TextInput
+            {...getInputProps('declaration', 'stateAidReceived')}
+            register={register({ required: true })}
+          />
+          <Radios
+            {...getInputProps('declaration', 'permittedToAcceptStateAidGrant')}
+            register={register({
+              required: 'You need to agree.',
+              validate: value => value === 'Yes' || 'You need to agree.'
+            })}
+            error={
+              errors.declaration &&
+              errors.declaration.permittedToAcceptStateAidGrant
+            }
+          />
+        </>
+      )}
       <h2>How we will use your information</h2>
       <p className="govuk-body">
         The Council will not accept deliberate manipulation and fraud. Any
@@ -121,18 +88,6 @@ const Declaration = props => {
         inaccurate information, we will record this. If you would like full
         details on how we use your information, please refer to our privacy
         policy.
-      </p>
-      <h2>Combating fraud</h2>
-      <p className="govuk-body">
-        The government Grants Management Function and Counter Fraud Function
-        will make their digital assurance tool, Spotlight, available to local
-        authorities, and will offer support in using the tool and interpreting
-        results. Alongside other checks conducted by local authorities, the tool
-        can help with pre-payment and post payment assurance. We will work with
-        the government and other local authorities in identifying and sharing
-        good practice, including protecting eligible businesses which may be
-        targeted by fraudsters pretending to be central or local government or
-        acting on their behalf.
       </p>
       <h2>Declaration</h2>
       <p className="govuk-body">

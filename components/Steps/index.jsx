@@ -8,8 +8,9 @@ import BankDetails from 'components/Steps/BankDetails';
 import Declaration from 'components/Steps/Declaration';
 import Summary from 'components/Steps/Summary';
 
-import TypeOfBusinessSummary from 'components/Steps/TypeOfBusinessSummary';
-import BusinessClassificationSummary from 'components/Steps/BusinessClassificationSummary';
+import TypeOfBusinessSummary from 'components/Steps/Summaries/TypeOfBusiness';
+import BusinessClassificationSummary from 'components/Steps/Summaries/BusinessClassification';
+import DeclarationSummary from 'components/Steps/Summaries/Declaration';
 
 export const stepPath = '/step/[id]';
 
@@ -180,18 +181,26 @@ export const inputLabels = {
     accountSortcode: { label: 'Sort Code:', type: 'number' }
   },
   declaration: {
+    stateAidOptionId: {
+      label: 'State Aid',
+      hint:
+        '(If relevant to this application, please select whether you the Covid-19 Framework Scheme or the State Aid De Minimus Rule applies.)',
+      children: <DeclarationSummary />,
+      isRadiosInline: false,
+      options: options.STATE_AID_OPTION
+    },
+    dateOfAid: { label: 'Date of aid' },
     stateAidReceived: {
       label:
         'I/we have received the following value of State Aid under above rule',
       type: 'number'
     },
-    stateAidCapNotExceeded: {
-      label:
-        'I/we confirm that our state aid fund/grant does not exceed the cap under above rule'
+    organisationProvidingAid: {
+      label: 'Organisation/Body providing aid'
     },
     permittedToAcceptStateAidGrant: {
       label:
-        'I/we declare that i/we are permitted to accept the discretionary grant funding under the relevant state aid rule'
+        'I/we declare that I/we are permitted to accept the discretionary grant funding and does not exceed the cap under the above relevant state aid rule'
     },
     readUnderstoodDeclaration: {
       label: 'Tick to confirm you have read and understood the declaration'
