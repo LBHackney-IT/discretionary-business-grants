@@ -69,7 +69,23 @@ functions:
     package:
       include:
         - authorizer/**
-        - node_modules/**
+        - node_modules/node-lambda-authorizer/**
+        - node_modules/jsonwebtoken/**
+        - node_modules/buffer-equal-constant-time/**
+        - node_modules/ecdsa-sig-formatter/**
+        - node_modules/jsonwebtoken/**
+        - node_modules/jwa/**
+        - node_modules/jws/**
+        - node_modules/lodash.includes/**
+        - node_modules/lodash.isboolean/**
+        - node_modules/lodash.isinteger/**
+        - node_modules/lodash.isnumber/**
+        - node_modules/lodash.isplainobject/**
+        - node_modules/lodash.isstring/**
+        - node_modules/lodash.once/**
+        - node_modules/ms/**
+        - node_modules/safe-buffer/**
+        - node_modules/semver/**
     environment:
       ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
       JWT_SECRET: ${ssm:hackney-jwt-secret}
