@@ -43,7 +43,11 @@ describe('customAuthorizer', () => {
       requestContext: { httpMethod: 'GET' }
     };
     const decodedToken = { groups: ['ALLOWED'] };
-    const isAllowed = customAuthorize('ALLOWED')(decodedToken, authorizeEvent);
+    const allowedGroups = 'ALLOWED';
+    const isAllowed = customAuthorize(allowedGroups)(
+      decodedToken,
+      authorizeEvent
+    );
     expect(isAllowed).toBeTruthy();
   });
 
@@ -53,7 +57,11 @@ describe('customAuthorizer', () => {
       requestContext: { httpMethod: 'GET' }
     };
     const decodedToken = { groups: ['NOT_ALLOWED'] };
-    const isAllowed = customAuthorize('ALLOWED')(decodedToken, authorizeEvent);
+    const allowedGroups = 'ALLOWED';
+    const isAllowed = customAuthorize(allowedGroups)(
+      decodedToken,
+      authorizeEvent
+    );
     expect(isAllowed).not.toBeTruthy();
   });
 });
