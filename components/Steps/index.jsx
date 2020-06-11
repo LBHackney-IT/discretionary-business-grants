@@ -8,8 +8,8 @@ import BankDetails from 'components/Steps/BankDetails';
 import Declaration from 'components/Steps/Declaration';
 import Summary from 'components/Steps/Summary';
 
-import TypeOfBusinessSummary from 'components/Steps/TypeOfBusinessSummary';
-import BusinessClassificationSummary from 'components/Steps/BusinessClassificationSummary';
+import TypeOfBusinessSummary from 'components/Steps/Summaries/TypeOfBusiness';
+import BusinessClassificationSummary from 'components/Steps/Summaries/BusinessClassification';
 
 export const stepPath = '/step/[id]';
 
