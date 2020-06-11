@@ -5,7 +5,7 @@ import { Button, TextInput } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 
 const BankDetails = props => {
-  const { register, handleSubmit } = useForm({
+  const { register, errors, handleSubmit } = useForm({
     defaultValues: props.formData
   });
   const onSubmit = data => {
@@ -21,20 +21,31 @@ const BankDetails = props => {
         bank account rather than your personal bank account.
       </div>
       <TextInput
-        {...getInputProps('businessBankAccount', 'bankName')}
-        register={register({ required: true })}
+        {...getInputProps('businessBankAccount', 'bankName', register, errors)}
       />
       <TextInput
-        {...getInputProps('businessBankAccount', 'accountHolder')}
-        register={register({ required: true })}
+        {...getInputProps(
+          'businessBankAccount',
+          'accountHolder',
+          register,
+          errors
+        )}
       />
       <TextInput
-        {...getInputProps('businessBankAccount', 'accountNumber')}
-        register={register({ required: true, minLength: 8, maxLength: 8 })}
+        {...getInputProps(
+          'businessBankAccount',
+          'accountNumber',
+          register,
+          errors
+        )}
       />
       <TextInput
-        {...getInputProps('businessBankAccount', 'accountSortcode')}
-        register={register({ required: true, minLength: 6, maxLength: 6 })}
+        {...getInputProps(
+          'businessBankAccount',
+          'accountSortcode',
+          register,
+          errors
+        )}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

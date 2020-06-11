@@ -12,6 +12,8 @@ import TypeOfBusinessSummary from 'components/Steps/Summaries/TypeOfBusiness';
 import BusinessClassificationSummary from 'components/Steps/Summaries/BusinessClassification';
 import DeclarationSummary from 'components/Steps/Summaries/Declaration';
 
+import * as options from 'lib/dbMapping';
+
 export const stepPath = '/step/[id]';
 
 export const steps = {
@@ -25,10 +27,6 @@ export const steps = {
   declaration: Declaration,
   summary: Summary
 };
-
-// options references in db/seeds.sql
-
-import * as options from 'lib/dbMapping';
 
 export const inputLabels = {
   eligibilityCriteria: {
@@ -175,10 +173,38 @@ export const inputLabels = {
     }
   },
   businessBankAccount: {
-    bankName: { label: 'Bank Name:' },
-    accountHolder: { label: 'Account Holder Name:' },
-    accountNumber: { label: 'Account Number:', type: 'number' },
-    accountSortcode: { label: 'Sort Code:', type: 'number' }
+    bankName: {
+      label: 'Bank Name:',
+      validation: { required: 'Bank Name is required' }
+    },
+    accountHolder: {
+      label: 'Account Holder Name:',
+      validation: { required: 'Account Holder Name is required' }
+    },
+    accountNumber: {
+      inputClassName: 'govuk-input--width-10',
+      label: 'Account Number:',
+      inputMode: 'numeric',
+      validation: {
+        required: 'Account Number is required',
+        pattern: {
+          value: /^[0-9]{8}$/,
+          message: 'Account Number must be a 8 digit number'
+        }
+      }
+    },
+    accountSortcode: {
+      inputClassName: 'govuk-input--width-5',
+      label: 'Sort Code:',
+      inputMode: 'numeric',
+      validation: {
+        required: 'Sort Code is required',
+        pattern: {
+          value: /^[0-9]{6}$/,
+          message: 'Sort Code must be a 6 digit number'
+        }
+      }
+    }
   },
   declaration: {
     stateAidOptionId: {
@@ -235,9 +261,14 @@ export const inputLabels = {
   }
 };
 
-export const getInputProps = (form, name) => ({
-  name: `${form}.${name}`,
-  ...inputLabels[form][name]
-});
+export const getInputProps = (form, name, register, errors) => {
+  const { validation, ...props } = inputLabels[form][name];
+  return {
+    name: `${form}.${name}`,
+    ...props,
+    register: validation && register ? register(validation) : register,
+    error: errors && errors[form] && errors[form][name]
+  };
+};
 
 export const stepKeys = Object.keys(steps);
