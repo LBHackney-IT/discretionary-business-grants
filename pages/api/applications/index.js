@@ -5,6 +5,12 @@ import { nanoid } from 'nanoid';
 
 export default async (req, res) => {
   try {
+    if (req.method !== 'POST') {
+      //TODO Return list of applications to admin
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify("YOU'RE AN ADMIN!"));
+    }
     const clientGeneratedId = nanoid();
     const validApplication = await isValidApplication(req.body);
     await uploadApplication({ ...validApplication, clientGeneratedId });
