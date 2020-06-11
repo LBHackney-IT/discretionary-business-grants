@@ -129,6 +129,7 @@ const AddressLookup = ({
             <span className="govuk-visually-hidden">Error:</span> {error}
           </span>
         )}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {(isManually || (defaultValue && results.length === 0)) && (
           <AddressBox name={name} disabled={!isManually} register={register} />
         )}
@@ -151,13 +152,12 @@ const AddressLookup = ({
             control={control}
             name={name}
             rules={{
-              required: 'Address is required.'
+              required: 'Address is required'
             }}
             onFocus={() => inputRef.current.focus()}
             onChange={([value]) => JSON.parse(value)}
           />
         )}
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </div>
     </div>
   );

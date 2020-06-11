@@ -17,12 +17,20 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
-      <Select {...getInputProps('contact', 'contactTypeId', { register })} />
-      <TextInput {...getInputProps('contact', 'firstName', { register })} />
-      <TextInput {...getInputProps('contact', 'lastName', { register })} />
-      <TextInput {...getInputProps('contact', 'emailAddress', { register })} />
+      <Select
+        {...getInputProps('contact', 'contactTypeId', { register }, errors)}
+      />
       <TextInput
-        {...getInputProps('contact', 'telephoneNumber', { register })}
+        {...getInputProps('contact', 'firstName', { register }, errors)}
+      />
+      <TextInput
+        {...getInputProps('contact', 'lastName', { register }, errors)}
+      />
+      <TextInput
+        {...getInputProps('contact', 'emailAddress', { register }, errors)}
+      />
+      <TextInput
+        {...getInputProps('contact', 'telephoneNumber', { register }, errors)}
       />
       <AddressLookup
         {...getInputProps('contact', 'address', { register, control }, errors)}

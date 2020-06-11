@@ -11,7 +11,9 @@ import {
 } from 'lib/dbMapping';
 
 const Step1 = props => {
-  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
+  const { register, errors, handleSubmit } = useForm({
+    defaultValues: props.formData
+  });
   const [showError, setShowError] = useState(false);
   const onSubmit = data => {
     const hasSomeDeclines = Object.entries(data.eligibilityCriteria).some(
@@ -45,56 +47,101 @@ const Step1 = props => {
             next section
           </span>
           <Radios
-            {...getInputProps('eligibilityCriteria', 'tradingInHackney', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'tradingInHackney',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'businessSizeId', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'businessSizeId',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Select
-            {...getInputProps('eligibilityCriteria', 'typeOfBusinessId', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'typeOfBusinessId',
+              {
+                register
+              },
+              errors
+            )}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'tradingOn20200311', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'tradingOn20200311',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'servedLegalNotices', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'servedLegalNotices',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'receivedOtherGrants', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'receivedOtherGrants',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'hasFixedPropertyCost', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'hasFixedPropertyCost',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'significantIncomeFall', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'significantIncomeFall',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'rateableLimitAnswerId', {
-              register
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'rateableLimitAnswerId',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
           />
         </fieldset>

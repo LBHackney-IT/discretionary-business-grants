@@ -92,26 +92,26 @@ export const inputLabels = {
       label: 'Role/position in organisation:',
       options: options.CONTACT_TYPE,
       validation: {
-        required: true,
+        required: 'Role/position in organisation is required',
         validate: value => value !== ''
       }
     },
     firstName: {
       label: 'First Name:',
       validation: {
-        required: true
+        required: 'First Name is required'
       }
     },
     lastName: {
       label: 'Last Name:',
       validation: {
-        required: true
+        required: 'Last Name is required'
       }
     },
     emailAddress: {
       label: 'Email Address:',
       validation: {
-        required: true
+        required: 'Email Address is required'
       },
       type: 'email'
     },
@@ -120,10 +120,10 @@ export const inputLabels = {
   },
   business: {
     businessName: {
-      label: 'Business name:',
+      label: 'Business Name:',
       hint: '(trading name, etc)',
       validation: {
-        required: true
+        required: 'Business Name is required'
       }
     },
     registeredName: { label: 'Registered Name (if applicable):' },
@@ -141,7 +141,10 @@ export const inputLabels = {
       hint:
         '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
       options: options.SITE_DESCRIPTION,
-      validation: { required: true, validate: value => value !== '' }
+      validation: {
+        required: 'Business description is required',
+        validate: value => value !== ''
+      }
     },
     companyNumber: {
       label: 'Company number (if applicable)',
@@ -150,7 +153,10 @@ export const inputLabels = {
     companyStructureId: {
       label: 'Business Structure:',
       options: options.COMPANY_STRUCTURE,
-      validation: { required: true, validate: value => value !== '' }
+      validation: {
+        required: 'Business Structure is required',
+        validate: value => value !== ''
+      }
     },
     ratesAccountNumber: {
       label: 'Business Rates Account Number (if applicable):'
@@ -171,19 +177,28 @@ export const inputLabels = {
     fullTimeEmployees: {
       label: 'Number of Employees:',
       type: 'number',
-      validation: { required: true, min: 0 }
+      validation: { required: 'Number of Employees is required', min: 0 }
     },
     percentageFallInIncome: {
       label: 'Percentage fall in income due to Covid-19:',
       type: 'number',
       hint:
         'Please give an indication of your percentage fall in income as a result of Covid-19. This should be from March 2020 onwards compared to the previous 3 months e.g 50= 50% fall in income, 70= 75% fall in income.',
-      validation: { required: true, min: 0, max: 100 }
+      validation: {
+        required: 'Percentage fall in income is required',
+        min: { value: 0, message: 'Must be a number between 0 and 100' },
+        max: {
+          value: 100,
+          message: 'Must be a number between 0 and 100'
+        }
+      }
     },
     rateableValue: {
       label: 'Business premises rateable value (if applicable):',
       type: 'number',
-      validation: { min: 0 }
+      validation: {
+        min: { value: 0, message: 'Must be a postive number' }
+      }
     }
   },
   turnover: {
@@ -192,21 +207,21 @@ export const inputLabels = {
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: true, min: 0 }
+      validation: { required: "It's required", min: 0 }
     },
     year1819: {
       label: 'Financial Year 18/19',
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: true, min: 0 }
+      validation: { required: "It's required", min: 0 }
     },
     year1920: {
       label: 'Financial Year 19/20',
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: true, min: 0 }
+      validation: { required: "It's required", min: 0 }
     }
   },
   fixedPropertyCosts: {
@@ -215,20 +230,20 @@ export const inputLabels = {
       hint:
         'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: true, min: 0 }
+      validation: { required: "It's required", min: 0 }
     },
     year2019To2020: {
       label: 'Financial Year 19/20',
       hint:
         'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: true, min: 0 }
+      validation: { required: "It's required", min: 0 }
     },
     itemsIncluded: {
       label: 'Items included:',
       hint:
         'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader) that is at least 30% of the annual business turnover.',
-      validation: { required: true }
+      validation: { required: 'Items included is required' }
     }
   },
   businessBankAccount: {
@@ -273,7 +288,7 @@ export const inputLabels = {
       children: <DeclarationSummary />,
       isRadiosInline: false,
       options: options.STATE_AID_OPTION,
-      validation: { required: true }
+      validation: { required: "It's required" }
     },
     dateOfAid: {
       label: 'Date of aid',
@@ -289,11 +304,11 @@ export const inputLabels = {
       label:
         'I/we have received the following value of State Aid under above rule',
       type: 'number',
-      validation: { required: true }
+      validation: { required: "It's required" }
     },
     organisationProvidingAid: {
       label: 'Organisation/Body providing aid',
-      validation: { required: true }
+      validation: { required: 'Organisation/Body providing aid' }
     },
     permittedToAcceptStateAidGrant: {
       label:

@@ -5,7 +5,9 @@ import { Button, TextInput } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 
 const PropertyCost = props => {
-  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
+  const { register, errors, handleSubmit } = useForm({
+    defaultValues: props.formData
+  });
   const onSubmit = data => {
     props.saveData(data);
     Router.push(stepPath, props.nextStep);
@@ -32,19 +34,34 @@ const PropertyCost = props => {
             required below.
           </span>
           <TextInput
-            {...getInputProps('fixedPropertyCosts', 'year2018To2019', {
-              register
-            })}
+            {...getInputProps(
+              'fixedPropertyCosts',
+              'year2018To2019',
+              {
+                register
+              },
+              errors
+            )}
           />
           <TextInput
-            {...getInputProps('fixedPropertyCosts', 'year2019To2020', {
-              register
-            })}
+            {...getInputProps(
+              'fixedPropertyCosts',
+              'year2019To2020',
+              {
+                register
+              },
+              errors
+            )}
           />
           <TextInput
-            {...getInputProps('fixedPropertyCosts', 'itemsIncluded', {
-              register
-            })}
+            {...getInputProps(
+              'fixedPropertyCosts',
+              'itemsIncluded',
+              {
+                register
+              },
+              errors
+            )}
           />
         </fieldset>
       </div>

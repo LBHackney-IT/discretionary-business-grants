@@ -32,7 +32,12 @@ const Declaration = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Declaration</h1>
       <Radios
-        {...getInputProps('declaration', 'stateAidOptionId', { register })}
+        {...getInputProps(
+          'declaration',
+          'stateAidOptionId',
+          { register },
+          errors
+        )}
       />
       {showOtherQuestions && (
         <>
@@ -40,12 +45,22 @@ const Declaration = props => {
             {...getInputProps('declaration', 'dateOfAid', { control }, errors)}
           />
           <TextInput
-            {...getInputProps('declaration', 'organisationProvidingAid', {
-              register
-            })}
+            {...getInputProps(
+              'declaration',
+              'organisationProvidingAid',
+              {
+                register
+              },
+              errors
+            )}
           />
           <TextInput
-            {...getInputProps('declaration', 'stateAidReceived', { register })}
+            {...getInputProps(
+              'declaration',
+              'stateAidReceived',
+              { register },
+              errors
+            )}
           />
           <Radios
             {...getInputProps(
