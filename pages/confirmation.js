@@ -1,9 +1,13 @@
 import { useRouter } from 'next/router';
 
+import Summary from 'components/Summary/Summary';
+import { get } from 'utils/persistency';
+
 export default function confirmation() {
   const router = useRouter();
   const { ref } = router.query;
   if (!ref) return false;
+  const formData = get(ref);
   return (
     <div>
       <div className="govuk-panel govuk-panel--confirmation">
@@ -14,7 +18,7 @@ export default function confirmation() {
           <strong>{ref}</strong>
         </div>
       </div>
-      <div className="govuk-!-margin-top-9">
+      <div className="govuk-!-margin-9">
         <p className="govuk-body">
           Thank you for completing the Local Authority Discretionary Grant Fund
           application.
@@ -34,6 +38,12 @@ export default function confirmation() {
           </strong>
         </div>
       </div>
+      {formData && (
+        <div>
+          <h2 className="govuk-heading-l">Summary</h2>
+          <Summary formData={formData} />
+        </div>
+      )}
     </div>
   );
 }

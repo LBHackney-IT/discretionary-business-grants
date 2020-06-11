@@ -38,7 +38,7 @@ const SummarySection = ({ formData, hasChangeLink, name, title, slug }) => (
 const sections = [
   {
     name: 'eligibilityCriteria',
-    title: 'Eliginility Criteria:',
+    title: 'Eligibility Criteria:',
     slug: 'eligibility-criteria'
   },
   {
