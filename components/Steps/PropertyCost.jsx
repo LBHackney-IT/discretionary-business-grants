@@ -29,7 +29,7 @@ const PropertyCost = props => {
             property costs are per annum and state what these include e.g annual
             business premises rent or annual business premises mortgage amount).
             Information to be verifiable with supplementary information as
-            required below
+            required below.
           </span>
           <TextInput
             {...getInputProps('fixedPropertyCosts', 'year2018To2019')}

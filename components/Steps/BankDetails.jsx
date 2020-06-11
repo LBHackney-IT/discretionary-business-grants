@@ -16,6 +16,10 @@ const BankDetails = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Bank Details</h1>
+      <div className="govuk-inset-text">
+        Where possible the bank account details provided should be your business
+        bank account rather than your personal bank account.
+      </div>
       <TextInput
         {...getInputProps('businessBankAccount', 'bankName')}
         register={register({ required: true })}

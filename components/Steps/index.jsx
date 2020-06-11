@@ -9,6 +9,7 @@ import Declaration from 'components/Steps/Declaration';
 import Summary from 'components/Steps/Summary';
 
 import TypeOfBusinessSummary from 'components/Steps/TypeOfBusinessSummary';
+import BusinessClassificationSummary from 'components/Steps/BusinessClassificationSummary';
 
 export const stepPath = '/step/[id]';
 
@@ -35,8 +36,7 @@ export const inputLabels = {
     },
     businessSizeId: {
       label: 'Is your business classed as either a micro or small business?',
-      hint:
-        'Micro and small businesses only as defined in the Companies Act 2006. To be defined as a small business they must have at least two of the following; not more than 50 employees, a turnover of not more than £10.2 million and a balance sheet total of not more than £5.1m. To be defined as a microbusinesses they must have at least two of the following; not more than 10 employees, a turnover of not more than £632,000, and a balance sheet total of not more than £316,000.',
+      children: <BusinessClassificationSummary />,
       options: options.BUSINESS_SIZE
     },
     tradingOn20200311: {
@@ -61,13 +61,11 @@ export const inputLabels = {
       label:
         'Does your business have fixed property cost of £60,000 per year or below?',
       hint:
-        'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader) that is at least 30% of the annual business turnover.'
+        'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader).'
     },
     significantIncomeFall: {
       label:
-        'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
-      hint:
-        'A ‘significant fall in income’ is defined as a fall in income of at least a 40% reduction in business turnover from March 2020 onwards compared to the previous 3 months.'
+        'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?'
     },
     rateableLimitAnswerId: {
       label:
@@ -83,22 +81,23 @@ export const inputLabels = {
     firstName: { label: 'First Name:' },
     lastName: { label: 'Last Name:' },
     emailAddress: { label: 'Email Address:' },
-    telephoneNumber: { label: 'Telephone Number:' },
+    telephoneNumber: { label: 'Contact Telephone Number:' },
     address: { label: 'Address:' }
   },
   business: {
     businessName: {
       label: 'Business name:',
-      hint: '(trading name, charity name etc)'
+      hint: '(trading name, etc)'
     },
     registeredName: { label: 'Registered Name (if applicable):' },
     businessDescription: {
       label: 'Business activity:',
-      hint: 'What is the main business activity carried out'
+      hint:
+        'Please set out what your business does and the service/services it provides.'
     },
     businessAddress: { label: 'Business Premises Address:' },
     siteDescriptionId: {
-      label: 'Business site description:',
+      label: 'Business description:',
       hint:
         '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
       options: options.SITE_DESCRIPTION
@@ -127,7 +126,9 @@ export const inputLabels = {
     fullTimeEmployees: { label: 'Number of Employees:', type: 'number' },
     percentageFallInIncome: {
       label: 'Percentage fall in income due to Covid-19:',
-      type: 'number'
+      type: 'number',
+      hint:
+        'Please give an indication of your percentage fall in income as a result of Covid-19. This should be from March 2020 onwards compared to the previous 3 months e.g 50= 50% fall in income, 70= 75% fall in income.'
     },
     rateableValue: {
       label: 'Business premises rateable value (if applicable):'
@@ -136,14 +137,36 @@ export const inputLabels = {
   turnover: {
     turnover: {
       label: 'Business turnover March to May (inclusive) 2020:',
+      hint:
+        'Information to be verifiable with supplementary information as required below.',
       type: 'number'
     },
-    year1819: { label: 'Financial Year 18/19', type: 'number' },
-    year1920: { label: 'Financial Year 19/20', type: 'number' }
+    year1819: {
+      label: 'Financial Year 18/19',
+      hint:
+        'Information to be verifiable with supplementary information as required below.',
+      type: 'number'
+    },
+    year1920: {
+      label: 'Financial Year 19/20',
+      hint:
+        'Information to be verifiable with supplementary information as required below.',
+      type: 'number'
+    }
   },
   fixedPropertyCosts: {
-    year2018To2019: { label: 'Financial Year 18/19', type: 'number' },
-    year2019To2020: { label: 'Financial Year 19/20', type: 'number' },
+    year2018To2019: {
+      label: 'Financial Year 18/19',
+      hint:
+        'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
+      type: 'number'
+    },
+    year2019To2020: {
+      label: 'Financial Year 19/20',
+      hint:
+        'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
+      type: 'number'
+    },
     itemsIncluded: {
       label: 'Items included:',
       hint:

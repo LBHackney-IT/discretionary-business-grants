@@ -16,7 +16,7 @@ const Declaration = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Declaration</h1>
-      <h2>State Aid</h2>
+      <h2>Covid 19 Temporary Framework Scheme</h2>
       <p className="govuk-body">
         Following the outbreak of the Coronavirus, the European Commission has
         approved schemes to aid businesses affected by the Coronavirus outbreak

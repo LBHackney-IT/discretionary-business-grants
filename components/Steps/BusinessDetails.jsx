@@ -30,6 +30,10 @@ const Step1 = props => {
         type="number"
         register={register}
       />
+      <TextInput
+        {...getInputProps('business', 'registeredCharity')}
+        register={register}
+      />
       <Select
         {...getInputProps('business', 'companyStructureId')}
         register={register({ required: true, validate: value => value !== '' })}
@@ -43,7 +47,12 @@ const Step1 = props => {
         register={register}
       />
       <TextInput
-        {...getInputProps('business', 'registeredCharity')}
+        {...getInputProps('business', 'rateableValue')}
+        type="number"
+        register={register({ min: 0 })}
+      />
+      <TextInput
+        {...getInputProps('business', 'councilTaxNumber')}
         register={register}
       />
       <AddressLookup
@@ -68,10 +77,6 @@ const Step1 = props => {
         {...getInputProps('business', 'siteDescriptionId')}
         register={register({ required: true, validate: value => value !== '' })}
       />
-      <TextInput
-        {...getInputProps('business', 'councilTaxNumber')}
-        register={register}
-      />
 
       <TextInput
         {...getInputProps('business', 'fullTimeEmployees')}
@@ -80,11 +85,6 @@ const Step1 = props => {
       <TextInput
         {...getInputProps('business', 'percentageFallInIncome')}
         register={register({ required: true, min: 0, max: 100 })}
-      />
-      <TextInput
-        {...getInputProps('business', 'rateableValue')}
-        type="number"
-        register={register({ min: 0 })}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
