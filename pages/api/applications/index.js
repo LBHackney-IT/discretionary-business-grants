@@ -11,7 +11,7 @@ export default async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify("YOU'RE AN ADMIN!"));
     }
-    const clientGeneratedId = nanoid();
+    const clientGeneratedId = nanoid(10);
     const validApplication = await isValidApplication(req.body);
     await uploadApplication({ ...validApplication, clientGeneratedId });
     await sendConfirmationEmail(
