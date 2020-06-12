@@ -171,7 +171,8 @@ export const inputLabels = {
       }
     },
     ratesAccountNumber: {
-      label: 'Business Rates Account Number (if applicable):'
+      label: 'Business Rates Account Number (if applicable):',
+      type: 'number'
     },
     registeredCharity: {
       label: 'Registered Charity Number (if applicable):',
