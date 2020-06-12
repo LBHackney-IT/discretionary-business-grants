@@ -5,10 +5,7 @@ import Router from 'next/router';
 import { Button, Radios, Select } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 import ErrorSummary from 'components/ErrorSummary/ErrorSummary';
-import {
-  VALID_BUSINESS_SIZE,
-  VALID_RETEABLE_LIMIT_ANSWER
-} from 'lib/dbMapping';
+import { VALID_BUSINESS_SIZE } from 'lib/dbMapping';
 
 const Step1 = props => {
   const { register, errors, handleSubmit } = useForm({
@@ -23,8 +20,6 @@ const Step1 = props => {
         (value === 'No' &&
           key !== 'servedLegalNotices' &&
           key !== 'receivedOtherGrants') ||
-        (key === 'rateableLimitAnswerId' &&
-          VALID_RETEABLE_LIMIT_ANSWER.indexOf(value) === -1) ||
         (key === 'businessSizeId' && VALID_BUSINESS_SIZE.indexOf(value) === -1)
     );
     setShowError(hasSomeDeclines);
@@ -129,17 +124,6 @@ const Step1 = props => {
             {...getInputProps(
               'eligibilityCriteria',
               'significantIncomeFall',
-              {
-                register
-              },
-              errors
-            )}
-            onChange={() => setShowError(false)}
-          />
-          <Radios
-            {...getInputProps(
-              'eligibilityCriteria',
-              'rateableLimitAnswerId',
               {
                 register
               },
