@@ -51,6 +51,7 @@ const AddressBox = ({ name, disabled, register }) => (
 const AddressLookup = ({
   name,
   label,
+  hint,
   control,
   register,
   defaultValue,
@@ -74,6 +75,11 @@ const AddressLookup = ({
         <label className="govuk-label govuk-label--m" htmlFor="postcode">
           {label}
         </label>
+        {hint && (
+          <span id={`${name}-hint`} className="govuk-hint">
+            {hint}
+          </span>
+        )}
         <div className="govuk-grid-row">
           <div className="govuk-grid-column-one-third">
             <input
