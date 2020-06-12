@@ -115,7 +115,16 @@ export const inputLabels = {
       },
       type: 'email'
     },
-    telephoneNumber: { label: 'Contact Telephone Number:', type: 'tel' },
+    telephoneNumber: {
+      label: 'Contact Telephone Number:',
+      type: 'tel',
+      validation: {
+        pattern: {
+          value: /^[0-9]*$/,
+          message: 'Telephone Number must be a number'
+        }
+      }
+    },
     address: { label: 'Address:' }
   },
   business: {
