@@ -134,10 +134,12 @@ export const inputLabels = {
     },
     businessAddress: {
       label: 'Business Premises Address:',
+      hint:
+        "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address.",
       supportManualEntry: false
     },
     siteDescriptionId: {
-      label: 'Business description:',
+      label: 'Business Premises Description:',
       hint:
         '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
       options: options.SITE_DESCRIPTION,
@@ -147,11 +149,13 @@ export const inputLabels = {
       }
     },
     companyNumber: {
-      label: 'Company number (if applicable)',
+      label: 'Company Number (if applicable)',
       type: 'number'
     },
     companyStructureId: {
       label: 'Business Structure:',
+      hint:
+        'If your business structure is not listed below please pick the closest description.',
       options: options.COMPANY_STRUCTURE,
       validation: {
         required: 'Business Structure is required',
@@ -166,11 +170,11 @@ export const inputLabels = {
       type: 'number'
     },
     councilRentAccountNumber: {
-      label: 'Council premises rent account number (if applicable):',
+      label: 'Council Premises Rent Account Number (if applicable):',
       type: 'number'
     },
     councilTaxNumber: {
-      label: 'Council tax number (if applicable):',
+      label: 'Council Tax Number (if applicable):',
       hint: '(eg if you are a B&B)',
       type: 'number'
     },
@@ -194,7 +198,7 @@ export const inputLabels = {
       }
     },
     rateableValue: {
-      label: 'Business premises rateable value (if applicable):',
+      label: 'Business Premises Rateable Value (if applicable):',
       type: 'number',
       validation: {
         min: { value: 0, message: 'Must be a postive number' }
@@ -242,7 +246,7 @@ export const inputLabels = {
     itemsIncluded: {
       label: 'Items included:',
       hint:
-        'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader) that is at least 30% of the annual business turnover.',
+        'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader).',
       validation: { required: 'Items included is required' }
     }
   },
