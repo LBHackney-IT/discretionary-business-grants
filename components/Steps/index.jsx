@@ -134,7 +134,8 @@ export const inputLabels = {
     },
     businessAddress: {
       label: 'Business Premises Address:',
-      hint: "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address.",
+      hint:
+        "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address.",
       supportManualEntry: false
     },
     siteDescriptionId: {
@@ -153,6 +154,8 @@ export const inputLabels = {
     },
     companyStructureId: {
       label: 'Business Structure:',
+      hint:
+        'If your business structure is not listed below please pick the closest description.',
       options: options.COMPANY_STRUCTURE,
       validation: {
         required: 'Business Structure is required',
