@@ -8,8 +8,10 @@ import { set } from 'utils/persistency';
 
 const Result = ({ formData }) => {
   const [error, setError] = useState(false);
+  const [submitting, SetSubmitting] = useState(false);
   const submitForm = async () => {
     try {
+      SetSubmitting(true);
       const { data } = await axios.post('/api/applications', formData);
       set(data, formData);
       return Router.push({
@@ -17,6 +19,7 @@ const Result = ({ formData }) => {
         query: { ref: data }
       });
     } catch (e) {
+      SetSubmitting(false);
       setError(e.message);
     }
   };
@@ -28,7 +31,7 @@ const Result = ({ formData }) => {
         className="govuk-button"
         onClick={submitForm}
         type="button"
-        disabled={error}
+        disabled={submitting}
       >
         Confirm and submit
       </button>
