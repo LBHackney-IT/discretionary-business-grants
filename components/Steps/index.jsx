@@ -187,7 +187,7 @@ export const inputLabels = {
       label: 'Percentage fall in income due to Covid-19:',
       type: 'number',
       hint:
-        'Please give an indication of your percentage fall in income as a result of Covid-19. This should be from March 2020 onwards compared to the previous 3 months e.g 50= 50% fall in income, 70= 75% fall in income.',
+        'Please give an indication of your percentage fall in income as a result of Covid-19. This should be from March 2020 onwards compared to the previous 3 months e.g 50= 50% fall in income, 75= 75% fall in income.',
       validation: {
         required: 'Percentage fall in income is required',
         min: { value: 0, message: 'Must be a number between 0 and 100' },
@@ -347,7 +347,7 @@ export const inputLabels = {
     fallInIncome: {
       label: 'Fall in income:',
       hint:
-        ' Please provide financial evidence showing the fall in income experienced by your business as a result of Covid-19 (such as; up to date business management accounts for the last 12 months showing profit and loss, turnover, cashflow and balance sheet. Bank statements over the past 6 months)',
+        'Fall in income: please provide financial evidence showing the fall in income experienced by your business as a result of Covid-19 (such as; up to date business management accounts for the last 12 months showing profit and loss, turnover, cashflow and balance sheet, bank statements over the past 6 months, a brief written statement (no more than one side of A4) setting out the financial impact that Covid-19 has had on your business and why, and how this grant will support your business to trade beyond the current crisis)',
       validation: {
         validate: value => value.length > 0 || 'Document required'
       }
