@@ -5,7 +5,9 @@ import { Button, TextInput } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 
 const BusinessTurnover = props => {
-  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
+  const { register, errors, handleSubmit } = useForm({
+    defaultValues: props.formData
+  });
   const onSubmit = data => {
     props.saveData(data);
     Router.push(stepPath, props.nextStep);
@@ -30,16 +32,13 @@ const BusinessTurnover = props => {
             <p>Fields require numeric values e.g 10000 for £10,000.</p>
           </div>
           <TextInput
-            {...getInputProps('turnover', 'turnover')}
-            register={register({ required: true, min: 0 })}
+            {...getInputProps('turnover', 'turnover', { register }, errors)}
           />
           <TextInput
-            {...getInputProps('turnover', 'year1819')}
-            register={register({ required: true, min: 0 })}
+            {...getInputProps('turnover', 'year1819', { register }, errors)}
           />
           <TextInput
-            {...getInputProps('turnover', 'year1920')}
-            register={register({ required: true, min: 0 })}
+            {...getInputProps('turnover', 'year1920', { register }, errors)}
           />
         </fieldset>
       </div>

@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 const Select = ({
@@ -7,9 +8,14 @@ const Select = ({
   options,
   onChange,
   register,
+  error,
   children
 }) => (
-  <div className="govuk-form-group">
+  <div
+    className={cx('govuk-form-group', {
+      'govuk-form-group--error': error
+    })}
+  >
     <label className="govuk-label govuk-label--m" htmlFor={name}>
       {label}
     </label>
@@ -19,6 +25,11 @@ const Select = ({
       </span>
     )}
     {children}
+    {error && (
+      <span className="govuk-error-message">
+        <span className="govuk-visually-hidden">Error:</span> {error.message}
+      </span>
+    )}
     <select
       className="govuk-select"
       id={name}
@@ -55,7 +66,8 @@ Select.propTypes = {
   ),
   selected: PropTypes.string,
   register: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  error: PropTypes.shape({ message: PropTypes.string.isRequired })
 };
 
 export default Select;

@@ -11,7 +11,9 @@ import {
 } from 'lib/dbMapping';
 
 const Step1 = props => {
-  const { register, handleSubmit } = useForm({ defaultValues: props.formData });
+  const { register, errors, handleSubmit } = useForm({
+    defaultValues: props.formData
+  });
   const [showError, setShowError] = useState(false);
   const onSubmit = data => {
     const hasSomeDeclines = Object.entries(data.eligibilityCriteria).some(
@@ -45,51 +47,102 @@ const Step1 = props => {
             next section
           </span>
           <Radios
-            {...getInputProps('eligibilityCriteria', 'tradingInHackney')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'tradingInHackney',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'businessSizeId')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'businessSizeId',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Select
-            {...getInputProps('eligibilityCriteria', 'typeOfBusinessId')}
-            register={register({
-              required: true,
-              validate: value => value !== ''
-            })}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'typeOfBusinessId',
+              {
+                register
+              },
+              errors
+            )}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'tradingOn20200311')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'tradingOn20200311',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'servedLegalNotices')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'servedLegalNotices',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'receivedOtherGrants')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'receivedOtherGrants',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'hasFixedPropertyCost')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'hasFixedPropertyCost',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'significantIncomeFall')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'significantIncomeFall',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
           <Radios
-            {...getInputProps('eligibilityCriteria', 'rateableLimitAnswerId')}
+            {...getInputProps(
+              'eligibilityCriteria',
+              'rateableLimitAnswerId',
+              {
+                register
+              },
+              errors
+            )}
             onChange={() => setShowError(false)}
-            register={register({ required: true })}
           />
         </fieldset>
       </div>

@@ -18,73 +18,95 @@ const Step1 = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Business Details</h1>
       <TextInput
-        {...getInputProps('business', 'businessName')}
-        register={register({ required: true })}
+        {...getInputProps('business', 'businessName', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('business', 'registeredName')}
-        register={register}
+        {...getInputProps('business', 'registeredName', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('business', 'companyNumber')}
-        type="number"
-        register={register}
+        {...getInputProps('business', 'companyNumber', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('business', 'registeredCharity')}
-        register={register}
+        {...getInputProps(
+          'business',
+          'registeredCharity',
+          { register },
+          errors
+        )}
       />
       <Select
-        {...getInputProps('business', 'companyStructureId')}
-        register={register({ required: true, validate: value => value !== '' })}
+        {...getInputProps(
+          'business',
+          'companyStructureId',
+          { register },
+          errors
+        )}
       />
       <TextInput
-        {...getInputProps('business', 'councilRentAccountNumber')}
-        register={register}
+        {...getInputProps(
+          'business',
+          'councilRentAccountNumber',
+          { register },
+          errors
+        )}
       />
       <TextInput
-        {...getInputProps('business', 'ratesAccountNumber')}
-        register={register}
+        {...getInputProps(
+          'business',
+          'ratesAccountNumber',
+          { register },
+          errors
+        )}
       />
       <TextInput
-        {...getInputProps('business', 'rateableValue')}
-        type="number"
-        register={register({ min: 0 })}
+        {...getInputProps('business', 'rateableValue', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('business', 'councilTaxNumber')}
-        register={register}
+        {...getInputProps('business', 'councilTaxNumber', { register }, errors)}
       />
       <AddressLookup
-        {...getInputProps('business', 'businessAddress')}
+        {...getInputProps(
+          'business',
+          'businessAddress',
+          { register, control },
+          errors
+        )}
         defaultValue={
           props.formData.business && props.formData.business.businessAddress
         }
-        control={control}
-        register={register}
-        errorMessage={
-          errors.business &&
-          errors.business.businessAddress &&
-          errors.business.businessAddress.message
-        }
-        supportManualEntry={false}
       />
       <TextInput
-        {...getInputProps('business', 'businessDescription')}
-        register={register}
+        {...getInputProps(
+          'business',
+          'businessDescription',
+          { register },
+          errors
+        )}
       />
       <Select
-        {...getInputProps('business', 'siteDescriptionId')}
-        register={register({ required: true, validate: value => value !== '' })}
+        {...getInputProps(
+          'business',
+          'siteDescriptionId',
+          { register },
+          errors
+        )}
       />
 
       <TextInput
-        {...getInputProps('business', 'fullTimeEmployees')}
-        register={register({ required: true, min: 0 })}
+        {...getInputProps(
+          'business',
+          'fullTimeEmployees',
+          { register },
+          errors
+        )}
       />
       <TextInput
-        {...getInputProps('business', 'percentageFallInIncome')}
-        register={register({ required: true, min: 0, max: 100 })}
+        {...getInputProps(
+          'business',
+          'percentageFallInIncome',
+          { register },
+          errors
+        )}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

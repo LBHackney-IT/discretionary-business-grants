@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import isValid from 'date-fns/isValid';
-import isPast from 'date-fns/isPast';
-
 import {
   Button,
   Radios,
@@ -35,44 +32,43 @@ const Declaration = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Declaration</h1>
       <Radios
-        {...getInputProps('declaration', 'stateAidOptionId')}
-        register={register({
-          required: true
-        })}
+        {...getInputProps(
+          'declaration',
+          'stateAidOptionId',
+          { register },
+          errors
+        )}
       />
       {showOtherQuestions && (
         <>
           <DateInput
-            {...getInputProps('declaration', 'dateOfAid')}
-            control={control}
-            rules={{
-              required: 'Date of aid is required',
-              validate: {
-                valid: value =>
-                  isValid(new Date(value)) || 'Must be a is valid Date',
-                past: value => isPast(new Date(value)) || 'Must be a past Date'
-              }
-            }}
-            error={errors.declaration && errors.declaration.dateOfAid}
+            {...getInputProps('declaration', 'dateOfAid', { control }, errors)}
           />
           <TextInput
-            {...getInputProps('declaration', 'organisationProvidingAid')}
-            register={register({ required: true })}
+            {...getInputProps(
+              'declaration',
+              'organisationProvidingAid',
+              {
+                register
+              },
+              errors
+            )}
           />
           <TextInput
-            {...getInputProps('declaration', 'stateAidReceived')}
-            register={register({ required: true })}
+            {...getInputProps(
+              'declaration',
+              'stateAidReceived',
+              { register },
+              errors
+            )}
           />
           <Radios
-            {...getInputProps('declaration', 'permittedToAcceptStateAidGrant')}
-            register={register({
-              required: 'You need to agree.',
-              validate: value => value === 'Yes' || 'You need to agree.'
-            })}
-            error={
-              errors.declaration &&
-              errors.declaration.permittedToAcceptStateAidGrant
-            }
+            {...getInputProps(
+              'declaration',
+              'permittedToAcceptStateAidGrant',
+              { register },
+              errors
+            )}
           />
         </>
       )}
@@ -108,11 +104,14 @@ const Declaration = props => {
         have the power to recover any wrongly claimed Grants.
       </p>
       <Checkbox
-        {...getInputProps('declaration', 'readUnderstoodDeclaration')}
-        register={register({ required: 'You need to confirm.' })}
-        error={
-          errors.declaration && errors.declaration.readUnderstoodDeclaration
-        }
+        {...getInputProps(
+          'declaration',
+          'readUnderstoodDeclaration',
+          {
+            register
+          },
+          errors
+        )}
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>

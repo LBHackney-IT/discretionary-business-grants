@@ -18,40 +18,23 @@ const Step1 = props => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
       <Select
-        {...getInputProps('contact', 'contactTypeId')}
-        register={register({
-          required: true,
-          validate: value => value !== ''
-        })}
+        {...getInputProps('contact', 'contactTypeId', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('contact', 'firstName')}
-        register={register({ required: true })}
+        {...getInputProps('contact', 'firstName', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('contact', 'lastName')}
-        register={register({ required: true })}
+        {...getInputProps('contact', 'lastName', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('contact', 'emailAddress')}
-        type="email"
-        register={register({ required: true })}
+        {...getInputProps('contact', 'emailAddress', { register }, errors)}
       />
       <TextInput
-        {...getInputProps('contact', 'telephoneNumber')}
-        type="tel"
-        register={register}
+        {...getInputProps('contact', 'telephoneNumber', { register }, errors)}
       />
       <AddressLookup
-        {...getInputProps('contact', 'address')}
+        {...getInputProps('contact', 'address', { register, control }, errors)}
         defaultValue={props.formData.contact && props.formData.contact.address}
-        control={control}
-        register={register}
-        errorMessage={
-          errors.contact &&
-          errors.contact.address &&
-          errors.contact.address.message
-        }
       />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
