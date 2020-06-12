@@ -20,6 +20,9 @@ const Step1 = props => {
       ([key, value]) =>
         (value === 'Yes' &&
           (key === 'servedLegalNotices' || key === 'receivedOtherGrants')) ||
+        (value === 'No' &&
+          key !== 'servedLegalNotices' &&
+          key !== 'receivedOtherGrants') ||
         (key === 'rateableLimitAnswerId' &&
           VALID_RETEABLE_LIMIT_ANSWER.indexOf(value) === -1) ||
         (key === 'businessSizeId' && VALID_BUSINESS_SIZE.indexOf(value) === -1)
