@@ -12,6 +12,7 @@ export default async (req, res) => {
       res.end(JSON.stringify("YOU'RE AN ADMIN!"));
     }
     const clientGeneratedId = nanoid();
+    //TODO We should 400 on invalid application and 500 on Error
     const validApplication = await isValidApplication(req.body);
     await uploadApplication({ ...validApplication, clientGeneratedId });
     await sendConfirmationEmail(
@@ -22,6 +23,7 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(clientGeneratedId));
   } catch (error) {
+    console.log('Application submission error:', error, 'request:', req);
     res.statusCode = 400;
     res.end(JSON.stringify(error.message));
   }
