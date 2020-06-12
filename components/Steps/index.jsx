@@ -69,21 +69,40 @@ export const inputLabels = {
       validation: { required: true }
     },
     hasFixedPropertyCost: {
-      label:
-        'Does your business have fixed property cost of £60,000 per year or below?',
+      label: 'Do you meet one of the eligibility criteria?',
       hint:
         'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader).',
-      validation: { required: true }
+      validation: { required: true },
+      children: (
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Retail, Leisure and Hospitality Business:</li>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              With a property that has a rateable value of £60,000 or less
+            </li>
+            <li>OR</li>
+            <li>
+              Without a rateable value AND your annual fixed property related
+              costs are £60,000 or less
+            </li>
+          </ul>
+          <li>Not a Retail, Leisure and Hospitality Business:</li>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              With a property that has a rateable value of less than £51,000
+            </li>
+            <li>OR</li>
+            <li>
+              Without a rateable value AND your annual fixed property related
+              costs are less than £51,000
+            </li>
+          </ul>
+        </ul>
+      )
     },
     significantIncomeFall: {
       label:
         'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
-      validation: { required: true }
-    },
-    rateableLimitAnswerId: {
-      label:
-        'If you have an individual business rates account does your premises have a rateable value of £60,000 or less?',
-      options: options.RETEABLE_LIMIT_ANSWER,
       validation: { required: true }
     }
   },
