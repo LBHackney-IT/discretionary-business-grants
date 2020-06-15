@@ -7,9 +7,15 @@ import listApplications from '../../../lib/usecases/listApplications';
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(await listApplications()));
+      try {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(await listApplications()));
+      } catch (error) {
+        console.log('Application list error:', error, 'request:', req);
+        res.statusCode = 500;
+        res.end(JSON.stringify('Unable to list applications'));
+      }
       break;
 
     case 'POST':
