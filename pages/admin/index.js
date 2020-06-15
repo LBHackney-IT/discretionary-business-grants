@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import ApplicationsList from 'components/ApplicationsList/ApplicationsList';
+
 const AdminPage = ({ name }) => {
+  const [applications, setApplications] = useState();
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await axios.get('/api/applications');
+      setApplications(data.applications);
+    }
+    fetchData();
+  }, []);
   return (
     <>
       <h1>Hello {name}</h1>
+      {applications && <ApplicationsList applications={applications} />}
     </>
   );
 };
@@ -23,8 +35,8 @@ export async function getServerSideProps({ req, res }) {
     console.error(e.message);
   }
   res.writeHead(301, {
-    Location: `${process.env.HACKNERY_AUTH_URL}?redirect_uri=https://${process
-      .env.URL_PREFIX + req.url}`
+    Location: `${process.env.HACKNERY_AUTH_URL}?redirect_uri=https://${req
+      .headers.host + req.url}`
   });
   res.end();
 }
