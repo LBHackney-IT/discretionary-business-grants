@@ -35,8 +35,8 @@ export async function getServerSideProps({ req, res }) {
     console.error(e.message);
   }
   res.writeHead(301, {
-    Location: `${process.env.HACKNERY_AUTH_URL}?redirect_uri=https://${req
-      .headers.host + req.url}`
+    Location: `${process.env.HACKNERY_AUTH_URL}?redirect_uri=https://${process
+      .env.URL_PREFIX + req.url}`
   });
   res.end();
 }
