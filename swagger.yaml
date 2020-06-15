@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.18'
+  version: '0.0.19'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -82,7 +82,7 @@ paths:
           description: 'Invalid input'
         '500':
           description: 'Internal server error'
-      
+
 
 definitions:
   Url:
@@ -367,8 +367,6 @@ definitions:
       type: 'object'
       uniqueItems: true
       properties:
-        id:
-          type: 'integer'
         clientGeneratedId:
           type: 'string'
         businessName:
@@ -378,4 +376,4 @@ definitions:
           format: 'date-time'
         status:
           type: 'string'
-        
+
