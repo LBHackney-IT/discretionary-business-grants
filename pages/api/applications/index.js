@@ -16,25 +16,26 @@ export default async (req, res) => {
             clientGeneratedId: 'OneTwoThree',
             businessName: 'A Company',
             applicationDate: '2020-06-10T17:32:28Z',
-            status: 'Submitted'
+            status: 'Unprocessed'
           },
           {
             id: 124,
             clientGeneratedId: 'OneTwoFour',
             businessName: 'B Company',
             applicationDate: '2020-06-9T11:32:28Z',
-            status: 'Submitted'
+            status: 'Unprocessed'
           },
           {
             id: 125,
             clientGeneratedId: 'OneTwoFive',
             businessName: 'C Company',
             applicationDate: '2020-06-12T14:32:28Z',
-            status: 'Submitted'
+            status: 'Unprocessed'
           }
         ])
       );
       break;
+
     case 'POST':
       try {
         const clientGeneratedId = nanoid();
@@ -54,6 +55,7 @@ export default async (req, res) => {
         res.end(JSON.stringify(error.message));
       }
       break;
+
     default:
       res.statusCode = 400;
       res.end(JSON.stringify('Invalid request method'));
