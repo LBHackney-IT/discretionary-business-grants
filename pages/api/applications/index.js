@@ -2,38 +2,20 @@ import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
 import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
 import { nanoid } from 'nanoid';
+import listApplications from '../../../lib/usecases/listApplications';
 
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
-      //TODO Return list of applications to admin
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.end(
-        JSON.stringify([
-          {
-            id: 123,
-            clientGeneratedId: 'OneTwoThree',
-            businessName: 'A Company',
-            applicationDate: '2020-06-10T17:32:28Z',
-            status: 'Unprocessed'
-          },
-          {
-            id: 124,
-            clientGeneratedId: 'OneTwoFour',
-            businessName: 'B Company',
-            applicationDate: '2020-06-9T11:32:28Z',
-            status: 'Unprocessed'
-          },
-          {
-            id: 125,
-            clientGeneratedId: 'OneTwoFive',
-            businessName: 'C Company',
-            applicationDate: '2020-06-12T14:32:28Z',
-            status: 'Unprocessed'
-          }
-        ])
-      );
+      try {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(await listApplications()));
+      } catch (error) {
+        console.log('Application list error:', error, 'request:', req);
+        res.statusCode = 500;
+        res.end(JSON.stringify('Unable to list applications'));
+      }
       break;
 
     case 'POST':
