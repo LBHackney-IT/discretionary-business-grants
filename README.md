@@ -4,13 +4,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 The app needs Node 12, if you have [NVM](https://github.com/nvm-sh/nvm) installed just run `nvm use` in your terminal.
 
-First, run the development server:
+Install the dependencies:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+    yarn install
+
+Run the development server:
+
+    yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
