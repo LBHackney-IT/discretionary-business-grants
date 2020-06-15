@@ -7,7 +7,6 @@ import listApplications from '../../../lib/usecases/listApplications';
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
-      //TODO Return list of applications to admin
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(await listApplications()));
