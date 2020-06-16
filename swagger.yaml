@@ -71,6 +71,17 @@ paths:
       summary: 'Create a new business grant application'
       produces:
         - 'application/json'
+      parameters:
+        - in: 'query'
+          name: 'page'
+          type: 'number'
+          required: false
+          default: 1
+        - in: 'query'
+          name: 'pageSize'
+          type: 'number'
+          required: false
+          default: 10
       responses:
         '200':
           description: 'List of applications'
@@ -362,18 +373,43 @@ definitions:
         type: 'string'
 
   ApplicationsListResponse:
-    type: 'array'
-    items:
-      type: 'object'
-      uniqueItems: true
-      properties:
-        clientGeneratedId:
-          type: 'string'
-        businessName:
-          type: 'string'
-        applicationDate:
-          type: 'string'
-          format: 'date-time'
-        status:
-          type: 'string'
+    type: 'object'
+    properties:
+      applications:
+        type: 'array'
+        items:
+          type: 'object'
+          uniqueItems: true
+          properties:
+            clientGeneratedId:
+              type: 'string'
+            businessName:
+              type: 'string'
+            applicationDate:
+              type: 'string'
+              format: 'date-time'
+            status:
+              type: 'string'
+      pagination:
+        $ref: '#/definitions/PaginationResponse'
+
+  PaginationResponse:
+    type: object
+    properties:
+      totalPages:
+        type: number
+      currentPage:
+        type: number
+      links:
+        type: object
+        properties:
+          firstPage:
+            type: string
+          lastPage:
+            type: string
+          previousPage:
+            type: string
+          nextPage:
+            type: string
+
 
