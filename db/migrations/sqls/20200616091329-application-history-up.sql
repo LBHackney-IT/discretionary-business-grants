@@ -4,5 +4,5 @@ CREATE TABLE application_history (
     application_state_id  INTEGER REFERENCES application_state(id) NOT NULL,
     date_time_recorded TIMESTAMP DEFAULT NOW(),
     user_recorded VARCHAR NOT NULL,
-    comment VARCHAR
+    notes VARCHAR
 );
