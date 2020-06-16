@@ -400,5 +400,16 @@ definitions:
         type: number
       currentPage:
         type: number
+      links:
+        type: object
+        properties:
+          firstPage:
+            type: string
+          lastPage:
+            type: string
+          previousPage:
+            type: string
+          nextPage:
+            type: string
 
 
