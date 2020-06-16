@@ -373,18 +373,32 @@ definitions:
         type: 'string'
 
   ApplicationsListResponse:
-    type: 'array'
-    items:
-      type: 'object'
-      uniqueItems: true
-      properties:
-        clientGeneratedId:
-          type: 'string'
-        businessName:
-          type: 'string'
-        applicationDate:
-          type: 'string'
-          format: 'date-time'
-        status:
-          type: 'string'
+    type: 'object'
+    properties:
+      data:
+        type: 'array'
+        items:
+          type: 'object'
+          uniqueItems: true
+          properties:
+            clientGeneratedId:
+              type: 'string'
+            businessName:
+              type: 'string'
+            applicationDate:
+              type: 'string'
+              format: 'date-time'
+            status:
+              type: 'string'
+      pagination:
+        $ref: '#/definitions/PaginationResponse'
+
+  PaginationResponse:
+    type: object
+    properties:
+      totalPages:
+        type: number
+      currentPage:
+        type: number
+
 
