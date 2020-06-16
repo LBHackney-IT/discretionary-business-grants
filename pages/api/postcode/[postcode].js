@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as HttpStatus from 'http-status-codes';
 
 export default async (req, res) => {
   const {
@@ -17,7 +18,7 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(data.data));
   } catch (e) {
-    res.statusCode = 500;
+    res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     res.end(e.message);
   }
 };

@@ -1,3 +1,4 @@
+import * as HttpStatus from 'http-status-codes';
 import getSecureUploadUrl from '../../../lib/usecases/getSecureUploadUrl';
 
 export default async (req, res) => {
@@ -7,7 +8,7 @@ export default async (req, res) => {
       clientGeneratedId
     );
     const fileKey = `${clientGeneratedId}/${documentId}/${fileName}`;
-    res.statusCode = 200;
+    res.statusCode = HttpStatus.OK;
     res.setHeader('Content-Type', 'application/json');
     res.end(
       JSON.stringify({
@@ -22,7 +23,7 @@ export default async (req, res) => {
       })
     );
   } catch (error) {
-    res.statusCode = 500;
+    res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     res.end();
   }
 };
