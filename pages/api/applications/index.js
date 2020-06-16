@@ -11,8 +11,8 @@ export default async (req, res) => {
       try {
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
-        const page = (req.query && req.query.page) || 1;
-        const pageSize = (req.query && req.query.pageSize) || 10;
+        const page = parseInt((req.query && req.query.page) || 1, 10);
+        const pageSize = parseInt((req.query && req.query.pageSize) || 10, 10);
         res.end(JSON.stringify(await listApplications({ page, pageSize })));
       } catch (error) {
         console.log('Application list error:', error, 'request:', req);
