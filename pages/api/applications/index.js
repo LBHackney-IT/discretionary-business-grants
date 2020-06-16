@@ -11,7 +11,9 @@ export default async (req, res) => {
       try {
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(await listApplications()));
+        const page = (req.query && req.query.page) || 1;
+        const pageSize = (req.query && req.query.pageSize) || 10;
+        res.end(JSON.stringify(await listApplications({ page, pageSize })));
       } catch (error) {
         console.log('Application list error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
