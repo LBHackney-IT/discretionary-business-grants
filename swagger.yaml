@@ -71,6 +71,17 @@ paths:
       summary: 'Create a new business grant application'
       produces:
         - 'application/json'
+      parameters:
+        - in: 'query'
+          name: 'page'
+          type: 'number'
+          required: false
+          default: 1
+        - in: 'query'
+          name: 'pageSize'
+          type: 'number'
+          required: false
+          default: 10
       responses:
         '200':
           description: 'List of applications'
