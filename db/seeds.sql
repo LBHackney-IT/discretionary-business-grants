@@ -38,9 +38,3 @@ INSERT INTO business_size(id, description) VALUES(2, 'Small');
 INSERT INTO state_aid_option(id, description) VALUES(1, 'Not Applicable');
 INSERT INTO state_aid_option(id, description) VALUES(2, 'Covid 19 Temporary Framework Scheme');
 INSERT INTO state_aid_option(id, description) VALUES(3, 'State Aid De Minimis Rule');
-
-INSERT INTO application_state(id, description) VALUES(1, 'Unprocessed');
-INSERT INTO application_state(id, description) VALUES(2, 'Pre-processing');
-INSERT INTO application_state(id, description) VALUES(3, 'Pre-processing - Awaiting info');
-INSERT INTO application_state(id, description) VALUES(4, 'Pre-processed');
-INSERT INTO application_state(id, description) VALUES(5, 'Pre-processing - Rejected');
