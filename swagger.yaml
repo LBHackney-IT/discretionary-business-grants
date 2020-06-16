@@ -375,7 +375,7 @@ definitions:
   ApplicationsListResponse:
     type: 'object'
     properties:
-      data:
+      applications:
         type: 'array'
         items:
           type: 'object'
