@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as HttpStatus from 'http-status-codes';
+import { useState, useEffect } from 'react';
 
 import ApplicationsList from 'components/ApplicationsList/ApplicationsList';
 
@@ -34,7 +35,7 @@ export async function getServerSideProps({ req, res }) {
   } catch (e) {
     console.error(e.message);
   }
-  res.writeHead(301, {
+  res.writeHead(HttpStatus.MOVED_PERMANENTLY, {
     Location: `${process.env.HACKNERY_AUTH_URL}?redirect_uri=https://${process
       .env.URL_PREFIX + req.url}`
   });
