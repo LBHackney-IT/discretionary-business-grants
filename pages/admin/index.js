@@ -1,25 +1,14 @@
 import axios from 'axios';
 import * as HttpStatus from 'http-status-codes';
-import { useState, useEffect } from 'react';
 
 import ApplicationsList from 'components/ApplicationsList/ApplicationsList';
 
-const AdminPage = ({ name }) => {
-  const [applications, setApplications] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      const { data } = await axios.get('/api/applications');
-      setApplications(data.applications);
-    }
-    fetchData();
-  }, []);
-  return (
-    <>
-      <h1>Hello {name}</h1>
-      {applications && <ApplicationsList applications={applications} />}
-    </>
-  );
-};
+const AdminPage = ({ name }) => (
+  <>
+    <h1>Hello {name}</h1>
+    <ApplicationsList />
+  </>
+);
 
 export async function getServerSideProps({ req, res }) {
   try {

@@ -1,49 +1,52 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import axios from 'axios';
 
-const ApplicationsList = ({ applications }) => (
-  <table class="govuk-table">
-    <caption class="govuk-table__caption">Applications</caption>
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header">
-          Business Name
-        </th>
-        <th
-          scope="col"
-          class="govuk-table__header govuk-table__header--numeric"
-        >
-          Date
-        </th>
-        <th scope="col" class="govuk-table__header">
-          Status
-        </th>
-      </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-      {applications.length > 0 &&
-        applications.map(({ businessName, applicationDate, status }) => (
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              {businessName}
-            </th>
-            <td class="govuk-table__cell govuk-table__cell--numeric">
-              {new Date(applicationDate).toLocaleString()}
-            </td>
-            <td class="govuk-table__cell">{status}</td>
-          </tr>
-        ))}
-    </tbody>
-  </table>
-);
+import Table from 'components/Table/Table';
 
-ApplicationsList.propTypes = {
-  applications: PropTypes.arrayOf(
-    PropTypes.shape({
-      businessName: PropTypes.string.isRequired,
-      applicationDate: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired
+const ApplicationsList = () => {
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Business Name',
+        accessor: 'businessName'
+      },
+      {
+        Header: 'Submission',
+        accessor: 'applicationDate',
+        Cell: ({ value }) => new Date(value).toLocaleString()
+      },
+      {
+        Header: 'Status',
+        accessor: 'status'
+      }
+    ],
+    []
+  );
+
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [pageCount, setPageCount] = React.useState(0);
+
+  const fetchData = React.useCallback(({ pageSize, pageIndex }) => {
+    setLoading(true);
+    axios
+      .get(`/api/applications?page=${pageIndex + 1}&pageSize=${pageSize}`)
+      .then(({ data }) => {
+        setData(data.applications);
+        setPageCount(data.pagination.totalPages);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <Table
+      columns={columns}
+      data={data}
+      fetchData={fetchData}
+      loading={loading}
+      pageCount={pageCount}
+    />
+  );
 };
 
 export default ApplicationsList;
