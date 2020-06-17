@@ -3,10 +3,10 @@ import * as HttpStatus from 'http-status-codes';
 
 import ApplicationsList from 'components/ApplicationsList/ApplicationsList';
 
-const AdminPage = ({ name }) => (
+const AdminPage = ({ name, ...props }) => (
   <>
     <h1>Hello {name}</h1>
-    <ApplicationsList />
+    <ApplicationsList {...props} />
   </>
 );
 

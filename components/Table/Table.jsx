@@ -6,7 +6,9 @@ const Table = ({
   data,
   fetchData,
   loading,
-  pageCount: controlledPageCount
+  pageCount: controlledPageCount,
+  initialPage = 0,
+  initialPageSize = 10
 }) => {
   const {
     getTableProps,
@@ -27,17 +29,18 @@ const Table = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: {
+        pageIndex: parseInt(initialPage, 10),
+        pageSize: parseInt(initialPageSize, 10)
+      },
       manualPagination: true,
       pageCount: controlledPageCount
     },
     usePagination
   );
-
   useEffect(() => {
     fetchData({ pageIndex, pageSize });
   }, [fetchData, pageIndex, pageSize]);
-
   return (
     <>
       <table className="govuk-table" {...getTableProps()}>
