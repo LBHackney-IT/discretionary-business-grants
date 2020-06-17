@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Router from 'next/router';
 import { useTable, usePagination } from 'react-table';
 
 const Table = ({
@@ -67,7 +68,16 @@ const Table = ({
           {page.map(row => {
             prepareRow(row);
             return (
-              <tr className="govuk-table__row" {...row.getRowProps()}>
+              <tr
+                className="govuk-table__row lbh-table__row--data"
+                {...row.getRowProps()}
+                onClick={() =>
+                  Router.push(
+                    '/admin/applications/[clientGeneratedId]',
+                    `/admin/applications/${row.original.clientGeneratedId}`
+                  )
+                }
+              >
                 {row.cells.map(cell => {
                   return (
                     <td className="govuk-table__cell" {...cell.getCellProps()}>

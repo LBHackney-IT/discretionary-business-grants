@@ -27,3 +27,8 @@ html.lbh-template > body.lbh-template__body * {
     padding-top: 0.25rem;
   }
 }
+
+.lbh-table__row--data:hover {
+  cursor: pointer;
+  background-color: rgb(233, 246, 252);
+}

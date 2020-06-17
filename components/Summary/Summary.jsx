@@ -12,7 +12,13 @@ const MultiValue = value =>
     </div>
   );
 
-const SummarySection = ({ formData, hasChangeLink, name, title, slug }) => (
+export const SummarySection = ({
+  formData,
+  hasChangeLink,
+  name,
+  title,
+  slug
+}) => (
   <div className="govuk-!-margin-bottom-9">
     <h2>{title}</h2>
     <SummaryList
