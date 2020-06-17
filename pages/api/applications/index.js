@@ -8,7 +8,6 @@ import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
-      console.log(req.query);
       try {
         const container = AppContainer.getInstance();
         const listApplications = container.getListApplications();
