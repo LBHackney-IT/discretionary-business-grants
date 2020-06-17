@@ -158,7 +158,7 @@ resources:
             MaxTTL: 0
             MinTTL: 0
             ForwardedValues:
-              QueryString: false
+              QueryString: true
               Cookies:
                 Forward: all
           Enabled: true
