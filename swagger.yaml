@@ -39,6 +39,7 @@ paths:
           description: 'Invalid input'
         '500':
           description: 'Internal server error'
+
   /applications:
     post:
       tags:
@@ -68,7 +69,7 @@ paths:
     get:
       tags:
         - 'applications'
-      summary: 'Create a new business grant application'
+      summary: 'Get a list of applications'
       produces:
         - 'application/json'
       parameters:
@@ -94,6 +95,29 @@ paths:
         '500':
           description: 'Internal server error'
 
+  /applications/{clientGeneratedId}:
+    get:
+      tags:
+        - 'application details'
+      summary: 'Get the full details of an application'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'number'
+          required: true
+      responses:
+        '200':
+          description: 'Application detail'
+          schema:
+            type: 'object'
+            items:
+              $ref: '#/definitions/ApplicationResponse'
+        '400':
+          description: 'Invalid input'
+        '500':
+          description: 'Internal server error'
 
 definitions:
   Url:
@@ -392,6 +416,8 @@ definitions:
               type: 'string'
       pagination:
         $ref: '#/definitions/PaginationResponse'
+      error:
+        type: 'string'
 
   PaginationResponse:
     type: object
@@ -412,4 +438,34 @@ definitions:
           nextPage:
             type: string
 
-
+  ApplicationResponse:
+    type: 'object'
+    properties:
+      application:
+        type: 'object'
+        properties:
+          clientGeneratedId:
+            type: 'string'
+          applicationDate:
+            type: 'string'
+            format: 'date-time'
+          status:
+            type: 'string'
+          eligibilityCriteria:
+            $ref: '#/definitions/EligibilityCriteria'
+          contact:
+            $ref: '#/definitions/Contact'
+          business:
+            $ref: '#/definitions/Business'
+          turnover:
+            $ref: '#/definitions/Turnover'
+          fixedPropertyCosts:
+            $ref: '#/definitions/FixedPropertyCosts'
+          documents:
+            $ref: '#/definitions/Documents'
+          businessBankAccount:
+            $ref: '#/definitions/BusinessBankAccount'
+          declaration:
+            $ref: '#/definitions/Declaration'
+      error:
+        type: 'string'
