@@ -13,6 +13,7 @@
     "preint-test": "yarn build",
     "int-test": "start-server-and-test start http://localhost:3000 cypress-run",
     "unit-test": "jest",
+    "unit-test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "lint": "eslint . --ext .js,.jsx && echo 'Lint complete.'",
     "format": "prettier '**/*.{js,jsx,css,scss,md}' --write",
     "dbmigrate": "db-migrate --migrations-dir 'db/migrations/'",

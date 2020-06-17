@@ -1,19 +1,23 @@
 import * as HttpStatus from 'http-status-codes';
 import { nanoid } from 'nanoid';
+import AppContainer from '../../../containers/AppContainer';
 import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
 import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
-import listApplications from '../../../lib/usecases/listApplications';
 
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
       try {
+        const container = AppContainer.getInstance();
+        const listApplications = container.getListApplications();
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
-        const page = parseInt((req.query && req.query.page) || 1, 10);
+        const currentPage = parseInt((req.query && req.query.page) || 1, 10);
         const pageSize = parseInt((req.query && req.query.pageSize) || 10, 10);
-        res.end(JSON.stringify(await listApplications({ page, pageSize })));
+        res.end(
+          JSON.stringify(await listApplications({ currentPage, pageSize }))
+        );
       } catch (error) {
         console.log('Application list error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
