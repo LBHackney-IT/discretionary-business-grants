@@ -449,8 +449,8 @@ definitions:
           applicationDate:
             type: 'string'
             format: 'date-time'
-          statusId:
-            type: 'number'
+          status:
+            type: 'string'
           eligibilityCriteria:
             $ref: '#/definitions/EligibilityCriteria'
           contact:
