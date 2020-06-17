@@ -20,7 +20,6 @@ export default (() => {
         instance = new AppContainer();
         delete instance.constructor;
       }
-
       return instance;
     }
   };
