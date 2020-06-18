@@ -7,8 +7,7 @@
     "servedLegalNotices": false,
     "receivedOtherGrants": false,
     "hasFixedPropertyCost": true,
-    "significantIncomeFall": true,
-    "rateableLimitAnswerId": "Yes"
+    "significantIncomeFall": true
   },
   "contact": {
     "contactTypeId": "Owner (Sole Trader)",
