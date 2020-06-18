@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { Controller } from 'react-hook-form';
 
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+
 const getInitialDate = (value = '') => {
   const [year = '', month = '', day = ''] = value.split('-');
   return { day, month, year };
@@ -30,12 +32,7 @@ const DateInput = ({ label, inputRef, error, value, onChange }) => {
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--m">
           <h1 className="govuk-fieldset__heading">{label}</h1>
         </legend>
-        {error && (
-          <span className="govuk-error-message">
-            <span className="govuk-visually-hidden">Error:</span>{' '}
-            {error.message}
-          </span>
-        )}
+        {error && <ErrorMessage text={error.message} />}
         <div className="govuk-date-input" id={name}>
           <div className="govuk-date-input__item">
             <div className="govuk-form-group">

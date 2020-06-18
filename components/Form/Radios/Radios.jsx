@@ -1,6 +1,8 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+
 const defaultOptions = ['Yes', 'No'];
 
 const Radio = ({
@@ -28,11 +30,7 @@ const Radio = ({
       </span>
     )}
     {children}
-    {error && (
-      <span className="govuk-error-message">
-        <span className="govuk-visually-hidden">Error:</span> {error.message}
-      </span>
-    )}
+    {error && <ErrorMessage text={error.message} />}
     <div
       className={cx('govuk-radios', { 'govuk-radios--inline': isRadiosInline })}
     >

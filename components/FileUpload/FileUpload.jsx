@@ -79,7 +79,7 @@ const FileUpload = ({
         </ul>
       )}
       {uploading && <p>Uploading...</p>}
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <ErrorMessage text={error} />}
     </div>
   );
 };

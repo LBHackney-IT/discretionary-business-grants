@@ -69,7 +69,7 @@ const AddressLookup = ({
     <div>
       <div
         className={cx('govuk-form-group', {
-          'govuk-form-group--error': Boolean(error) || Boolean(errorMessage)
+          'govuk-form-group--error': Boolean(error || errorMessage)
         })}
       >
         <label className="govuk-label govuk-label--m" htmlFor="postcode">
@@ -130,12 +130,9 @@ const AddressLookup = ({
             </div>
           )}
         </div>
-        {error && (
-          <span className="govuk-error-message">
-            <span className="govuk-visually-hidden">Error:</span> {error}
-          </span>
+        {(error || errorMessage) && (
+          <ErrorMessage text={error || errorMessage} />
         )}
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {(isManually || (defaultValue && results.length === 0)) && (
           <AddressBox name={name} disabled={!isManually} register={register} />
         )}

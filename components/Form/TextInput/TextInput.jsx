@@ -1,5 +1,7 @@
 import cx from 'classnames';
 
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+
 const TextInput = ({
   label,
   hint,
@@ -23,11 +25,7 @@ const TextInput = ({
         {hint}
       </span>
     )}
-    {error && (
-      <span className="govuk-error-message">
-        <span className="govuk-visually-hidden">Error:</span> {error.message}
-      </span>
-    )}
+    {error && <ErrorMessage text={error.message} />}
     <input
       className={cx('govuk-input', inputClassName, {
         'govuk-input--error': error
