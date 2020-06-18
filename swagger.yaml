@@ -123,7 +123,7 @@ paths:
     get:
       tags:
         - 'application document signed url'
-      summary: 'Get a signed s3 url to access an uploaded document'
+      summary: 'Get a signed S3 URL to access an uploaded document'
       produces:
         - 'application/json'
       parameters:
