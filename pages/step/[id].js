@@ -21,11 +21,17 @@ const FormWizard = () => {
     window.scrollTo(0, 0);
   });
   const [formData, setFormData] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const router = useRouter();
   useBeforeunload(() => "You'll lose your data!");
   const { id: stepId } = router.query;
   const firstStep = stepKeys[0];
-  if (stepId && !formData.eligibilityCriteria && stepId !== firstStep) {
+  if (
+    stepId &&
+    !isSubmitted &&
+    !formData.eligibilityCriteria &&
+    stepId !== firstStep
+  ) {
     Router.replace(`/step/${firstStep}`);
     return null;
   }
@@ -46,6 +52,10 @@ const FormWizard = () => {
           formData={formData}
           saveData={data => setFormData({ ...formData, ...data })}
           nextStep={nextStep}
+          clearFormData={() => {
+            setIsSubmitted(true);
+            setFormData({});
+          }}
         />
       </main>
     </div>
