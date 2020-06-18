@@ -7,10 +7,10 @@ export default async (req, res) => {
       // eslint-disable-next-line no-case-declarations
       const s3Path = req.query.s3Path;
       try {
-        const result = { url: await signedUrl({ s3Path }) };
-        res.statusCode = HttpStatus.OK;
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(result));
+        res.writeHead(HttpStatus.MOVED_PERMANENTLY, {
+          Location: await signedUrl({ s3Path })
+        });
+        res.end();
       } catch (error) {
         console.log('Document Signed URL error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
