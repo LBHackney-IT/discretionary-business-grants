@@ -22,16 +22,18 @@ export const SummarySection = ({
   <div className="govuk-!-margin-bottom-9">
     <h2>{title}</h2>
     <SummaryList
-      list={Object.entries(formData[name]).map(([key, value]) => ({
-        title: getInputProps(name, key).label,
-        value: Array.isArray(value)
-          ? value.map(v => MultiValue(v.split('/').pop()))
-          : typeof value === 'object'
-          ? Object.values(value).map(MultiValue)
-          : typeof value === 'boolean'
-          ? JSON.stringify(value)
-          : value
-      }))}
+      list={Object.entries(formData[name])
+        .filter(([, value]) => value)
+        .map(([key, value]) => ({
+          title: getInputProps(name, key).label,
+          value: Array.isArray(value)
+            ? value.map(v => MultiValue(v.split('/').pop()))
+            : typeof value === 'object'
+            ? Object.values(value).map(MultiValue)
+            : typeof value === 'boolean'
+            ? JSON.stringify(value)
+            : value
+        }))}
     />
     {hasChangeLink && (
       <Link href={stepPath} as={`/step/${slug}`}>
@@ -84,13 +86,16 @@ const sections = [
   }
 ];
 
-const Summary = props =>
-  sections.map(section => (
-    <SummarySection key={section.slug} {...props} {...section} />
-  ));
+const Summary = ({ filterOut, ...props }) =>
+  sections
+    .filter(section => !filterOut || filterOut.indexOf(section.name) === -1)
+    .map(section => (
+      <SummarySection key={section.slug} {...props} {...section} />
+    ));
 
 Summary.propTypes = {
   formData: PropTypes.shape({}).isRequired,
+  filterOut: PropTypes.arrayOf(PropTypes.string),
   hasChangeLink: PropTypes.bool
 };
 

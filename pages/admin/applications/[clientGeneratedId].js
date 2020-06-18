@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { redirectIfNotAuth } from 'utils/auth';
-import { SummarySection } from 'components/Summary/Summary';
+import Summary from 'components/Summary/Summary';
 
 const ApplicationView = () => {
   const [data, setData] = useState();
@@ -34,14 +34,27 @@ const ApplicationView = () => {
       <h1>Application {clientGeneratedId}</h1>
       {data && (
         <>
-          <p>{new Date(data.applicationDate).toLocaleString()}</p>
-          <SummarySection
-            formData={data}
-            name="eligibilityCriteria"
-            title="Eligibility Criteria:"
-            slug="eligibility-criteria"
-            hasChangeLink={false}
-          />
+          <h1>{data.business.businessName}</h1>
+          <div>
+            Submitted: {new Date(data.applicationDate).toLocaleString()}
+          </div>
+          <div className="govuk-!-margin-top-7 govuk-!-margin-bottom-7">
+            <p>
+              Email:{' '}
+              <a href={`mailto:${data.contact.emailAddress}`} target="_blank">
+                {data.contact.emailAddress}
+              </a>
+            </p>
+            {data.contact.telephoneNumber && (
+              <p>
+                Phone:{' '}
+                <a href={`tel:${data.contact.emailAddress}`} target="_blank">
+                  {data.contact.telephoneNumber}
+                </a>
+              </p>
+            )}
+          </div>
+          <Summary formData={data} filterOut={['supplementaryInformation']} />
         </>
       )}
       {error && <p>{error}</p>}
