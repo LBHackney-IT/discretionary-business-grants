@@ -5,11 +5,7 @@ export default async (req, res) => {
   switch (req.method) {
     case 'GET':
       // eslint-disable-next-line no-case-declarations
-      const clientGeneratedId = req.query.clientGeneratedId;
-      // eslint-disable-next-line no-case-declarations
       const s3Path = req.query.s3Path;
-
-      console.log({ clientGeneratedId, s3Path });
       try {
         const result = { url: await signedUrl({ s3Path }) };
         res.statusCode = HttpStatus.OK;
