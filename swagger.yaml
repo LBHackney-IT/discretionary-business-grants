@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.20'
+  version: '0.0.21'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -114,6 +114,34 @@ paths:
             type: 'object'
             items:
               $ref: '#/definitions/ApplicationResponse'
+        '400':
+          description: 'Invalid input'
+        '500':
+          description: 'Internal server error'
+          
+  /applications/{clientGeneratedId}/document/{s3Path}:
+    get:
+      tags:
+        - 'application document signed url'
+      summary: 'Get a signed s3 url to access an uploaded document'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'string'
+          required: true
+        - in: 'path'
+          name: 's3Path'
+          type: 'string'
+          required: true
+      responses:
+        '200':
+          description: 'Signed timelimited url to aws s3'
+          schema:
+            type: 'object'
+            items:
+              $ref: '#/definitions/SignedDocumentUrl'
         '400':
           description: 'Invalid input'
         '500':
@@ -464,5 +492,13 @@ definitions:
             $ref: '#/definitions/BusinessBankAccount'
           declaration:
             $ref: '#/definitions/Declaration'
+      error:
+        type: 'string'
+        
+  SignedDocumentUrl:
+    type: 'object'
+    properties:
+      url:
+        type: 'string'
       error:
         type: 'string'
