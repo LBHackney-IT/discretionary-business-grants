@@ -27,7 +27,7 @@ paths:
           in: 'body'
           required: true
           schema:
-            $ref: '#/definitions/Url'
+            $ref: '#/definitions/Application'
       responses:
         '200':
           description: 'Success'
@@ -56,7 +56,7 @@ paths:
           in: 'body'
           required: true
           schema:
-            $ref: '#/definitions/Applications'
+            $ref: '#/definitions/Application'
       responses:
         '201':
           description: 'Your application has been submitted'
@@ -168,7 +168,7 @@ definitions:
       url:
         type: 'string'
 
-  Applications:
+  Application:
     type: 'object'
     properties:
       clientGeneratedId:
