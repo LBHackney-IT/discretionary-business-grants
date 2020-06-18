@@ -74,9 +74,9 @@ export const inputLabels = {
         'A ‘fixed property related cost’ is defined as an ongoing fixed business premises rent cost, business premises licence cost, business premises mortgage cost, market pitch fee (in the case of a market trader), or business storage fee (in the case of a market trader).',
       validation: { required: true },
       children: (
-        <ul class="govuk-list govuk-list--bullet">
+        <ul className="govuk-list govuk-list--bullet">
           <li>Retail, Leisure and Hospitality Business:</li>
-          <ul class="govuk-list govuk-list--bullet">
+          <ul className="govuk-list govuk-list--bullet">
             <li>
               With a property that has a rateable value of £60,000 or less
             </li>
@@ -87,7 +87,7 @@ export const inputLabels = {
             </li>
           </ul>
           <li>Not a Retail, Leisure and Hospitality Business:</li>
-          <ul class="govuk-list govuk-list--bullet">
+          <ul className="govuk-list govuk-list--bullet">
             <li>
               With a property that has a rateable value of less than £51,000
             </li>

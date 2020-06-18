@@ -1,6 +1,8 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+
 const Select = ({
   label,
   hint,
@@ -25,11 +27,7 @@ const Select = ({
       </span>
     )}
     {children}
-    {error && (
-      <span className="govuk-error-message">
-        <span className="govuk-visually-hidden">Error:</span> {error.message}
-      </span>
-    )}
+    {error && <ErrorMessage text={error.message} />}
     <select
       className="govuk-select"
       id={name}

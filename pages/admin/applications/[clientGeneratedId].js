@@ -41,18 +41,18 @@ const ApplicationView = () => {
       {data && (
         <>
           <h1>{data.business.businessName}</h1>
-          <div>
+          <div className="govuk-body">
             Submitted: {new Date(data.applicationDate).toLocaleString()}
           </div>
           <div className="govuk-!-margin-top-7 govuk-!-margin-bottom-7">
-            <p>
+            <p className="govuk-body">
               Email:{' '}
               <a href={`mailto:${data.contact.emailAddress}`} target="_blank">
                 {data.contact.emailAddress}
               </a>
             </p>
             {data.contact.telephoneNumber && (
-              <p>
+              <p className="govuk-body">
                 Phone:{' '}
                 <a href={`tel:${data.contact.emailAddress}`} target="_blank">
                   {data.contact.telephoneNumber}
@@ -61,6 +61,18 @@ const ApplicationView = () => {
             )}
           </div>
           <Summary formData={data} filterOut={['supplementaryInformation']} />
+          <h2>Documents</h2>
+          {data.documents.map(({ documentType, s3Path }) => (
+            <div className="govuk-body">
+              <a
+                className="govuk-link"
+                href={`/api/applications/${clientGeneratedId}/document/${s3Path}`}
+                target="_blank"
+              >
+                {documentType}
+              </a>
+            </div>
+          ))}
         </>
       )}
       {error && <p>{error}</p>}

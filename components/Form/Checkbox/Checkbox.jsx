@@ -1,6 +1,8 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+
 const Checkbox = ({ label, name, register, error }) => (
   <div
     className={cx('govuk-form-group', {
@@ -25,9 +27,7 @@ const Checkbox = ({ label, name, register, error }) => (
       </div>
     </div>
     {error && (
-      <span className="govuk-error-message  govuk-body govuk-!-margin-top-3">
-        <span className="govuk-visually-hidden">Error:</span> {error.message}
-      </span>
+      <ErrorMessage text={error.message} className="govuk-!-margin-top-3" />
     )}
   </div>
 );
