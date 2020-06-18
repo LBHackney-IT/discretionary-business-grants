@@ -7,7 +7,7 @@ export default async (req, res) => {
       // eslint-disable-next-line no-case-declarations
       const s3Path = req.query.s3Path;
       try {
-        res.writeHead(HttpStatus.MOVED_PERMANENTLY, {
+        res.writeHead(HttpStatus.MOVED_TEMPORARILY, {
           Location: await signedUrl({ s3Path })
         });
         res.end();
