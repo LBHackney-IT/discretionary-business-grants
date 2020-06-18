@@ -15,7 +15,7 @@ export const redirectIfNotAuth = async ({ req, res, query }) => {
   } catch (e) {
     console.error(e.message);
   }
-  res.writeHead(HttpStatus.MOVED_PERMANENTLY, {
+  res.writeHead(HttpStatus.MOVED_TEMPORARILY, {
     Location: `${process.env.HACKNERY_AUTH_URL}?redirect_uri=https://${process
       .env.URL_PREFIX + req.url}`
   });
