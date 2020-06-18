@@ -5,8 +5,7 @@
     "tradingOn20200311": true,
     "servedLegalNotices": false,
     "receivedOtherGrants": false,
-    "hasFixedPropertyCost": false,
-    "rateableLimitAnswerId": 1
+    "hasFixedPropertyCost": false
   },
   "contact": {
     "contactTypeId": 1,

@@ -402,7 +402,7 @@ export const getInputProps = (
   { register, control } = {},
   errors
 ) => {
-  const { validation, ...props } = inputLabels[form][name];
+  const { validation, ...props } = inputLabels[form][name] || {};
   return {
     name: `${form}.${name}`,
     ...props,

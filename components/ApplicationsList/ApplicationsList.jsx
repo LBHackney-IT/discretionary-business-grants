@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import Router from 'next/router';
 
 import Table from 'components/Table/Table';
 
-const ApplicationsList = () => {
+const ApplicationsList = ({ page, pageSize }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -29,6 +30,11 @@ const ApplicationsList = () => {
 
   const fetchData = React.useCallback(({ pageSize, pageIndex }) => {
     setLoading(true);
+    Router.push(
+      '/admin',
+      { pathname: '/admin', query: { page: pageIndex, pageSize } },
+      { shallow: true }
+    );
     axios
       .get(`/api/applications?page=${pageIndex + 1}&pageSize=${pageSize}`)
       .then(({ data }) => {
@@ -45,6 +51,8 @@ const ApplicationsList = () => {
       fetchData={fetchData}
       loading={loading}
       pageCount={pageCount}
+      initialPage={page}
+      initialPageSize={pageSize}
     />
   );
 };
