@@ -37,8 +37,6 @@ paths:
               $ref: '#/definitions/UrlResponse'
         '400':
           description: 'Invalid input'
-        '404':
-          description: 'Application not found'
         '500':
           description: 'Internal server error'
 
@@ -118,6 +116,8 @@ paths:
               $ref: '#/definitions/ApplicationResponse'
         '400':
           description: 'Invalid input'
+        '404':
+          description: 'Application not found'
         '500':
           description: 'Internal server error'
 
