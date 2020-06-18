@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
 
@@ -6,23 +6,28 @@ import Summary from 'components/Summary/Summary';
 import ErrorSummary from 'components/ErrorSummary/ErrorSummary';
 import { set } from 'utils/persistency';
 
-const Result = ({ formData }) => {
+const Result = ({ formData, clearFormData }) => {
   const [error, setError] = useState(false);
-  const [submitting, SetSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    Router.prefetch('/confirmation');
+  }, []);
   const submitForm = async () => {
     try {
-      SetSubmitting(true);
+      setSubmitting(true);
       const { data } = await axios.post('/api/applications', formData);
       set(data, formData);
+      clearFormData();
       return Router.push({
         pathname: '/confirmation',
         query: { ref: data }
       });
     } catch (e) {
-      SetSubmitting(false);
+      setSubmitting(false);
       setError(e.message);
     }
   };
+  if (submitting) return null;
   return (
     <>
       <h1>Summary</h1>
