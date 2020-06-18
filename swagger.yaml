@@ -144,6 +144,8 @@ paths:
               $ref: '#/definitions/SignedDocumentUrl'
         '400':
           description: 'Invalid input'
+        '404':
+          description: 'Document not found'
         '500':
           description: 'Internal server error'
 
