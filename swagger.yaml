@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.21'
+  version: '0.0.22'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -37,6 +37,8 @@ paths:
               $ref: '#/definitions/UrlResponse'
         '400':
           description: 'Invalid input'
+        '404':
+          description: 'Application not found'
         '500':
           description: 'Internal server error'
 
@@ -118,7 +120,7 @@ paths:
           description: 'Invalid input'
         '500':
           description: 'Internal server error'
-          
+
   /applications/{clientGeneratedId}/document/{s3Path}:
     get:
       tags:
@@ -493,7 +495,7 @@ definitions:
             $ref: '#/definitions/Declaration'
       error:
         type: 'string'
-        
+
   SignedDocumentUrl:
     type: 'object'
     properties:
