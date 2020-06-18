@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.21'
+  version: '0.0.22'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -27,7 +27,7 @@ paths:
           in: 'body'
           required: true
           schema:
-            $ref: '#/definitions/Url'
+            $ref: '#/definitions/Application'
       responses:
         '200':
           description: 'Success'
@@ -54,7 +54,7 @@ paths:
           in: 'body'
           required: true
           schema:
-            $ref: '#/definitions/Applications'
+            $ref: '#/definitions/Application'
       responses:
         '201':
           description: 'Your application has been submitted'
@@ -116,9 +116,11 @@ paths:
               $ref: '#/definitions/ApplicationResponse'
         '400':
           description: 'Invalid input'
+        '404':
+          description: 'Application not found'
         '500':
           description: 'Internal server error'
-          
+
   /applications/{clientGeneratedId}/document/{s3Path}:
     get:
       tags:
@@ -166,7 +168,7 @@ definitions:
       url:
         type: 'string'
 
-  Applications:
+  Application:
     type: 'object'
     properties:
       clientGeneratedId:
@@ -300,12 +302,6 @@ definitions:
         type: 'string'
       councilTaxNumber:
         type: 'string'
-      turnover:
-        description: 'Business turnover March to May (inclusive) 2020'
-        type: 'number'
-      fixedPropertyCost:
-        description: 'Fixed property related costs March to May (inclusive) 2020'
-        type: 'number'
       businessAddress:
         $ref: '#/definitions/BusinessAddress'
     required:
@@ -339,6 +335,9 @@ definitions:
   Turnover:
     type: 'object'
     properties:
+      turnover:
+        description: 'Business turnover March to May (inclusive) 2020'
+        type: 'number'
       year1819:
         type: 'number'
       year1920:
@@ -496,7 +495,7 @@ definitions:
             $ref: '#/definitions/Declaration'
       error:
         type: 'string'
-        
+
   SignedDocumentUrl:
     type: 'object'
     properties:
