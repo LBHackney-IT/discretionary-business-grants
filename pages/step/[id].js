@@ -9,10 +9,7 @@ const getAdjacentSteps = step => {
   const currentStep = stepKeys.findIndex(s => s === step);
   return {
     previousStep: currentStep > 0 ? `/step/${stepKeys[currentStep - 1]}` : null,
-    nextStep:
-      currentStep < stepKeys.length
-        ? `/step/${stepKeys[currentStep + 1]}`
-        : null
+    nextStep: currentStep < stepKeys.length ? `/step/${stepKeys[currentStep + 1]}` : null
   };
 };
 
@@ -42,11 +39,7 @@ const FormWizard = () => {
         </Link>
       )}
       <main className="govuk-main-wrapper">
-        <Step
-          formData={formData}
-          saveData={data => setFormData({ ...formData, ...data })}
-          nextStep={nextStep}
-        />
+        <Step formData={formData} saveData={data => setFormData({ ...formData, ...data })} nextStep={nextStep} />
       </main>
     </div>
   );

@@ -10,9 +10,7 @@ export default async (req, res) => {
       try {
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
-        res.end(
-          JSON.stringify(await applicationDetails({ clientGeneratedId }))
-        );
+        res.end(JSON.stringify(await applicationDetails({ clientGeneratedId })));
       } catch (error) {
         console.log('Application details error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;

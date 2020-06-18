@@ -16,9 +16,7 @@ const SupplementaryInformation = props => {
   const sharedProps = name => ({
     ...getInputProps('supplementaryInformation', name, { control }, errors),
     uploadPrefix: props.formData.contact && props.formData.contact.emailAddress,
-    defaultValue:
-      props.formData.supplementaryInformation &&
-      props.formData.supplementaryInformation[name]
+    defaultValue: props.formData.supplementaryInformation && props.formData.supplementaryInformation[name]
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -26,10 +24,9 @@ const SupplementaryInformation = props => {
       <div className="govuk-inset-text">
         File upload information{' '}
         <p>
-          Preferred file formats are PDF, JPeg, PNG, Word, Excel (CSV files).
-          File size is limited to 20MB per file. Multiple files can be uploaded.
-          If uploading a scanned or photographed document, ensure that it is
-          clear and legible.
+          Preferred file formats are PDF, JPeg, PNG, Word, Excel (CSV files). File size is limited to 20MB per file.
+          Multiple files can be uploaded. If uploading a scanned or photographed document, ensure that it is clear and
+          legible.
         </p>
       </div>
       <ControlledFileUpload {...sharedProps('businessAccounts')} />

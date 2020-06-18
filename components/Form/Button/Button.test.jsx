@@ -12,9 +12,7 @@ describe('Button', () => {
   it('performs an action onClick', () => {
     const buttonText = 'My Button';
     const myAction = jest.fn();
-    const { getByText } = render(
-      <Button text={buttonText} onClick={myAction} />
-    );
+    const { getByText } = render(<Button text={buttonText} onClick={myAction} />);
     fireEvent(
       getByText(buttonText),
       new MouseEvent('click', {

@@ -16,30 +16,20 @@ const BusinessTurnover = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="govuk-form-group">
-        <fieldset
-          className="govuk-fieldset"
-          role="group"
-          aria-describedby="step-hint"
-        >
+        <fieldset className="govuk-fieldset" role="group" aria-describedby="step-hint">
           <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 className="govuk-fieldset__heading">Business Turnover</h1>
           </legend>
           <div className="govuk-inset-text">
             <p>
-              Please provide information below on your business turnover to help
-              demonstrate the impact of Covid-19 on your business.
+              Please provide information below on your business turnover to help demonstrate the impact of Covid-19 on
+              your business.
             </p>
             <p>Fields require numeric values e.g 10000 for £10,000.</p>
           </div>
-          <TextInput
-            {...getInputProps('turnover', 'turnover', { register }, errors)}
-          />
-          <TextInput
-            {...getInputProps('turnover', 'year1819', { register }, errors)}
-          />
-          <TextInput
-            {...getInputProps('turnover', 'year1920', { register }, errors)}
-          />
+          <TextInput {...getInputProps('turnover', 'turnover', { register }, errors)} />
+          <TextInput {...getInputProps('turnover', 'year1819', { register }, errors)} />
+          <TextInput {...getInputProps('turnover', 'year1920', { register }, errors)} />
         </fieldset>
       </div>
       <Button className="govuk-button" text="Next" type="submit" />

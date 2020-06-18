@@ -68,10 +68,7 @@ const FileUpload = ({
           {fileList.map(file => (
             <li key={file}>
               {file.split('/').pop()}{' '}
-              <span
-                role="button"
-                onClick={() => setFileList(fileList.filter(f => f !== file))}
-              >
+              <span role="button" onClick={() => setFileList(fileList.filter(f => f !== file))}>
                 <DeleteIcon />
               </span>
             </li>

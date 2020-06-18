@@ -26,9 +26,7 @@ const Uploader = props => {
       <p>
         <input type="file" id="file" name="fileInput" ref={register} />
       </p>
-      {error && (
-        <ErrorMessage>There was a problem uploading the file.</ErrorMessage>
-      )}
+      {error && <ErrorMessage>There was a problem uploading the file.</ErrorMessage>}
       {fileUploaded && (
         <p>
           File uploaded! <strong>{fileUploaded}</strong>

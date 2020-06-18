@@ -20,13 +20,9 @@ const userInAllowedGroup = (userGroups, allowedGroups) => {
 };
 
 const customAuthorize = allowedGroups => (decodedToken, authorizeEvent) => {
-  if (decodedToken && userInAllowedGroup(decodedToken.groups, allowedGroups))
-    return true;
+  if (decodedToken && userInAllowedGroup(decodedToken.groups, allowedGroups)) return true;
   return publicList.some(publicMethod => {
-    return (
-      isChildPath(publicMethod.path, authorizeEvent.path) &&
-      isAllowedMethod(publicMethod.methods, authorizeEvent)
-    );
+    return isChildPath(publicMethod.path, authorizeEvent.path) && isAllowedMethod(publicMethod.methods, authorizeEvent);
   });
 };
 

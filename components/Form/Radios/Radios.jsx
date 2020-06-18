@@ -33,9 +33,7 @@ const Radio = ({
         <span className="govuk-visually-hidden">Error:</span> {error.message}
       </span>
     )}
-    <div
-      className={cx('govuk-radios', { 'govuk-radios--inline': isRadiosInline })}
-    >
+    <div className={cx('govuk-radios', { 'govuk-radios--inline': isRadiosInline })}>
       {options.map(option => (
         <div className="govuk-radios__item" key={option}>
           <input
@@ -50,10 +48,7 @@ const Radio = ({
             aria-describedby={hint && `${name}-hint`}
             {...otherProps}
           />
-          <label
-            className="govuk-label govuk-radios__label"
-            htmlFor={`${name}_${option}`}
-          >
+          <label className="govuk-label govuk-radios__label" htmlFor={`${name}_${option}`}>
             {option}
           </label>
         </div>

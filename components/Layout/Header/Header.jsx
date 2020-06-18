@@ -11,10 +11,7 @@ const Header = ({ serviceName }) => (
         </a>
       </div>
       <div className="govuk-header__content">
-        <a
-          href="/"
-          className="govuk-header__link govuk-header__link--service-name"
-        >
+        <a href="/" className="govuk-header__link govuk-header__link--service-name">
           {serviceName}
         </a>
       </div>

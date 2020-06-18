@@ -1,16 +1,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-const Select = ({
-  label,
-  hint,
-  name,
-  options,
-  onChange,
-  register,
-  error,
-  children
-}) => (
+const Select = ({ label, hint, name, options, onChange, register, error, children }) => (
   <div
     className={cx('govuk-form-group', {
       'govuk-form-group--error': error
@@ -40,8 +31,7 @@ const Select = ({
     >
       <option key="empty" value=""></option>
       {options.map(option => {
-        const { value, text } =
-          typeof option === 'string' ? { value: option, text: option } : option;
+        const { value, text } = typeof option === 'string' ? { value: option, text: option } : option;
         return (
           <option key={value} value={value}>
             {text}

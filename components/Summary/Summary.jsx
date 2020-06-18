@@ -12,13 +12,7 @@ const MultiValue = value =>
     </div>
   );
 
-export const SummarySection = ({
-  formData,
-  hasChangeLink,
-  name,
-  title,
-  slug
-}) => (
+export const SummarySection = ({ formData, hasChangeLink, name, title, slug }) => (
   <div className="govuk-!-margin-bottom-9">
     <h2>{title}</h2>
     <SummaryList
@@ -84,10 +78,7 @@ const sections = [
   }
 ];
 
-const Summary = props =>
-  sections.map(section => (
-    <SummarySection key={section.slug} {...props} {...section} />
-  ));
+const Summary = props => sections.map(section => <SummarySection key={section.slug} {...props} {...section} />);
 
 Summary.propTypes = {
   formData: PropTypes.shape({}).isRequired,

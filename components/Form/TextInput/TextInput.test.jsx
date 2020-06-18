@@ -5,9 +5,7 @@ describe('TextInput', () => {
   it('renders a text input', () => {
     const inputName = 'my-text-input';
     const inputLabel = 'My Input';
-    const { getByLabelText } = render(
-      <TextInput name={inputName} label={inputLabel} />
-    );
+    const { getByLabelText } = render(<TextInput name={inputName} label={inputLabel} />);
 
     const labelRegex = new RegExp(`s*${inputLabel}s*`);
     const input = getByLabelText(labelRegex);
@@ -20,9 +18,7 @@ describe('TextInput', () => {
   it('performs an action onChange', () => {
     let newValue = '';
     const myAction = jest.fn(e => (newValue = e.target.value));
-    const { getByLabelText } = render(
-      <TextInput name={'my-input'} label={'My Input'} onChange={myAction} />
-    );
+    const { getByLabelText } = render(<TextInput name={'my-input'} label={'My Input'} onChange={myAction} />);
 
     fireEvent.change(getByLabelText(/\s*My Input\s*/), {
       target: { value: 'hello' }

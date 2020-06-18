@@ -57,8 +57,7 @@ export const inputLabels = {
       }
     },
     servedLegalNotices: {
-      label:
-        'Is your business in administration, insolvent or in receipt of a striking off notice?',
+      label: 'Is your business in administration, insolvent or in receipt of a striking off notice?',
       validation: { required: true }
     },
     receivedOtherGrants: {
@@ -77,32 +76,21 @@ export const inputLabels = {
         <ul class="govuk-list govuk-list--bullet">
           <li>Retail, Leisure and Hospitality Business:</li>
           <ul class="govuk-list govuk-list--bullet">
-            <li>
-              With a property that has a rateable value of £60,000 or less
-            </li>
+            <li>With a property that has a rateable value of £60,000 or less</li>
             <li>OR</li>
-            <li>
-              Without a rateable value AND your annual fixed property related
-              costs are £60,000 or less
-            </li>
+            <li>Without a rateable value AND your annual fixed property related costs are £60,000 or less</li>
           </ul>
           <li>Not a Retail, Leisure and Hospitality Business:</li>
           <ul class="govuk-list govuk-list--bullet">
-            <li>
-              With a property that has a rateable value of less than £51,000
-            </li>
+            <li>With a property that has a rateable value of less than £51,000</li>
             <li>OR</li>
-            <li>
-              Without a rateable value AND your annual fixed property related
-              costs are less than £51,000
-            </li>
+            <li>Without a rateable value AND your annual fixed property related costs are less than £51,000</li>
           </ul>
         </ul>
       )
     },
     significantIncomeFall: {
-      label:
-        'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
+      label: 'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
       validation: { required: true }
     }
   },
@@ -157,8 +145,7 @@ export const inputLabels = {
     registeredName: { label: 'Registered Name (if applicable):' },
     businessDescription: {
       label: 'Business activity:',
-      hint:
-        'Please set out what your business does and the service/services it provides.'
+      hint: 'Please set out what your business does and the service/services it provides.'
     },
     businessAddress: {
       label: 'Business Premises Address:',
@@ -167,8 +154,7 @@ export const inputLabels = {
     },
     siteDescriptionId: {
       label: 'Business Premises Description:',
-      hint:
-        '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
+      hint: '(e.g shared office, shared workspace, individual shop, individual office, market stall etc)',
       options: options.SITE_DESCRIPTION,
       validation: {
         required: 'Business description is required',
@@ -181,8 +167,7 @@ export const inputLabels = {
     },
     companyStructureId: {
       label: 'Business Structure:',
-      hint:
-        'If your business structure is not listed below please pick the closest description.',
+      hint: 'If your business structure is not listed below please pick the closest description.',
       options: options.COMPANY_STRUCTURE,
       validation: {
         required: 'Business Structure is required',
@@ -236,22 +221,19 @@ export const inputLabels = {
   turnover: {
     turnover: {
       label: 'Business turnover March to May (inclusive) 2020:',
-      hint:
-        'Information to be verifiable with supplementary information as required below.',
+      hint: 'Information to be verifiable with supplementary information as required below.',
       type: 'number',
       validation: { required: "It's required", min: 0 }
     },
     year1819: {
       label: 'Financial Year 18/19',
-      hint:
-        'Information to be verifiable with supplementary information as required below.',
+      hint: 'Information to be verifiable with supplementary information as required below.',
       type: 'number',
       validation: { required: "It's required", min: 0 }
     },
     year1920: {
       label: 'Financial Year 19/20',
-      hint:
-        'Information to be verifiable with supplementary information as required below.',
+      hint: 'Information to be verifiable with supplementary information as required below.',
       type: 'number',
       validation: { required: "It's required", min: 0 }
     }
@@ -333,8 +315,7 @@ export const inputLabels = {
       }
     },
     stateAidReceived: {
-      label:
-        'I/we have received the following value of State Aid under above rule',
+      label: 'I/we have received the following value of State Aid under above rule',
       type: 'number',
       validation: { required: "It's required" }
     },
@@ -382,8 +363,7 @@ export const inputLabels = {
     },
     identity: {
       label: 'Identity',
-      hint:
-        'Please provide a form of photo identification such as a passport or driving licence',
+      hint: 'Please provide a form of photo identification such as a passport or driving licence',
       validation: {
         validate: value => value.length > 0 || 'Document required'
       }
@@ -396,12 +376,7 @@ export const inputLabels = {
   }
 };
 
-export const getInputProps = (
-  form,
-  name,
-  { register, control } = {},
-  errors
-) => {
+export const getInputProps = (form, name, { register, control } = {}, errors) => {
   const { validation, ...props } = inputLabels[form][name] || {};
   return {
     name: `${form}.${name}`,

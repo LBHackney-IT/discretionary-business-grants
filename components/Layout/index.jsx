@@ -9,11 +9,7 @@ const Layout = ({ children }) => (
     <Header serviceName="Discretionary Business Grants" />
     <div className="govuk-width-container app-width-container">
       <PhaseBanner phase="beta" />
-      <main
-        className="govuk-main-wrapper app-main-class"
-        id="content"
-        role="main"
-      >
+      <main className="govuk-main-wrapper app-main-class" id="content" role="main">
         {children}
       </main>
     </div>

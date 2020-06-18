@@ -48,16 +48,9 @@ const Table = ({
         <caption className="govuk-table__caption">Applications</caption>
         <thead className="govuk-table__head">
           {headerGroups.map(headerGroup => (
-            <tr
-              className="govuk-table__row"
-              {...headerGroup.getHeaderGroupProps()}
-            >
+            <tr className="govuk-table__row" {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th
-                  scope="col"
-                  className="govuk-table__header"
-                  {...column.getHeaderProps()}
-                >
+                <th scope="col" className="govuk-table__header" {...column.getHeaderProps()}>
                   {column.render('Header')}
                 </th>
               ))}
@@ -95,8 +88,7 @@ const Table = ({
               </td>
             ) : (
               <td className="govuk-table__cell" colSpan="10000">
-                Showing {page.length} of ~{controlledPageCount * pageSize}{' '}
-                results
+                Showing {page.length} of ~{controlledPageCount * pageSize} results
               </td>
             )}
           </tr>

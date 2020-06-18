@@ -6,9 +6,7 @@ const fileUploader = async (file, clientGeneratedId) => {
     fileName: file.name
   });
   const formData = new FormData();
-  Object.entries(data.fields).forEach(([key, value]) =>
-    formData.append(key, value)
-  );
+  Object.entries(data.fields).forEach(([key, value]) => formData.append(key, value));
   formData.append('file', file);
   await axios.post(data.url, formData, {
     headers: {

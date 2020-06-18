@@ -16,22 +16,14 @@ const PropertyCost = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="govuk-form-group">
-        <fieldset
-          className="govuk-fieldset"
-          role="group"
-          aria-describedby="step-hint"
-        >
+        <fieldset className="govuk-fieldset" role="group" aria-describedby="step-hint">
           <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 className="govuk-fieldset__heading">
-              Fixed property related costs
-            </h1>
+            <h1 className="govuk-fieldset__heading">Fixed property related costs</h1>
           </legend>
           <span id="step-hint" className="govuk-hint">
-            Fixed property related costs (please specify how much your fixed
-            property costs are per annum and state what these include e.g annual
-            business premises rent or annual business premises mortgage amount).
-            Information to be verifiable with supplementary information as
-            required below.
+            Fixed property related costs (please specify how much your fixed property costs are per annum and state what
+            these include e.g annual business premises rent or annual business premises mortgage amount). Information to
+            be verifiable with supplementary information as required below.
           </span>
           <TextInput
             {...getInputProps(

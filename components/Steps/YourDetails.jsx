@@ -17,21 +17,11 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Your Details</h1>
-      <Select
-        {...getInputProps('contact', 'contactTypeId', { register }, errors)}
-      />
-      <TextInput
-        {...getInputProps('contact', 'firstName', { register }, errors)}
-      />
-      <TextInput
-        {...getInputProps('contact', 'lastName', { register }, errors)}
-      />
-      <TextInput
-        {...getInputProps('contact', 'emailAddress', { register }, errors)}
-      />
-      <TextInput
-        {...getInputProps('contact', 'telephoneNumber', { register }, errors)}
-      />
+      <Select {...getInputProps('contact', 'contactTypeId', { register }, errors)} />
+      <TextInput {...getInputProps('contact', 'firstName', { register }, errors)} />
+      <TextInput {...getInputProps('contact', 'lastName', { register }, errors)} />
+      <TextInput {...getInputProps('contact', 'emailAddress', { register }, errors)} />
+      <TextInput {...getInputProps('contact', 'telephoneNumber', { register }, errors)} />
       <AddressLookup
         {...getInputProps('contact', 'address', { register, control }, errors)}
         defaultValue={props.formData.contact && props.formData.contact.address}

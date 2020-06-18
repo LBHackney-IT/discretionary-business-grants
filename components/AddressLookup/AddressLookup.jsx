@@ -10,41 +10,12 @@ import { lookupPostcode } from 'utils/postcodeAPI';
 
 const AddressBox = ({ name, disabled, register }) => (
   <>
-    <TextInput
-      label="First line"
-      name={`${name}.firstLine`}
-      register={register({ required: true })}
-    />
-    <TextInput
-      label="Second line"
-      name={`${name}.secondLine`}
-      register={register}
-      disabled={disabled}
-    />
-    <TextInput
-      label="Third line"
-      name={`${name}.thirdLine`}
-      register={register}
-      disabled={disabled}
-    />
-    <TextInput
-      label="Postcode"
-      name={`${name}.postcode`}
-      register={register}
-      disabled={disabled}
-    />
-    <TextInput
-      label="Town"
-      name={`${name}.ward`}
-      register={register}
-      disabled={disabled}
-    />
-    <TextInput
-      label=""
-      name={`${name}.uprn`}
-      register={register}
-      type="hidden"
-    />
+    <TextInput label="First line" name={`${name}.firstLine`} register={register({ required: true })} />
+    <TextInput label="Second line" name={`${name}.secondLine`} register={register} disabled={disabled} />
+    <TextInput label="Third line" name={`${name}.thirdLine`} register={register} disabled={disabled} />
+    <TextInput label="Postcode" name={`${name}.postcode`} register={register} disabled={disabled} />
+    <TextInput label="Town" name={`${name}.ward`} register={register} disabled={disabled} />
+    <TextInput label="" name={`${name}.uprn`} register={register} type="hidden" />
   </>
 );
 
@@ -59,9 +30,7 @@ const AddressLookup = ({
   supportManualEntry = true
 }) => {
   const inputRef = useRef();
-  const [postcode, setPostcode] = useState(
-    defaultValue && defaultValue.postcode
-  );
+  const [postcode, setPostcode] = useState(defaultValue && defaultValue.postcode);
   const [results, setResults] = useState([]);
   const [isManually, setIsManually] = useState();
   const [error, setError] = useState();
@@ -106,9 +75,7 @@ const AddressLookup = ({
                 setResults([]);
                 try {
                   const res = await lookupPostcode(postcode);
-                  res.length === 0
-                    ? setError('There was a problem with the postcode.')
-                    : setResults(res);
+                  res.length === 0 ? setError('There was a problem with the postcode.') : setResults(res);
                 } catch {
                   setError('There was a problem with the postcode.');
                 }

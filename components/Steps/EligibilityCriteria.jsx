@@ -15,11 +15,8 @@ const Step1 = props => {
   const onSubmit = data => {
     const hasSomeDeclines = Object.entries(data.eligibilityCriteria).some(
       ([key, value]) =>
-        (value === 'Yes' &&
-          (key === 'servedLegalNotices' || key === 'receivedOtherGrants')) ||
-        (value === 'No' &&
-          key !== 'servedLegalNotices' &&
-          key !== 'receivedOtherGrants') ||
+        (value === 'Yes' && (key === 'servedLegalNotices' || key === 'receivedOtherGrants')) ||
+        (value === 'No' && key !== 'servedLegalNotices' && key !== 'receivedOtherGrants') ||
         (key === 'businessSizeId' && VALID_BUSINESS_SIZE.indexOf(value) === -1)
     );
     setShowError(hasSomeDeclines);
@@ -32,17 +29,12 @@ const Step1 = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="govuk-form-group">
-        <fieldset
-          className="govuk-fieldset"
-          role="group"
-          aria-describedby="step-hint"
-        >
+        <fieldset className="govuk-fieldset" role="group" aria-describedby="step-hint">
           <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 className="govuk-fieldset__heading">Eligibility Criteria</h1>
           </legend>
           <span id="step-hint" className="govuk-hint">
-            Applicants must meet all the eligibility questions to proceed to the
-            next section
+            Applicants must meet all the eligibility questions to proceed to the next section
           </span>
           <Radios
             {...getInputProps(
@@ -139,9 +131,7 @@ const Step1 = props => {
           body="The information provided does not meet the specified requirements."
         />
       )}
-      {!showError && (
-        <Button className="govuk-button" text="Next" type="submit" />
-      )}
+      {!showError && <Button className="govuk-button" text="Next" type="submit" />}
     </form>
   );
 };

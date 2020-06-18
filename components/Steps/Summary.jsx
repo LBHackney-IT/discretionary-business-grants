@@ -27,19 +27,11 @@ const Result = ({ formData }) => {
     <>
       <h1>Summary</h1>
       <Summary formData={formData} hasChangeLink />
-      <button
-        className="govuk-button"
-        onClick={submitForm}
-        type="button"
-        disabled={submitting}
-      >
+      <button className="govuk-button" onClick={submitForm} type="button" disabled={submitting}>
         Confirm and submit
       </button>
       {error && (
-        <ErrorSummary
-          title="Unfortunately there was a problem with your submission."
-          body="Please try again later."
-        />
+        <ErrorSummary title="Unfortunately there was a problem with your submission." body="Please try again later." />
       )}
     </>
   );

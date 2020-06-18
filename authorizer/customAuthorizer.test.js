@@ -44,10 +44,7 @@ describe('customAuthorizer', () => {
     };
     const decodedToken = { groups: ['ALLOWED'] };
     const allowedGroups = 'ALLOWED';
-    const isAllowed = customAuthorize(allowedGroups)(
-      decodedToken,
-      authorizeEvent
-    );
+    const isAllowed = customAuthorize(allowedGroups)(decodedToken, authorizeEvent);
     expect(isAllowed).toBeTruthy();
   });
 
@@ -58,10 +55,7 @@ describe('customAuthorizer', () => {
     };
     const decodedToken = { groups: ['NOT_ALLOWED'] };
     const allowedGroups = 'ALLOWED';
-    const isAllowed = customAuthorize(allowedGroups)(
-      decodedToken,
-      authorizeEvent
-    );
+    const isAllowed = customAuthorize(allowedGroups)(decodedToken, authorizeEvent);
     expect(isAllowed).not.toBeTruthy();
   });
 });

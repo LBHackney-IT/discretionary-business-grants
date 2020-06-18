@@ -4,9 +4,7 @@ import getSecureUploadUrl from '../../../lib/usecases/getSecureUploadUrl';
 export default async (req, res) => {
   try {
     const { clientGeneratedId, fileName } = req.body;
-    const { documentId, fields, url } = await getSecureUploadUrl(
-      clientGeneratedId
-    );
+    const { documentId, fields, url } = await getSecureUploadUrl(clientGeneratedId);
     const fileKey = `${clientGeneratedId}/${documentId}/${fileName}`;
     res.statusCode = HttpStatus.OK;
     res.setHeader('Content-Type', 'application/json');

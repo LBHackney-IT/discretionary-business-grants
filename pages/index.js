@@ -7,15 +7,11 @@ export default function Home() {
     <div>
       <h1>Apply for the COVID-19 Local Authority Discretionary Grants Fund</h1>
       <p className="govuk-body">
-        The Discretionary Grant Fund supports small and micro businesses that
-        are not eligible for other grant schemes.
+        The Discretionary Grant Fund supports small and micro businesses that are not eligible for other grant schemes.
       </p>
       <p className="govuk-body">
         For further information please go to{' '}
-        <a
-          className="govuk-link"
-          href="https://hackney.gov.uk/support-for-business#financial"
-        >
+        <a className="govuk-link" href="https://hackney.gov.uk/support-for-business#financial">
           https://hackney.gov.uk/support-for-business#financial
         </a>
       </p>

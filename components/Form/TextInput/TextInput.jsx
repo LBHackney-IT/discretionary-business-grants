@@ -1,15 +1,6 @@
 import cx from 'classnames';
 
-const TextInput = ({
-  label,
-  hint,
-  name,
-  register,
-  error,
-  type = 'text',
-  inputClassName,
-  ...otherProps
-}) => (
+const TextInput = ({ label, hint, name, register, error, type = 'text', inputClassName, ...otherProps }) => (
   <div
     className={cx('govuk-form-group', {
       'govuk-form-group--error': error

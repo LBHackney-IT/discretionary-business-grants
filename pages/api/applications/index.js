@@ -15,9 +15,7 @@ export default async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         const currentPage = parseInt((req.query && req.query.page) || 1, 10);
         const pageSize = parseInt((req.query && req.query.pageSize) || 10, 10);
-        res.end(
-          JSON.stringify(await listApplications({ currentPage, pageSize }))
-        );
+        res.end(JSON.stringify(await listApplications({ currentPage, pageSize })));
       } catch (error) {
         console.log('Application list error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -30,10 +28,7 @@ export default async (req, res) => {
         const clientGeneratedId = nanoid();
         const validApplication = await isValidApplication(req.body);
         await uploadApplication({ ...validApplication, clientGeneratedId });
-        await sendConfirmationEmail(
-          clientGeneratedId,
-          req.body.contact.emailAddress
-        );
+        await sendConfirmationEmail(clientGeneratedId, req.body.contact.emailAddress);
         res.statusCode = HttpStatus.CREATED;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(clientGeneratedId));

@@ -16,9 +16,7 @@ const ApplicationView = () => {
     }
     setError(false);
     try {
-      const { data } = await axios.get(
-        `/api/applications/${clientGeneratedId}`
-      );
+      const { data } = await axios.get(`/api/applications/${clientGeneratedId}`);
       setData(data.application);
     } catch (e) {
       setError(e.response.data);

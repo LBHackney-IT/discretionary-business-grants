@@ -30,18 +30,12 @@ const ApplicationsList = ({ page, pageSize }) => {
 
   const fetchData = React.useCallback(({ pageSize, pageIndex }) => {
     setLoading(true);
-    Router.push(
-      '/admin',
-      { pathname: '/admin', query: { page: pageIndex, pageSize } },
-      { shallow: true }
-    );
-    axios
-      .get(`/api/applications?page=${pageIndex + 1}&pageSize=${pageSize}`)
-      .then(({ data }) => {
-        setData(data.applications);
-        setPageCount(data.pagination.totalPages);
-        setLoading(false);
-      });
+    Router.push('/admin', { pathname: '/admin', query: { page: pageIndex, pageSize } }, { shallow: true });
+    axios.get(`/api/applications?page=${pageIndex + 1}&pageSize=${pageSize}`).then(({ data }) => {
+      setData(data.applications);
+      setPageCount(data.pagination.totalPages);
+      setLoading(false);
+    });
   }, []);
 
   return (
