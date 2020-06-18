@@ -31,7 +31,13 @@ const ApplicationView = () => {
 
   return (
     <>
-      <h1>Application {clientGeneratedId}</h1>
+      <a
+        className="govuk-back-link"
+        role="button"
+        onClick={() => router.back()}
+      >
+        Back
+      </a>
       {data && (
         <>
           <h1>{data.business.businessName}</h1>
