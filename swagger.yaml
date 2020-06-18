@@ -300,12 +300,6 @@ definitions:
         type: 'string'
       councilTaxNumber:
         type: 'string'
-      turnover:
-        description: 'Business turnover March to May (inclusive) 2020'
-        type: 'number'
-      fixedPropertyCost:
-        description: 'Fixed property related costs March to May (inclusive) 2020'
-        type: 'number'
       businessAddress:
         $ref: '#/definitions/BusinessAddress'
     required:
@@ -339,6 +333,9 @@ definitions:
   Turnover:
     type: 'object'
     properties:
+      turnover:
+        description: 'Business turnover March to May (inclusive) 2020'
+        type: 'number'
       year1819:
         type: 'number'
       year1920:
