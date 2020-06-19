@@ -13,7 +13,8 @@ const Select = ({
   error,
   children,
   isUnselectable = true,
-  ...otherProps
+  ignoreValue,
+  value
 }) => (
   <div
     className={cx('govuk-form-group', {
@@ -37,7 +38,7 @@ const Select = ({
       ref={register}
       aria-describedby={hint && `${name}-hint`}
       onChange={e => onChange && onChange(e.target.value)}
-      {...otherProps}
+      value={ignoreValue ? undefined : value}
     >
       {isUnselectable && <option key="empty" value=""></option>}
       {options.map(option => {
