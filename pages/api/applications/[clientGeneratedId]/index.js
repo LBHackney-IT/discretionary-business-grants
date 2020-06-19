@@ -1,5 +1,5 @@
 import * as HttpStatus from 'http-status-codes';
-import applicationDetails from '../../../../lib/usecases/updateApplication';
+import applicationDetails from '../../../../lib/usecases/applicationDetails';
 import updateApplication from '../../../../lib/usecases/updateApplication';
 
 export default async (req, res) => {
