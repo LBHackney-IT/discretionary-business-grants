@@ -141,7 +141,7 @@ paths:
           schema:
             type: 'object'
             items:
-              $ref: '#/definitions/ApplicationsPatchResponse'
+              $ref: '#/definitions/ApplicationPatchResponse'
         '400':
           description: 'Invalid input'
         '404':
@@ -479,7 +479,7 @@ definitions:
       error:
         type: 'string'
 
-  ApplicationsPatchResponse:
+  ApplicationPatchResponse:
     type: 'object'
     properties:
       error:
