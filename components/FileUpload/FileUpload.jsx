@@ -17,6 +17,7 @@ const FileUpload = ({
   error: { message: errorMessage } = {},
   onChange
 }) => {
+  const [value, setValue] = useState();
   const [fileList, setFileList] = useState(defaultValue);
   const [error, setError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -29,6 +30,7 @@ const FileUpload = ({
     } catch (e) {
       setError('There was a problem uploading the file.');
     }
+    setValue('');
     setUploading(false);
   };
   useEffect(() => {
@@ -65,6 +67,7 @@ const FileUpload = ({
         aria-describedby={hint && `${name}-hint`}
         ref={inputRef}
         disabled={uploading}
+        value={value}
         style={{ visibility: 'hidden' }}
       />
       {fileList && fileList.length > 0 && (
