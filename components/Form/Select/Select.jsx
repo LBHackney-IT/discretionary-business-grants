@@ -11,7 +11,9 @@ const Select = ({
   onChange,
   register,
   error,
-  children
+  children,
+  isUnselectable = true,
+  ...otherProps
 }) => (
   <div
     className={cx('govuk-form-group', {
@@ -35,8 +37,9 @@ const Select = ({
       ref={register}
       aria-describedby={hint && `${name}-hint`}
       onChange={e => onChange && onChange(e.target.value)}
+      {...otherProps}
     >
-      <option key="empty" value=""></option>
+      {isUnselectable && <option key="empty" value=""></option>}
       {options.map(option => {
         const { value, text } =
           typeof option === 'string' ? { value: option, text: option } : option;
