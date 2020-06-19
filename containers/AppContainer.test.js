@@ -29,4 +29,8 @@ describe('AppContainer', () => {
   it('returns listApplications', () => {
     expect(container.getListApplications()).toBeDefined();
   });
+
+  it('returns updateApplication', () => {
+    expect(container.getUpdateApplication()).toBeDefined();
+  });
 });
