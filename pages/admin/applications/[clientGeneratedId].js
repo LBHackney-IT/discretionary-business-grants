@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { redirectIfNotAuth } from 'utils/auth';
 import Summary from 'components/Summary/Summary';
+import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
 
 const ApplicationView = () => {
   const [data, setData] = useState();
@@ -60,6 +61,10 @@ const ApplicationView = () => {
               </p>
             )}
           </div>
+          <ApplicationStateSelector
+            state={data.state}
+            applicationId={clientGeneratedId}
+          />
           <Summary formData={data} filterOut={['supplementaryInformation']} />
           <h2>Documents</h2>
           {data.documents.map(({ documentType, s3Path }) => (
