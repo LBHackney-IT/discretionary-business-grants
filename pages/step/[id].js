@@ -42,7 +42,7 @@ const FormWizard = () => {
   const { previousStep, nextStep } = getAdjacentSteps(stepId);
   return (
     <div className="govuk-width-container">
-      {previousStep && (
+      {previousStep && !isSubmitted && (
         <Link href={stepPath} as={previousStep}>
           <a className="govuk-back-link">Back</a>
         </Link>
