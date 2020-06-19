@@ -147,6 +147,7 @@ const AddressLookup = ({
                   }))}
                   name={name}
                   label={label}
+                  ignoreValue
                 />
               ) : (
                 <div />
