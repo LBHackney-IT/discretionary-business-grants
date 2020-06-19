@@ -75,7 +75,7 @@ const ApplicationView = () => {
               </div>
               <div class="govuk-grid-column-one-third">
                 <ApplicationStateSelector
-                  state={data.state}
+                  status={data.status}
                   applicationId={clientGeneratedId}
                 />
               </div>

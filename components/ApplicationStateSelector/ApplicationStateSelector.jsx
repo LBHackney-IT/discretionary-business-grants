@@ -5,9 +5,9 @@ import axios from 'axios';
 import { Select } from 'components/Form';
 import { APPLICATION_STATE } from 'lib/dbMapping';
 
-const ApplicationStateSelector = ({ state, applicationId }) => {
+const ApplicationStateSelector = ({ status, applicationId }) => {
   const [error, setError] = useState();
-  const [value, setValue] = useState(state);
+  const [value, setValue] = useState(status);
   const handleOnChange = useCallback(async status => {
     if (!value) {
       return null;
@@ -38,7 +38,7 @@ const ApplicationStateSelector = ({ state, applicationId }) => {
 };
 
 ApplicationStateSelector.propTypes = {
-  state: PropTypes.string
+  status: PropTypes.string.isRequired
 };
 
 export default ApplicationStateSelector;
