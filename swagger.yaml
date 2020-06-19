@@ -121,6 +121,34 @@ paths:
         '500':
           description: 'Internal server error'
 
+    patch:
+      tags:
+        - 'applications'
+      summary: 'Update part of a business grant application'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        -   name: 'body'
+            in: 'body'
+            required: true
+            schema:
+              $ref: '#/definitions/ApplicationPatch'
+      responses:
+        '201':
+          description: 'Your application update has been submitted'
+          schema:
+            type: 'object'
+            items:
+              $ref: '#/definitions/ApplicationPatchResponse'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Document not found'
+        '500':
+          description: 'Internal server error'
+
   /applications/{clientGeneratedId}/document/{s3Path}:
     get:
       tags:
@@ -190,6 +218,12 @@ definitions:
         $ref: '#/definitions/BusinessBankAccount'
       declaration:
         $ref: '#/definitions/Declaration'
+
+  ApplicationPatch:
+    type: 'object'
+    properties:
+      status:
+        type: 'string'
 
   EligibilityCriteria:
     type: 'object'
@@ -442,6 +476,12 @@ definitions:
               type: 'string'
       pagination:
         $ref: '#/definitions/PaginationResponse'
+      error:
+        type: 'string'
+
+  ApplicationPatchResponse:
+    type: 'object'
+    properties:
       error:
         type: 'string'
 
