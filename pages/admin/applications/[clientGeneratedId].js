@@ -41,30 +41,46 @@ const ApplicationView = () => {
       </a>
       {data && (
         <>
-          <h1>{data.business.businessName}</h1>
-          <div className="govuk-body">
-            Submitted: {new Date(data.applicationDate).toLocaleString()}
+          <div class="govuk-main-wrapper">
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-two-thirds">
+                <h1 className="govuk-!-margin-top-0">
+                  {data.business.businessName}
+                </h1>
+                <div className="govuk-body">
+                  Submitted: {new Date(data.applicationDate).toLocaleString()}
+                </div>
+                <div className="govuk-!-margin-top-7 govuk-!-margin-bottom-7">
+                  <p className="govuk-body">
+                    Email:{' '}
+                    <a
+                      href={`mailto:${data.contact.emailAddress}`}
+                      target="_blank"
+                    >
+                      {data.contact.emailAddress}
+                    </a>
+                  </p>
+                  {data.contact.telephoneNumber && (
+                    <p className="govuk-body">
+                      Phone:{' '}
+                      <a
+                        href={`tel:${data.contact.emailAddress}`}
+                        target="_blank"
+                      >
+                        {data.contact.telephoneNumber}
+                      </a>
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div class="govuk-grid-column-one-third">
+                <ApplicationStateSelector
+                  state={data.state}
+                  applicationId={clientGeneratedId}
+                />
+              </div>
+            </div>
           </div>
-          <div className="govuk-!-margin-top-7 govuk-!-margin-bottom-7">
-            <p className="govuk-body">
-              Email:{' '}
-              <a href={`mailto:${data.contact.emailAddress}`} target="_blank">
-                {data.contact.emailAddress}
-              </a>
-            </p>
-            {data.contact.telephoneNumber && (
-              <p className="govuk-body">
-                Phone:{' '}
-                <a href={`tel:${data.contact.emailAddress}`} target="_blank">
-                  {data.contact.telephoneNumber}
-                </a>
-              </p>
-            )}
-          </div>
-          <ApplicationStateSelector
-            state={data.state}
-            applicationId={clientGeneratedId}
-          />
           <Summary formData={data} filterOut={['supplementaryInformation']} />
           <h2>Documents</h2>
           {data.documents.map(({ documentType, s3Path }) => (
