@@ -12,6 +12,10 @@ const ApplicationsList = ({ page, pageSize }) => {
         accessor: 'businessName'
       },
       {
+        Header: 'Application Id',
+        accessor: 'clientGeneratedId'
+      },
+      {
         Header: 'Submission',
         accessor: 'applicationDate',
         Cell: ({ value }) => new Date(value).toLocaleString()
