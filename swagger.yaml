@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.22'
+  version: '0.0.23'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -83,6 +83,12 @@ paths:
           type: 'number'
           required: false
           default: 10
+        - in: 'query'
+          name: 'sort'
+          type: 'string'
+          required: false
+          enum: [+applicationDate, -applicationDate, +businessName, -businessName]
+          default: '+applicationDate'
       responses:
         '200':
           description: 'List of applications'
