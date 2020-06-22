@@ -1,5 +1,5 @@
 import * as HttpStatus from 'http-status-codes';
-import { listApplicationComments } from '../../../../../lib/usecases/listApplicationComments';
+import AppContainer from '../../../../containers/AppContainer';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
@@ -7,6 +7,8 @@ export default async (req, res) => {
   switch (req.method) {
     case 'GET':
       try {
+        const container = AppContainer.getInstance();
+        const listApplicationComments = container.getListApplicationComments();
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
         res.end(
