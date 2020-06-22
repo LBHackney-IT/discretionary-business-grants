@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
-import { useTable, usePagination } from 'react-table';
+import { useTable, useSortBy, usePagination } from 'react-table';
 
 const Table = ({
   columns,
@@ -8,8 +8,9 @@ const Table = ({
   fetchData,
   loading,
   pageCount: controlledPageCount,
-  initialPage = 0,
-  initialPageSize = 10
+  initialPage = 1,
+  initialPageSize = 10,
+  initialSortBy = '+applicationDate'
 }) => {
   const {
     getTableProps,
@@ -25,23 +26,29 @@ const Table = ({
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize }
+    state: { pageIndex, pageSize, sortBy }
   } = useTable(
     {
       columns,
       data,
       initialState: {
-        pageIndex: parseInt(initialPage, 10),
-        pageSize: parseInt(initialPageSize, 10)
+        pageIndex: parseInt(initialPage - 1, 10),
+        pageSize: parseInt(initialPageSize, 10),
+        sortBy: initialSortBy && [
+          { id: initialSortBy.slice(1), desc: initialSortBy[0] === '-' }
+        ]
       },
+      manualSortBy: true,
       manualPagination: true,
-      pageCount: controlledPageCount
+      pageCount: controlledPageCount,
+      disableMultiSort: true
     },
+    useSortBy,
     usePagination
   );
   useEffect(() => {
-    fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
+    fetchData({ pageIndex, pageSize, sortBy: sortBy[0] });
+  }, [fetchData, pageIndex, pageSize, sortBy[0]]);
   return (
     <>
       <table className="govuk-table" {...getTableProps()}>
@@ -58,7 +65,14 @@ const Table = ({
                   className="govuk-table__header"
                   {...column.getHeaderProps()}
                 >
-                  {column.render('Header')}
+                  <span {...column.getSortByToggleProps()}>
+                    {column.render('Header')}
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
                 </th>
               ))}
             </tr>
