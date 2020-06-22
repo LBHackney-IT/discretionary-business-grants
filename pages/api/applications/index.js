@@ -21,8 +21,11 @@ export default async (req, res) => {
           req.query && req.query.pageSize
             ? parseInt(req.query.pageSize, 10)
             : undefined;
+        const sort = req.query && req.query.sort ? req.query.sort : undefined;
         res.end(
-          JSON.stringify(await listApplications({ currentPage, pageSize }))
+          JSON.stringify(
+            await listApplications({ currentPage, pageSize, sort })
+          )
         );
       } catch (error) {
         console.log('Application list error:', error, 'request:', req);
