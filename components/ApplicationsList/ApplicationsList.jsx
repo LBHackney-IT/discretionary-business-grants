@@ -14,7 +14,8 @@ const ApplicationsList = ({ page, pageSize, sortBy }) => {
       },
       {
         Header: 'Application Id',
-        accessor: 'clientGeneratedId'
+        accessor: 'clientGeneratedId',
+        disableSortBy: true
       },
       {
         Header: 'Submission',
