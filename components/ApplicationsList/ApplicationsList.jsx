@@ -12,7 +12,7 @@ const ApplicationsList = ({ page, pageSize }) => {
         accessor: 'businessName'
       },
       {
-        Header: 'Confirmation Id',
+        Header: 'Application Id',
         accessor: 'clientGeneratedId'
       },
       {
