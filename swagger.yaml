@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.23'
+  version: '0.0.24'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -136,11 +136,15 @@ paths:
       produces:
         - 'application/json'
       parameters:
-        -   name: 'body'
-            in: 'body'
-            required: true
-            schema:
-              $ref: '#/definitions/ApplicationPatch'
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'string'
+          required: true
+        - name: 'body'
+          in: 'body'
+          required: true
+          schema:
+            $ref: '#/definitions/ApplicationPatch'
       responses:
         '201':
           description: 'Your application update has been submitted'
@@ -186,12 +190,6 @@ paths:
           description: 'Internal server error'
 
 definitions:
-  Url:
-    type: 'object'
-    properties:
-      clientGeneratedId:
-        type: 'string'
-        minLength: 1
   UrlResponse:
     type: 'object'
     properties:
