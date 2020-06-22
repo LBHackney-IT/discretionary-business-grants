@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import Link from 'next/link';
 
 import SummaryList from 'components/SummaryList/SummaryList';
+import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import { getInputProps, stepPath } from 'components/Steps';
 
 const MultiValue = value =>
@@ -17,10 +19,10 @@ export const SummarySection = ({
   hasChangeLink,
   name,
   title,
-  slug
-}) => (
-  <div className="govuk-!-margin-bottom-9">
-    <h2>{title}</h2>
+  slug,
+  isExpandable
+}) => {
+  const Summary = (
     <SummaryList
       list={Object.entries(formData[name])
         .filter(([, value]) => value)
@@ -35,13 +37,28 @@ export const SummarySection = ({
             : value
         }))}
     />
-    {hasChangeLink && (
-      <Link href={stepPath} as={`/step/${slug}`}>
-        <a className="govuk-link">Change</a>
-      </Link>
-    )}
-  </div>
-);
+  );
+  return (
+    <div
+      className={cx({
+        'govuk-!-margin-bottom-9': !isExpandable,
+        'govuk-!-margin-bottom-7': isExpandable
+      })}
+    >
+      <h2>{title}</h2>
+      {isExpandable ? (
+        <ExpandableDetails>{Summary}</ExpandableDetails>
+      ) : (
+        { Summary }
+      )}
+      {hasChangeLink && (
+        <Link href={stepPath} as={`/step/${slug}`}>
+          <a className="govuk-link">Change</a>
+        </Link>
+      )}
+    </div>
+  );
+};
 
 const sections = [
   {
@@ -96,6 +113,7 @@ const Summary = ({ filterOut, ...props }) =>
 Summary.propTypes = {
   formData: PropTypes.shape({}).isRequired,
   filterOut: PropTypes.arrayOf(PropTypes.string),
+  isExpandable: PropTypes.bool,
   hasChangeLink: PropTypes.bool
 };
 

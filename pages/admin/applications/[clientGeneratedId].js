@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { redirectIfNotAuth } from 'utils/auth';
 import Summary from 'components/Summary/Summary';
+import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
 
 const ApplicationView = () => {
@@ -81,19 +82,25 @@ const ApplicationView = () => {
               </div>
             </div>
           </div>
-          <Summary formData={data} filterOut={['supplementaryInformation']} />
+          <Summary
+            formData={data}
+            filterOut={['supplementaryInformation']}
+            isExpandable
+          />
           <h2>Documents</h2>
-          {data.documents.map(({ documentType, s3Path }) => (
-            <div className="govuk-body">
-              <a
-                className="govuk-link"
-                href={`/api/applications/${clientGeneratedId}/document/${s3Path}`}
-                target="_blank"
-              >
-                {documentType}
-              </a>
-            </div>
-          ))}
+          <ExpandableDetails>
+            {data.documents.map(({ documentType, s3Path }) => (
+              <div className="govuk-body">
+                <a
+                  className="govuk-link"
+                  href={`/api/applications/${clientGeneratedId}/document/${s3Path}`}
+                  target="_blank"
+                >
+                  {documentType}
+                </a>
+              </div>
+            ))}
+          </ExpandableDetails>
         </>
       )}
       {error && <p>{error}</p>}
