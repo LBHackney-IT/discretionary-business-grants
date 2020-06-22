@@ -13,8 +13,14 @@ export default async (req, res) => {
         const listApplications = container.getListApplications();
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
-        const currentPage = parseInt((req.query && req.query.page) || 1, 10);
-        const pageSize = parseInt((req.query && req.query.pageSize) || 10, 10);
+        const currentPage =
+          req.query && req.query.page
+            ? parseInt(req.query.page, 10)
+            : undefined;
+        const pageSize =
+          req.query && req.query.pageSize
+            ? parseInt(req.query.pageSize, 10)
+            : undefined;
         res.end(
           JSON.stringify(await listApplications({ currentPage, pageSize }))
         );
