@@ -3,6 +3,7 @@ import axios from 'axios';
 import Router from 'next/router';
 
 import Table from 'components/Table/Table';
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 
 const ApplicationsList = ({ page, pageSize, sortBy }) => {
   const columns = React.useMemo(
@@ -25,6 +26,7 @@ const ApplicationsList = ({ page, pageSize, sortBy }) => {
     []
   );
 
+  const [error, setError] = React.useState();
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [pageCount, setPageCount] = React.useState(0);
@@ -53,13 +55,13 @@ const ApplicationsList = ({ page, pageSize, sortBy }) => {
         setPageCount(data.pagination.totalPages);
         setLoading(false);
       } catch (e) {
-        console.error(e);
+        setError(e.response.data);
       }
     },
     []
   );
 
-  return (
+  return !error ? (
     <Table
       columns={columns}
       data={data}
@@ -70,6 +72,8 @@ const ApplicationsList = ({ page, pageSize, sortBy }) => {
       initialPageSize={pageSize}
       initialSortBy={sortBy}
     />
+  ) : (
+    <ErrorMessage text={error} />
   );
 };
 
