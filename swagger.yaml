@@ -188,8 +188,45 @@ paths:
           description: 'Document not found'
         '500':
           description: 'Internal server error'
+          
+  /applications/{clientGeneratedId}/comments:
+    get:
+      tags:
+        - 'All comments for an application'
+      summary: 'Get all comments for a specific application'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'string'
+          required: true
+      responses:
+        '200':
+          description: 'All comments for the application'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Comment'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Application not found'
+        '500':
+          description: 'Internal server error'
 
 definitions:
+  Comment:
+    type: 'object'
+    properties:
+      dateTimeRecorded:
+        type: 'string'
+        format: 'date-time'
+      userRecorded:
+        type: 'string'
+      content:
+        type: 'string'
+
   UrlResponse:
     type: 'object'
     properties:
