@@ -41,9 +41,9 @@ const ApplicationView = () => {
       </a>
       {data && (
         <>
-          <div class="govuk-main-wrapper">
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-two-thirds">
+          <div className="govuk-main-wrapper">
+            <div className="govuk-grid-row">
+              <div className="govuk-grid-column-two-thirds">
                 <h1 className="govuk-!-margin-top-0">
                   {data.business.businessName}
                 </h1>
@@ -73,7 +73,7 @@ const ApplicationView = () => {
                   )}
                 </div>
               </div>
-              <div class="govuk-grid-column-one-third">
+              <div className="govuk-grid-column-one-third">
                 <ApplicationStateSelector
                   status={data.status}
                   applicationId={clientGeneratedId}
