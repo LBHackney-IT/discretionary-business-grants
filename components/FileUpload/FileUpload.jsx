@@ -17,6 +17,7 @@ const FileUpload = ({
   error: { message: errorMessage } = {},
   onChange
 }) => {
+  const [value, setValue] = useState();
   const [fileList, setFileList] = useState(defaultValue);
   const [error, setError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -29,6 +30,7 @@ const FileUpload = ({
     } catch (e) {
       setError('There was a problem uploading the file.');
     }
+    setValue('');
     setUploading(false);
   };
   useEffect(() => {
@@ -51,6 +53,9 @@ const FileUpload = ({
           {hint}
         </span>
       )}
+      <label className="govuk-button govuk-button--secondary" htmlFor={name}>
+        Choose file
+      </label>
       <input
         className={cx('govuk-file-upload', {
           'govuk-input--error': error
@@ -62,9 +67,11 @@ const FileUpload = ({
         aria-describedby={hint && `${name}-hint`}
         ref={inputRef}
         disabled={uploading}
+        value={value}
+        style={{ visibility: 'hidden' }}
       />
       {fileList && fileList.length > 0 && (
-        <ul className="govuk-list govuk-body govuk-!-margin-top-5">
+        <ul className="govuk-list govuk-body govuk-!-margin-bottom-9">
           {fileList.map(file => (
             <li key={file}>
               {file.split('/').pop()}{' '}
@@ -78,7 +85,9 @@ const FileUpload = ({
           ))}
         </ul>
       )}
-      {uploading && <p>Uploading...</p>}
+      {uploading && (
+        <div className="govuk-body govuk-!-margin-bottom-9">Uploading...</div>
+      )}
       {error && <ErrorMessage text={error} />}
     </div>
   );
