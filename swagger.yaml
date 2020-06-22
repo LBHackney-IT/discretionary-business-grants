@@ -32,9 +32,7 @@ paths:
         '200':
           description: 'Success'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/UrlResponse'
+            $ref: '#/definitions/UrlResponse'
         '400':
           description: 'Invalid input'
         '500':
@@ -59,9 +57,7 @@ paths:
         '201':
           description: 'Your application has been submitted'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationsResponse'
+            $ref: '#/definitions/ApplicationsResponse'
         '400':
           description: 'Invalid input'
         '500':
@@ -93,9 +89,7 @@ paths:
         '200':
           description: 'List of applications'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationsListResponse'
+            $ref: '#/definitions/ApplicationsListResponse'
         '400':
           description: 'Invalid input'
         '500':
@@ -117,9 +111,7 @@ paths:
         '200':
           description: 'Application detail'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationResponse'
+            $ref: '#/definitions/ApplicationResponse'
         '400':
           description: 'Invalid input'
         '404':
@@ -149,9 +141,7 @@ paths:
         '201':
           description: 'Your application update has been submitted'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationPatchResponse'
+            $ref: '#/definitions/ApplicationPatchResponse'
         '400':
           description: 'Invalid input'
         '404':
@@ -179,16 +169,14 @@ paths:
         '200':
           description: 'Signed timelimited url to aws s3'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/SignedDocumentUrl'
+            $ref: '#/definitions/SignedDocumentUrl'
         '400':
           description: 'Invalid input'
         '404':
           description: 'Document not found'
         '500':
           description: 'Internal server error'
-          
+
   /applications/{clientGeneratedId}/comments:
     get:
       tags:
@@ -205,9 +193,7 @@ paths:
         '200':
           description: 'All comments for the application'
           schema:
-            type: 'array'
-            items:
-              $ref: '#/definitions/Comment'
+            $ref: '#/definitions/CommentResponse'
         '400':
           description: 'Invalid input'
         '404':
@@ -216,17 +202,6 @@ paths:
           description: 'Internal server error'
 
 definitions:
-  Comment:
-    type: 'object'
-    properties:
-      dateTimeRecorded:
-        type: 'string'
-        format: 'date-time'
-      userRecorded:
-        type: 'string'
-      content:
-        type: 'string'
-
   UrlResponse:
     type: 'object'
     properties:
@@ -576,6 +551,22 @@ definitions:
             $ref: '#/definitions/Declaration'
       error:
         type: 'string'
+
+  CommentResponse:
+    type: 'object'
+    properties:
+      comments:
+        type: 'array'
+        items:
+          type: 'object'
+          properties:
+            dateTimeRecorded:
+              type: 'string'
+              format: 'date-time'
+            userRecorded:
+              type: 'string'
+            content:
+              type: 'string'
 
   SignedDocumentUrl:
     type: 'object'
