@@ -85,6 +85,14 @@ paths:
           required: false
           enum: [+applicationDate, -applicationDate, +businessName, -businessName]
           default: '+applicationDate'
+        - in: 'query'
+          name: 'status'
+          type: 'string'
+          required: false
+        - in: 'query'
+          name: 'businessType'
+          type: 'string'
+          required: false          
       responses:
         '200':
           description: 'List of applications'
