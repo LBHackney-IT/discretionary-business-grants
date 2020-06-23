@@ -1,5 +1,10 @@
 import axios from 'axios';
 import * as HttpStatus from 'http-status-codes';
+import { parse } from 'cookie';
+import jsonwebtoken from 'jsonwebtoken';
+
+export const getUserFromCookie = cookie =>
+  jsonwebtoken.decode(parse(cookie).hackneyToken);
 
 export const redirectIfNotAuth = async ({ req, res, query }) => {
   try {

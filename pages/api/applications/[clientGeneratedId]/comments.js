@@ -1,9 +1,8 @@
 import * as HttpStatus from 'http-status-codes';
-import AppContainer from '../../../../containers/AppContainer';
-import {
-  APPLICATION_NOT_FOUND,
-  NOTES_MUST_NOT_BE_EMPTY
-} from '../../../../lib/constants';
+import AppContainer from 'containers/AppContainer';
+import { APPLICATION_NOT_FOUND, NOTES_MUST_NOT_BE_EMPTY } from 'lib/constants';
+
+import { getUserFromCookie } from 'utils/auth';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
@@ -34,8 +33,10 @@ export default async (req, res) => {
       try {
         const addApplicationComment = container.getAddApplicationComment();
         res.setHeader('Content-Type', 'application/json');
+        const user = getUserFromCookie(req.headers.cookie);
         let addCommentResult = await addApplicationComment({
           clientGeneratedId,
+          author: `${user.name} <${user.email}>`,
           notes: req.body.notes
         });
         switch (addCommentResult.error) {
