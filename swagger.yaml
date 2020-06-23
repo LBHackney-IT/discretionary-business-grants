@@ -211,7 +211,7 @@ paths:
     post:
       tags:
         - 'comments'
-      summary: 'Create a new comment for na application'
+      summary: 'Create a new comment for an application'
       consumes:
         - 'application/json'
       produces:
