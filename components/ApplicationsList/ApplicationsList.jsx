@@ -1,12 +1,15 @@
-import React from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+import { BasicSelect } from 'components/Form';
 
-const ApplicationsList = ({ page, pageSize, sort }) => {
-  const columns = React.useMemo(
+import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
+
+const ApplicationsList = ({ page, pageSize, sort, status, businessType }) => {
+  const columns = useMemo(
     () => [
       {
         Header: 'Business Name',
@@ -30,19 +33,29 @@ const ApplicationsList = ({ page, pageSize, sort }) => {
     ],
     []
   );
+  const [filters, setFilters] = useState({ status, businessType });
+  const [error, setError] = useState();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+  const checkFilter = JSON.stringify(filters);
+  useEffect(() => {
+    fetchData(filters);
+  }, [checkFilter]);
 
-  const [error, setError] = React.useState();
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(0);
+  const setValues = useCallback(state => setFilters({ ...filters, ...state }));
 
-  const fetchData = React.useCallback(
-    async ({ pageSize, pageIndex, sortBy }) => {
+  const fetchData = useCallback(
+    async ({ pageSize, pageIndex, sortBy, ...otherFilters }) => {
+      if (isNaN(pageSize)) {
+        return;
+      }
       setLoading(true);
       const query = {
         page: pageIndex + 1,
         pageSize,
-        sort: sortBy && `${sortBy.desc ? '-' : '+'}${sortBy.id}`
+        sort: sortBy && `${sortBy.desc ? '-' : '+'}${sortBy.id}`,
+        ...otherFilters
       };
       Router.push(
         '/admin',
@@ -66,16 +79,30 @@ const ApplicationsList = ({ page, pageSize, sort }) => {
     []
   );
   return !error ? (
-    <Table
-      columns={columns}
-      data={data}
-      fetchData={fetchData}
-      loading={loading}
-      pageCount={pageCount}
-      initialPage={page}
-      initialPageSize={pageSize}
-      initialSortBy={sort ? sort : '+applicationDate'}
-    />
+    <>
+      <BasicSelect
+        options={APPLICATION_STATE}
+        label="Filter by Status:"
+        value={filters.status}
+        onChange={status => setValues({ status })}
+      />
+      <BasicSelect
+        options={TYPE_OF_BUSINESS}
+        label="Filter by Type of Business:"
+        value={filters.businessType}
+        onChange={businessType => setValues({ businessType })}
+      />
+      <Table
+        columns={columns}
+        data={data}
+        fetchData={setValues}
+        loading={loading}
+        pageCount={pageCount}
+        initialPage={page}
+        initialPageSize={pageSize}
+        initialSortBy={sort ? sort : '+applicationDate'}
+      />
+    </>
   ) : (
     <ErrorMessage text={error} />
   );
