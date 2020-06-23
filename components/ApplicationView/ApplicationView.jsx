@@ -5,6 +5,7 @@ import axios from 'axios';
 import Summary from 'components/Summary/Summary';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
+import Comments from 'components/Comments/Comments';
 
 const ApplicationView = ({ applicationId }) => {
   const [data, setData] = useState();
@@ -77,7 +78,7 @@ const ApplicationView = ({ applicationId }) => {
           <h2>Documents</h2>
           <ExpandableDetails>
             {data.documents.map(({ documentType, s3Path }) => (
-              <div className="govuk-body">
+              <div key={s3Path} className="govuk-body">
                 <a
                   className="govuk-link"
                   href={`/api/applications/${applicationId}/document/${s3Path}`}
@@ -88,6 +89,7 @@ const ApplicationView = ({ applicationId }) => {
               </div>
             ))}
           </ExpandableDetails>
+          <Comments applicationId={applicationId} />
         </>
       )}
       {error && <p>{error}</p>}
