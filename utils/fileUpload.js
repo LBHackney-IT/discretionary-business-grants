@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 const fileUploader = async (file, clientGeneratedId) => {
+  // If you need to get past the file upload in your local dev
+  // environment, uncomment the following line...
+  // return 'faked_it_out_for_local_testing.ext';
   const { data } = await axios.post('/api/urls', {
     clientGeneratedId: clientGeneratedId,
     fileName: file.name
