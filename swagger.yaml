@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.24'
+  version: '0.0.25'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -565,7 +565,7 @@ definitions:
               format: 'date-time'
             userRecorded:
               type: 'string'
-            content:
+            notes:
               type: 'string'
       error:
         type: 'string'
