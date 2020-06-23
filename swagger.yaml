@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.25'
+  version: '0.0.26'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -85,6 +85,14 @@ paths:
           required: false
           enum: [+applicationDate, -applicationDate, +businessName, -businessName]
           default: '+applicationDate'
+        - in: 'query'
+          name: 'status'
+          type: 'string'
+          required: false
+        - in: 'query'
+          name: 'businessType'
+          type: 'string'
+          required: false          
       responses:
         '200':
           description: 'List of applications'
@@ -200,6 +208,35 @@ paths:
           description: 'Application not found'
         '500':
           description: 'Internal server error'
+    post:
+      tags:
+        - 'comments'
+      summary: 'Create a new comment for an application'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'string'
+          required: true
+        - name: 'body'
+          in: 'body'
+          required: true
+          schema:
+            $ref: '#/definitions/ApplicationComment'
+      responses:
+        '201':
+          description: 'Your application comment has been submitted'
+          schema:
+            $ref: '#/definitions/ApplicationCommentPostResponse'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Application not found'
+        '500':
+          description: 'Internal server error'
 
 definitions:
   UrlResponse:
@@ -239,6 +276,12 @@ definitions:
     type: 'object'
     properties:
       status:
+        type: 'string'
+
+  ApplicationComment:
+    type: 'object'
+    properties:
+      notes:
         type: 'string'
 
   EligibilityCriteria:
@@ -496,6 +539,12 @@ definitions:
         type: 'string'
 
   ApplicationPatchResponse:
+    type: 'object'
+    properties:
+      error:
+        type: 'string'
+
+  ApplicationCommentPostResponse:
     type: 'object'
     properties:
       error:
