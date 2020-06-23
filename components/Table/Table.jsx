@@ -10,7 +10,7 @@ const Table = ({
   pageCount: controlledPageCount,
   initialPage = 1,
   initialPageSize = 10,
-  initialSortBy = '+applicationDate'
+  initialSortBy
 }) => {
   const {
     getTableProps,
@@ -48,11 +48,10 @@ const Table = ({
   );
   useEffect(() => {
     fetchData({ pageIndex, pageSize, sortBy: sortBy[0] });
-  }, [fetchData, pageIndex, pageSize, sortBy[0]]);
+  }, [pageIndex, pageSize, sortBy[0]]);
   return (
     <>
       <table className="govuk-table" {...getTableProps()}>
-        <caption className="govuk-table__caption">Applications</caption>
         <thead className="govuk-table__head">
           {headerGroups.map(headerGroup => (
             <tr
