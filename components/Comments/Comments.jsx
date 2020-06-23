@@ -9,7 +9,7 @@ import { TextArea, Button } from 'components/Form';
 const Comments = ({ applicationId, status }) => {
   const [data, setData] = useState();
   const [error, setError] = useState();
-  const { register, errors, handleSubmit } = useForm();
+  const { register, errors, handleSubmit, reset } = useForm();
   const fetchData = useCallback(async () => {
     setError(false);
     try {
@@ -28,6 +28,7 @@ const Comments = ({ applicationId, status }) => {
         notes
       });
       fetchData();
+      reset();
     } catch (e) {
       setError(e.response.data);
     }
