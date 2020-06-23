@@ -40,7 +40,6 @@ export default async (req, res) => {
           clientGeneratedId,
           notes: req.body.notes
         });
-        console.log(addCommentResult.error);
         switch (addCommentResult.error) {
           case APPLICATION_NOT_FOUND:
             res.statusCode = HttpStatus.NOT_FOUND;
