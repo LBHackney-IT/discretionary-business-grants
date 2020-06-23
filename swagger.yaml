@@ -234,7 +234,7 @@ paths:
         '400':
           description: 'Invalid input'
         '404':
-          description: 'Document not found'
+          description: 'Application not found'
         '500':
           description: 'Internal server error'
 
