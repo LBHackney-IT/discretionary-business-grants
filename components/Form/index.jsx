@@ -7,4 +7,13 @@ import Radios from './Radios/Radios';
 import Select from './Select/Select';
 import BasicSelect from './Select/BasicSelect';
 
-export { Button, Checkbox, DateInput, Radios, Select, BasicSelect, TextInput, TextArea };
+export {
+  Button,
+  Checkbox,
+  DateInput,
+  Radios,
+  Select,
+  BasicSelect,
+  TextInput,
+  TextArea
+};
