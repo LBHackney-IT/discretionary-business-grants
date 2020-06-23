@@ -49,7 +49,7 @@ export const SummarySection = ({
       {isExpandable ? (
         <ExpandableDetails>{Summary}</ExpandableDetails>
       ) : (
-        { Summary }
+        Summary
       )}
       {hasChangeLink && (
         <Link href={stepPath} as={`/step/${slug}`}>
