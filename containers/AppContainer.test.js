@@ -34,6 +34,10 @@ describe('AppContainer', () => {
     expect(container.getListApplicationComments()).toBeDefined();
   });
 
+  it('returns addApplicationComment', () => {
+    expect(container.getAddApplicationComment()).toBeDefined();
+  });
+
   it('returns updateApplication', () => {
     expect(container.getUpdateApplication()).toBeDefined();
   });
