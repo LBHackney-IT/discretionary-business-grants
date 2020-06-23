@@ -567,6 +567,8 @@ definitions:
               type: 'string'
             content:
               type: 'string'
+      error:
+        type: 'string'
 
   SignedDocumentUrl:
     type: 'object'
