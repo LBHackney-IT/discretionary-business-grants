@@ -4,8 +4,6 @@ import {
   APPLICATION_NOT_FOUND,
   NOTES_MUST_NOT_BE_EMPTY
 } from '../../../../lib/constants';
-import updateApplication from '../../../../lib/usecases/updateApplication';
-import addApplicationComment from '../../../../lib/usecases/addApplicationComment';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
