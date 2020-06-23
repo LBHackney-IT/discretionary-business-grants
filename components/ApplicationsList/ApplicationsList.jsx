@@ -5,7 +5,7 @@ import Router from 'next/router';
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 
-const ApplicationsList = ({ page, pageSize, sortBy }) => {
+const ApplicationsList = ({ page, pageSize, sort }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -65,7 +65,6 @@ const ApplicationsList = ({ page, pageSize, sortBy }) => {
     },
     []
   );
-
   return !error ? (
     <Table
       columns={columns}
@@ -75,7 +74,7 @@ const ApplicationsList = ({ page, pageSize, sortBy }) => {
       pageCount={pageCount}
       initialPage={page}
       initialPageSize={pageSize}
-      initialSortBy={sortBy}
+      initialSortBy={sort ? sort : '+applicationDate'}
     />
   ) : (
     <ErrorMessage text={error} />

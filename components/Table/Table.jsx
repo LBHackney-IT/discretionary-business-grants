@@ -10,7 +10,7 @@ const Table = ({
   pageCount: controlledPageCount,
   initialPage = 1,
   initialPageSize = 10,
-  initialSortBy = '+applicationDate'
+  initialSortBy
 }) => {
   const {
     getTableProps,
