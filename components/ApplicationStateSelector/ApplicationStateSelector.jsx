@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Select } from 'components/Form';
 import { APPLICATION_STATE } from 'lib/dbMapping';
 
-const ApplicationStateSelector = ({ status, applicationId }) => {
+const ApplicationStateSelector = ({ status, onChange, applicationId }) => {
   const [error, setError] = useState();
   const [value, setValue] = useState(status);
   const handleOnChange = useCallback(async status => {
@@ -18,6 +18,7 @@ const ApplicationStateSelector = ({ status, applicationId }) => {
         status
       });
       setValue(status);
+      onChange(status);
     } catch (e) {
       setError(e.response.data);
     }

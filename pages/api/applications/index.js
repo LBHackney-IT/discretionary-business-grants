@@ -22,9 +22,21 @@ export default async (req, res) => {
             ? parseInt(req.query.pageSize, 10)
             : undefined;
         const sort = req.query && req.query.sort ? req.query.sort : undefined;
+        const status =
+          req.query && req.query.status ? req.query.status : undefined;
+        const businessType =
+          req.query && req.query.businessType
+            ? req.query.businessType
+            : undefined;
         res.end(
           JSON.stringify(
-            await listApplications({ currentPage, pageSize, sort })
+            await listApplications({
+              currentPage,
+              pageSize,
+              sort,
+              status,
+              businessType
+            })
           )
         );
       } catch (error) {
