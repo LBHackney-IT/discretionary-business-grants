@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import CommentsList from './List';
 
-const Comments = ({ applicationId }) => (
+const Comments = ({ applicationId, status }) => (
   <div className="govuk-!-margin-top-9">
-    <CommentsList applicationId={applicationId} />
+    <CommentsList applicationId={applicationId} status={status} />
   </div>
 );
 

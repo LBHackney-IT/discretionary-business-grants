@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 
-const CommentList = ({ applicationId }) => {
+const CommentList = ({ applicationId, status }) => {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const fetchData = useCallback(async () => {
@@ -23,7 +23,7 @@ const CommentList = ({ applicationId }) => {
   }, []);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [applicationId, status]);
   return (
     <div>
       <h2 className="govuk-heading-l">Comments</h2>
