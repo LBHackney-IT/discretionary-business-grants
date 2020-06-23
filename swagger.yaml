@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.23'
+  version: '0.0.24'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -32,9 +32,7 @@ paths:
         '200':
           description: 'Success'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/UrlResponse'
+            $ref: '#/definitions/UrlResponse'
         '400':
           description: 'Invalid input'
         '500':
@@ -59,9 +57,7 @@ paths:
         '201':
           description: 'Your application has been submitted'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationsResponse'
+            $ref: '#/definitions/ApplicationsResponse'
         '400':
           description: 'Invalid input'
         '500':
@@ -93,9 +89,7 @@ paths:
         '200':
           description: 'List of applications'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationsListResponse'
+            $ref: '#/definitions/ApplicationsListResponse'
         '400':
           description: 'Invalid input'
         '500':
@@ -117,9 +111,7 @@ paths:
         '200':
           description: 'Application detail'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationResponse'
+            $ref: '#/definitions/ApplicationResponse'
         '400':
           description: 'Invalid input'
         '404':
@@ -136,18 +128,20 @@ paths:
       produces:
         - 'application/json'
       parameters:
-        -   name: 'body'
-            in: 'body'
-            required: true
-            schema:
-              $ref: '#/definitions/ApplicationPatch'
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'string'
+          required: true
+        - name: 'body'
+          in: 'body'
+          required: true
+          schema:
+            $ref: '#/definitions/ApplicationPatch'
       responses:
         '201':
           description: 'Your application update has been submitted'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/ApplicationPatchResponse'
+            $ref: '#/definitions/ApplicationPatchResponse'
         '400':
           description: 'Invalid input'
         '404':
@@ -175,9 +169,7 @@ paths:
         '200':
           description: 'Signed timelimited url to aws s3'
           schema:
-            type: 'object'
-            items:
-              $ref: '#/definitions/SignedDocumentUrl'
+            $ref: '#/definitions/SignedDocumentUrl'
         '400':
           description: 'Invalid input'
         '404':
@@ -185,13 +177,31 @@ paths:
         '500':
           description: 'Internal server error'
 
+  /applications/{clientGeneratedId}/comments:
+    get:
+      tags:
+        - 'All comments for an application'
+      summary: 'Get all comments for a specific application'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'path'
+          name: 'clientGeneratedId'
+          type: 'string'
+          required: true
+      responses:
+        '200':
+          description: 'All comments for the application'
+          schema:
+            $ref: '#/definitions/CommentResponse'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Application not found'
+        '500':
+          description: 'Internal server error'
+
 definitions:
-  Url:
-    type: 'object'
-    properties:
-      clientGeneratedId:
-        type: 'string'
-        minLength: 1
   UrlResponse:
     type: 'object'
     properties:
@@ -539,6 +549,24 @@ definitions:
             $ref: '#/definitions/BusinessBankAccount'
           declaration:
             $ref: '#/definitions/Declaration'
+      error:
+        type: 'string'
+
+  CommentResponse:
+    type: 'object'
+    properties:
+      comments:
+        type: 'array'
+        items:
+          type: 'object'
+          properties:
+            dateTimeRecorded:
+              type: 'string'
+              format: 'date-time'
+            userRecorded:
+              type: 'string'
+            content:
+              type: 'string'
       error:
         type: 'string'
 

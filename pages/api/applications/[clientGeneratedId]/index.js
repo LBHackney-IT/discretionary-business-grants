@@ -1,6 +1,7 @@
 import * as HttpStatus from 'http-status-codes';
 import applicationDetails from '../../../../lib/usecases/applicationDetails';
 import updateApplication from '../../../../lib/usecases/updateApplication';
+import { APPLICATION_NOT_FOUND } from '../../../../lib/constants';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
@@ -8,11 +9,16 @@ export default async (req, res) => {
   switch (req.method) {
     case 'GET':
       try {
-        res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
-        res.end(
-          JSON.stringify(await applicationDetails({ clientGeneratedId }))
-        );
+        let applicationDetailsResponse = await applicationDetails({
+          clientGeneratedId
+        });
+        if (applicationDetailsResponse.error === APPLICATION_NOT_FOUND) {
+          res.statusCode = HttpStatus.NOT_FOUND;
+        } else {
+          res.statusCode = HttpStatus.OK;
+        }
+        res.end(JSON.stringify(applicationDetailsResponse));
       } catch (error) {
         console.log('Application details error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
