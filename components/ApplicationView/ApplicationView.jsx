@@ -9,6 +9,7 @@ import Comments from 'components/Comments/Comments';
 
 const ApplicationView = ({ applicationId }) => {
   const [data, setData] = useState();
+  const [status, setStatus] = useState();
   const [error, setError] = useState(false);
   const fetchData = useCallback(async applicationId => {
     if (!applicationId) {
@@ -66,6 +67,7 @@ const ApplicationView = ({ applicationId }) => {
                 <ApplicationStateSelector
                   status={data.status}
                   applicationId={applicationId}
+                  onChange={setStatus}
                 />
               </div>
             </div>
@@ -89,7 +91,7 @@ const ApplicationView = ({ applicationId }) => {
               </div>
             ))}
           </ExpandableDetails>
-          <Comments applicationId={applicationId} />
+          <Comments applicationId={applicationId} status={status} />
         </>
       )}
       {error && <p>{error}</p>}
