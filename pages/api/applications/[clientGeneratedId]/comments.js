@@ -1,14 +1,19 @@
 import * as HttpStatus from 'http-status-codes';
 import AppContainer from '../../../../containers/AppContainer';
-import { APPLICATION_NOT_FOUND } from '../../../../lib/constants';
+import {
+  APPLICATION_NOT_FOUND,
+  NOTES_MUST_NOT_BE_EMPTY
+} from '../../../../lib/constants';
+import updateApplication from '../../../../lib/usecases/updateApplication';
+import addApplicationComment from '../../../../lib/usecases/addApplicationComment';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
+  const container = AppContainer.getInstance();
 
   switch (req.method) {
     case 'GET':
       try {
-        const container = AppContainer.getInstance();
         const listApplicationComments = container.getListApplicationComments();
         res.setHeader('Content-Type', 'application/json');
         let commentsResponse = await listApplicationComments({
@@ -24,6 +29,33 @@ export default async (req, res) => {
         console.log('Application comments error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         res.end(JSON.stringify('Unable to get application comments'));
+      }
+      break;
+
+    case 'POST':
+      try {
+        const addApplicationComment = container.getAddApplicationComment();
+        res.setHeader('Content-Type', 'application/json');
+        let addCommentResult = await addApplicationComment({
+          clientGeneratedId,
+          notes: req.body.notes
+        });
+        console.log(addCommentResult.error);
+        switch (addCommentResult.error) {
+          case APPLICATION_NOT_FOUND:
+            res.statusCode = HttpStatus.NOT_FOUND;
+            break;
+          case NOTES_MUST_NOT_BE_EMPTY:
+            res.statusCode = HttpStatus.BAD_REQUEST;
+            break;
+          default:
+            res.statusCode = HttpStatus.CREATED;
+        }
+        res.end(JSON.stringify(addCommentResult));
+      } catch (error) {
+        console.log('Add application comment error:', error, 'request:', req);
+        res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+        res.end(JSON.stringify('Unable to add application comment'));
       }
       break;
 
