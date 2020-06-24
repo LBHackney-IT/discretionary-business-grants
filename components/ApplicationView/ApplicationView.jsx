@@ -12,6 +12,7 @@ const ApplicationView = ({ applicationId }) => {
   const [data, setData] = useState();
   const [status, setStatus] = useState();
   const [error, setError] = useState(false);
+  const [validationRecap, setValidationRecap] = useState();
   const { register, watch, reset } = useForm({ defaultValues: {} });
   const watcher = watch({ nest: true });
   const validations = JSON.stringify(watcher);
@@ -37,11 +38,21 @@ const ApplicationView = ({ applicationId }) => {
       fetchData(applicationId);
     }
   });
+  const getValidationRecap = useCallback(watcher =>
+    Object.entries(watcher).reduce(
+      (acc, [key, value]) => ({
+        ...acc,
+        [key]: Object.values(value).every(Boolean)
+      }),
+      {}
+    )
+  );
   useEffect(() => {
     fetchData(applicationId);
   }, [applicationId]);
   useEffect(() => {
     validations !== '{}' && saveValidation(validations);
+    setValidationRecap(getValidationRecap(watcher));
   }, [validations]);
   return (
     <>
@@ -95,6 +106,7 @@ const ApplicationView = ({ applicationId }) => {
               filterOut={['supplementaryInformation']}
               register={register}
               isExpandable
+              validationRecap={validationRecap}
             />
             <h2>Documents</h2>
             <ExpandableDetails>
