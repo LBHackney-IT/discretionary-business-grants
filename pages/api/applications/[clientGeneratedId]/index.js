@@ -2,6 +2,7 @@ import * as HttpStatus from 'http-status-codes';
 import applicationDetails from '../../../../lib/usecases/applicationDetails';
 import updateApplication from '../../../../lib/usecases/updateApplication';
 import { APPLICATION_NOT_FOUND } from '../../../../lib/constants';
+import { getUserStringFromCookie } from '../../../../utils/auth';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
@@ -32,7 +33,11 @@ export default async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(
           JSON.stringify(
-            await updateApplication({ clientGeneratedId, data: req.body })
+            await updateApplication({
+              clientGeneratedId,
+              data: req.body,
+              user: getUserStringFromCookie(req.headers.cookie)
+            })
           )
         );
       } catch (error) {

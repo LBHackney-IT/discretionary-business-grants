@@ -5,6 +5,11 @@ import jsonwebtoken from 'jsonwebtoken';
 export const getUserFromCookie = cookie =>
   jsonwebtoken.decode(parse(cookie).hackneyToken);
 
+export const getUserStringFromCookie = cookie => {
+  const user = getUserFromCookie(cookie);
+  return `${user.name} <${user.email}>`;
+};
+
 export const redirectIfNotAuth = async ({ req, res, query }) => {
   try {
     return { props: { ...getUserFromCookie(req.headers.cookie), ...query } };
