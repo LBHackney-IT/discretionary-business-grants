@@ -598,6 +598,8 @@ definitions:
             $ref: '#/definitions/BusinessBankAccount'
           declaration:
             $ref: '#/definitions/Declaration'
+          validations:
+            $ref: '#/definitions/Validations'
       error:
         type: 'string'
 
@@ -626,3 +628,7 @@ definitions:
         type: 'string'
       error:
         type: 'string'
+
+  Validations:
+    description: 'Free form json data'
+    type: 'string'
