@@ -27,6 +27,7 @@ const ApplicationView = ({ applicationId }) => {
       );
       setData(application);
       validations && reset(JSON.parse(validations));
+      setValidationRecap(getValidationRecap(watcher));
     } catch (e) {
       setError(e.response.data);
     }
