@@ -1,7 +1,8 @@
 import * as HttpStatus from 'http-status-codes';
 import AppContainer from 'containers/AppContainer';
-import { APPLICATION_NOT_FOUND, NOTES_MUST_NOT_BE_EMPTY } from 'lib/constants';
+import { APPLICATION_NOT_FOUND } from 'lib/constants';
 import { getUserStringFromCookie } from 'utils/auth';
+import { NOTES_MUST_NOT_BE_EMPTY } from '../../../../lib/usecases/addApplicationComment';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
