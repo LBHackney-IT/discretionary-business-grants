@@ -6,13 +6,12 @@ import SummaryList from 'components/SummaryList/SummaryList';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import { getInputProps, stepPath } from 'components/Steps';
 
-const MultiValue = value =>
-  value !== '' && (
-    <div key={value}>
-      <span>{value}</span>
-      <br />
-    </div>
-  );
+const MultiValue = value => (
+  <div key={value}>
+    <span>{value}</span>
+    <br />
+  </div>
+);
 
 export const SummarySection = ({
   formData,
@@ -20,18 +19,24 @@ export const SummarySection = ({
   name,
   title,
   slug,
+  register,
   isExpandable
 }) => {
   const Summary = (
     <SummaryList
+      register={register}
+      name={name}
       list={Object.entries(formData[name])
         .filter(([, value]) => value)
         .map(([key, value]) => ({
+          key,
           title: getInputProps(name, key).label,
           value: Array.isArray(value)
-            ? value.map(v => MultiValue(v.split('/').pop()))
+            ? value.filter(Boolean).map(v => MultiValue(v.split('/').pop()))
             : typeof value === 'object'
-            ? Object.values(value).map(MultiValue)
+            ? Object.values(value)
+                .filter(Boolean)
+                .map(MultiValue)
             : typeof value === 'boolean'
             ? JSON.stringify(value)
             : value

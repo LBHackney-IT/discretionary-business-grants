@@ -1,17 +1,25 @@
 import PropTypes from 'prop-types';
 
-const SummaryList = ({ list }) => (
+import { Checkbox } from 'components/Form';
+
+const SummaryList = ({ list, name, register }) => (
   <dl className="govuk-summary-list">
     {list &&
-      list.map(({ title, value, href }) => (
-        <div key={title} className="govuk-summary-list__row">
+      list.map(({ key, title, value, href }) => (
+        <div key={key} className="govuk-summary-list__row">
           <dt className="govuk-summary-list__key">{title}</dt>
           <dd className="govuk-summary-list__value">{value}</dd>
           {href && (
             <dd className="govuk-summary-list__actions">
               <a className="govuk-link" href="#">
-                Change<span className="govuk-visually-hidden"> {title}</span>
+                Change
+                <span className="govuk-visually-hidden"> {title}</span>
               </a>
+            </dd>
+          )}
+          {register && (
+            <dd className="govuk-summary-list__actions" style={{ width: 40 }}>
+              <Checkbox name={`${name}.${key}`} register={register} />
             </dd>
           )}
         </div>
