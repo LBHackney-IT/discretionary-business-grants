@@ -2,7 +2,7 @@ import Database from '../lib/gateways/db';
 import { addApplicationComment } from '../lib/usecases/addApplicationComment';
 import listApplicationComments from '../lib/usecases/listApplicationComments';
 import listApplications from '../lib/usecases/listApplications';
-import {listGrantOfficers} from '../lib/usecases/listGrantOfficers';
+import { listGrantOfficers } from '../lib/usecases/listGrantOfficers';
 import { updateApplication } from '../lib/usecases/updateApplication';
 
 class AppContainer {
