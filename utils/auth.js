@@ -6,6 +6,9 @@ export const getUserFromCookie = cookie =>
   jsonwebtoken.decode(parse(cookie).hackneyToken);
 
 export const getUserStringFromCookie = cookie => {
+  if(!cookie){
+    return 'User unknown';
+  }
   const user = getUserFromCookie(cookie);
   return `${user.name} <${user.email}>`;
 };
