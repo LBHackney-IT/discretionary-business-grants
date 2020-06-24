@@ -92,7 +92,7 @@ paths:
         - in: 'query'
           name: 'businessType'
           type: 'string'
-          required: false          
+          required: false
       responses:
         '200':
           description: 'List of applications'
@@ -601,8 +601,8 @@ definitions:
             $ref: '#/definitions/BusinessBankAccount'
           declaration:
             $ref: '#/definitions/Declaration'
-          validations:
-            $ref: '#/definitions/Validations'
+      validations:
+        $ref: '#/definitions/Validations'
       error:
         type: 'string'
 
