@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import { Select } from 'components/Form';
 import { APPLICATION_STATE } from 'lib/dbMapping';
+import { patchApplication } from 'utils/api/applications';
 
 const ApplicationStateSelector = ({ status, onChange, applicationId }) => {
   const [error, setError] = useState();
@@ -14,9 +14,7 @@ const ApplicationStateSelector = ({ status, onChange, applicationId }) => {
     }
     setError(false);
     try {
-      await axios.patch(`/api/applications/${applicationId}`, {
-        status
-      });
+      await patchApplication(applicationId, { status });
       setValue(status);
       onChange(status);
     } catch (e) {

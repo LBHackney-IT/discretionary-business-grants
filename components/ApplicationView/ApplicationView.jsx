@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
+import { fetchApplication } from 'utils/api/applications';
 import Summary from 'components/Summary/Summary';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
@@ -17,8 +17,8 @@ const ApplicationView = ({ applicationId }) => {
     }
     setError(false);
     try {
-      const { data } = await axios.get(`/api/applications/${applicationId}`);
-      setData(data.application);
+      const { application } = await fetchApplication(applicationId);
+      setData(application);
     } catch (e) {
       setError(e.response.data);
     }

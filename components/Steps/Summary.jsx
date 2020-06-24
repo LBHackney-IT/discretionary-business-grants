@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import axios from 'axios';
 
 import Summary from 'components/Summary/Summary';
 import ErrorSummary from 'components/ErrorSummary/ErrorSummary';
 import { set } from 'utils/persistency';
+import { postApplication } from 'utils/api/applications';
 
 const Result = ({ formData, clearFormData }) => {
   const [error, setError] = useState(false);
@@ -15,7 +15,7 @@ const Result = ({ formData, clearFormData }) => {
   const submitForm = async () => {
     try {
       setSubmitting(true);
-      const { data } = await axios.post('/api/applications', formData);
+      const { data } = await postApplication(formData);
       set(data, formData);
       clearFormData();
       return Router.push({
