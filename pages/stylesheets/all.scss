@@ -11,7 +11,7 @@ html.lbh-template > body.lbh-template__body * {
   border-bottom-color: #00513f;
 }
 
-.govuk-tag {
+.govuk-tag:not([class*='govuk-tag--']) {
   background-color: #00513f;
 }
 
