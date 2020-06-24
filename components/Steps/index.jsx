@@ -35,17 +35,20 @@ export const inputLabels = {
   eligibilityCriteria: {
     tradingInHackney: {
       label: 'Is your business based in and trading in Hackney?',
-      validation: { required: true }
+      validation: { required: true },
+      adminValidation: true
     },
     businessSizeId: {
       label: 'Is your business classed as either a micro or small business?',
       children: <BusinessClassificationSummary />,
       options: options.BUSINESS_SIZE,
-      validation: { required: true }
+      validation: { required: true },
+      adminValidation: true
     },
     tradingOn20200311: {
       label: 'Was your business trading on the 11th March 2020?',
-      validation: { required: true }
+      validation: { required: true },
+      adminValidation: true
     },
     typeOfBusinessId: {
       label: 'Type of business',
@@ -54,19 +57,22 @@ export const inputLabels = {
       validation: {
         required: true,
         validate: value => value !== ''
-      }
+      },
+      adminValidation: true
     },
     servedLegalNotices: {
       label:
         'Is your business in administration, insolvent or in receipt of a striking off notice?',
-      validation: { required: true }
+      validation: { required: true },
+      adminValidation: true
     },
     receivedOtherGrants: {
       label:
         'Has your business either received or is eligible for either a Small Business Grant, the Retail, Hospitality and Leisure Grant, The Fisheries Response Fund, Domestic Seafood Supply Scheme (DSSS), The Zoos Support Fund, or The Dairy Hardship Fund.',
       hint:
         'Businesses must not be eligible for the existing Small Business Grant, the Retail, Hospitality and Leisure Grant, The Fisheries Response Fund, Domestic Seafood Supply Scheme (DSSS), The Zoos Support Fund, or The Dairy Hardship Fund to be considered for this grant',
-      validation: { required: true }
+      validation: { required: true },
+      adminValidation: true
     },
     hasFixedPropertyCost: {
       label: 'Do you meet one of the eligibility criteria?',
@@ -103,7 +109,8 @@ export const inputLabels = {
     significantIncomeFall: {
       label:
         'Has your business experienced a SIGNIFICANT fall in income as a result of Covid-19?',
-      validation: { required: true }
+      validation: { required: true },
+      adminValidation: true
     }
   },
   contact: {
@@ -119,13 +126,15 @@ export const inputLabels = {
       label: 'First Name:',
       validation: {
         required: 'First Name is required'
-      }
+      },
+      adminValidation: true
     },
     lastName: {
       label: 'Last Name:',
       validation: {
         required: 'Last Name is required'
-      }
+      },
+      adminValidation: true
     },
     emailAddress: {
       label: 'Email Address:',
@@ -144,7 +153,7 @@ export const inputLabels = {
         }
       }
     },
-    address: { label: 'Address:' }
+    address: { label: 'Address:', adminValidation: true }
   },
   business: {
     businessName: {
@@ -152,7 +161,8 @@ export const inputLabels = {
       hint: '(trading name, etc)',
       validation: {
         required: 'Business Name is required'
-      }
+      },
+      adminValidation: true
     },
     registeredName: { label: 'Registered Name (if applicable):' },
     businessDescription: {
@@ -163,7 +173,8 @@ export const inputLabels = {
     businessAddress: {
       label: 'Business Premises Address:',
       hint:
-        "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address."
+        "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address.",
+      adminValidation: true
     },
     siteDescriptionId: {
       label: 'Business Premises Description:',
@@ -187,7 +198,8 @@ export const inputLabels = {
       validation: {
         required: 'Business Structure is required',
         validate: value => value !== ''
-      }
+      },
+      adminValidation: true
     },
     ratesAccountNumber: {
       label: 'Business Rates Account Number (if applicable):',
@@ -223,7 +235,8 @@ export const inputLabels = {
           value: 100,
           message: 'Must be a number between 0 and 100'
         }
-      }
+      },
+      adminValidation: true
     },
     rateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
@@ -239,21 +252,24 @@ export const inputLabels = {
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 }
+      validation: { required: "It's required", min: 0 },
+      adminValidation: true
     },
     year1819: {
       label: 'Financial Year 18/19',
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 }
+      validation: { required: "It's required", min: 0 },
+      adminValidation: true
     },
     year1920: {
       label: 'Financial Year 19/20',
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 }
+      validation: { required: "It's required", min: 0 },
+      adminValidation: true
     }
   },
   fixedPropertyCosts: {
@@ -262,14 +278,16 @@ export const inputLabels = {
       hint:
         'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 }
+      validation: { required: "It's required", min: 0 },
+      adminValidation: true
     },
     year2019To2020: {
       label: 'Financial Year 19/20',
       hint:
         'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 }
+      validation: { required: "It's required", min: 0 },
+      adminValidation: true
     },
     itemsIncluded: {
       label: 'Items included:',
@@ -402,7 +420,10 @@ export const getInputProps = (
   { register, control } = {},
   errors
 ) => {
-  const { validation, ...props } = inputLabels[form][name] || {};
+  // filtering out adminValidation
+  // eslint-disable-next-line no-unused-vars
+  const { validation, adminValidation, ...props } =
+    inputLabels[form][name] || {};
   return {
     name: `${form}.${name}`,
     ...props,
@@ -412,5 +433,8 @@ export const getInputProps = (
     error: errors && errors[form] && errors[form][name]
   };
 };
+
+export const hasAdminValidation = (form, name) =>
+  inputLabels[form][name] && inputLabels[form][name].adminValidation;
 
 export const stepKeys = Object.keys(steps);
