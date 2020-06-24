@@ -274,8 +274,11 @@ definitions:
 
   ApplicationPatch:
     type: 'object'
+    description: 'One of status OR validations'
     properties:
       status:
+        type: 'string'
+      validations:
         type: 'string'
 
   ApplicationComment:
