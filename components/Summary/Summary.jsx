@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import SummaryList from 'components/SummaryList/SummaryList';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
-import { getInputProps, stepPath } from 'components/Steps';
+import { getInputProps, hasAdminValidation, stepPath } from 'components/Steps';
 
 const MultiValue = value => (
   <div key={value}>
@@ -31,6 +31,7 @@ export const SummarySection = ({
         .filter(([, value]) => value)
         .map(([key, value]) => ({
           key,
+          adminValidation: hasAdminValidation(name, key),
           title: getInputProps(name, key).label,
           value: Array.isArray(value)
             ? value.filter(Boolean).map(v => MultiValue(v.split('/').pop()))
@@ -54,6 +55,7 @@ export const SummarySection = ({
       <h2>
         {title}{' '}
         {validationRecap &&
+          validationRecap[name] !== undefined &&
           (validationRecap[name] ? (
             <strong className="govuk-tag govuk-tag--green">Validated</strong>
           ) : (

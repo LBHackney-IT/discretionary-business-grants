@@ -5,7 +5,7 @@ import { Checkbox } from 'components/Form';
 const SummaryList = ({ list, name, register }) => (
   <dl className="govuk-summary-list">
     {list &&
-      list.map(({ key, title, value, href }) => (
+      list.map(({ key, title, adminValidation, value, href }) => (
         <div key={key} className="govuk-summary-list__row">
           <dt className="govuk-summary-list__key">{title}</dt>
           <dd className="govuk-summary-list__value">{value}</dd>
@@ -19,7 +19,9 @@ const SummaryList = ({ list, name, register }) => (
           )}
           {register && (
             <dd className="govuk-summary-list__actions" style={{ width: 40 }}>
-              <Checkbox name={`${name}.${key}`} register={register} />
+              {adminValidation && (
+                <Checkbox name={`${name}.${key}`} register={register} />
+              )}
             </dd>
           )}
         </div>
