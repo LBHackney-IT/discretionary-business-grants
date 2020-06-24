@@ -1,6 +1,6 @@
 import Database from '../lib/gateways/db';
 import listApplications from '../lib/usecases/listApplications';
-import updateApplication from '../lib/usecases/updateApplication';
+import { updateApplication } from '../lib/usecases/updateApplication';
 import listApplicationComments from '../lib/usecases/listApplicationComments';
 import addApplicationComment from '../lib/usecases/addApplicationComment';
 
