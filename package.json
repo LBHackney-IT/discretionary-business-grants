@@ -23,9 +23,11 @@
   "dependencies": {
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "cookie": "^0.4.1",
     "date-fns": "^2.14.0",
     "govuk-frontend": "^3.6.0",
     "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
     "nanoid": "^3.1.5",
     "next": "^9.4.0",
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#0fe9e7514882c8ffb4182fa984ee10b99bfd886c",
