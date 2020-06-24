@@ -15,12 +15,12 @@ const Result = ({ formData, clearFormData }) => {
   const submitForm = async () => {
     try {
       setSubmitting(true);
-      const { data } = await postApplication(formData);
-      set(data, formData);
+      const ref = await postApplication(formData);
+      set(ref, formData);
       clearFormData();
       return Router.push({
         pathname: '/confirmation',
-        query: { ref: data }
+        query: { ref }
       });
     } catch (e) {
       setSubmitting(false);
