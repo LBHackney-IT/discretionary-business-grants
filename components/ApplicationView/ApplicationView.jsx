@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { useForm } from 'react-hook-form';
 
+import { fetchApplication, patchApplication } from 'utils/api/applications';
 import Summary from 'components/Summary/Summary';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
@@ -11,22 +12,48 @@ const ApplicationView = ({ applicationId }) => {
   const [data, setData] = useState();
   const [status, setStatus] = useState();
   const [error, setError] = useState(false);
+  const [validationRecap, setValidationRecap] = useState();
+  const { register, watch, reset } = useForm({ defaultValues: {} });
+  const watcher = watch({ nest: true });
+  const validations = JSON.stringify(watcher);
   const fetchData = useCallback(async applicationId => {
     if (!applicationId) {
       return null;
     }
     setError(false);
     try {
-      const { data } = await axios.get(`/api/applications/${applicationId}`);
-      setData(data.application);
+      const { application, validations } = await fetchApplication(
+        applicationId
+      );
+      setData(application);
+      validations && reset(JSON.parse(validations));
     } catch (e) {
       setError(e.response.data);
     }
   }, []);
+  const saveValidation = useCallback(async validations => {
+    try {
+      await patchApplication(applicationId, { validations });
+    } catch {
+      fetchData(applicationId);
+    }
+  });
+  const getValidationRecap = useCallback(watcher =>
+    Object.entries(watcher).reduce(
+      (acc, [key, value]) => ({
+        ...acc,
+        [key]: Object.values(value).every(Boolean)
+      }),
+      {}
+    )
+  );
   useEffect(() => {
     fetchData(applicationId);
   }, [applicationId]);
-
+  useEffect(() => {
+    validations !== '{}' && saveValidation(validations);
+    setValidationRecap(getValidationRecap(watcher));
+  }, [validations]);
   return (
     <>
       {data && (
@@ -72,25 +99,30 @@ const ApplicationView = ({ applicationId }) => {
               </div>
             </div>
           </div>
-          <Summary
-            formData={data}
-            filterOut={['supplementaryInformation']}
-            isExpandable
-          />
-          <h2>Documents</h2>
-          <ExpandableDetails>
-            {data.documents.map(({ documentType, s3Path }) => (
-              <div key={s3Path} className="govuk-body">
-                <a
-                  className="govuk-link"
-                  href={`/api/applications/${applicationId}/document/${s3Path}`}
-                  target="_blank"
-                >
-                  {documentType}
-                </a>
-              </div>
-            ))}
-          </ExpandableDetails>
+
+          <form>
+            <Summary
+              formData={data}
+              filterOut={['supplementaryInformation']}
+              register={register}
+              isExpandable
+              validationRecap={validationRecap}
+            />
+            <h2>Documents</h2>
+            <ExpandableDetails>
+              {data.documents.map(({ documentType, s3Path }) => (
+                <div key={s3Path} className="govuk-body">
+                  <a
+                    className="govuk-link"
+                    href={`/api/applications/${applicationId}/document/${s3Path}`}
+                    target="_blank"
+                  >
+                    {documentType}
+                  </a>
+                </div>
+              ))}
+            </ExpandableDetails>
+          </form>
           <Comments applicationId={applicationId} status={status} />
         </>
       )}

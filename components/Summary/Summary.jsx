@@ -6,32 +6,38 @@ import SummaryList from 'components/SummaryList/SummaryList';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import { getInputProps, stepPath } from 'components/Steps';
 
-const MultiValue = value =>
-  value !== '' && (
-    <div key={value}>
-      <span>{value}</span>
-      <br />
-    </div>
-  );
+const MultiValue = value => (
+  <div key={value}>
+    <span>{value}</span>
+    <br />
+  </div>
+);
 
 export const SummarySection = ({
   formData,
   hasChangeLink,
+  validationRecap,
   name,
   title,
   slug,
+  register,
   isExpandable
 }) => {
   const Summary = (
     <SummaryList
+      register={register}
+      name={name}
       list={Object.entries(formData[name])
         .filter(([, value]) => value)
         .map(([key, value]) => ({
+          key,
           title: getInputProps(name, key).label,
           value: Array.isArray(value)
-            ? value.map(v => MultiValue(v.split('/').pop()))
+            ? value.filter(Boolean).map(v => MultiValue(v.split('/').pop()))
             : typeof value === 'object'
-            ? Object.values(value).map(MultiValue)
+            ? Object.values(value)
+                .filter(Boolean)
+                .map(MultiValue)
             : typeof value === 'boolean'
             ? JSON.stringify(value)
             : value
@@ -45,7 +51,15 @@ export const SummarySection = ({
         'govuk-!-margin-bottom-7': isExpandable
       })}
     >
-      <h2>{title}</h2>
+      <h2>
+        {title}{' '}
+        {validationRecap &&
+          (validationRecap[name] ? (
+            <strong className="govuk-tag govuk-tag--green">Validated</strong>
+          ) : (
+            <strong className="govuk-tag govuk-tag--yellow">Pending</strong>
+          ))}
+      </h2>
       {isExpandable ? (
         <ExpandableDetails>{Summary}</ExpandableDetails>
       ) : (
@@ -63,51 +77,56 @@ export const SummarySection = ({
 const sections = [
   {
     name: 'eligibilityCriteria',
-    title: 'Eligibility Criteria:',
+    title: 'Eligibility Criteria',
     slug: 'eligibility-criteria'
   },
   {
     name: 'contact',
-    title: 'Your details:',
+    title: 'Your details',
     slug: 'your-details'
   },
   {
     name: 'business',
-    title: 'Business details:',
+    title: 'Business details',
     slug: 'business-details'
   },
   {
     name: 'turnover',
-    title: 'Business Turnover:',
+    title: 'Business Turnover',
     slug: 'business-turnover'
   },
   {
     name: 'fixedPropertyCosts',
-    title: 'Fixed property related costs:',
+    title: 'Fixed property related costs',
     slug: 'property-costs'
   },
   {
     name: 'supplementaryInformation',
-    title: 'Supplementary Information:',
+    title: 'Supplementary Information',
     slug: 'supplementary-information'
   },
   {
     name: 'businessBankAccount',
-    title: 'Bank details:',
+    title: 'Bank details',
     slug: 'bank-details'
   },
   {
     name: 'declaration',
-    title: 'State Aid Declaration:',
+    title: 'State Aid Declaration',
     slug: 'declaration'
   }
 ];
 
-const Summary = ({ filterOut, ...props }) =>
+const Summary = ({ filterOut, validationRecap, ...props }) =>
   sections
     .filter(section => !filterOut || filterOut.indexOf(section.name) === -1)
     .map(section => (
-      <SummarySection key={section.slug} {...props} {...section} />
+      <SummarySection
+        key={section.slug}
+        validationRecap={validationRecap}
+        {...props}
+        {...section}
+      />
     ));
 
 Summary.propTypes = {

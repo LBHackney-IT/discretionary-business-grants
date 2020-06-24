@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import axios from 'axios';
 import Router from 'next/router';
 
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import { BasicSelect } from 'components/Form';
+import { fetchApplications } from 'utils/api/applications';
 
 import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
 
@@ -66,11 +66,9 @@ const ApplicationsList = ({ page, pageSize, sort, status, businessType }) => {
         { shallow: true }
       );
       try {
-        const { data } = await axios.get('/api/applications', {
-          params: query
-        });
-        setData(data.applications);
-        setPageCount(data.pagination.totalPages);
+        const { applications, pagination } = await fetchApplications(query);
+        setData(applications);
+        setPageCount(pagination.totalPages);
         setLoading(false);
       } catch (e) {
         setError(e.response.data);

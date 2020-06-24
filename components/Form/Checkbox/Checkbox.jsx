@@ -33,7 +33,7 @@ const Checkbox = ({ label, name, register, error }) => (
 );
 
 Checkbox.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
   error: PropTypes.shape({ message: PropTypes.string.isRequired })
