@@ -2,6 +2,7 @@ import * as HttpStatus from 'http-status-codes';
 import applicationDetails from '../../../../lib/usecases/applicationDetails';
 import updateApplication from '../../../../lib/usecases/updateApplication';
 import { APPLICATION_NOT_FOUND } from '../../../../lib/constants';
+import { getUserFromCookie } from '../../../../utils/auth';
 
 export default async (req, res) => {
   const clientGeneratedId = req.query.clientGeneratedId;
@@ -30,9 +31,14 @@ export default async (req, res) => {
       try {
         res.statusCode = HttpStatus.CREATED;
         res.setHeader('Content-Type', 'application/json');
+        const user = getUserFromCookie(req.headers.cookie);
         res.end(
           JSON.stringify(
-            await updateApplication({ clientGeneratedId, data: req.body })
+            await updateApplication({
+              clientGeneratedId,
+              data: req.body,
+              user: `${user.name} <${user.email}>`
+            })
           )
         );
       } catch (error) {
