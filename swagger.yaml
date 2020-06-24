@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.26'
+  version: '0.0.27'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -274,8 +274,11 @@ definitions:
 
   ApplicationPatch:
     type: 'object'
+    description: 'One of status OR validations'
     properties:
       status:
+        type: 'string'
+      validations:
         type: 'string'
 
   ApplicationComment:
@@ -598,6 +601,8 @@ definitions:
             $ref: '#/definitions/BusinessBankAccount'
           declaration:
             $ref: '#/definitions/Declaration'
+          validations:
+            $ref: '#/definitions/Validations'
       error:
         type: 'string'
 
@@ -626,3 +631,7 @@ definitions:
         type: 'string'
       error:
         type: 'string'
+
+  Validations:
+    description: 'Free form json data'
+    type: 'string'
