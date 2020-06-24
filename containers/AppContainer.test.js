@@ -41,4 +41,8 @@ describe('AppContainer', () => {
   it('returns updateApplication', () => {
     expect(container.getUpdateApplication()).toBeDefined();
   });
+
+  it('returns listApplicationsCSV', () => {
+    expect(container.getListApplicationsCSV()).toBeDefined();
+  });
 });

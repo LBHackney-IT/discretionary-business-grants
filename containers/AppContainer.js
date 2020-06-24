@@ -3,6 +3,7 @@ import listApplications from '../lib/usecases/listApplications';
 import { updateApplication } from '../lib/usecases/updateApplication';
 import listApplicationComments from '../lib/usecases/listApplicationComments';
 import { addApplicationComment } from '../lib/usecases/addApplicationComment';
+import listApplicationsCSV from '../lib/usecases/listApplicationsCSV';
 
 class AppContainer {
   getDbInstance = () => {
@@ -23,6 +24,10 @@ class AppContainer {
 
   getUpdateApplication = () => {
     return updateApplication(this);
+  };
+
+  getListApplicationsCSV = () => {
+    return listApplicationsCSV(this);
   };
 }
 
