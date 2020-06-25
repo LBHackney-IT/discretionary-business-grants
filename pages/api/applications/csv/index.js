@@ -10,7 +10,6 @@ export default async (req, res) => {
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'text/csv; charset=utf-8');
         res.setHeader('Content-Disposition', 'filename=data.csv');
-        // Can we stream the csv or simply send a large string?
         res.end(await listApplicationsCSV());
       } catch (error) {
         console.log('Applications CSV error:', error, 'request:', req);
