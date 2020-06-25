@@ -8,7 +8,7 @@ Install the dependencies:
 
     yarn install
 
-Create your `.env` file from `.env.sample`. You will need to grab some secrets from (TBC, it's not clear at the time of writing).
+Create your `.env` file from `.env.sample`. You will need to grab some secrets from (TBC, it's not clear at the time of writing, but you can view the environment variables on the Lambda if it is already running).
 
 So that the auth token from using Staging/Production can work with your local dev environment and you will be able to access the admin section etc., add the following to your `/etc/hosts` file...
 
