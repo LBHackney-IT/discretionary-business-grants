@@ -16,6 +16,7 @@ const ApplicationView = ({ applicationId }) => {
   const { register, watch, reset } = useForm({ defaultValues: {} });
   const watcher = watch({ nest: true });
   const validations = JSON.stringify(watcher);
+  const [legitValidation, setLegitValidation] = useState();
   const fetchData = useCallback(async applicationId => {
     if (!applicationId) {
       return null;
@@ -52,8 +53,10 @@ const ApplicationView = ({ applicationId }) => {
     fetchData(applicationId);
   }, [applicationId]);
   useEffect(() => {
-    validations !== '{}' && saveValidation(validations);
-    setValidationRecap(getValidationRecap(watcher));
+    if (validations !== '{}') {
+      legitValidation ? saveValidation(validations) : setLegitValidation(true);
+      setValidationRecap(getValidationRecap(watcher));
+    }
   }, [validations]);
   return (
     <>
