@@ -107,8 +107,6 @@ paths:
       tags:
         - 'applications'
       summary: 'Export applications for payment. Produces csv report'
-      consumes:
-        - 'application/json'
       produces:
         - 'text/csv'
       responses:
