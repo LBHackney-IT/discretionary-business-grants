@@ -50,16 +50,16 @@ const ApplicationsList = ({
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
-  const [officers, setOfficiers] = useState([]);
+  const [officers, setOfficers] = useState([]);
   const checkFilter = JSON.stringify(filters);
   useEffect(() => {
     const fetchOfficers = async () => {
       try {
         const data = await fetchGrantOfficers();
         console.log(data);
-        setOfficiers(data.grantOfficers.map(({ identifier }) => identifier));
+        setOfficers(data.grantOfficers.map(({ identifier }) => identifier));
       } catch {
-        setOfficiers(null);
+        setOfficers(null);
       }
     };
     fetchOfficers();
