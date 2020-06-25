@@ -58,7 +58,7 @@ functions:
       PASSWORD: ${env:MASTER_USER_PASSWORD}
       DATABASE: ${self:provider.dbname}
       SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
-      URL_PREFIX: ${self:custom.aliases.${self:provider.stage}}
+      BASE_URL: ${self:custom.aliases.${self:provider.stage}}
       POSTCODE_LOOKUP_URL: ${env:POSTCODE_LOOKUP_URL}
       HACKNERY_AUTH_URL: ${env:HACKNERY_AUTH_URL}
       POSTCODE_LOOKUP_APIKEY: ${env:POSTCODE_LOOKUP_APIKEY}
