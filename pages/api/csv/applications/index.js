@@ -10,7 +10,8 @@ export default async (req, res) => {
         res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'text/csv; charset=utf-8');
         res.setHeader('Content-Disposition', 'filename=data.csv');
-        res.end(await listApplicationsCSV());
+        const csvResult = await listApplicationsCSV();
+        res.end(csvResult.csvString);
       } catch (error) {
         console.log('Applications CSV error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
