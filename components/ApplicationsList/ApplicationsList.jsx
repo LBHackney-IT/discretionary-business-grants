@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Router from 'next/router';
+import axios from 'axios';
 
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
@@ -8,7 +9,14 @@ import { fetchApplications } from 'utils/api/applications';
 
 import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
 
-const ApplicationsList = ({ page, pageSize, sort, status, businessType }) => {
+const ApplicationsList = ({
+  page,
+  pageSize,
+  sort,
+  status,
+  businessType,
+  grantOfficer
+}) => {
   const columns = useMemo(
     () => [
       {
@@ -33,18 +41,32 @@ const ApplicationsList = ({ page, pageSize, sort, status, businessType }) => {
     ],
     []
   );
-  const [filters, setFilters] = useState({ status, businessType });
+  const [filters, setFilters] = useState({
+    status,
+    businessType,
+    grantOfficer
+  });
   const [error, setError] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
+  const [officers, setOfficiers] = useState([]);
   const checkFilter = JSON.stringify(filters);
+  useEffect(() => {
+    const fetchOfficers = async () => {
+      try {
+        const { data } = await axios.get('/api/grant-officers');
+        setOfficiers(data.grantOfficers.map(({ identifier }) => identifier));
+      } catch {
+        setOfficiers(null);
+      }
+    };
+    fetchOfficers();
+  }, []);
   useEffect(() => {
     fetchData(filters);
   }, [checkFilter]);
-
   const setValues = useCallback(state => setFilters({ ...filters, ...state }));
-
   const fetchData = useCallback(
     async ({ pageSize, pageIndex, sortBy, ...otherFilters }) => {
       if (isNaN(pageSize)) {
@@ -90,6 +112,14 @@ const ApplicationsList = ({ page, pageSize, sort, status, businessType }) => {
         value={filters.businessType}
         onChange={businessType => setValues({ businessType })}
       />
+      {officers && (
+        <BasicSelect
+          options={officers}
+          label="Filter by Grant Officer:"
+          value={filters.grantOfficer}
+          onChange={grantOfficer => setValues({ grantOfficer })}
+        />
+      )}
       <Table
         columns={columns}
         data={data}
