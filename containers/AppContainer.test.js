@@ -22,6 +22,10 @@ describe('AppContainer', () => {
     expect(instance).toEqual(secondInstance);
   });
 
+  it('returns addApplicationComment', () => {
+    expect(container.getAddApplicationComment()).toBeDefined();
+  });
+
   it('returns getDbInstance', async () => {
     expect(await container.getDbInstance()).toBeDefined();
   });
@@ -34,8 +38,8 @@ describe('AppContainer', () => {
     expect(container.getListApplicationComments()).toBeDefined();
   });
 
-  it('returns addApplicationComment', () => {
-    expect(container.getAddApplicationComment()).toBeDefined();
+  it('returns listGrantOfficers', () => {
+    expect(container.getListGrantOfficers()).toBeDefined();
   });
 
   it('returns updateApplication', () => {

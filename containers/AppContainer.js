@@ -1,25 +1,30 @@
 import Database from '../lib/gateways/db';
-import listApplications from '../lib/usecases/listApplications';
-import { updateApplication } from '../lib/usecases/updateApplication';
-import listApplicationComments from '../lib/usecases/listApplicationComments';
 import { addApplicationComment } from '../lib/usecases/addApplicationComment';
+import listApplications from '../lib/usecases/listApplications';
+import listApplicationComments from '../lib/usecases/listApplicationComments';
 import listApplicationsCSV from '../lib/usecases/listApplicationsCSV';
+import { listGrantOfficers } from '../lib/usecases/listGrantOfficers';
+import { updateApplication } from '../lib/usecases/updateApplication';
 
 class AppContainer {
   getDbInstance = () => {
     return Database.getInstance();
   };
 
-  getListApplications = () => {
-    return listApplications(this);
+  getAddApplicationComment = () => {
+    return addApplicationComment(this);
   };
 
   getListApplicationComments = () => {
     return listApplicationComments(this);
   };
 
-  getAddApplicationComment = () => {
-    return addApplicationComment(this);
+  getListApplications = () => {
+    return listApplications(this);
+  };
+
+  getListGrantOfficers = () => {
+    return listGrantOfficers(this);
   };
 
   getUpdateApplication = () => {

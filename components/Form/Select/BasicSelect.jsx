@@ -26,7 +26,7 @@ BasicSelect.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  option: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
   className: PropTypes.string
 };
 

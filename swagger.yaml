@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.28'
+  version: '0.0.29'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -250,6 +250,19 @@ paths:
           description: 'CSV report file'
           schema:
             type: file
+
+  /grant-officers:
+    get:
+      tags:
+        - 'grant officers'
+      summary: 'Get a list of grant officers who have interacted with one or more applications'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'List of grant officers'
+          schema:
+            $ref: '#/definitions/GrantOfficersResponse'
         '500':
           description: 'Internal server error'
 
@@ -638,6 +651,17 @@ definitions:
               type: 'string'
       error:
         type: 'string'
+
+  GrantOfficersResponse:
+    type: 'object'
+    properties:
+      grantOfficers:
+        type: 'array'
+        items:
+          type: 'object'
+          properties:
+            identifier:
+              type: 'string'
 
   SignedDocumentUrl:
     type: 'object'
