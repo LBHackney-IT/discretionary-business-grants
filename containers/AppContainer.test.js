@@ -26,8 +26,7 @@ describe('AppContainer', () => {
     expect(await container.getDbInstance()).toBeDefined();
   });
 
-  it(
-    'returns listApplications', () => {
+  it('returns listApplications', () => {
     expect(container.getListApplications()).toBeDefined();
   });
 

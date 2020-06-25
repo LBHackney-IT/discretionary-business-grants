@@ -16,9 +16,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-Tell Git (>=2.9) to use the hoopks in the `.githooks` directory...
+## Git Pre Commit Checks
+
+Tell Git (>=2.9) to use the hooks in the `.githooks` directory...
 
     git config core.hooksPath .githooks
+
+If you need to bypass these for some reason, use `--no-verify`, e.g.
+
+    git commit  --no-verify
 
 ## Learn More
 

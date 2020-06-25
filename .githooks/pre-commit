@@ -1,4 +1,13 @@
 #!/bin/sh
+
 yarn format
+
+if [ -n "$(git diff)" ]; then
+    echo "\n\nThere are unstaged changes, probably from yarn format.'"
+    echo "\nPlease add these changes to your commit or stash them to proceeed.\n"
+    exit 1
+fi
+
 yarn lint
+
 yarn unit-test
