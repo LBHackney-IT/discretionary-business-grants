@@ -1,2 +1,4 @@
 #!/bin/sh
+yarn format
 yarn lint
+yarn unit-test
