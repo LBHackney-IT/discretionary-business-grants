@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Router from 'next/router';
-import axios from 'axios';
 
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
@@ -57,6 +56,7 @@ const ApplicationsList = ({
     const fetchOfficers = async () => {
       try {
         const data = await fetchGrantOfficers();
+        console.log(data);
         setOfficiers(data.grantOfficers.map(({ identifier }) => identifier));
       } catch {
         setOfficiers(null);
