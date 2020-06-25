@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.29'
+  version: '0.0.30'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -238,7 +238,7 @@ paths:
         '500':
           description: 'Internal server error'
 
-  /applications/csv:
+  /csv/applications:
     get:
       tags:
         - 'CSV report of all applications'
