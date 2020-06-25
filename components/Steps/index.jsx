@@ -315,7 +315,8 @@ export const inputLabels = {
           value: /^[0-9]{8}$/,
           message: 'Account Number must be a 8 digit number'
         }
-      }
+      },
+      adminValidation: true
     },
     accountSortcode: {
       inputClassName: 'govuk-input--width-5',
@@ -327,7 +328,8 @@ export const inputLabels = {
           value: /^[0-9]{6}$/,
           message: 'Sort Code must be a 6 digit number'
         }
-      }
+      },
+      adminValidation: true
     }
   },
   declaration: {
