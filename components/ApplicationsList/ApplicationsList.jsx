@@ -56,7 +56,6 @@ const ApplicationsList = ({
     const fetchOfficers = async () => {
       try {
         const data = await fetchGrantOfficers();
-        console.log(data);
         setOfficers(data.grantOfficers.map(({ identifier }) => identifier));
       } catch {
         setOfficers(null);
@@ -131,6 +130,10 @@ const ApplicationsList = ({
         initialPageSize={pageSize}
         initialSortBy={sort ? sort : '+applicationDate'}
       />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <a href="/api/csv/applications" target="_blank">
+        Download Applications CSV
+      </a>
     </>
   ) : (
     <ErrorMessage text={error} />
