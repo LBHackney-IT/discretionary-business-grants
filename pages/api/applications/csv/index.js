@@ -1,5 +1,5 @@
 import * as HttpStatus from 'http-status-codes';
-import AppContainer from '../../../containers/AppContainer';
+import AppContainer from '../../../../containers/AppContainer';
 
 export default async (req, res) => {
   switch (req.method) {
