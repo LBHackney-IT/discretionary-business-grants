@@ -238,6 +238,21 @@ paths:
         '500':
           description: 'Internal server error'
 
+  /grant-officers:
+    get:
+      tags:
+        - 'grant officers'
+      summary: 'Get a list of grant officers who have interacted with one or more applications'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'List of grant officers'
+          schema:
+            $ref: '#/definitions/GrantOfficersResponse'
+        '500':
+          description: 'Internal server error'
+
 definitions:
   UrlResponse:
     type: 'object'
@@ -623,6 +638,17 @@ definitions:
               type: 'string'
       error:
         type: 'string'
+
+  GrantOfficersResponse:
+    type: 'object'
+    properties:
+      grantOfficers:
+        type: 'array'
+        items:
+          type: 'object'
+          properties:
+            identifier:
+              type: 'string'
 
   SignedDocumentUrl:
     type: 'object'
