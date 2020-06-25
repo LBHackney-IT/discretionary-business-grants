@@ -8,6 +8,8 @@ Install the dependencies:
 
     yarn install
 
+Create your `.env` file from `.env.sample`. You will need to grab some secrets from (TBC, it's not clear at the time of writing).
+
 Run the development server:
 
     yarn dev
