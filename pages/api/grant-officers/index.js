@@ -1,5 +1,4 @@
 import * as HttpStatus from 'http-status-codes';
-import { nanoid } from 'nanoid';
 import AppContainer from '../../../containers/AppContainer';
 
 export default async (req, res) => {
