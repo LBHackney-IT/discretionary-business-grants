@@ -8,6 +8,7 @@ import { BasicSelect } from 'components/Form';
 import { fetchApplications } from 'utils/api/applications';
 
 import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
+import { fetchGrantOfficers } from '../../utils/api/grantOfficers';
 
 const ApplicationsList = ({
   page,
@@ -55,7 +56,7 @@ const ApplicationsList = ({
   useEffect(() => {
     const fetchOfficers = async () => {
       try {
-        const { data } = await axios.get('/api/grant-officers');
+        const data = await fetchGrantOfficers();
         setOfficiers(data.grantOfficers.map(({ identifier }) => identifier));
       } catch {
         setOfficiers(null);
