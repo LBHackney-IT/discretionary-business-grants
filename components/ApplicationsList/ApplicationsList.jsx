@@ -101,6 +101,15 @@ const ApplicationsList = ({
     },
     []
   );
+  const handleCsvDownload = useCallback(async () => {
+    try {
+      setError(null);
+      const csv = await patchApplications();
+      window.open(encodeURI(`data:text/csv;charset=utf-8,${csv}`));
+    } catch (e) {
+      setError(e.response.data);
+    }
+  }, []);
   return !error ? (
     <>
       <BasicSelect
@@ -140,18 +149,7 @@ const ApplicationsList = ({
         </a>
       </p>
       <p>
-        <a
-          href="#"
-          onClick={async () => {
-            try {
-              setError(null);
-              const csv = await patchApplications();
-              window.open(encodeURI(`data:text/csv;charset=utf-8,${csv}`));
-            } catch (e) {
-              setError(e.response.data);
-            }
-          }}
-        >
+        <a href="#" onClick={handleCsvDownload}>
           Download Approved Applications CSV
         </a>
       </p>
