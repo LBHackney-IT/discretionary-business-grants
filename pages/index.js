@@ -1,6 +1,7 @@
 import Router from 'next/router';
 
 import { stepPath, stepKeys } from 'components/Steps';
+import WarningText from 'components/WarningText/WarningText';
 
 export default function Home() {
   return (
@@ -40,6 +41,11 @@ export default function Home() {
           <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
         </svg>
       </button>
+      <WarningText>
+        Please note that applications for the Discretionary Business Grant close
+        at 23.59 on 26 June 2020. Any applications submitted after this time
+        will be invalid.
+      </WarningText>
     </div>
   );
 }
