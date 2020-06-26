@@ -153,7 +153,7 @@ export const inputLabels = {
         }
       }
     },
-    address: { label: 'Address:', adminValidation: true }
+    address: { label: 'Address:' }
   },
   business: {
     businessName: {
@@ -173,8 +173,7 @@ export const inputLabels = {
     businessAddress: {
       label: 'Business Premises Address:',
       hint:
-        "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address.",
-      adminValidation: true
+        "Please provide your business address in Hackney. For those in shared workspace/offices please provide the address of your shared workspace/office. For market traders please provide the most accurate  address for your market stall if you're unable to provide your exact market pitch address."
     },
     siteDescriptionId: {
       label: 'Business Premises Description:',
@@ -235,8 +234,7 @@ export const inputLabels = {
           value: 100,
           message: 'Must be a number between 0 and 100'
         }
-      },
-      adminValidation: true
+      }
     },
     rateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
@@ -252,24 +250,21 @@ export const inputLabels = {
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 },
-      adminValidation: true
+      validation: { required: "It's required", min: 0 }
     },
     year1819: {
       label: 'Financial Year 18/19',
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 },
-      adminValidation: true
+      validation: { required: "It's required", min: 0 }
     },
     year1920: {
       label: 'Financial Year 19/20',
       hint:
         'Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 },
-      adminValidation: true
+      validation: { required: "It's required", min: 0 }
     }
   },
   fixedPropertyCosts: {
@@ -278,8 +273,7 @@ export const inputLabels = {
       hint:
         'Fields require numeric values e.g 10000 for £10,000. Information to be verifiable with supplementary information as required below.',
       type: 'number',
-      validation: { required: "It's required", min: 0 },
-      adminValidation: true
+      validation: { required: "It's required", min: 0 }
     },
     year2019To2020: {
       label: 'Financial Year 19/20',
@@ -303,7 +297,8 @@ export const inputLabels = {
     },
     accountHolder: {
       label: 'Account Holder Name:',
-      validation: { required: 'Account Holder Name is required' }
+      validation: { required: 'Account Holder Name is required' },
+      adminValidation: true
     },
     accountNumber: {
       inputClassName: 'govuk-input--width-10',
