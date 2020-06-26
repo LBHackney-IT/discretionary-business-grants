@@ -92,8 +92,12 @@ const ApplicationsList = ({
       try {
         setError(null);
         const { applications, pagination } = await fetchApplications(query);
-        setData(applications);
-        setPageCount(pagination.totalPages);
+        if (applications) {
+          setData(applications);
+          setPageCount(pagination.totalPages);
+        } else {
+          setValues({ pageIndex: 0, pageSize, sortBy, ...otherFilters });
+        }
         setLoading(false);
       } catch (e) {
         setError(e.response.data);
