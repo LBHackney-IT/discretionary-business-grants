@@ -150,7 +150,7 @@ const ApplicationsList = ({
       </p>
       <p>
         <a href="#" onClick={handleCsvDownload}>
-          Download Approved Applications CSV
+          Export Panel Approved Applications CSV
         </a>
       </p>
     </>
