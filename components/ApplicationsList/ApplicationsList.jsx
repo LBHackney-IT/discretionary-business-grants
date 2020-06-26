@@ -4,7 +4,7 @@ import Router from 'next/router';
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import { BasicSelect } from 'components/Form';
-import { fetchApplications } from 'utils/api/applications';
+import { fetchApplications, patchApplications } from 'utils/api/applications';
 
 import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
 import { fetchGrantOfficers } from '../../utils/api/grantOfficers';
@@ -55,9 +55,11 @@ const ApplicationsList = ({
   useEffect(() => {
     const fetchOfficers = async () => {
       try {
+        setError(null);
         const data = await fetchGrantOfficers();
         setOfficers(data.grantOfficers.map(({ identifier }) => identifier));
-      } catch {
+      } catch (e) {
+        setError(e.response.data);
         setOfficers(null);
       }
     };
@@ -88,6 +90,7 @@ const ApplicationsList = ({
         { shallow: true }
       );
       try {
+        setError(null);
         const { applications, pagination } = await fetchApplications(query);
         setData(applications);
         setPageCount(pagination.totalPages);
@@ -98,6 +101,15 @@ const ApplicationsList = ({
     },
     []
   );
+  const handleCsvDownload = useCallback(async () => {
+    try {
+      setError(null);
+      const csv = await patchApplications();
+      window.open(encodeURI(`data:text/csv;charset=utf-8,${csv}`));
+    } catch (e) {
+      setError(e.response.data);
+    }
+  }, []);
   return !error ? (
     <>
       <BasicSelect
@@ -131,9 +143,16 @@ const ApplicationsList = ({
         initialSortBy={sort ? sort : '+applicationDate'}
       />
       <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
-      <a href="/api/csv/applications" target="_blank">
-        Download Applications CSV
-      </a>
+      <p>
+        <a href="/api/csv/applications" target="_blank">
+          Download Applications CSV
+        </a>
+      </p>
+      <p>
+        <a href="#" onClick={handleCsvDownload}>
+          Export Panel Approved Applications CSV
+        </a>
+      </p>
     </>
   ) : (
     <ErrorMessage text={error} />
