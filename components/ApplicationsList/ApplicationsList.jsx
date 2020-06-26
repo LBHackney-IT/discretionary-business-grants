@@ -92,15 +92,13 @@ const ApplicationsList = ({
       try {
         setError(null);
         const { applications, pagination } = await fetchApplications(query);
-        if (applications) {
-          setData(applications);
-          setPageCount(pagination.totalPages);
-        } else {
-          setValues({ pageIndex: 0, pageSize, sortBy, ...otherFilters });
-        }
+        setData(applications);
+        setPageCount(pagination.totalPages);
         setLoading(false);
       } catch (e) {
-        setError(e.response.data);
+        e.response.status === 400
+          ? setValues({ pageIndex: 0, pageSize, sortBy, ...otherFilters })
+          : setError(e.response.data);
       }
     },
     []
