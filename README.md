@@ -27,7 +27,7 @@ You can check out [the Next.js GitHub repository](https://github.com/zeit/next.j
 
 #### Setup the database
 
-1. Create the database
+1. Create the database:
    ```bash
    createdb dbg
    ```
