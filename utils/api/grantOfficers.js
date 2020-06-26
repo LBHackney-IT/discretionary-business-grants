@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-export const fetchGrantOfficers = async () => {
-  const { data } = await axios.get(
-    `${process.env.URL_PREFIX || ''}/api/grant-officers`
-  );
+export const fetchGrantOfficers = async (host = '') => {
+  const { data } = await axios.get(`${host}/api/grant-officers`);
   return data;
 };
