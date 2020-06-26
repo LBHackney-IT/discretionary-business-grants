@@ -4,6 +4,7 @@ import listApplications from '../lib/usecases/listApplications';
 import listApplicationComments from '../lib/usecases/listApplicationComments';
 import listApplicationsCSV from '../lib/usecases/listApplicationsCSV';
 import { listGrantOfficers } from '../lib/usecases/listGrantOfficers';
+import patchApplications from '../lib/usecases/patchApplications';
 import { updateApplication } from '../lib/usecases/updateApplication';
 
 class AppContainer {
@@ -33,6 +34,10 @@ class AppContainer {
 
   getListApplicationsCSV = () => {
     return listApplicationsCSV(this);
+  };
+
+  getPatchApplications = () => {
+    return patchApplications(this);
   };
 }
 

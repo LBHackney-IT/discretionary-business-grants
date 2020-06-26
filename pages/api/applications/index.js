@@ -1,6 +1,7 @@
 import * as HttpStatus from 'http-status-codes';
 import { nanoid } from 'nanoid';
 import AppContainer from '../../../containers/AppContainer';
+import { getUserStringFromCookie } from 'utils/auth';
 import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
 import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
@@ -66,6 +67,24 @@ export default async (req, res) => {
       } catch (error) {
         console.log('Application submission error:', error, 'request:', req);
         // Todo: We should 400 on invalid application and 500 on Internal Server Error
+        res.statusCode = HttpStatus.BAD_REQUEST;
+        res.end(JSON.stringify(error.message));
+      }
+      break;
+
+    case 'PATCH':
+      try {
+        const container = AppContainer.getInstance();
+        const patchApplications = container.getPatchApplications();
+        res.statusCode = HttpStatus.OK;
+        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+        res.setHeader('Content-Disposition', 'filename=export.csv');
+        const patchResponse = await patchApplications({
+          author: getUserStringFromCookie(req.headers.cookie)
+        });
+        res.end(patchResponse.csvString);
+      } catch (error) {
+        console.log('Applications patch error:', error, 'request:', req);
         res.statusCode = HttpStatus.BAD_REQUEST;
         res.end(JSON.stringify(error.message));
       }

@@ -49,4 +49,8 @@ describe('AppContainer', () => {
   it('returns listApplicationsCSV', () => {
     expect(container.getListApplicationsCSV()).toBeDefined();
   });
+
+  it('returns patchApplications', () => {
+    expect(container.getPatchApplications()).toBeDefined();
+  });
 });

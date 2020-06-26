@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: 'discretionary-business-grants API Schema'
-  version: '0.0.30'
+  version: '0.0.31'
   title: 'discretionary-business-grants API'
 host: 'discretionarybusinessgrants.hackney.gov.uk'
 basePath: '/api'
@@ -100,6 +100,20 @@ paths:
             $ref: '#/definitions/ApplicationsListResponse'
         '400':
           description: 'Invalid input'
+        '500':
+          description: 'Internal server error'
+
+    patch:
+      tags:
+        - 'applications'
+      summary: 'Export applications for payment. Produces csv report'
+      produces:
+        - 'text/csv'
+      responses:
+        '200':
+          description: 'CSV report file of exported applications'
+          schema:
+            type: file
         '500':
           description: 'Internal server error'
 
