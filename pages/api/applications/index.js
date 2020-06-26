@@ -67,7 +67,7 @@ export default async (req, res) => {
       }
       break;
 
-    case 'patch':
+    case 'PATCH':
       try {
         const container = AppContainer.getInstance();
         const patchApplications = container.getPatchApplications();
