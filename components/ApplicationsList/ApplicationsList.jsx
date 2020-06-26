@@ -55,9 +55,11 @@ const ApplicationsList = ({
   useEffect(() => {
     const fetchOfficers = async () => {
       try {
+        setError(null);
         const data = await fetchGrantOfficers();
         setOfficers(data.grantOfficers.map(({ identifier }) => identifier));
-      } catch {
+      } catch (e) {
+        setError(e.response.data);
         setOfficers(null);
       }
     };
@@ -88,6 +90,7 @@ const ApplicationsList = ({
         { shallow: true }
       );
       try {
+        setError(null);
         const { applications, pagination } = await fetchApplications(query);
         setData(applications);
         setPageCount(pagination.totalPages);
