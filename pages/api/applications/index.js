@@ -2,6 +2,10 @@ import * as HttpStatus from 'http-status-codes';
 import { nanoid } from 'nanoid';
 import AppContainer from '../../../containers/AppContainer';
 import { getUserStringFromCookie } from 'utils/auth';
+import {
+  PAGE_MUST_BE_AT_LEAST_ONE,
+  PAGINATED_PAST_END
+} from '../../../lib/usecases/listApplications';
 import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
 import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
@@ -15,7 +19,6 @@ export default async (req, res) => {
       try {
         const container = AppContainer.getInstance();
         const listApplications = container.getListApplications();
-        res.statusCode = HttpStatus.OK;
         res.setHeader('Content-Type', 'application/json');
         const currentPage =
           req.query && req.query.page
@@ -36,18 +39,24 @@ export default async (req, res) => {
           req.query && req.query.grantOfficer
             ? req.query.grantOfficer
             : undefined;
-        res.end(
-          JSON.stringify(
-            await listApplications({
-              currentPage,
-              pageSize,
-              sort,
-              status,
-              businessType,
-              grantOfficer
-            })
+        let listApplicationsResponse = await listApplications({
+          currentPage,
+          pageSize,
+          sort,
+          status,
+          businessType,
+          grantOfficer
+        });
+        if (
+          [PAGE_MUST_BE_AT_LEAST_ONE, PAGINATED_PAST_END].includes(
+            listApplicationsResponse.error
           )
-        );
+        ) {
+          res.statusCode = HttpStatus.BAD_REQUEST;
+        } else {
+          res.statusCode = HttpStatus.OK;
+        }
+        res.end(JSON.stringify(listApplicationsResponse));
       } catch (error) {
         console.log('Application list error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
