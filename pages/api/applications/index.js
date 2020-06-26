@@ -29,6 +29,10 @@ export default async (req, res) => {
           req.query && req.query.businessType
             ? req.query.businessType
             : undefined;
+        const grantOfficer =
+          req.query && req.query.grantOfficer
+            ? req.query.grantOfficer
+            : undefined;
         res.end(
           JSON.stringify(
             await listApplications({
@@ -36,7 +40,8 @@ export default async (req, res) => {
               pageSize,
               sort,
               status,
-              businessType
+              businessType,
+              grantOfficer
             })
           )
         );

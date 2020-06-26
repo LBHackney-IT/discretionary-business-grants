@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Router from 'next/router';
-import axios from 'axios';
 
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
@@ -8,6 +7,7 @@ import { BasicSelect } from 'components/Form';
 import { fetchApplications } from 'utils/api/applications';
 
 import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
+import { fetchGrantOfficers } from '../../utils/api/grantOfficers';
 
 const ApplicationsList = ({
   page,
@@ -50,15 +50,15 @@ const ApplicationsList = ({
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
-  const [officers, setOfficiers] = useState([]);
+  const [officers, setOfficers] = useState([]);
   const checkFilter = JSON.stringify(filters);
   useEffect(() => {
     const fetchOfficers = async () => {
       try {
-        const { data } = await axios.get('/api/grant-officers');
-        setOfficiers(data.grantOfficers.map(({ identifier }) => identifier));
+        const data = await fetchGrantOfficers();
+        setOfficers(data.grantOfficers.map(({ identifier }) => identifier));
       } catch {
-        setOfficiers(null);
+        setOfficers(null);
       }
     };
     fetchOfficers();
@@ -130,6 +130,10 @@ const ApplicationsList = ({
         initialPageSize={pageSize}
         initialSortBy={sort ? sort : '+applicationDate'}
       />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <a href="/api/csv/applications" target="_blank">
+        Download Applications CSV
+      </a>
     </>
   ) : (
     <ErrorMessage text={error} />

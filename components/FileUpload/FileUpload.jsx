@@ -69,6 +69,7 @@ const FileUpload = ({
         disabled={uploading}
         value={value}
         style={{ visibility: 'hidden' }}
+        accept="image/*,.pdf"
       />
       {fileList && fileList.length > 0 && (
         <ul className="govuk-list govuk-body govuk-!-margin-bottom-9">
