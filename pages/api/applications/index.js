@@ -7,6 +7,9 @@ import isValidApplication from '../../../lib/usecases/validators';
 import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
 
 export default async (req, res) => {
+  const rightNow = new Date();
+  const lastSubmission = new Date('2020-06-26T23:00:00.000Z');
+
   switch (req.method) {
     case 'GET':
       try {
@@ -53,6 +56,13 @@ export default async (req, res) => {
       break;
 
     case 'POST':
+      if (rightNow >= lastSubmission) {
+        res.statusCode = HttpStatus.FORBIDDEN;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ error: 'Applications have closed.' }));
+        break;
+      }
+
       try {
         const clientGeneratedId = nanoid();
         const validApplication = await isValidApplication(req.body);
