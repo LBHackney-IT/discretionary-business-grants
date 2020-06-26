@@ -2,7 +2,7 @@ import MockDate from 'mockdate';
 
 import { isExpired } from './date';
 
-const expirationDate = new Date(process.env.EXPIRATION_DATE);
+const expirationDate = new Date('2020-06-26');
 
 describe('date utils', () => {
   describe('isExpired', () => {
