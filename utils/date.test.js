@@ -5,6 +5,10 @@ import { isExpired } from './date';
 const expirationDate = new Date('2020-06-26');
 
 describe('date utils', () => {
+  afterEach(() => {
+    MockDate.reset();
+  });
+
   describe('isExpired', () => {
     it('should work properly', () => {
       MockDate.set('2020-06-25');
