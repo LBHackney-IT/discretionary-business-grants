@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useBeforeunload } from 'react-beforeunload';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
+import * as HttpStatus from 'http-status-codes';
 
 import { steps, stepPath, stepKeys } from 'components/Steps';
+import { isExpired } from 'utils/date';
 
 const getAdjacentSteps = step => {
   const currentStep = stepKeys.findIndex(s => s === step);
@@ -63,3 +65,18 @@ const FormWizard = () => {
 };
 
 export default FormWizard;
+
+export async function getServerSideProps({ res }) {
+  if (
+    process.env.EXPIRATION_DATE &&
+    isExpired(new Date(process.env.EXPIRATION_DATE), new Date())
+  ) {
+    res.writeHead(HttpStatus.MOVED_TEMPORARILY, {
+      Location: '/'
+    });
+    res.end();
+  }
+  return {
+    props: {}
+  };
+}
