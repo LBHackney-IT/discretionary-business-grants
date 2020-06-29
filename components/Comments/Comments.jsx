@@ -52,7 +52,7 @@ const Comments = ({ applicationId, status }) => {
                 {new Date(comment.dateTimeRecorded).toLocaleString()}
               </span>
             </div>
-            <div>{comment.notes}</div>
+            <pre>{comment.notes}</pre>
             <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
           </div>
         ))}
