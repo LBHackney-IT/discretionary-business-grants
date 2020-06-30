@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import { TextArea, Button } from 'components/Form';
 
+import styles from './Comments.module.css';
+
 const Comments = ({ applicationId, status }) => {
   const [data, setData] = useState();
   const [error, setError] = useState();
@@ -52,7 +54,7 @@ const Comments = ({ applicationId, status }) => {
                 {new Date(comment.dateTimeRecorded).toLocaleString()}
               </span>
             </div>
-            <pre>{comment.notes}</pre>
+            <pre className={styles.comment}>{comment.notes}</pre>
             <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
           </div>
         ))}
