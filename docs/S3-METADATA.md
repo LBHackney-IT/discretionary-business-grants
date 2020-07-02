@@ -53,7 +53,9 @@ In addition to setting the correct content type, the system requires a metadata 
    **Note:** The command uses the `--dryrun` argument to permit validation. Remove to actually execute.  
    `aws s3 cp s3://your-bucket-name/ s3://your-bucket-name/archive/ --recursive --dryrun --profile your-aws-cli-profile` 1. Go to the AWS console and manually check the files are archived.
 1. Run the generated commands against s3, redirecting output to a log file.  
-   `xargs -d '\n' -t -i bash -c '{}' < awscp.txt > awscp_log.txt` 1. **Optional:** If `awscp.txt` is large, [split](https://kb.iu.edu/d/afar) it into a number of files to run smaller batches. The previous `xargs` command will need adjusting for each output file.  
-    `split -l 500 awscp.txt awscp_`
+   `xargs -d '\n' -t -i bash -c '{}' < awscp.txt > awscp_log.txt`
+
+   1. **Optional:** If `awscp.txt` is large, [split](https://kb.iu.edu/d/afar) it into a number of files to run smaller batches. The previous `xargs` command will need adjusting for each output file.  
+      `split -l 500 awscp.txt awscp_`
 
 1. Manually check the files Metadata in the AWS console.
