@@ -1,3 +1,32 @@
+# Discretionary Business Grants
+
+This application was developed, for [Hackney Council](https://hackney.gov.uk/), to allow small businesses to apply for discretionary support grants during the 2020 coronavirus (COVID-19) pandemic.
+
+It consists of a, publicly available, front end for applicants and a restricted back end for Grant Administrators to process claims.
+
+## AWS Architecture
+
+![architecture](dbg-aws.jpg)
+[Editable Diagram Source](dbg-aws.drawio)
+
+## Database
+
+The database engine is [PostgreSQL](https://www.postgresql.org/), version 11 in AWS RDS.
+
+![db-schema](dbg-schema.png)
+
+## Known Issues
+
+### Api and Front end application submission blocking
+
+Application submissions were closed at 2020-06-26T23:00:00.000Z. The front end reads an env var to enable this. The back end API blocks new submissions in `pages/api/applications/index.js`. In the event that applications are re-enabled, the back end should read the same environment variable.
+
+### Mimetypes on s3 files
+
+If the application is re-enabled - when users upload supporting documents they will be stored in S3 with the wrong mime type set. See [here](https://github.com/LBHackney-IT/discretionary-business-grants/blob/master/docs/S3-METADATA.md) for a complete description and fix.
+
+## Technology
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
