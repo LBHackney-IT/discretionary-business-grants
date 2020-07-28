@@ -3,7 +3,7 @@ import Router from 'next/router';
 
 import Table from 'components/Table/Table';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
-import { BasicSelect } from 'components/Form';
+import { BasicSelect, TextInput } from 'components/Form';
 import { fetchApplications, patchApplications } from 'utils/api/applications';
 
 import { APPLICATION_STATE, TYPE_OF_BUSINESS } from 'lib/dbMapping';
@@ -15,7 +15,8 @@ const ApplicationsList = ({
   sort,
   status,
   businessType,
-  grantOfficer
+  grantOfficer,
+  applicationId
 }) => {
   const columns = useMemo(
     () => [
@@ -44,7 +45,8 @@ const ApplicationsList = ({
   const [filters, setFilters] = useState({
     status,
     businessType,
-    grantOfficer
+    grantOfficer,
+    applicationId
   });
   const [error, setError] = useState();
   const [data, setData] = useState([]);
@@ -134,6 +136,13 @@ const ApplicationsList = ({
           onChange={grantOfficer => setValues({ grantOfficer })}
         />
       )}
+      <TextInput
+        label="Search by Application ID"
+        value={filters.applicationId}
+        onChange={applicationIdEvent => {
+          setValues({ applicationId: applicationIdEvent.target.value });
+        }}
+      />
       <Table
         columns={columns}
         data={data}
