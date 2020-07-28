@@ -39,13 +39,18 @@ export default async (req, res) => {
           req.query && req.query.grantOfficer
             ? req.query.grantOfficer
             : undefined;
+        const clientGeneratedId =
+          req.query && req.query.applicationReference
+            ? req.query.applicationReference
+            : undefined;
         let listApplicationsResponse = await listApplications({
           currentPage,
           pageSize,
           sort,
           status,
           businessType,
-          grantOfficer
+          grantOfficer,
+          clientGeneratedId
         });
         if (
           [PAGE_MUST_BE_AT_LEAST_ONE, PAGINATED_PAST_END].includes(
