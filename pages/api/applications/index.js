@@ -40,8 +40,8 @@ export default async (req, res) => {
             ? req.query.grantOfficer
             : undefined;
         const clientGeneratedId =
-          req.query && req.query.applicationReference
-            ? req.query.applicationReference
+          req.query && req.query.applicationId
+            ? req.query.applicationId
             : undefined;
         let listApplicationsResponse = await listApplications({
           currentPage,

@@ -94,7 +94,7 @@ paths:
           type: 'string'
           required: false
         - in: 'query'
-          name: 'applicationReference'
+          name: 'applicationId'
           type: 'string'
           required: false
       responses:
