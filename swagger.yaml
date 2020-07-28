@@ -93,6 +93,10 @@ paths:
           name: 'businessType'
           type: 'string'
           required: false
+        - in: 'query'
+          name: 'applicationReference'
+          type: 'string'
+          required: false
       responses:
         '200':
           description: 'List of applications'
