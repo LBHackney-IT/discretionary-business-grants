@@ -12,10 +12,6 @@ const ApplicationGrantAmountSelector = ({
   const [error, setError] = useState();
   const [value, setValue] = useState(grantAmountAwarded);
   const handleOnChange = useCallback(async grantAmountAwarded => {
-    if (!value) {
-      console.log('Return null');
-      return null;
-    }
     setError(false);
     try {
       await patchApplication(applicationId, { grantAmountAwarded });
