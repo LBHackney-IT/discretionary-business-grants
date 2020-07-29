@@ -73,7 +73,8 @@ const Comments = ({ applicationId, status }) => {
 
 Comments.propTypes = {
   applicationId: PropTypes.string.isRequired,
-  status: PropTypes.string
+  status: PropTypes.string,
+  grantAmountAwarded: PropTypes.string
 };
 
 export default Comments;

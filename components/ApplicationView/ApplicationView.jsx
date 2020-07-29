@@ -5,13 +5,15 @@ import { useForm } from 'react-hook-form';
 import { fetchApplication, patchApplication } from 'utils/api/applications';
 import Summary from 'components/Summary/Summary';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
+import ApplicationGrantAmountSelector from 'components/ApplicationGrantAmountSelector/ApplicationGrantAmountSelector';
 import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
 import Comments from 'components/Comments/Comments';
 
 const ApplicationView = ({ applicationId }) => {
   const [data, setData] = useState();
-  const [status, setStatus] = useState();
   const [error, setError] = useState(false);
+  const [status, setStatus] = useState();
+  const [grantAmountAwarded, setGrantAmountAwarded] = useState();
   const [validationRecap, setValidationRecap] = useState();
   const { register, watch, reset } = useForm({ defaultValues: {} });
   const watcher = watch({ nest: true });
@@ -100,6 +102,11 @@ const ApplicationView = ({ applicationId }) => {
                   applicationId={applicationId}
                   onChange={setStatus}
                 />
+                <ApplicationGrantAmountSelector
+                  grantAmountAwarded={data.grantAmountAwarded}
+                  applicationId={applicationId}
+                  onChange={setGrantAmountAwarded}
+                />
               </div>
             </div>
           </div>
@@ -127,7 +134,11 @@ const ApplicationView = ({ applicationId }) => {
               ))}
             </ExpandableDetails>
           </form>
-          <Comments applicationId={applicationId} status={status} />
+          <Comments
+            applicationId={applicationId}
+            status={status}
+            grantAmountAwarded={grantAmountAwarded}
+          />
         </>
       )}
       {error && <p>{error}</p>}
