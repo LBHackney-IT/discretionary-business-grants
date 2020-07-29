@@ -8,7 +8,7 @@ import { TextArea, Button } from 'components/Form';
 
 import styles from './Comments.module.css';
 
-const Comments = ({ applicationId, status }) => {
+const Comments = ({ applicationId, status, grantAmountAwarded }) => {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const { register, errors, handleSubmit, reset } = useForm();
@@ -37,7 +37,7 @@ const Comments = ({ applicationId, status }) => {
   });
   useEffect(() => {
     fetchData();
-  }, [applicationId, status]);
+  }, [applicationId, status, grantAmountAwarded]);
   if (!applicationId) {
     return null;
   }
