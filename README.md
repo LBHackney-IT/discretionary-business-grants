@@ -157,11 +157,37 @@ Currently this is created manually, which is not ideal. We could perhaps look at
   - Click "Reset" and wait for the magic to happen
 - Configure the instance
   - Start a new session via Systems Manager > Session Manager
-  - Create SSH key mkdir ~/.ssh && cd ~/.ssh ssh-keygen -t rsa -b 4096 -C "database-migrations-<environment>@jumpbox-<instance_id>" cat ~/.ssh/id_rsa.pub
+  - Create SSH key
+  ```bash
+  mkdir ~/.ssh
+  cd ~/.ssh
+  ssh-keygen -t rsa -b 4096 -C "database-migrations-<environment>@jumpbox-<instance_id>"
+  cat ~/.ssh/id_rsa.pub
+  ```
   - Add SSH key as a deployment key on the repository
-  - Install Git sudo yum install git
-  - Install Node.js 12 sudo curl -sL https://rpm.nodesource.com/setup_12.x | bash - sudo yum install -y nodejs
-  - Clone the repository cd ~ && git clone git@github.com:LBHackney-IT/discretionary-business-grants.git
-  - Install dependencies cd ~/discretionary-business-grants && npm install
-  - echo "export DATABASE_URL=postgres://<username>:<password>@<endpoint>:<port>/discretionaryBusinessGrantsDb" >> ~/.bashrc && \ source ~/.bashrc You can get the database details from the Lambda environment variables
-  - Install PostgreSQL so we can use the client sudo amazon-linux-extras install postgresql11
+  - Install Git
+  ```bash
+  sudo yum install git
+  ```
+  - Install Node.js 12
+  ```bash
+  sudo curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+  sudo yum install -y nodejs
+  ```
+  - Clone the repository
+  ```bash
+  cd ~ && git clone git@github.com:LBHackney-IT/discretionary-business-grants.git
+  ```
+  - Install dependencies
+  ```bash
+  cd ~/discretionary-business-grants && npm install
+  ```
+  - Add the DATABASE_URL environment variable (you can get the database details from the Lambda environment variables)
+  ```bash
+  echo "export DATABASE_URL=postgres://<username>:<password>@<endpoint>:<port>/discretionaryBusinessGrantsDb" >> ~/.bashrc
+  source ~/.bashrc
+  ```
+  - Install PostgreSQL so we can use the client
+  ```bash
+  sudo amazon-linux-extras install postgresql11
+  ```
