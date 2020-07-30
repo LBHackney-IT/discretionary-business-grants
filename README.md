@@ -153,7 +153,7 @@ Currently this is created manually, which is not ideal. We could perhaps look at
 - Then you probably need to add it to Systems Manager
   - Go to AWS Systems Manager Quick Setup
   - Client "Edit all"
-  - Scroll to bottom and select "CChoose all instances in the current AWS account and Region"
+  - Scroll to bottom and select "Choose all instances in the current AWS account and Region"
   - Click "Reset" and wait for the magic to happen
 - Configure the instance
   - Start a new session via Systems Manager > Session Manager
@@ -167,11 +167,11 @@ Currently this is created manually, which is not ideal. We could perhaps look at
   - Add SSH key as a deployment key on the repository
   - Install Git
   ```bash
-  sudo yum install git
+  sudo yum install -y git
   ```
   - Install Node.js 12
   ```bash
-  sudo curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+  curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
   sudo yum install -y nodejs
   ```
   - Clone the repository
@@ -189,5 +189,5 @@ Currently this is created manually, which is not ideal. We could perhaps look at
   ```
   - Install PostgreSQL so we can use the client
   ```bash
-  sudo amazon-linux-extras install postgresql11
+  sudo amazon-linux-extras install -y postgresql11
   ```
