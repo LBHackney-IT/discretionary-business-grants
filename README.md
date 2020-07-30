@@ -115,7 +115,7 @@ You can do a dry-run to view the changes that will be applied without making any
 npm run dbmigratedry up
 ```
 
-## AWS Database Migrations and seeding
+## Staging/Production database migrations and seeding
 
 To run database migrations against the RDS databases on AWS you need to run the dbmigrate up command via AWS System Manager.
 
@@ -129,3 +129,65 @@ To run database migrations against the RDS databases on AWS you need to run the 
 
 To seed the AWS database start as session as above and then run:
 `cd ~/discretionary-business-grants/ && source ./.env && cat db/seeds.sql | psql $DATABASE_URL`
+
+## Staging/Production PostgresSQL command line access
+
+Start a Session Manager session as above, then...
+
+```bash
+psql $DATABASE_URL
+```
+
+## Staging/Production RDS Jump Box Setup
+
+Currently this is created manually, which is not ideal. We could perhaps look at triggering a Lambda function to run the migrations, but that would not give us command line access to administer the database, so perhaps the Jump Box is best, in which case it should really be created with code (Terraform or CloudFormation), but in the meantime, these are the steps to recreate it manually.
+
+- Create a new EC2 instance
+  - Amazon Linux 2 AMI
+  - t2.micro
+  - same region/availability zone/subnet as the RDS database
+  - The poorly named “bastion_profile“ role which has the correct Systems manager policy etc. and will come out the other end as "instance_role"
+  - "Access to Postgres" security group
+  - SessionManagerKey
+  - Name “RDS Jump Box - Discretionary Business Grants"
+- Then you probably need to add it to Systems Manager
+  - Go to AWS Systems Manager Quick Setup
+  - Client "Edit all"
+  - Scroll to bottom and select "Choose all instances in the current AWS account and Region"
+  - Click "Reset" and wait for the magic to happen
+- Configure the instance
+  - Start a new session via Systems Manager > Session Manager
+  - Create SSH key
+  ```bash
+  mkdir ~/.ssh
+  cd ~/.ssh
+  ssh-keygen -t rsa -b 4096 -C "database-migrations-<environment>@jumpbox-<instance_id>"
+  cat ~/.ssh/id_rsa.pub
+  ```
+  - Add SSH key as a deployment key on the repository
+  - Install Git
+  ```bash
+  sudo yum install -y git
+  ```
+  - Install Node.js 12
+  ```bash
+  curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+  sudo yum install -y nodejs
+  ```
+  - Clone the repository
+  ```bash
+  cd ~ && git clone git@github.com:LBHackney-IT/discretionary-business-grants.git
+  ```
+  - Install dependencies
+  ```bash
+  cd ~/discretionary-business-grants && npm install
+  ```
+  - Add the DATABASE_URL environment variable (you can get the database details from the Lambda environment variables)
+  ```bash
+  echo "export DATABASE_URL=postgres://<username>:<password>@<endpoint>:<port>/discretionaryBusinessGrantsDb" >> ~/.bashrc
+  source ~/.bashrc
+  ```
+  - Install PostgreSQL so we can use the client
+  ```bash
+  sudo amazon-linux-extras install -y postgresql11
+  ```
