@@ -47,8 +47,8 @@ export default function Home({ date, expirationDate }) {
       )}
       <WarningText>
         Please note that applications for the Discretionary Business Grant close
-        at 23.59 on 26 June 2020. Any applications submitted after this time
-        will be invalid.
+        at 23:59 on Friday 28th August 2020. Any applications submitted after
+        this time will be invalid.
       </WarningText>
     </div>
   );
