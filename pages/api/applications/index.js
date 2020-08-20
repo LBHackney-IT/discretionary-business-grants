@@ -12,7 +12,7 @@ import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
 
 export default async (req, res) => {
   const rightNow = new Date();
-  const lastSubmission = new Date('2020-06-26T23:00:00.000Z');
+  const lastSubmission = new Date('2020-08-28T23:00:00.000Z');
 
   switch (req.method) {
     case 'GET':
