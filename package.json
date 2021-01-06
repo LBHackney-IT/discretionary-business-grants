@@ -21,7 +21,7 @@
     "dbmigratedry": "db-migrate --dry-run --migrations-dir 'db/migrations/'"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "cookie": "^0.4.1",
     "date-fns": "^2.14.0",
