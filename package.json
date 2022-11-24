@@ -29,7 +29,7 @@
     "http-status-codes": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "mockdate": "^3.0.2",
-    "nanoid": "^3.1.5",
+    "nanoid": "^3.1.31",
     "next": "^9.4.0",
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#0fe9e7514882c8ffb4182fa984ee10b99bfd886c",
     "notifications-node-client": "^4.7.3",
