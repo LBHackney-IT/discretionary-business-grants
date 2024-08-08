@@ -113,6 +113,9 @@ workflows:
           type: approval
           requires:
             - install-dependencies-and-test
+          filters:
+            branches:
+              only: master
       - assume-role-staging:
           context: api-assume-role-staging-context
           requires:
