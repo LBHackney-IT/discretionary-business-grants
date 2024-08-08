@@ -129,9 +129,12 @@ resources:
           - discretionaryBusinessGrantsDbSecurityGroup
           - GroupId
         Tags:
-          -
-            Key: "Name"
+          - Key: "Name"
             Value: "discretionaryBusinessGrantsDb"
+          - Key: "STAGE"
+            Value: ${self:provider.stage}
+          - Key: "Test"
+            Value: "staging-cci-applied"
       DeletionPolicy: "Snapshot"
 
     CloudFrontDistribution:
