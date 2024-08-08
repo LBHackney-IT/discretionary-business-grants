@@ -121,7 +121,7 @@ resources:
         AllocatedStorage: 5
         DBInstanceClass: "db.t3.micro"
         Engine: "postgres"
-        EngineVersion: "11.21"
+        EngineVersion: "11.22"
         MasterUsername: ${env:MASTER_USERNAME}
         MasterUserPassword: ${env:MASTER_USER_PASSWORD}
         VPCSecurityGroups:
