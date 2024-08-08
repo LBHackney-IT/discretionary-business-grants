@@ -119,7 +119,7 @@ resources:
         DBInstanceIdentifier: "discretionary-business-grants-db-${self:provider.stage}"
         DBName: ${self:provider.dbname}
         AllocatedStorage: 5
-        DBInstanceClass: "db.t2.micro"
+        DBInstanceClass: "db.t3.micro"
         Engine: "postgres"
         EngineVersion: "11.7"
         MasterUsername: ${env:MASTER_USERNAME}
