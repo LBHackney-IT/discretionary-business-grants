@@ -122,6 +122,7 @@ resources:
         DBInstanceClass: "db.t3.micro"
         Engine: "postgres"
         EngineVersion: "11.22"
+        CACertificateIdentifier: "rds-ca-rsa2048-g1"
         MasterUsername: ${env:MASTER_USERNAME}
         MasterUserPassword: ${env:MASTER_USER_PASSWORD}
         VPCSecurityGroups:
