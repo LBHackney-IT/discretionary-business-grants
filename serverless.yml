@@ -19,18 +19,6 @@ package:
   exclude:
     - ./**
 
-functions:
-  authorizer:
-    name: ${self:service}-authorizer-${self:provider.stage}
-    handler: authorizer.handler
-    package:
-      include:
-        - authorizer/**
-        - node_modules/**
-    environment:
-      ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
-      JWT_SECRET: ${ssm:hackney-jwt-secret}
-
 resources:
   Resources:
     discretionaryBusinessGrantsSupportingDocumentsBucket:
