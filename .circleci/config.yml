@@ -34,8 +34,8 @@ jobs:
             aws s3 rm "s3://$bucket_name" --recursive
             aws s3api delete-bucket --bucket "$bucket_name"
       - run:
-          name: serverless deploy
-          command: sls deploy --stage staging
+          name: serverless remove
+          command: sls remove --stage staging --verbose
 
   deploy-production:
     executor: aws-cli/default
