@@ -76,7 +76,7 @@ resources:
             Value: ${self:provider.stage}
           - Key: "BackupPolicy"
             Value: "Prod"
-      DeletionPolicy: "Snapshot"
+      DeletionPolicy: Delete
 
 custom:
   bucket: ${self:service}-supporting-documents-${self:provider.stage}
