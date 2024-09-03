@@ -82,7 +82,7 @@ workflows:
           filters:
             branches:
               only: master
-      - build-deploy-staging:
+      - deploy-staging:
           requires:
             - permit-deploy-staging
           filters:
@@ -92,7 +92,7 @@ workflows:
       - assume-role-production:
           context: api-assume-role-production-context
           requires:
-            - build-deploy-staging
+            - deploy-staging
           filters:
             branches:
               only: master
@@ -104,7 +104,7 @@ workflows:
             branches:
               only:
                 - master
-      - build-deploy-production:
+      - deploy-production:
           requires:
             - permit-deploy-production
           filters:
