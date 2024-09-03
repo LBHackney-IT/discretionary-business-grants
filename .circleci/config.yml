@@ -16,21 +16,29 @@ references:
       at: *workspace_root
 
 jobs:
-  build-deploy-staging:
+  deploy-staging:
     executor: aws-cli/default
     steps:
       - *attach_workspace
+      - checkout
       - run:
-          name: deploy
-          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
+          name: install serverless
+          command: sudo npm i -g serverless@^3
+      - run:
+          name: serverless deploy
+          command: sls deploy --stage staging
 
-  build-deploy-production:
+  deploy-production:
     executor: aws-cli/default
     steps:
       - *attach_workspace
+      - checkout
       - run:
-          name: deploy
-          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
+          name: install serverless
+          command: sudo npm i -g serverless@^3
+      - run:
+          name: serverless deploy
+          command: sls deploy --stage production
 
   assume-role-staging:
     executor: docker-python
