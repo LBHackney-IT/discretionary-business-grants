@@ -5,9 +5,6 @@ orbs:
   aws_assume_role: lbh-hackit/aws_assume_role@0.1.0
 
 executors:
-  node-executor:
-    docker:
-      - image: circleci/node:12.9.1-browsers
   docker-python:
     docker:
       - image: circleci/python:3.7
@@ -19,64 +16,38 @@ references:
       at: *workspace_root
 
 jobs:
-  install-dependencies-and-test:
-    executor: node-executor
+  deploy-staging:
+    executor: aws-cli/default
+    steps:
+      - *attach_workspace
+      - aws-cli/install
+      - checkout
+      - run:
+          name: install serverless
+          command: sudo npm i -g serverless@^3
+      - run:
+          name: clear the S3 bucket
+          no_output_timeout: 45m
+          command: |
+            bucket_name="discretionary-business-grants-supporting-documents-staging"
+
+            aws s3 rm "s3://$bucket_name" --recursive
+            aws s3api delete-bucket --bucket "$bucket_name"
+      - run:
+          name: serverless remove
+          command: sls remove --stage staging --verbose
+
+  deploy-production:
+    executor: aws-cli/default
     steps:
       - *attach_workspace
       - checkout
       - run:
-          name: Install dependencies
-          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn
-
-      #      - aws-cli/install
-      #
-      #      - aws-cli/setup:
-      #          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
-      #          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
-      #          aws-region: CYPRESS_AWS_REGION
-
+          name: install serverless
+          command: sudo npm i -g serverless@^3
       - run:
-          name: Build the application
-          command: yarn build
-
-      - run:
-          name: Run unit tests
-          command: yarn run unit-test
-
-      - run:
-          name: Run linting
-          command: yarn lint
-
-      - run:
-          name: Run integration tests
-          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
-
-      - store_artifacts:
-          path: ~/repo/cypress/screenshots
-
-      - store_artifacts:
-          path: ~/repo/cypress/videos
-
-      - persist_to_workspace:
-          root: *workspace_root
-          paths: .
-
-  build-deploy-staging:
-    executor: aws-cli/default
-    steps:
-      - *attach_workspace
-      - run:
-          name: deploy
-          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
-
-  build-deploy-production:
-    executor: aws-cli/default
-
-    steps:
-      - *attach_workspace
-      - run:
-          name: deploy
-          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy -s production
+          name: serverless deploy
+          command: sls deploy --stage production
 
   assume-role-staging:
     executor: docker-python
@@ -108,42 +79,44 @@ workflows:
   version: 2
   continuous-delivery:
     jobs:
-      - install-dependencies-and-test
+      - assume-role-staging:
+          context: api-assume-role-staging-context
+          filters:
+            branches:
+              only: master
       - permit-deploy-staging:
           type: approval
           requires:
-            - install-dependencies-and-test
-          filters:
-            branches:
-              only: master
-      - assume-role-staging:
-          context: api-assume-role-staging-context
-          requires:
-            - permit-deploy-staging
-          filters:
-            branches:
-              only: master
-      - build-deploy-staging:
-          requires:
-            - permit-deploy-staging
             - assume-role-staging
+          filters:
+            branches:
+              only: master
+      - deploy-staging:
+          requires:
+            - permit-deploy-staging
           filters:
             branches:
               only:
                 - master
-      - permit-deploy-production:
-          type: approval
-          requires:
-            - build-deploy-staging
       - assume-role-production:
           context: api-assume-role-production-context
           requires:
-            - install-dependencies-and-test
-            - permit-deploy-production
+            - deploy-staging
           filters:
             branches:
               only: master
-      - build-deploy-production:
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - assume-role-production
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-production:
           requires:
             - permit-deploy-production
-            - assume-role-production
+          filters:
+            branches:
+              only:
+                - master
