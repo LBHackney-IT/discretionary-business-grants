@@ -73,8 +73,8 @@ resources:
             Value: "discretionaryBusinessGrantsDb"
           - Key: "STAGE"
             Value: ${self:provider.stage}
-          - Key: "Test"
-            Value: "staging-cci-applied"
+          - Key: "BackupPolicy"
+            Value: "Prod"
       DeletionPolicy: "Snapshot"
 
 custom:
