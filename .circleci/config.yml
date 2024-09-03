@@ -5,9 +5,6 @@ orbs:
   aws_assume_role: lbh-hackit/aws_assume_role@0.1.0
 
 executors:
-  node-executor:
-    docker:
-      - image: circleci/node:12.9.1-browsers
   docker-python:
     docker:
       - image: circleci/python:3.7
@@ -19,48 +16,6 @@ references:
       at: *workspace_root
 
 jobs:
-  install-dependencies-and-test:
-    executor: node-executor
-    steps:
-      - *attach_workspace
-      - checkout
-      - run:
-          name: Install dependencies
-          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn
-
-      #      - aws-cli/install
-      #
-      #      - aws-cli/setup:
-      #          aws-access-key-id: CYPRESS_AWS_ACCESS_KEY_ID
-      #          aws-secret-access-key: CYPRESS_AWS_SECRET_ACCESS_KEY
-      #          aws-region: CYPRESS_AWS_REGION
-
-      - run:
-          name: Build the application
-          command: yarn build
-
-      - run:
-          name: Run unit tests
-          command: yarn run unit-test
-
-      - run:
-          name: Run linting
-          command: yarn lint
-
-      - run:
-          name: Run integration tests
-          command: CYPRESS_CACHE_FOLDER=~/repo/cypress_cache yarn run int-test
-
-      - store_artifacts:
-          path: ~/repo/cypress/screenshots
-
-      - store_artifacts:
-          path: ~/repo/cypress/videos
-
-      - persist_to_workspace:
-          root: *workspace_root
-          paths: .
-
   build-deploy-staging:
     executor: aws-cli/default
     steps:
@@ -71,7 +26,6 @@ jobs:
 
   build-deploy-production:
     executor: aws-cli/default
-
     steps:
       - *attach_workspace
       - run:
