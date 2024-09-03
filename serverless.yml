@@ -16,29 +16,32 @@ provider:
 resources:
   Resources:
     discretionaryBusinessGrantsSupportingDocumentsBucket:
-        Type: AWS::S3::Bucket
-        Properties:
-          BucketName: ${self:custom.bucket}
-          PublicAccessBlockConfiguration:
-            BlockPublicAcls: true
-            BlockPublicPolicy: true
-            IgnorePublicAcls: true
-            RestrictPublicBuckets: true
-          BucketEncryption:
-            ServerSideEncryptionConfiguration:
-              - ServerSideEncryptionByDefault:
-                  SSEAlgorithm: AES256
-          CorsConfiguration:
-            CorsRules:
-              -
-                AllowedOrigins:
-                  - '*'
-                AllowedHeaders:
-                  - '*'
-                AllowedMethods:
-                  - PUT
-                  - POST
-                MaxAge: 3000
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: ${self:custom.bucket}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        BucketEncryption:
+          ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: AES256
+        VersioningConfiguration:
+          Status: Enabled
+        CorsConfiguration:
+          CorsRules:
+            -
+              AllowedOrigins:
+                - '*'
+              AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - PUT
+                - POST
+              MaxAge: 3000
     discretionaryBusinessGrantsDbSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
