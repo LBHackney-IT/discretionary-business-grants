@@ -59,6 +59,7 @@ resources:
         DBName: ${self:provider.dbname}
         AllocatedStorage: 5
         DBInstanceClass: "db.t3.micro"
+        DeletionProtection: false
         Engine: "postgres"
         EngineVersion: "11.22"
         CACertificateIdentifier: "rds-ca-rsa2048-g1"
