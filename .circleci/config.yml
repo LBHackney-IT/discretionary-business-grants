@@ -108,42 +108,44 @@ workflows:
   version: 2
   continuous-delivery:
     jobs:
-      - install-dependencies-and-test
-      - permit-deploy-staging:
-          type: approval
-          requires:
-            - install-dependencies-and-test
+      - assume-role-staging:
+          context: api-assume-role-staging-context
           filters:
             branches:
               only: master
-      - assume-role-staging:
-          context: api-assume-role-staging-context
+      - permit-deploy-staging:
+          type: approval
           requires:
-            - permit-deploy-staging
+            - assume-role-staging
           filters:
             branches:
               only: master
       - build-deploy-staging:
           requires:
             - permit-deploy-staging
-            - assume-role-staging
           filters:
             branches:
               only:
                 - master
-      - permit-deploy-production:
-          type: approval
-          requires:
-            - build-deploy-staging
       - assume-role-production:
           context: api-assume-role-production-context
           requires:
-            - install-dependencies-and-test
-            - permit-deploy-production
+            - build-deploy-staging
           filters:
             branches:
               only: master
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - assume-role-production
+          filters:
+            branches:
+              only:
+                - master
       - build-deploy-production:
           requires:
             - permit-deploy-production
-            - assume-role-production
+          filters:
+            branches:
+              only:
+                - master
