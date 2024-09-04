@@ -100,8 +100,6 @@ workflows:
                 - master
       - assume-role-production:
           context: api-assume-role-production-context
-          requires:
-            - deploy-staging
           filters:
             branches:
               only: master
