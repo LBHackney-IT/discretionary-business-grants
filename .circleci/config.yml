@@ -16,27 +16,6 @@ references:
       at: *workspace_root
 
 jobs:
-  deploy-staging:
-    executor: aws-cli/default
-    steps:
-      - *attach_workspace
-      - aws-cli/install
-      - checkout
-      - run:
-          name: install serverless
-          command: sudo npm i -g serverless@^3
-      - run:
-          name: clear the S3 bucket
-          no_output_timeout: 45m
-          command: |
-            bucket_name="discretionary-business-grants-supporting-documents-staging"
-
-            aws s3 rm "s3://$bucket_name" --recursive
-            aws s3api delete-bucket --bucket "$bucket_name"
-      - run:
-          name: serverless remove
-          command: sls remove --stage staging --verbose
-
   deploy-production:
     executor: aws-cli/default
     steps:
@@ -48,19 +27,6 @@ jobs:
       - run:
           name: serverless deploy
           command: sls deploy --stage production
-
-  assume-role-staging:
-    executor: docker-python
-    steps:
-      - checkout
-      - aws_assume_role/assume_role:
-          account: $AWS_ACCOUNT_STAGING
-          profile_name: default
-          role: "LBH_Circle_CI_Deployment_Role"
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - .aws
 
   assume-role-production:
     executor: docker-python
