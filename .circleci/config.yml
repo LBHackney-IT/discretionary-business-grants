@@ -27,6 +27,7 @@ jobs:
       - run:
           name: serverless deploy
           command: sls deploy --stage production
+          no_output_timeout: 45m
 
   assume-role-production:
     executor: docker-python
