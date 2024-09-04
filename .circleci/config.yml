@@ -79,25 +79,6 @@ workflows:
   version: 2
   continuous-delivery:
     jobs:
-      - assume-role-staging:
-          context: api-assume-role-staging-context
-          filters:
-            branches:
-              only: master
-      - permit-deploy-staging:
-          type: approval
-          requires:
-            - assume-role-staging
-          filters:
-            branches:
-              only: master
-      - deploy-staging:
-          requires:
-            - permit-deploy-staging
-          filters:
-            branches:
-              only:
-                - master
       - assume-role-production:
           context: api-assume-role-production-context
           filters:
