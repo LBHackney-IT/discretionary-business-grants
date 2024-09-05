@@ -1,5 +1,9 @@
 # Discretionary Business Grants
 
+This application and it cloud resources with the exception of production S3 supporting documents bucket _(at the time of writing)_ have been decommissioned.
+
+<!--
+
 This application was developed, for [Hackney Council](https://hackney.gov.uk/), to allow small businesses to apply for discretionary support grants during the 2020 coronavirus (COVID-19) pandemic.
 
 It consists of a, publicly available, front end for applicants and a restricted back end for Grant Administrators to process claims.
@@ -191,3 +195,4 @@ Currently this is created manually, which is not ideal. We could perhaps look at
   ```bash
   sudo amazon-linux-extras install -y postgresql11
   ```
+-->
